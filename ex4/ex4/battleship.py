@@ -25,7 +25,7 @@ def init_board(rows, columns):
 def cell_loc(name):
     """returns cell coordinates from user input"""
     letter = ord(name[0]) - 65
-    number = int(name[1:3])  - 1  # we can assume there are 26 columns max
+    number = int(name[1:3]) - 1  # we can assume there are 26 columns max
     tup = (number, letter)
     return tup  # return row_index, column_index
 
@@ -45,7 +45,7 @@ def valid_ship(board, size, loc):
     if size > (helper.NUM_ROWS - loc[0] + 1):
         # print("size of ship is too big for this location")
         return False
-    row_index = loc[0] #- 1  # we need to move 1 row down every time to reach ship size
+    row_index = loc[0]  #- 1  # we need to move 1 row down every time to reach ship size
     cell_count = 0
     while cell_count < size:
         # check if current location is in board range
@@ -143,22 +143,43 @@ def main():
     player_board = create_player_board(helper.NUM_ROWS, helper.NUM_COLUMNS, helper.SHIP_SIZES)
     computer_board = create_computer_board(helper.NUM_ROWS, helper.NUM_COLUMNS, helper.SHIP_SIZES)
     helper.print_board(player_board, hidden_board)
-
     num_of_ship_cells_of_comp = sum(helper.SHIP_SIZES)
     num_of_ship_cells_of_player = sum(helper.SHIP_SIZES)
-    while num_of_ship_cells_of_comp >= 0 and num_of_ship_cells_of_player >= 0:
-        user_input = helper.get_input("Please insert location for torpedo")
-        upper_input = user_input.replace(user_input[0], user_input[0].upper())
-        chosen_location = cell_loc(upper_input)
-        if is_torpedo_location_valid(computer_board, chosen_location):
-            computer_board = fire_torpedo(computer_board, chosen_location)
-            if computer_board[chosen_location[0]][chosen_location[1]] == helper.HIT_WATER:
-                hidden_board[chosen_location[0]][chosen_location[1]] = helper.HIT_WATER
-                num_of_ship_cells_of_comp -= 1
-            if computer_board[chosen_location[0]][chosen_location[1]] == helper.HIT_SHIP:
-                hidden_board[chosen_location[0]][chosen_location[1]] = helper.HIT_SHIP
-                num_of_ship_cells_of_comp -= 1
+    list_of_locations = create_list_of_locations(helper.NUM_ROWS, helper.NUM_COLUMNS)
+
+    while num_of_ship_cells_of_comp and num_of_ship_cells_of_player:
+
+        is_user_played = 0
+        while is_user_played == 0:
+            user_input = helper.get_input("Please insert location for torpedo")
+            upper_input = user_input.replace(user_input[0], user_input[0].upper())
+            chosen_location = cell_loc(upper_input)
+            if is_torpedo_location_valid(computer_board, chosen_location):
+                computer_board = fire_torpedo(computer_board, chosen_location)
+                if computer_board[chosen_location[0]][chosen_location[1]] == helper.HIT_WATER:
+                    hidden_board[chosen_location[0]][chosen_location[1]] = helper.HIT_WATER
+                    # num_of_ship_cells_of_comp -= 1
+                    is_user_played = 1
+                if computer_board[chosen_location[0]][chosen_location[1]] == helper.HIT_SHIP:
+                    hidden_board[chosen_location[0]][chosen_location[1]] = helper.HIT_SHIP
+                    num_of_ship_cells_of_comp -= 1
+                    is_user_played = 1
+
+        is_comp_played = 0
+        while is_comp_played == 0:
+            comp_chosen_torpedo_location = helper.choose_torpedo_target(player_board, list_of_locations)
+            if is_torpedo_location_valid(player_board, comp_chosen_torpedo_location):
+                player_board = fire_torpedo(player_board, comp_chosen_torpedo_location)
+                if player_board[comp_chosen_torpedo_location[0]][comp_chosen_torpedo_location[1]] == helper.HIT_WATER:
+                    # hidden_board[chosen_location[0]][chosen_location[1]] = helper.HIT_WATER
+                    # num_of_ship_cells_of_player -= 1
+                    is_comp_played = 1
+                if player_board[comp_chosen_torpedo_location[0]][comp_chosen_torpedo_location[1]] == helper.HIT_SHIP:
+                    # hidden_board[chosen_location[0]][chosen_location[1]] = helper.HIT_SHIP
+                    num_of_ship_cells_of_player -= 1
+                    is_comp_played = 1
         helper.print_board(player_board, hidden_board)
+    print("finished")
 
 
 if __name__ == "__main__":
