@@ -8,6 +8,7 @@
 # NOTES: none
 #################################################################
 import helper
+from copy import deepcopy
 
 
 def init_board(rows, columns):
@@ -24,7 +25,7 @@ def init_board(rows, columns):
 def cell_loc(name):
     """returns cell coordinates from user input"""
     letter = ord(name[0]) - 65
-    number = int(name[1:3])  #- 1  # we can assume there are 26 columns max
+    number = int(name[1:3])  - 1  # we can assume there are 26 columns max
     tup = (number, letter)
     return tup  # return row_index, column_index
 
@@ -44,12 +45,12 @@ def valid_ship(board, size, loc):
     if size > (helper.NUM_ROWS - loc[0] + 1):
         # print("size of ship is too big for this location")
         return False
-    row_index = loc[0] - 1  # we need to move 1 row down every time to reach ship size
+    row_index = loc[0] #- 1  # we need to move 1 row down every time to reach ship size
     cell_count = 0
     while cell_count < size:
         # check if current location is in board range
         if (0 <= row_index <= helper.NUM_ROWS) and (0 <= loc[1] <= helper.NUM_COLUMNS - 1):
-            if board[row_index][loc[1]] == 1:  # check if ship was placed on top of other ship
+            if board[row_index - 1][loc[1]] == 1:  # check if ship was placed on top of other ship
                 # print("you cant place a ship on top of another ship")
                 return False
             # print(f"here you can {row_index - 1}")
@@ -72,7 +73,7 @@ def create_player_board(rows, columns, ship_sizes):
     while i < len(ship_sizes):
         location_from_user = cell_loc(helper.get_input("Please insert column value (CAPITAL letter) and row value ("
                                                        "NUMBER):"))
-        row_input = location_from_user[row_index] - 1
+        row_input = location_from_user[row_index]
         col_input = location_from_user[1]
         if valid_ship(board, ship_sizes[i], location_from_user):
             for j in range(ship_sizes[i]):
@@ -86,7 +87,7 @@ def create_player_board(rows, columns, ship_sizes):
     return board
 
 
-def create_hidden_board(rows, columns, ship_sizes):
+def create_computer_board(rows, columns, ship_sizes):
     """create hidden board from random locations for ships"""
     board = (init_board(rows, columns))
     # helper.print_board(board)
@@ -109,29 +110,56 @@ def create_hidden_board(rows, columns, ship_sizes):
     return board
 
 
-def fire_torpedo(board, loc):
-    """fire torpedo on board based on given location"""
-    if (0 <= loc[0] <= helper.NUM_ROWS) or (0 <= loc[1] <= helper.NUM_COLUMNS - 1):
-        if board[loc[0]][loc[1]] == 0:
-            board[loc[0]][loc[0]] = 2
-        elif board[loc[0]][loc[1]] == 1:
-            board[loc[0]][loc[1]] = 3
+def hide_board(board):
+    for i in board:
+        for j in range(len(i)):
+            i[j] = helper.WATER
+            # if j == helper.SHIP:
+            #     j = helper.WATER
+    print(board)
     return board
 
 
-def main():
-    helper.print_board((create_player_board(helper.NUM_ROWS, helper.NUM_COLUMNS, helper.SHIP_SIZES)),
-                       create_hidden_board(helper.NUM_ROWS, helper.NUM_COLUMNS, helper.SHIP_SIZES))
+def fire_torpedo(board, loc):
+    """fire torpedo on board based on given location"""
+    if (0 <= loc[0] <= helper.NUM_ROWS) or (0 <= loc[1] <= helper.NUM_COLUMNS - 1):
+        if board[loc[0]][loc[1]] == helper.WATER:
+            board[loc[0]][loc[1]] = helper.HIT_WATER
+        elif board[loc[0]][loc[1]] == helper.SHIP:
+            board[loc[0]][loc[1]] = helper.HIT_SHIP
+    return board
 
+
+def is_torpedo_location_valid(board, location):
+    if (0 <= location[0] <= helper.NUM_ROWS - 1) and (0 <= location[1] <= helper.NUM_COLUMNS - 1):
+        if (board[location[0]][location[1]] == helper.WATER) or (board[location[0]][location[1]] == helper.SHIP):
+            return True
+    return False
+
+
+def main():
+    hidden_board = init_board(helper.NUM_ROWS, helper.NUM_COLUMNS)
+    helper.print_board(hidden_board)
+    player_board = create_player_board(helper.NUM_ROWS, helper.NUM_COLUMNS, helper.SHIP_SIZES)
+    computer_board = create_computer_board(helper.NUM_ROWS, helper.NUM_COLUMNS, helper.SHIP_SIZES)
+    helper.print_board(player_board, hidden_board)
+
+    num_of_ship_cells_of_comp = sum(helper.SHIP_SIZES)
+    num_of_ship_cells_of_player = sum(helper.SHIP_SIZES)
+    while num_of_ship_cells_of_comp >= 0 and num_of_ship_cells_of_player >= 0:
+        user_input = helper.get_input("Please insert location for torpedo")
+        upper_input = user_input.replace(user_input[0], user_input[0].upper())
+        chosen_location = cell_loc(upper_input)
+        if is_torpedo_location_valid(computer_board, chosen_location):
+            computer_board = fire_torpedo(computer_board, chosen_location)
+            if computer_board[chosen_location[0]][chosen_location[1]] == helper.HIT_WATER:
+                hidden_board[chosen_location[0]][chosen_location[1]] = helper.HIT_WATER
+                num_of_ship_cells_of_comp -= 1
+            if computer_board[chosen_location[0]][chosen_location[1]] == helper.HIT_SHIP:
+                hidden_board[chosen_location[0]][chosen_location[1]] = helper.HIT_SHIP
+                num_of_ship_cells_of_comp -= 1
+        helper.print_board(player_board, hidden_board)
 
 
 if __name__ == "__main__":
-    # helper.print_board(init_board(helper.NUM_ROWS, helper.NUM_COLUMNS))
-    # init_board(helper.NUM_ROWS, helper.NUM_COLUMNS)
-    # user_input = helper.get_input("Please insert column value (CAPITAL letter) and row value (NUMBER)")
-    # loca = cell_loc(user_input)
-    # valid_ship(init_board(helper.NUM_ROWS, helper.NUM_COLUMNS), 3, loca)
-    # create_player_board(helper.NUM_ROWS, helper.NUM_COLUMNS, helper.SHIP_SIZES)
-    # create_hidden_board(helper.NUM_ROWS, helper.NUM_COLUMNS, helper.SHIP_SIZES)
-    # create_list_of_locations(helper.NUM_ROWS, helper.NUM_COLUMNS)
     main()
