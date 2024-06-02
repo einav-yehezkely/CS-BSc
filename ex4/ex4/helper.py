@@ -5,7 +5,7 @@ import random
 
 NUM_ROWS = 3#10
 NUM_COLUMNS = 3#8
-SHIP_SIZES = (1) #(5, 5, 3, 3, 2, 2)
+SHIP_SIZES = (1,1) #(5, 5, 3, 3, 2, 2)
 
 WATER = 0
 SHIP = 1

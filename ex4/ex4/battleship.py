@@ -5,10 +5,10 @@
 # DESCRIPTION: A program that runs the game Battleship
 # STUDENTS I DISCUSSED THE EXERCISE WITH: none
 # WEB PAGES I USED: https://www.commfront.com/pages/ascii-chart
+# https://www.youtube.com/watch?v=WSBAh_OStA4
 # NOTES: none
 #################################################################
 import helper
-from copy import deepcopy
 
 
 def init_board(rows, columns):
@@ -45,11 +45,11 @@ def valid_ship(board, size, loc):
     if size > (helper.NUM_ROWS - loc[0] + 1):
         # print("size of ship is too big for this location")
         return False
-    row_index = loc[0]  #- 1  # we need to move 1 row down every time to reach ship size
+    row_index = loc[0]  # we need to move 1 row down every time to reach ship size
     cell_count = 0
     while cell_count < size:
         # check if current location is in board range
-        if (0 <= row_index <= helper.NUM_ROWS) and (0 <= loc[1] <= helper.NUM_COLUMNS - 1):
+        if (0 <= row_index <= helper.NUM_ROWS) and (0 <= loc[1] <= helper.NUM_COLUMNS):
             if board[row_index - 1][loc[1]] == 1:  # check if ship was placed on top of other ship
                 # print("you cant place a ship on top of another ship")
                 return False
@@ -64,15 +64,22 @@ def valid_ship(board, size, loc):
     return True
 
 
+def uppercase(user_input):
+    """make letter uppercase"""
+    upper_input = user_input.replace(user_input[0], user_input[0].upper())
+    return upper_input
+
+
 def create_player_board(rows, columns, ship_sizes):
     """create board from user inputs for ships"""
     board = (init_board(rows, columns))
-    # helper.print_board(board)
     row_index = 0
     i = 0
     while i < len(ship_sizes):
-        location_from_user = cell_loc(helper.get_input("Please insert column value (CAPITAL letter) and row value ("
-                                                       "NUMBER):"))
+        input_from_user_uppercase = uppercase(
+            helper.get_input("Please insert column value (letter) and row value ("
+                             "number): "))
+        location_from_user = cell_loc(input_from_user_uppercase)
         row_input = location_from_user[row_index]
         col_input = location_from_user[1]
         if valid_ship(board, ship_sizes[i], location_from_user):
@@ -110,16 +117,6 @@ def create_computer_board(rows, columns, ship_sizes):
     return board
 
 
-def hide_board(board):
-    for i in board:
-        for j in range(len(i)):
-            i[j] = helper.WATER
-            # if j == helper.SHIP:
-            #     j = helper.WATER
-    print(board)
-    return board
-
-
 def fire_torpedo(board, loc):
     """fire torpedo on board based on given location"""
     if (0 <= loc[0] <= helper.NUM_ROWS) or (0 <= loc[1] <= helper.NUM_COLUMNS - 1):
@@ -151,7 +148,7 @@ def main():
 
         is_user_played = 0
         while is_user_played == 0:
-            user_input = helper.get_input("Please insert location for torpedo")
+            user_input = helper.get_input("Please insert location for torpedo: ")
             upper_input = user_input.replace(user_input[0], user_input[0].upper())
             chosen_location = cell_loc(upper_input)
             if is_torpedo_location_valid(computer_board, chosen_location):
@@ -179,8 +176,20 @@ def main():
                     num_of_ship_cells_of_player -= 1
                     is_comp_played = 1
         helper.print_board(player_board, hidden_board)
-    print("finished")
+    helper.print_board(player_board, computer_board)
 
 
 if __name__ == "__main__":
-    main()
+    while True:
+        main()
+        while True:
+            answer = helper.get_input("play again? (Y/N): ")
+            if answer in ("Y", "N"):
+                break
+            print("invalid value.", end=' ')
+        if answer == "Y":
+            continue
+        else:
+            print("Game Over")
+            break
+    # main()
