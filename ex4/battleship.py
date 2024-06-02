@@ -45,12 +45,12 @@ def valid_ship(board, size, loc):
     if size > (helper.NUM_ROWS - loc[0] + 1):
         # print("size of ship is too big for this location")
         return False
-    row_index = loc[0]  # we need to move 1 row down every time to reach ship size
+    row_index = loc[0] #- 1 # we need to move 1 row down every time to reach ship size
     cell_count = 0
     while cell_count < size:
         # check if current location is in board range
-        if (0 <= row_index <= helper.NUM_ROWS) and (0 <= loc[1] <= helper.NUM_COLUMNS):
-            if board[row_index - 1][loc[1]] == 1:  # check if ship was placed on top of other ship
+        if (0 <= row_index <= helper.NUM_ROWS - 1) and (0 <= loc[1] <= helper.NUM_COLUMNS):
+            if board[row_index - 1][loc[1]] == 1:  # check if ship was placed on top of other ship # -1
                 # print("you cant place a ship on top of another ship")
                 return False
             # print(f"here you can {row_index - 1}")
@@ -134,62 +134,65 @@ def is_torpedo_location_valid(board, location):
     return False
 
 
-def main():
-    hidden_board = init_board(helper.NUM_ROWS, helper.NUM_COLUMNS)
-    helper.print_board(hidden_board)
-    player_board = create_player_board(helper.NUM_ROWS, helper.NUM_COLUMNS, helper.SHIP_SIZES)
-    computer_board = create_computer_board(helper.NUM_ROWS, helper.NUM_COLUMNS, helper.SHIP_SIZES)
-    helper.print_board(player_board, hidden_board)
-    num_of_ship_cells_of_comp = sum(helper.SHIP_SIZES)
-    num_of_ship_cells_of_player = sum(helper.SHIP_SIZES)
+def is_played(user_or_comp_played, comp_or_user_board, hidden_board, num_of_ships):
+    """runs a turn of game"""
     list_of_locations = create_list_of_locations(helper.NUM_ROWS, helper.NUM_COLUMNS)
-
-    while num_of_ship_cells_of_comp and num_of_ship_cells_of_player:
-
-        is_user_played = 0
-        while is_user_played == 0:
-            user_input = helper.get_input("Please insert location for torpedo: ")
-            upper_input = user_input.replace(user_input[0], user_input[0].upper())
-            chosen_location = cell_loc(upper_input)
-            if is_torpedo_location_valid(computer_board, chosen_location):
-                computer_board = fire_torpedo(computer_board, chosen_location)
-                if computer_board[chosen_location[0]][chosen_location[1]] == helper.HIT_WATER:
+    is_user_or_comp_played = 0  # when turn ends successfully (after hitting valid target)
+    # is_user_played turns 1 in order to move to turn of next player
+    while is_user_or_comp_played == 0:
+        if user_or_comp_played == 0:    # if 0=user is playing ask for torpedo target input
+            user_input = uppercase(helper.get_input("Please insert location for torpedo: "))
+            chosen_location = cell_loc(user_input)
+        if user_or_comp_played == 1:  # if 1=comp is playing randomly choose torpedo target
+            chosen_location = helper.choose_torpedo_target(comp_or_user_board, list_of_locations)
+        if is_torpedo_location_valid(comp_or_user_board, chosen_location):
+            comp_or_user_board = fire_torpedo(comp_or_user_board, chosen_location)
+            if comp_or_user_board[chosen_location[0]][chosen_location[1]] == helper.HIT_WATER:
+                if user_or_comp_played == 0:   # if 0=user is playing, hidden bord needs to show the hit
                     hidden_board[chosen_location[0]][chosen_location[1]] = helper.HIT_WATER
-                    # num_of_ship_cells_of_comp -= 1
-                    is_user_played = 1
-                if computer_board[chosen_location[0]][chosen_location[1]] == helper.HIT_SHIP:
+                is_user_or_comp_played = 1  # turn ended
+            if comp_or_user_board[chosen_location[0]][chosen_location[1]] == helper.HIT_SHIP:
+                if user_or_comp_played == 0:  # if 0=user is playing, hidden bord needs to show the hit
                     hidden_board[chosen_location[0]][chosen_location[1]] = helper.HIT_SHIP
-                    num_of_ship_cells_of_comp -= 1
-                    is_user_played = 1
+                num_of_ships -= 1   # one ship cell is down
+                is_user_or_comp_played = 1  # turn ended
+    return num_of_ships  # if num of ships = 0 the game will end
 
-        is_comp_played = 0
-        while is_comp_played == 0:
-            comp_chosen_torpedo_location = helper.choose_torpedo_target(player_board, list_of_locations)
-            if is_torpedo_location_valid(player_board, comp_chosen_torpedo_location):
-                player_board = fire_torpedo(player_board, comp_chosen_torpedo_location)
-                if player_board[comp_chosen_torpedo_location[0]][comp_chosen_torpedo_location[1]] == helper.HIT_WATER:
-                    # hidden_board[chosen_location[0]][chosen_location[1]] = helper.HIT_WATER
-                    # num_of_ship_cells_of_player -= 1
-                    is_comp_played = 1
-                if player_board[comp_chosen_torpedo_location[0]][comp_chosen_torpedo_location[1]] == helper.HIT_SHIP:
-                    # hidden_board[chosen_location[0]][chosen_location[1]] = helper.HIT_SHIP
-                    num_of_ship_cells_of_player -= 1
-                    is_comp_played = 1
+
+def main():
+    """runs the game of battleship"""
+    while True:  # restart option loop
+        # create hidden board, computer board, player board
+        hidden_board = init_board(helper.NUM_ROWS, helper.NUM_COLUMNS)
+        helper.print_board(hidden_board)
+        player_board = create_player_board(helper.NUM_ROWS, helper.NUM_COLUMNS, helper.SHIP_SIZES)
+        computer_board = create_computer_board(helper.NUM_ROWS, helper.NUM_COLUMNS, helper.SHIP_SIZES)
         helper.print_board(player_board, hidden_board)
-    helper.print_board(player_board, computer_board)
+        # set number of ship cells to hit
+        num_of_ship_of_player = sum(helper.SHIP_SIZES)
+        num_of_ship_of_comp = sum(helper.SHIP_SIZES)
+        # game ends when in one or both boards there are no ship cells to hit anymore
+        while num_of_ship_of_player and num_of_ship_of_comp:
+            num_of_ship_of_comp = is_played(0, computer_board, hidden_board, num_of_ship_of_comp)  # user play
+            num_of_ship_of_player = is_played(1, player_board, hidden_board, num_of_ship_of_player)  # computer play
 
-
-if __name__ == "__main__":
-    while True:
-        main()
+            helper.print_board(player_board, hidden_board)
+        helper.print_board(player_board, computer_board)
         while True:
-            answer = helper.get_input("play again? (Y/N): ")
+            if num_of_ship_of_player == 0:
+                winner = "computer"
+            else:
+                winner = "player - YOU!"
+            answer = helper.get_input(f"GAME OVER - The winner is: {winner}\nplay again? (Y/N): ")
             if answer in ("Y", "N"):
                 break
             print("invalid value.", end=' ')
         if answer == "Y":
             continue
         else:
-            print("Game Over")
+            print("Goodbye")
             break
-    # main()
+
+
+if __name__ == "__main__":
+    main()
