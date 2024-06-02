@@ -5,6 +5,7 @@
 # DESCRIPTION: A program that runs the game Battleship
 # STUDENTS I DISCUSSED THE EXERCISE WITH: none
 # WEB PAGES I USED: https://www.commfront.com/pages/ascii-chart
+# https://www.w3schools.com/python/ref_func_isinstance.asp
 # NOTES: none
 #################################################################
 import helper
@@ -31,11 +32,7 @@ def cell_loc(name):
 
 def create_list_of_locations(num_rows, num_cols):
     """creates a list of all board indexes"""
-    list_of_locations = []
-    for i in range(num_rows):
-        for j in range(num_cols):
-            list_of_locations.append((i, j))
-    return list_of_locations
+    return [(i, j) for i in range(num_rows) for j in range(num_cols)]
 
 
 def valid_ship(board, size, loc):
@@ -43,31 +40,27 @@ def valid_ship(board, size, loc):
     if size > (helper.NUM_ROWS - loc[0]):
         # print("size of ship is too big for this location")
         return False
-    row_index = loc[0] #- 1 # we need to move 1 row down every time to reach ship size
-    cell_count = 0
-    while cell_count < size:
-        # check if current location is in board range
-        if (0 <= row_index <= helper.NUM_ROWS - 1) and (0 <= loc[1] <= helper.NUM_COLUMNS):
-            if board[row_index][loc[1]] == 1:  # check if ship was placed on top of other ship # -1
-                # print("you cant place a ship on top of another ship")
-                return False
-            # print(f"here you can {row_index - 1}")
-            cell_count += 1
-            row_index += 1
-        else:
-            # print("Illegal value - out of board's range")
-            return False
 
+    for cell_count in range(size):
+        row_index = loc[0] + cell_count  #- 1 # we need to move 1 row down every time to reach ship size
+        # check if current location is in board range
+        if ((row_index >= helper.NUM_ROWS) or (loc[1] >= helper.NUM_COLUMNS) or row_index == -1 or loc[0] == -1 or
+                board[row_index][loc[1]] == helper.SHIP):  # check if ship was placed on top of other ship
+            return False
+        # print("you cant place a ship on top of another ship")
     # print("everything is good")
     return True
 
 
 def valid_input(user_input):
-    if len(user_input) == 2 or (len(user_input) == 3 and helper.is_int(user_input[2])):
-        if helper.is_int(user_input[1:3]):
-            if not helper.is_int(user_input[0]):
-                return True
+    """check if user input is valid"""
+    if ((len(user_input) == 2 or (len(user_input) == 3 and helper.is_int(user_input[2])))
+            and helper.is_int(user_input[1:3])
+            and not helper.is_int(user_input[0])):
+        return True
     return False
+
+
 def uppercase(user_input):
     """make letter uppercase"""
     upper_input = user_input.replace(user_input[0], user_input[0].upper())
@@ -76,42 +69,43 @@ def uppercase(user_input):
 
 def create_player_board(rows, columns, ship_sizes):
     """create board from user inputs for ships"""
-    board = (init_board(rows, columns))
+    board = init_board(rows, columns)
+    # ship_sizes = [ship_sizes] if type(ship_sizes) is tuple else
     # if there's only one ship to place
-    if type(ship_sizes) is not tuple:
-        input_from_user_uppercase = uppercase(
-            helper.get_input(f"Ship Size: {ship_sizes}\nPlease insert column value (letter) and row value ("
-                             "number): "))
-        while not valid_input(input_from_user_uppercase):
-            input_from_user_uppercase = uppercase(
-                helper.get_input("Illegal value. Please insert column value (letter) and row value ("
-                                 "number): "))
-        location_from_user = cell_loc(input_from_user_uppercase)
-        board[location_from_user[0]][location_from_user[1]] = helper.SHIP
-        return board
-    # if there's more than one ship to place
-    row_index = 0
-    i = 0
-    while i < len(ship_sizes):
-        input_from_user_uppercase = uppercase(
-            helper.get_input(f"Ship Size: {ship_sizes[i]}\nPlease insert column value (letter) and row value ("
-                             "number): "))
-        while not valid_input(input_from_user_uppercase):
-            input_from_user_uppercase = uppercase(
-                helper.get_input("Illegal value. Please insert column value (letter) and row value ("
-                                 "number): "))
-        location_from_user = cell_loc(input_from_user_uppercase)
-        row_input = location_from_user[row_index]
-        col_input = location_from_user[1]
-        if valid_ship(board, ship_sizes[i], location_from_user):
-            for j in range(ship_sizes[i]):
-                board[row_input][col_input] = helper.SHIP
-                row_input += 1
-            helper.print_board(board)
-            i += 1
-        else:
-            print("Illegal value")
-
+    if ship_sizes == 0:
+        print("no ships to place):")
+        return False
+    if isinstance(ship_sizes, int):
+        ship_sizes = list[ship_sizes]
+    is_illegal_value = 0
+    index_of_ship = 0
+    for i in ship_sizes:
+        while True:
+            if is_illegal_value == 0:
+                input_from_user_uppercase = uppercase(
+                    helper.get_input(f"Ship Size: {ship_sizes[index_of_ship]}\nPlease insert column value (letter) "
+                                     f"and row value ("
+                                     "number): "))
+            else:
+                input_from_user_uppercase = uppercase(
+                    helper.get_input("Illegal value. Please insert column value (letter) and row value ("
+                                     "number): "))
+                is_illegal_value = 0
+            if valid_input(input_from_user_uppercase):
+                location_from_user = cell_loc(input_from_user_uppercase)
+                row_index = location_from_user[0]
+                col_index = location_from_user[1]
+                if valid_ship(board, ship_sizes[index_of_ship], location_from_user):
+                    for j in range(i):
+                        board[row_index][col_index] = helper.SHIP
+                        row_index += 1
+                    helper.print_board(board)
+                    break
+                else:
+                    is_illegal_value = 1
+            else:
+                is_illegal_value = 1
+        index_of_ship += 1
     return board
 
 
@@ -139,7 +133,7 @@ def create_computer_board(rows, columns, ship_sizes):
 
 def fire_torpedo(board, loc):
     """fire torpedo on board based on given location"""
-    if (0 <= loc[0] <= helper.NUM_ROWS) or (0 <= loc[1] <= helper.NUM_COLUMNS - 1):
+    if (0 <= loc[0] <= helper.NUM_ROWS) or (0 <= loc[1] < helper.NUM_COLUMNS):
         if board[loc[0]][loc[1]] == helper.WATER:
             board[loc[0]][loc[1]] = helper.HIT_WATER
         elif board[loc[0]][loc[1]] == helper.SHIP:
@@ -148,7 +142,8 @@ def fire_torpedo(board, loc):
 
 
 def is_torpedo_location_valid(board, location):
-    if (0 <= location[0] <= helper.NUM_ROWS) and (0 <= location[1] <= helper.NUM_COLUMNS):
+    """check for validity of torpedo location"""
+    if (0 <= location[0] < helper.NUM_ROWS) and (0 <= location[1] <= helper.NUM_COLUMNS):
         if (board[location[0]][location[1]] == helper.WATER) or (board[location[0]][location[1]] == helper.SHIP):
             return True
     return False
@@ -160,24 +155,27 @@ def is_played(user_or_comp_played, comp_or_user_board, hidden_board, num_of_ship
     is_user_or_comp_played = 0  # when turn ends successfully (after hitting valid target)
     # is_user_played turns 1 in order to move to turn of next player
     while is_user_or_comp_played == 0:
-        if user_or_comp_played == 0:    # if 0=user is playing ask for torpedo target input
+        if user_or_comp_played == 0:  # if 0=user is playing ask for torpedo target input
             user_input = uppercase(helper.get_input("Please insert location for torpedo: "))
             while not valid_input(user_input):
                 user_input = uppercase(helper.get_input("Illegal value. Please insert location for torpedo: "))
             chosen_location = cell_loc(user_input)
         else:  # if 1=comp is playing randomly choose torpedo target
             chosen_location = helper.choose_torpedo_target(comp_or_user_board, set(list_of_locations))
+
         if is_torpedo_location_valid(comp_or_user_board, chosen_location):
             comp_or_user_board = fire_torpedo(comp_or_user_board, chosen_location)
-            if comp_or_user_board[chosen_location[0]][chosen_location[1]] == helper.HIT_WATER:
-                if user_or_comp_played == 0:   # if 0=user is playing, hidden bord needs to show the hit
-                    hidden_board[chosen_location[0]][chosen_location[1]] = helper.HIT_WATER
+            hit_result = comp_or_user_board[chosen_location[0]][chosen_location[1]]
+            # if user_or_comp_played == 0:  # if 0=user is playing, hidden bord needs to show the hit
+            #     hidden_board[chosen_location[0]][chosen_location[1]] = helper.HIT_WATER
+            # if hit_result == helper.HIT_WATER:
+            if user_or_comp_played == 0:  # if 0=user is playing, hidden bord needs to show the hit
+                hidden_board[chosen_location[0]][chosen_location[1]] = hit_result
                 is_user_or_comp_played = 1  # turn ended
-            if comp_or_user_board[chosen_location[0]][chosen_location[1]] == helper.HIT_SHIP:
-                if user_or_comp_played == 0:  # if 0=user is playing, hidden bord needs to show the hit
-                    hidden_board[chosen_location[0]][chosen_location[1]] = helper.HIT_SHIP
-                num_of_ships -= 1   # one ship cell is down
+            if hit_result == helper.HIT_SHIP:
+                num_of_ships -= 1  # one ship cell is down
                 is_user_or_comp_played = 1  # turn ended
+
     return num_of_ships  # if num of ships = 0 the game will end
 
 
@@ -188,11 +186,14 @@ def main():
         hidden_board = init_board(helper.NUM_ROWS, helper.NUM_COLUMNS)
         helper.print_board(hidden_board)
         player_board = create_player_board(helper.NUM_ROWS, helper.NUM_COLUMNS, helper.SHIP_SIZES)
+        if not player_board:
+            break
         computer_board = create_computer_board(helper.NUM_ROWS, helper.NUM_COLUMNS, helper.SHIP_SIZES)
         helper.print_board(player_board, hidden_board)
         # set number of ship cells to hit
-        num_of_ship_of_player = sum(helper.SHIP_SIZES) if type(helper.SHIP_SIZES) is tuple else helper.SHIP_SIZES
-        num_of_ship_of_comp = sum(helper.SHIP_SIZES) if type(helper.SHIP_SIZES) is tuple else helper.SHIP_SIZES
+        sum_of_ship_sizes = sum(helper.SHIP_SIZES)
+        num_of_ship_of_player = sum_of_ship_sizes if isinstance(helper.SHIP_SIZES, tuple) else helper.SHIP_SIZES
+        num_of_ship_of_comp = sum_of_ship_sizes if isinstance(helper.SHIP_SIZES, tuple) else helper.SHIP_SIZES
         # game ends when in one or both boards there are no ship cells to hit anymore
         while num_of_ship_of_player and num_of_ship_of_comp:
             num_of_ship_of_comp = is_played(0, computer_board, hidden_board, num_of_ship_of_comp)  # user play
@@ -201,6 +202,8 @@ def main():
             helper.print_board(player_board, hidden_board)
         helper.print_board(player_board, computer_board)
         while True:
+            if num_of_ship_of_player == 0 and num_of_ship_of_comp == 0:
+                winner = "both player and computer - tie"
             if num_of_ship_of_player == 0:
                 winner = "computer"
             else:
