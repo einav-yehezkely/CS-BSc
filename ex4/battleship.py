@@ -5,12 +5,10 @@
 # DESCRIPTION: A program that runs the game Battleship
 # STUDENTS I DISCUSSED THE EXERCISE WITH: none
 # WEB PAGES I USED: https://www.commfront.com/pages/ascii-chart
-# https://stackoverflow.com/questions/14907067/how-do-i-restart-a-program-based-on-user-input
+# https://www.youtube.com/watch?v=WSBAh_OStA4
 # NOTES: none
 #################################################################
 import helper
-import sys
-import os
 
 
 def init_board(rows, columns):
@@ -47,11 +45,11 @@ def valid_ship(board, size, loc):
     if size > (helper.NUM_ROWS - loc[0] + 1):
         # print("size of ship is too big for this location")
         return False
-    row_index = loc[0]  #- 1  # we need to move 1 row down every time to reach ship size
+    row_index = loc[0]  # we need to move 1 row down every time to reach ship size
     cell_count = 0
     while cell_count < size:
         # check if current location is in board range
-        if (0 <= row_index <= helper.NUM_ROWS) and (0 <= loc[1] <= helper.NUM_COLUMNS - 1):
+        if (0 <= row_index <= helper.NUM_ROWS) and (0 <= loc[1] <= helper.NUM_COLUMNS):
             if board[row_index - 1][loc[1]] == 1:  # check if ship was placed on top of other ship
                 # print("you cant place a ship on top of another ship")
                 return False
@@ -119,16 +117,6 @@ def create_computer_board(rows, columns, ship_sizes):
     return board
 
 
-# def hide_board(board):
-#     for i in board:
-#         for j in range(len(i)):
-#             i[j] = helper.WATER
-#             # if j == helper.SHIP:
-#             #     j = helper.WATER
-#     print(board)
-#     return board
-
-
 def fire_torpedo(board, loc):
     """fire torpedo on board based on given location"""
     if (0 <= loc[0] <= helper.NUM_ROWS) or (0 <= loc[1] <= helper.NUM_COLUMNS - 1):
@@ -144,14 +132,6 @@ def is_torpedo_location_valid(board, location):
         if (board[location[0]][location[1]] == helper.WATER) or (board[location[0]][location[1]] == helper.SHIP):
             return True
     return False
-
-
-# def restart_program():
-#     """Restarts the current program.
-#   Note: this function does not return. Any cleanup action (like
-#   saving data) must be done before calling this function."""
-#     python = sys.executable
-#     os.execl(python, python, *sys.argv)
 
 
 def main():
@@ -197,13 +177,19 @@ def main():
                     is_comp_played = 1
         helper.print_board(player_board, hidden_board)
     helper.print_board(player_board, computer_board)
-    answer = helper.get_input("play again? (Y/N): ")
-    answer.upper()
-    # if answer == "Y":
-    #     restart_program()
-    #     os.execl(sys.executable, '"{}"'.format(sys.executable), *sys.argv)
-    print("finished")
 
 
 if __name__ == "__main__":
-    main()
+    while True:
+        main()
+        while True:
+            answer = helper.get_input("play again? (Y/N): ")
+            if answer in ("Y", "N"):
+                break
+            print("invalid value.", end=' ')
+        if answer == "Y":
+            continue
+        else:
+            print("Game Over")
+            break
+    # main()
