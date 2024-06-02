@@ -5,7 +5,6 @@
 # DESCRIPTION: A program that runs the game Battleship
 # STUDENTS I DISCUSSED THE EXERCISE WITH: none
 # WEB PAGES I USED: https://www.commfront.com/pages/ascii-chart
-# https://www.youtube.com/watch?v=WSBAh_OStA4
 # NOTES: none
 #################################################################
 import helper
@@ -143,7 +142,7 @@ def is_played(user_or_comp_played, comp_or_user_board, hidden_board, num_of_ship
         if user_or_comp_played == 0:    # if 0=user is playing ask for torpedo target input
             user_input = uppercase(helper.get_input("Please insert location for torpedo: "))
             chosen_location = cell_loc(user_input)
-        if user_or_comp_played == 1:  # if 1=comp is playing randomly choose torpedo target
+        else:  # if 1=comp is playing randomly choose torpedo target
             chosen_location = helper.choose_torpedo_target(comp_or_user_board, list_of_locations)
         if is_torpedo_location_valid(comp_or_user_board, chosen_location):
             comp_or_user_board = fire_torpedo(comp_or_user_board, chosen_location)
@@ -184,13 +183,13 @@ def main():
             else:
                 winner = "player - YOU!"
             answer = helper.get_input(f"GAME OVER - The winner is: {winner}\nplay again? (Y/N): ")
-            if answer in ("Y", "N"):
+            if answer == "Y" or answer == "N":
                 break
-            print("invalid value.", end=' ')
+            print("Illegal value.", end=' ')
         if answer == "Y":
             continue
         else:
-            print("Goodbye")
+            print("(:")
             break
 
 
