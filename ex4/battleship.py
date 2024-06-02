@@ -5,10 +5,12 @@
 # DESCRIPTION: A program that runs the game Battleship
 # STUDENTS I DISCUSSED THE EXERCISE WITH: none
 # WEB PAGES I USED: https://www.commfront.com/pages/ascii-chart
+# https://stackoverflow.com/questions/14907067/how-do-i-restart-a-program-based-on-user-input
 # NOTES: none
 #################################################################
 import helper
-from copy import deepcopy
+import sys
+import os
 
 
 def init_board(rows, columns):
@@ -64,15 +66,22 @@ def valid_ship(board, size, loc):
     return True
 
 
+def uppercase(user_input):
+    """make letter uppercase"""
+    upper_input = user_input.replace(user_input[0], user_input[0].upper())
+    return upper_input
+
+
 def create_player_board(rows, columns, ship_sizes):
     """create board from user inputs for ships"""
     board = (init_board(rows, columns))
-    # helper.print_board(board)
     row_index = 0
     i = 0
     while i < len(ship_sizes):
-        location_from_user = cell_loc(helper.get_input("Please insert column value (CAPITAL letter) and row value ("
-                                                       "NUMBER):"))
+        input_from_user_uppercase = uppercase(
+            helper.get_input("Please insert column value (letter) and row value ("
+                             "number): "))
+        location_from_user = cell_loc(input_from_user_uppercase)
         row_input = location_from_user[row_index]
         col_input = location_from_user[1]
         if valid_ship(board, ship_sizes[i], location_from_user):
@@ -110,14 +119,14 @@ def create_computer_board(rows, columns, ship_sizes):
     return board
 
 
-def hide_board(board):
-    for i in board:
-        for j in range(len(i)):
-            i[j] = helper.WATER
-            # if j == helper.SHIP:
-            #     j = helper.WATER
-    print(board)
-    return board
+# def hide_board(board):
+#     for i in board:
+#         for j in range(len(i)):
+#             i[j] = helper.WATER
+#             # if j == helper.SHIP:
+#             #     j = helper.WATER
+#     print(board)
+#     return board
 
 
 def fire_torpedo(board, loc):
@@ -137,6 +146,14 @@ def is_torpedo_location_valid(board, location):
     return False
 
 
+# def restart_program():
+#     """Restarts the current program.
+#   Note: this function does not return. Any cleanup action (like
+#   saving data) must be done before calling this function."""
+#     python = sys.executable
+#     os.execl(python, python, *sys.argv)
+
+
 def main():
     hidden_board = init_board(helper.NUM_ROWS, helper.NUM_COLUMNS)
     helper.print_board(hidden_board)
@@ -146,18 +163,19 @@ def main():
     num_of_ship_cells_of_comp = sum(helper.SHIP_SIZES)
     num_of_ship_cells_of_player = sum(helper.SHIP_SIZES)
     list_of_locations = create_list_of_locations(helper.NUM_ROWS, helper.NUM_COLUMNS)
-    while num_of_ship_cells_of_comp >= 0 and num_of_ship_cells_of_player >= 0:
+
+    while num_of_ship_cells_of_comp and num_of_ship_cells_of_player:
 
         is_user_played = 0
         while is_user_played == 0:
-            user_input = helper.get_input("Please insert location for torpedo")
+            user_input = helper.get_input("Please insert location for torpedo: ")
             upper_input = user_input.replace(user_input[0], user_input[0].upper())
             chosen_location = cell_loc(upper_input)
             if is_torpedo_location_valid(computer_board, chosen_location):
                 computer_board = fire_torpedo(computer_board, chosen_location)
                 if computer_board[chosen_location[0]][chosen_location[1]] == helper.HIT_WATER:
                     hidden_board[chosen_location[0]][chosen_location[1]] = helper.HIT_WATER
-                    num_of_ship_cells_of_comp -= 1
+                    # num_of_ship_cells_of_comp -= 1
                     is_user_played = 1
                 if computer_board[chosen_location[0]][chosen_location[1]] == helper.HIT_SHIP:
                     hidden_board[chosen_location[0]][chosen_location[1]] = helper.HIT_SHIP
@@ -171,13 +189,19 @@ def main():
                 player_board = fire_torpedo(player_board, comp_chosen_torpedo_location)
                 if player_board[comp_chosen_torpedo_location[0]][comp_chosen_torpedo_location[1]] == helper.HIT_WATER:
                     # hidden_board[chosen_location[0]][chosen_location[1]] = helper.HIT_WATER
-                    num_of_ship_cells_of_player -= 1
+                    # num_of_ship_cells_of_player -= 1
                     is_comp_played = 1
                 if player_board[comp_chosen_torpedo_location[0]][comp_chosen_torpedo_location[1]] == helper.HIT_SHIP:
                     # hidden_board[chosen_location[0]][chosen_location[1]] = helper.HIT_SHIP
                     num_of_ship_cells_of_player -= 1
                     is_comp_played = 1
         helper.print_board(player_board, hidden_board)
+    helper.print_board(player_board, computer_board)
+    answer = helper.get_input("play again? (Y/N): ")
+    answer.upper()
+    # if answer == "Y":
+    #     restart_program()
+    #     os.execl(sys.executable, '"{}"'.format(sys.executable), *sys.argv)
     print("finished")
 
 
