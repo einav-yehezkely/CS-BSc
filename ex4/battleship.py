@@ -231,43 +231,5 @@ def main():
         else:
             break
 
-# def main_2():
-#     """runs the game of battleship"""
-#     while True:  # restart option loop
-#         # create hidden board, computer board, player board
-#         hidden_board = init_board(helper.NUM_ROWS, helper.NUM_COLUMNS)
-#         helper.print_board(hidden_board)
-#         player_board = create_player_board(helper.NUM_ROWS, helper.NUM_COLUMNS, helper.SHIP_SIZES)
-#         player2_board = create_player_board(helper.NUM_ROWS, helper.NUM_COLUMNS, helper.SHIP_SIZES)
-#         helper.print_board(player_board, player2_board)
-#         # set number of ship cells to hit
-#         num_of_ship_of_player = sum(helper.SHIP_SIZES) if type(helper.SHIP_SIZES) is tuple else helper.SHIP_SIZES
-#         num_of_ship_of_comp = sum(helper.SHIP_SIZES) if type(helper.SHIP_SIZES) is tuple else helper.SHIP_SIZES
-#         # game ends when in one or both boards there are no ship cells to hit anymore
-#         list_of_locations = create_list_of_locations(helper.NUM_ROWS, helper.NUM_COLUMNS)
-#         while num_of_ship_of_player and num_of_ship_of_comp:
-#             if list_of_locations:
-#                 num_of_ship_of_comp = is_played(0, player2_board, hidden_board, num_of_ship_of_comp,
-#                                                 list_of_locations)  # user play
-#                 # print(f"locations on player board {list_of_locations}")
-#                 num_of_ship_of_player = is_played(1, player2_board, hidden_board, num_of_ship_of_player,
-#                                                   list_of_locations)  # computer play
-#                 # print(f"{list_of_locations}")
-#
-#                 helper.print_board(player_board, player2_board)
-#             else:
-#                 break
-#         helper.print_board(player_board, player2_board)
-#         while True:
-#             answer = helper.get_input(f"GAME OVER. Play again? (Y/N): ")
-#             if answer in ("Y", "y", "N", "n"):
-#                 break
-#             print("Illegal value.", end=' ')
-#         if answer in ("Y", "y"):
-#             continue
-#         else:
-#             break
-
-
 if __name__ == "__main__":
     main()
