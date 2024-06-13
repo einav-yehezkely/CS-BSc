@@ -4,7 +4,7 @@
 # EXERCISE : intro2cs ex5 2024
 # DESCRIPTION: A program that finds words in a matrix of letters
 # STUDENTS I DISCUSSED THE EXERCISE WITH: none
-# WEB PAGES I USED: none
+# WEB PAGES I USED: https://www.w3schools.com/python/python_lists_remove.asp
 # NOTES: none
 #################################################################
 
@@ -74,6 +74,7 @@ def remove_all_occurrences(lst, item):
     return [x for x in lst if x != item]
 
 def find_words(wordlist, matrix, directions):
+    """find words in a matrix by given directions"""
     if len(matrix) == 0 or len(matrix[0]) == 0:
         return []
 
@@ -84,52 +85,52 @@ def find_words(wordlist, matrix, directions):
     wordlist_reversed = set(wordlist_reversed)
     # print(wordlist_set)
     # print(wordlist_reversed)
-    dict = {}
-    print(directions)
-    print(list(directions))
     directions = list(directions)
-    all_directions = ['r', 'l', 'u', 'd', 'w', 'x', 'y', 'z']
-    # while directions:
-    #     directions = remove_all_occurrences(directions, 'w')
-    #     print(directions)
-    # horizontal search
-    if directions in ('r', 'l', 'u', 'd'):
-        used_word_list = wordlist_set if directions in ('r', 'd') else wordlist_reversed
-        matrix = matrix if directions in ('r', 'l') else transpose_matrix(matrix)
-        for i in range(len(matrix)):
-            substrings = make_rows_substrings(matrix[i])
-            for j in substrings:
-                if j in used_word_list:
-                    word = j[::-1] if directions in ('l', 'u') else j
-                    if j in dict:
-                        dict[word] += 1
-                    else:
-                        dict[word] = 1
-    # diagonal search
-    if directions in ('w', 'x', 'y', 'z'):
-        matrix = flip_matrix(matrix) if directions in ('z', 'w') else matrix
-        diagonal_matrix = convert_slats_to_rows(matrix)
-        used_word_list = wordlist_set if directions in ('y', 'z') else wordlist_reversed
-        for i in range(len(diagonal_matrix)):
-            substrings = make_rows_substrings(diagonal_matrix[i])
-            for j in substrings:
-                if j in used_word_list:
-                    word = j[::-1] if directions in ('x', 'w') else j
-                    if j in dict:
-                        dict[word] += 1
-                    else:
-                        dict[word] = 1
+    dict = {}
+    while directions:
+        # horizontal search
+        if directions[0] in ('r', 'l', 'u', 'd'):
+            used_word_list = wordlist_set if directions[0] in ('r', 'd') else wordlist_reversed
+            used_matrix = matrix if directions[0] in ('r', 'l') else transpose_matrix(matrix)
+            for i in range(len(used_matrix)):
+                substrings = make_rows_substrings(used_matrix[i])
+                for j in substrings:
+                    if j in used_word_list:
+                        word = j[::-1] if directions[0] in ('l', 'u') else j
+                        if j in dict:
+                            dict[word] += 1
+                        else:
+                            dict[word] = 1
+        # diagonal search
+        if directions[0] in ('w', 'x', 'y', 'z'):
+            used_matrix = flip_matrix(matrix) if directions[0] in ('z', 'w') else matrix
+            diagonal_matrix = convert_slats_to_rows(used_matrix)
+            used_word_list = wordlist_set if directions[0] in ('y', 'z') else wordlist_reversed
+            for i in range(len(diagonal_matrix)):
+                substrings = make_rows_substrings(diagonal_matrix[i])
+                for j in substrings:
+                    if j in used_word_list:
+                        word = j[::-1] if directions[0] in ('x', 'w') else j
+                        if j in dict:
+                            dict[word] += 1
+                        else:
+                            dict[word] = 1
 
-    print(dict)
+        directions = remove_all_occurrences(directions, directions[0])
+
+    sorted_dict = {key: dict[key] for key in wordlist if key in dict}
+    return(list(sorted_dict.items()))
+
+
+def write_output(results, filename):
+    """write results to an output file"""
+    with open(filename, 'w') as f:
+        for tup in results:
+            f.write(tup[0])
+            f.write(",")
+            f.write(str(tup[1]))
+            f.write("\n")
+
 
 if __name__ == '__main__':
-    word = '1234567890'
-    print('35' in word)
-    print(read_wordlist("word_list.txt"))
-    # print(read_wordlist("word_list.txt")[0])
-    print(read_matrix("mat.txt"))
-    # transpose_matrix(read_matrix("mat.txt"))
-    # print(read_matrix("mat.txt")[0][0])  # ??????????????????
-
-    print(convert_slats_to_rows(read_matrix("mat.txt")))
-    find_words(read_wordlist("word_list.txt"), read_matrix("mat.txt"), "wrwd")
+    write_output(find_words(read_wordlist("word_list.txt"), read_matrix("mat.txt"), "udlrwxyz"), "output.txt")
