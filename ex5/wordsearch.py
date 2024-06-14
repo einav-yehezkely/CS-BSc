@@ -1,12 +1,21 @@
-#################################################################
+# ################################################################
 # FILE : wordsearch.py
 # WRITER : Einav Yehezkely , einavye , 213835796
 # EXERCISE : intro2cs ex5 2024
 # DESCRIPTION: A program that finds words in a matrix of letters
 # STUDENTS I DISCUSSED THE EXERCISE WITH: none
 # WEB PAGES I USED: https://www.w3schools.com/python/python_lists_remove.asp
-# NOTES: none
-#################################################################
+# https://www.geeksforgeeks.org/how-to-use-sys-argv-in-python/ https://docs.python.org/3/library/pathlib.html
+# NOTES: The idea here is to make all possible substrings from a given row and then check if it's in the wordlist.
+# if so, insert to a dictionary to keep counting. The entire process is being made on rows, so for each direction
+# we convert the matrix to have rows according to this direction.
+# for example, for diagonal search we convert the slants to become the new rows.
+# Additionally, for some directions we flip the matrix or use a transposed matrix because
+# the search is always from left to right.
+# ################################################################
+from sys import argv
+from pathlib import Path
+
 
 def read_wordlist(filename):
     """return list of words from a file"""
@@ -26,6 +35,7 @@ def transpose_matrix(mtx):
 
 
 def flip_matrix(mtx):
+    """return a flipped matrix"""
     return [row[::-1] for row in mtx]
 
 
@@ -73,6 +83,7 @@ def remove_all_occurrences(lst, item):
     """for removing direction"""
     return [x for x in lst if x != item]
 
+
 def find_words(wordlist, matrix, directions):
     """find words in a matrix by given directions"""
     if len(matrix) == 0 or len(matrix[0]) == 0:
@@ -97,7 +108,7 @@ def find_words(wordlist, matrix, directions):
                 for j in substrings:
                     if j in used_word_list:
                         word = j[::-1] if directions[0] in ('l', 'u') else j
-                        if j in dict:
+                        if word in dict:
                             dict[word] += 1
                         else:
                             dict[word] = 1
@@ -111,15 +122,14 @@ def find_words(wordlist, matrix, directions):
                 for j in substrings:
                     if j in used_word_list:
                         word = j[::-1] if directions[0] in ('x', 'w') else j
-                        if j in dict:
+                        if word in dict:
                             dict[word] += 1
                         else:
                             dict[word] = 1
 
         directions = remove_all_occurrences(directions, directions[0])
 
-    sorted_dict = {key: dict[key] for key in wordlist if key in dict}
-    return(list(sorted_dict.items()))
+    return list(dict.items())
 
 
 def write_output(results, filename):
@@ -132,5 +142,37 @@ def write_output(results, filename):
             f.write("\n")
 
 
+def valid_input():
+    if len(argv) != 5:
+        print("Invalid number of parameters")
+        return False
+    else:
+        word_list_file = Path(argv[1])
+        matrix_file = Path(argv[2])
+        if (not word_list_file.is_file() and not matrix_file.exists()) or (not word_list_file.is_file()):
+            print("Word list file does not exist")
+            return False
+        elif not matrix_file.is_file():
+            print("Matrix file does not exist")
+            return False
+
+        directions = list(argv[4])
+        for i in range(len(directions)):
+            if directions[i] not in ('r', 'y', 'x', 'l', 'z', 'w', 'u', 'd'):
+                print("Invalid direction")
+                return False
+    return True
+
+
+def main():
+    words = read_wordlist(argv[1])  # wordlist filename
+    matrix = read_matrix(argv[2])   # mat filename
+    output_file = argv[3]   # file
+    directions = argv[4]    # str
+    results = find_words(words, matrix, directions)
+    write_output(results, output_file)
+
+
 if __name__ == '__main__':
-    write_output(find_words(read_wordlist("word_list.txt"), read_matrix("mat.txt"), "udlrwxyz"), "output.txt")
+    if valid_input():
+        main()
