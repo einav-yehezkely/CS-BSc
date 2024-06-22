@@ -10,13 +10,13 @@
 # NOTES: none
 #################################################################
 import math
+import sys
 
 ##############################################################################
 #                                   Imports                                  #
 ##############################################################################
 from ex6_helper import *
 from typing import Optional, List
-from copy import deepcopy
 
 ##############################################################################
 #                                  Functions                                 #
@@ -24,16 +24,6 @@ from copy import deepcopy
 
 purpose = "blur"
 edge_constant = 0
-
-
-# TODO additional function
-def str_matrix(mtx):
-    str_mtx = ""
-    for row in mtx:
-        for col in row:
-            str_mtx += str(col) + ' '
-        str_mtx += '\n'
-    return str_mtx
 
 
 # TODO write better
@@ -247,21 +237,48 @@ def quantize_colored_image(image: ColoredImage, N: int) -> ColoredImage:
 
 
 if __name__ == '__main__':
-    a = load_image("ziggy.png")
-    image = [[[1, 2, 3], [1, 2, 3], [1, 2, 3]],
-             [[1, 2, 3], [1, 2, 3], [1, 2, 3]],
-             [[1, 2, 3], [1, 2, 3], [1, 2, 3]],
-             [[1, 2, 3], [1, 2, 3], [1, 2, 3]]]
-    b = separate_channels(image)
-    print(str_matrix(b))
-    c = combine_channels(b)
-    print(str_matrix(c))
+    if len(sys.argv) != 2:
+        print("Invalid Input, program ends.")
+    else:
+        image = load_image(sys.argv[1])
+        edited_image = image
+        exit_program = False
+        while not exit_program:
+            action = input("These are the available actions you can take:\n"
+                           "1. convert colored image to grayscale image\n"
+                           "2. blur image\n"
+                           "3. resize image\n"
+                           "4. rotate image by 90 degrees\n"
+                           "5. create image edges\n"
+                           "6. quantize \n"
+                           "7. display image\n"
+                           "8. exit program\n")
+            if action in range(1, 9):
+                # grayscale #
+                if action == 1:
+                    if type(image[0][0]) is not list:
+                        print("image is already grayscale")
+                    else:
+                        edited_image = RGB2grayscale(image)
+                # blur #
+                if action == 2:
+                    kernel_size = int(input("please enter size for kernel (int):"))
+                    if (type(kernel_size) is not int) or (kernel_size % 2 == 0) or (kernel_size <= 0):
+                        print("Invalid kernel size")
+                    else:
+                        if type(image[0][0]) is not list:   # grayscale
+                            edited_image = apply_kernel(image, blur_kernel(kernel_size))
+                        else:   # colored
+                            blurred_image = []
+                            for channel in separate_channels(image):
+                                blurred_image.append(apply_kernel(image, blur_kernel(kernel_size)))
+                            edited_image = combine_channels(blurred_image)
+                # resize #
+                if action == 3:
+                    new_scale = list(input("please enter new height, new width, seperated by a comma"))
+                    print(new_scale)
+                    exit_program = True
 
-    # show_image(rotate_90(a,'L'))
-    # show_image(get_edges(RGB2grayscale(load_image("IMG_2.jpg")), 30, 30, 1))
-    # print(get_edges([[200, 50, 200]], 3, 3, 10))
-    # [[255, 0, 255]]
-    # show_image(quantize_colored_image(a, 8))
-    a_s = separate_channels(a)
-    show_image(combine_channels(a_s))
-    # show_image(combine_channels(separate_channels(a)))
+            else:
+                print("Invalid Input.")
+
