@@ -8,6 +8,7 @@
 # WEB PAGES I USED: https://www.w3schools.com/python/ref_func_round.asp
 # NOTES: none
 #################################################################
+import math
 
 ##############################################################################
 #                                   Imports                                  #
@@ -84,8 +85,8 @@ def blur_kernel(size: int) -> Kernel:
 def apply_kernel(image: SingleChannelImage, kernel: Kernel) -> SingleChannelImage:
     """
     apply kernel on original image to blur
-    :param image:
-    :param kernel:
+    :param image: original image
+    :param kernel: size*size kernel with equal values
     :return: blurred image
     """
     center = len(kernel) // 2
@@ -118,7 +119,23 @@ def apply_kernel(image: SingleChannelImage, kernel: Kernel) -> SingleChannelImag
 
 
 def bilinear_interpolation(image: SingleChannelImage, y: float, x: float) -> int:
-    ...
+    """
+    calc new pixel value based using formula
+    𝑎 ⋅ (1 − ∆𝑥) ⋅ (1 − ∆𝑦) + 𝑏 ⋅ ∆𝑦 ⋅ (1 − ∆𝑥) + 𝑐 ⋅ ∆𝑥 ⋅ (1 − ∆𝑦) + 𝑑 ⋅ ∆𝑥 ⋅ ∆y
+    :param image: original image
+    :param y: y value (row)
+    :param x: x value (col)
+    :return: new value
+    """
+    a = image[math.floor(y)][math.floor(x)]
+    b = image[math.ceil(y)][math.floor(x)]
+    c = image[math.floor(y)][math.ceil(x)]
+    d = image[math.ceil(y)][math.ceil(x)]
+    delta_x = x - math.floor(x)
+    delta_y = y - math.floor(y)
+    new_val = a * (1 - delta_x) * (1 - delta_y) + b * delta_y * (1 - delta_x) + c * delta_x * (
+                1 - delta_y) + d * delta_x * delta_y
+    return round(new_val)
 
 
 def resize(image: SingleChannelImage, new_height: int, new_width: int) -> SingleChannelImage:
@@ -158,3 +175,5 @@ if __name__ == '__main__':
 # [6, 12, 18, 24, 30],
 # [4, 8, 12, 16, 20]], blur_kernel(5)))
 #     show_image(apply_kernel(RGB2grayscale(a), blur_kernel(9)))
+    print(bilinear_interpolation([[15, 30, 45, 60, 75], [90, 105, 120, 135, 150],
+[165, 180, 195, 210, 225]], 4/5, 8/3))
