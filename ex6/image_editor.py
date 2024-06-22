@@ -2,9 +2,8 @@
 # FILE : image_editor.py
 # WRITER : Einav Yehezkely , einavye , 213835796
 # EXERCISE : intro2cs ex6 2024
-# DESCRIPTION: A simple program that...
-# STUDENTS I DISCUSSED THE EXERCISE WITH: Bugs Bunny, b_bunny.
-#								 	      Daffy Duck, duck_daffy.
+# DESCRIPTION: A simple program for editing pictures
+# STUDENTS I DISCUSSED THE EXERCISE WITH: none
 # WEB PAGES I USED: https://www.w3schools.com/python/ref_func_round.asp
 # https://www.geeksforgeeks.org/floor-ceil-function-python/
 # NOTES: none
@@ -241,22 +240,24 @@ if __name__ == '__main__':
         print("Invalid Input, program ends.")
     else:
         image = load_image(sys.argv[1])
+        colored_image = True if type(image[0][0]) is list else False
+
         edited_image = image
         exit_program = False
         while not exit_program:
-            action = input("These are the available actions you can take:\n"
-                           "1. convert colored image to grayscale image\n"
-                           "2. blur image\n"
-                           "3. resize image\n"
-                           "4. rotate image by 90 degrees\n"
-                           "5. create image edges\n"
-                           "6. quantize \n"
-                           "7. display image\n"
-                           "8. exit program\n")
+            action = int(input("These are the available actions you can take:\n"
+                               "1. convert colored image to grayscale image\n"
+                               "2. blur image\n"
+                               "3. resize image\n"
+                               "4. rotate image by 90 degrees\n"
+                               "5. create image edges\n"
+                               "6. quantize \n"
+                               "7. display image\n"
+                               "8. exit program\n"))
             if action in range(1, 9):
                 # grayscale #
                 if action == 1:
-                    if type(image[0][0]) is not list:
+                    if not colored_image:
                         print("image is already grayscale")
                     else:
                         edited_image = RGB2grayscale(image)
@@ -266,19 +267,31 @@ if __name__ == '__main__':
                     if (type(kernel_size) is not int) or (kernel_size % 2 == 0) or (kernel_size <= 0):
                         print("Invalid kernel size")
                     else:
-                        if type(image[0][0]) is not list:   # grayscale
+                        if not colored_image:  # grayscale
                             edited_image = apply_kernel(image, blur_kernel(kernel_size))
-                        else:   # colored
+                        else:  # colored
                             blurred_image = []
                             for channel in separate_channels(image):
                                 blurred_image.append(apply_kernel(image, blur_kernel(kernel_size)))
                             edited_image = combine_channels(blurred_image)
                 # resize #
                 if action == 3:
-                    new_scale = list(input("please enter new height, new width, seperated by a comma"))
-                    print(new_scale)
-                    exit_program = True
+                    new_scale = input("please enter new height, new width, seperated by a comma:\n")
+                    if len(new_scale) == 3 and new_scale[0].isnumeric() and new_scale[1] == ',' and new_scale[2].isnumeric():
+                        new_height = int(new_scale[0])
+                        new_width = int(new_scale[2])
+                        resized_image = []
+                        if colored_image:
+                            for channel in separate_channels(image):
+                                resized_image.append(resize(channel, new_height, new_width))
+                            edited_image = combine_channels(resized_image)
+                        else:
+                            edited_image = resize(image, new_height, new_width)
+                    else:
+                        print("Invalid Input")
+                # rotate #
+                if action == 4:
+                    pass
 
             else:
                 print("Invalid Input.")
-
