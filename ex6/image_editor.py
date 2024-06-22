@@ -14,6 +14,7 @@
 ##############################################################################
 from ex6_helper import *
 from typing import Optional, List
+from copy import deepcopy
 
 
 ##############################################################################
@@ -68,18 +69,52 @@ def RGB2grayscale(colored_image: ColoredImage) -> SingleChannelImage:
     for row in colored_image:
         rows = []
         for col in row:
-            avr = round(col[0]*0.299 + col[1]*0.587 + col[2]*0.114)
+            avr = round(col[0] * 0.299 + col[1] * 0.587 + col[2] * 0.114)
             rows.append(avr)
         grayscale_image.append(rows)
     return grayscale_image
 
 
 def blur_kernel(size: int) -> Kernel:
-    ...
+    """return kernel"""
+    avr = 1 / (size ** 2)
+    return [[avr for col in range(size)] for row in range(size)]
 
 
 def apply_kernel(image: SingleChannelImage, kernel: Kernel) -> SingleChannelImage:
-    ...
+    """
+    apply kernel on original image to blur
+    :param image:
+    :param kernel:
+    :return: blurred image
+    """
+    center = len(kernel) // 2
+    blurred_image = []
+    for row in range(len(image)):
+        row_blurred = []
+        for col in range(len(image[0])):
+            avr = 0
+            cur_cell = image[row][col]
+            cur_row = row - center
+            cur_col = col - center
+            for i in range(len(kernel)):
+                for j in range(len(kernel[i])):
+                    if cur_row not in range(len(image)) or cur_col not in range(len(image[0])):
+                        avr += cur_cell * kernel[0][0]
+                    else:
+                        avr += image[cur_row][cur_col] * kernel[0][0]
+                    cur_col += 1
+                cur_row += 1
+                cur_col = col - center
+            avr = round(avr)
+            if avr < 0:
+                avr = 0
+            if avr > 255:
+                avr = 255
+            row_blurred.append(avr)
+        blurred_image.append(row_blurred)
+
+    return blurred_image
 
 
 def bilinear_interpolation(image: SingleChannelImage, y: float, x: float) -> int:
@@ -112,9 +147,14 @@ if __name__ == '__main__':
              [[1, 2, 3], [1, 2, 3], [1, 2, 3]],
              [[1, 2, 3], [1, 2, 3], [1, 2, 3]],
              [[1, 2, 3], [1, 2, 3], [1, 2, 3]]]
-    print(combine_channels(separate_channels(a)))
-    b = RGB2grayscale(a)
-    show_image(b)
+    # print(combine_channels(separate_channels(a)))
+    # b = RGB2grayscale(a)
+    # show_image(b)
     # b = separate_channels(a)
     # show_image(b[0])
-
+    # print(blur_kernel(3))
+#     print(apply_kernel([[10, 20, 30, 40, 50],
+# [8, 16, 24, 32, 40],
+# [6, 12, 18, 24, 30],
+# [4, 8, 12, 16, 20]], blur_kernel(5)))
+#     show_image(apply_kernel(RGB2grayscale(a), blur_kernel(9)))
