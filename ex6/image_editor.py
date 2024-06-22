@@ -6,6 +6,7 @@
 # STUDENTS I DISCUSSED THE EXERCISE WITH: Bugs Bunny, b_bunny.
 #								 	      Daffy Duck, duck_daffy.
 # WEB PAGES I USED: https://www.w3schools.com/python/ref_func_round.asp
+# https://www.geeksforgeeks.org/floor-ceil-function-python/
 # NOTES: none
 #################################################################
 import math
@@ -85,7 +86,7 @@ def blur_kernel(size: int) -> Kernel:
 def apply_kernel(image: SingleChannelImage, kernel: Kernel) -> SingleChannelImage:
     """
     apply kernel on original image to blur
-    :param image: original image
+    :param image: OG
     :param kernel: size*size kernel with equal values
     :return: blurred image
     """
@@ -122,7 +123,7 @@ def bilinear_interpolation(image: SingleChannelImage, y: float, x: float) -> int
     """
     calc new pixel value based using formula
     𝑎 ⋅ (1 − ∆𝑥) ⋅ (1 − ∆𝑦) + 𝑏 ⋅ ∆𝑦 ⋅ (1 − ∆𝑥) + 𝑐 ⋅ ∆𝑥 ⋅ (1 − ∆𝑦) + 𝑑 ⋅ ∆𝑥 ⋅ ∆y
-    :param image: original image
+    :param image: OG
     :param y: y value (row)
     :param x: x value (col)
     :return: new value
@@ -134,16 +135,50 @@ def bilinear_interpolation(image: SingleChannelImage, y: float, x: float) -> int
     delta_x = x - math.floor(x)
     delta_y = y - math.floor(y)
     new_val = a * (1 - delta_x) * (1 - delta_y) + b * delta_y * (1 - delta_x) + c * delta_x * (
-                1 - delta_y) + d * delta_x * delta_y
+            1 - delta_y) + d * delta_x * delta_y
     return round(new_val)
 
 
 def resize(image: SingleChannelImage, new_height: int, new_width: int) -> SingleChannelImage:
-    ...
+    """
+    resize image
+    :param image: OG
+    :param new_height:
+    :param new_width:
+    :return: resized image
+    """
+    resized_image = []
+    for row in range(new_height):
+        new_row = []
+        new_y = (row / (new_height - 1)) * (len(image) - 1)
+        for col in range(new_width):
+            new_x = (col / (new_width - 1)) * (len(image[0]) - 1)
+            new_row.append(bilinear_interpolation(image, new_y, new_x))
+        resized_image.append(new_row)
+    return resized_image
 
 
 def rotate_90(image: Image, direction: str) -> Image:
-    ...
+    """
+    rotate image by 90 degrees to given direction.
+    works on both colorful (3D) and B&W (2D) images.
+    :param image: OG
+    :param direction: L or R
+    :return: rotated image
+    """
+    rotated_image = []
+
+    if direction == 'L':  # switch cols order within rows
+        used_image = [row[::-1] for row in image]
+    else:  # direction == 'R', switch rows order
+        used_image = image[::-1]
+    for col in range(len(used_image[0])):
+        new_row = []
+        for row in used_image:
+            new_row.append(row[col])
+        rotated_image.append(new_row)
+
+    return rotated_image
 
 
 def get_edges(image: SingleChannelImage, blur_size: int, block_size: int, c: float) -> SingleChannelImage:
@@ -164,16 +199,4 @@ if __name__ == '__main__':
              [[1, 2, 3], [1, 2, 3], [1, 2, 3]],
              [[1, 2, 3], [1, 2, 3], [1, 2, 3]],
              [[1, 2, 3], [1, 2, 3], [1, 2, 3]]]
-    # print(combine_channels(separate_channels(a)))
-    # b = RGB2grayscale(a)
-    # show_image(b)
-    # b = separate_channels(a)
-    # show_image(b[0])
-    # print(blur_kernel(3))
-#     print(apply_kernel([[10, 20, 30, 40, 50],
-# [8, 16, 24, 32, 40],
-# [6, 12, 18, 24, 30],
-# [4, 8, 12, 16, 20]], blur_kernel(5)))
-#     show_image(apply_kernel(RGB2grayscale(a), blur_kernel(9)))
-    print(bilinear_interpolation([[15, 30, 45, 60, 75], [90, 105, 120, 135, 150],
-[165, 180, 195, 210, 225]], 4/5, 8/3))
+    # show_image(rotate_90(a,'L'))
