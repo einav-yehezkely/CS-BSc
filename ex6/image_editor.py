@@ -18,10 +18,13 @@ from ex6_helper import *
 from typing import Optional, List
 from copy import deepcopy
 
-
 ##############################################################################
 #                                  Functions                                 #
 ##############################################################################
+
+purpose = "blur"
+edge_constant = 0
+
 
 # TODO additional function
 def str_matrix(mtx):
@@ -51,17 +54,16 @@ def separate_channels(image: ColoredImage) -> list[list[list[int]]]:
 
 def combine_channels(channels: List[SingleChannelImage]) -> ColoredImage:
     """return original image"""
-    rows = []
-    for channel in range(len(channels[0][0])):
-        single_channels = []
-        for col in range(len(channels[0])):
-            chan = []
+    combined = []
+    for col in range(len(channels[0])):
+        new_row = []
+        for chan in range(len(channels[0][0])):
+            new_col = []
             for row in range(len(channels)):
-                chan.append(channels[row][col][channel])
-            single_channels.append(chan)
-        rows.append(single_channels)
-
-    return rows
+                new_col.append(channels[row][col][chan])
+            new_row.append(new_col)
+        combined.append(new_row)
+    return combined
 
 
 def RGB2grayscale(colored_image: ColoredImage) -> SingleChannelImage:
@@ -92,6 +94,7 @@ def apply_kernel(image: SingleChannelImage, kernel: Kernel) -> SingleChannelImag
     """
     center = len(kernel) // 2
     blurred_image = []
+    # edge_image = []
     for row in range(len(image)):
         row_blurred = []
         for col in range(len(image[0])):
@@ -108,12 +111,19 @@ def apply_kernel(image: SingleChannelImage, kernel: Kernel) -> SingleChannelImag
                     cur_col += 1
                 cur_row += 1
                 cur_col = col - center
-            avr = round(avr)
-            if avr < 0:
-                avr = 0
-            if avr > 255:
-                avr = 255
-            row_blurred.append(avr)
+
+            if purpose == "edges":
+                avr = avr / (len(kernel) ** 2)
+                threshold = avr - edge_constant
+                row_blurred.append(0) if cur_cell < threshold else row_blurred.append(255)
+
+            else:
+                avr = round(avr)
+                if avr < 0:
+                    avr = 0
+                if avr > 255:
+                    avr = 255
+                row_blurred.append(avr)
         blurred_image.append(row_blurred)
 
     return blurred_image
@@ -182,15 +192,58 @@ def rotate_90(image: Image, direction: str) -> Image:
 
 
 def get_edges(image: SingleChannelImage, blur_size: int, block_size: int, c: float) -> SingleChannelImage:
-    ...
+    """
+    return only the edges of an image
+    :param image: OG
+    :param blur_size: for kernel
+    :param block_size:
+    :param c:
+    :return: image edges
+    """
+    blurred_image = apply_kernel(image, blur_kernel(blur_size))
+    # image_edges = []
+    global purpose
+    global edge_constant
+    purpose = "edges"
+    edge_constant = c
+    block = []
+    for i in range(block_size):
+        row = []
+        for j in range(block_size):
+            row.append(1)
+        block.append(row)
+
+    image_edges = apply_kernel(blurred_image, block)
+    purpose = "blur"
+    return image_edges
 
 
 def quantize(image: SingleChannelImage, N: int) -> SingleChannelImage:
-    ...
+    """
+    quantize B&W images
+    :param image: OG 2D
+    :param N: number of shades
+    :return: quantized image
+    """
+    quantized_image = []
+    for row in range(len(image)):
+        quantized_row = []
+        for col in range(len(image[0])):
+            quantized_row.append(round(math.floor(image[row][col] * (N / 256)) * (255 / (N - 1))))
+        quantized_image.append(quantized_row)
+    return quantized_image
 
 
 def quantize_colored_image(image: ColoredImage, N: int) -> ColoredImage:
-    ...
+    """
+    :param image: OG 3D
+    :param N: number of shades
+    :return: quantized image
+    """
+    quantized_image = []
+    for channel in separate_channels(image):
+        quantized_image.append(quantize(channel, N))
+    return combine_channels(quantized_image)
 
 
 if __name__ == '__main__':
@@ -199,4 +252,16 @@ if __name__ == '__main__':
              [[1, 2, 3], [1, 2, 3], [1, 2, 3]],
              [[1, 2, 3], [1, 2, 3], [1, 2, 3]],
              [[1, 2, 3], [1, 2, 3], [1, 2, 3]]]
+    b = separate_channels(image)
+    print(str_matrix(b))
+    c = combine_channels(b)
+    print(str_matrix(c))
+
     # show_image(rotate_90(a,'L'))
+    # show_image(get_edges(RGB2grayscale(load_image("IMG_2.jpg")), 30, 30, 1))
+    # print(get_edges([[200, 50, 200]], 3, 3, 10))
+    # [[255, 0, 255]]
+    # show_image(quantize_colored_image(a, 8))
+    a_s = separate_channels(a)
+    show_image(combine_channels(a_s))
+    # show_image(combine_channels(separate_channels(a)))
