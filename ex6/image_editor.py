@@ -276,6 +276,7 @@ if __name__ == '__main__':
                         print("image is already grayscale")
                     else:
                         edited_image = RGB2grayscale(edited_image)
+                        colored_image = False
                 # blur #
                 if action == 2:
                     kernel_size = int(input("please enter size for kernel (int):"))
@@ -295,13 +296,14 @@ if __name__ == '__main__':
                     if len(new_scale) == 3 and is_int(new_scale[0]) and new_scale[1] == ',' and is_int(new_scale[2]):
                         new_height = int(new_scale[0])
                         new_width = int(new_scale[2])
-                        resized_image = []
-                        if colored_image:
-                            for channel in separate_channels(edited_image):
-                                resized_image.append(resize(channel, new_height, new_width))
-                            edited_image = combine_channels(resized_image)
-                        else:
-                            edited_image = resize(edited_image, new_height, new_width)
+                        if new_height > 1 and new_width > 1:
+                            resized_image = []
+                            if colored_image:
+                                for channel in separate_channels(edited_image):
+                                    resized_image.append(resize(channel, new_height, new_width))
+                                edited_image = combine_channels(resized_image)
+                            else:
+                                edited_image = resize(edited_image, new_height, new_width)
                     else:
                         print("Invalid Input")
                 # rotate #
@@ -322,6 +324,7 @@ if __name__ == '__main__':
                         if blur_size > 0 and blur_size % 2 != 0 and block_size > 0 and block_size % 2 != 0:
                             if colored_image:
                                 edited_image = RGB2grayscale(edited_image)
+                                colored_image = False
                             edited_image = get_edges(edited_image, blur_size, block_size, c)
                         else:
                             print("Invalid Input")
