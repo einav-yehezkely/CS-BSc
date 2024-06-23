@@ -235,15 +235,30 @@ def quantize_colored_image(image: ColoredImage, N: int) -> ColoredImage:
     return combine_channels(quantized_image)
 
 
+def is_float(s):
+    try:
+        float(s)
+        return True
+    except ValueError:
+        return False
+
+
+def is_int(s):
+    try:
+        int(s)
+        return True
+    except ValueError:
+        return False
+
+
 if __name__ == '__main__':
     if len(sys.argv) != 2:
         print("Invalid Input, program ends.")
     else:
-        image = load_image(sys.argv[1])
-        colored_image = True if type(image[0][0]) is list else False
-
-        edited_image = image
+        edited_image = load_image(sys.argv[1])
+        colored_image = True if type(edited_image[0][0]) is list else False
         exit_program = False
+
         while not exit_program:
             action = int(input("These are the available actions you can take:\n"
                                "1. convert colored image to grayscale image\n"
@@ -260,7 +275,7 @@ if __name__ == '__main__':
                     if not colored_image:
                         print("image is already grayscale")
                     else:
-                        edited_image = RGB2grayscale(image)
+                        edited_image = RGB2grayscale(edited_image)
                 # blur #
                 if action == 2:
                     kernel_size = int(input("please enter size for kernel (int):"))
@@ -268,30 +283,68 @@ if __name__ == '__main__':
                         print("Invalid kernel size")
                     else:
                         if not colored_image:  # grayscale
-                            edited_image = apply_kernel(image, blur_kernel(kernel_size))
+                            edited_image = apply_kernel(edited_image, blur_kernel(kernel_size))
                         else:  # colored
                             blurred_image = []
-                            for channel in separate_channels(image):
-                                blurred_image.append(apply_kernel(image, blur_kernel(kernel_size)))
+                            for channel in separate_channels(edited_image):
+                                blurred_image.append(apply_kernel(edited_image, blur_kernel(kernel_size)))
                             edited_image = combine_channels(blurred_image)
                 # resize #
                 if action == 3:
                     new_scale = input("please enter new height, new width, seperated by a comma:\n")
-                    if len(new_scale) == 3 and new_scale[0].isnumeric() and new_scale[1] == ',' and new_scale[2].isnumeric():
+                    if len(new_scale) == 3 and is_int(new_scale[0]) and new_scale[1] == ',' and is_int(new_scale[2]):
                         new_height = int(new_scale[0])
                         new_width = int(new_scale[2])
                         resized_image = []
                         if colored_image:
-                            for channel in separate_channels(image):
+                            for channel in separate_channels(edited_image):
                                 resized_image.append(resize(channel, new_height, new_width))
                             edited_image = combine_channels(resized_image)
                         else:
-                            edited_image = resize(image, new_height, new_width)
+                            edited_image = resize(edited_image, new_height, new_width)
                     else:
                         print("Invalid Input")
                 # rotate #
                 if action == 4:
-                    pass
+                    direction = input("Please enter direction 'L' or 'R':\n")
+                    if direction in ('L', 'R'):
+                        edited_image = rotate_90(edited_image, direction)
+                    else:
+                        print("Invalid Input")
+                # edges #
+                if action == 5:
+                    parameters = input("please enter blur size, block size, and a constant c, seperated by a comma:\n")
+                    if len(parameters) == 5 and is_int(parameters[0]) and parameters[1] == ',' and is_int(parameters[
+                        2]) and parameters[3] == ',' and is_float(parameters[4]):
+                        blur_size = int(parameters[0])
+                        block_size = int(parameters[2])
+                        c = float(parameters[4])
+                        if blur_size > 0 and blur_size % 2 != 0 and block_size > 0 and block_size % 2 != 0:
+                            if colored_image:
+                                edited_image = RGB2grayscale(edited_image)
+                            edited_image = get_edges(edited_image, blur_size, block_size, c)
+                        else:
+                            print("Invalid Input")
+                    else:
+                        print("Invalid Input")
+                # quantize #
+                if action == 6:
+                    shades = input("Please enter number of shades to quantize:\n")
+                    if is_int(shades) and int(shades) > 1:
+                        if colored_image:
+                            edited_image = quantize_colored_image(edited_image, int(shades))
+                        else:
+                            edited_image = quantize(edited_image, int(shades))
+                    else:
+                        print("Invalid Input")
+                # display image #
+                if action == 7:
+                    show_image(edited_image)
+                # exit #
+                if action == 8:
+                    path = input("Please enter path to save image:\n")
+                    save_image(edited_image, path)
+                    exit_program = True
 
             else:
                 print("Invalid Input.")
