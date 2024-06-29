@@ -49,6 +49,10 @@ def is_power_helper(b, x, power=1):
 
 def is_power(b: int, x: int) -> bool:
     """checks if the number x is a power of the number b"""
+    if x == 1:    # b^0 = 1
+        return True
+    if b == 0 and x == 0:   # 0^n = 0
+        return True
     return is_power_helper(b, x)
 
 
@@ -66,5 +70,71 @@ def reverse(s: str) -> str:
 
 
 def play_hanoi(Hanoi: Any, n: int, src: Any, dest: Any, temp: Any):
-    pass
+    """play Hanoi game"""
+    if n <= 0:
+        return
+    if n == 1:
+        Hanoi.move(src, dest)
+        return
+    play_hanoi(Hanoi, n - 1, src, temp, dest)
+    play_hanoi(Hanoi, 1, src, dest, temp)
+    play_hanoi(Hanoi, n - 1, temp, dest, src)
+
+
+def number_of_ones_digit_helper(n: int, counter=0):
+    """return how many times is the digit 1 appears in a number"""
+    if n == 0:
+        return 0
+    counter += 1 if n % 10 == 1 else 0
+    return counter + number_of_ones_digit_helper(n // 10)
+
+
+def number_of_ones_helper(n: int, counter=0):
+    """go over all numbers from 1 to n and counts how many times the digit 1 appears"""
+    if n == 0:
+        return 0
+    counter += number_of_ones_digit_helper(n)
+    return counter + number_of_ones_helper(n - 1)
+
+
+def number_of_ones(n: int) -> int:
+    return number_of_ones_helper(n)
+
+
+def check_internal_lists_length(l1, l2, i=0):
+    """compare lengths of internal lists"""
+    if len(l1[i]) != len(l2[i]):
+        return False
+    if i != len(l1) - 1:
+        return check_internal_lists_length(l1, l2, i + 1)
+    return True
+
+
+def check_digits(l1, l2, i=0, j=0):
+    """compare digits in lists"""
+    if len(l1[i]) != 0:
+        if l1[i][j] != l2[i][j]:
+            return False
+        if j != len(l1[i]) - 1:
+            return check_digits(l1, l2, i, j+1)
+    if i != len(l1) - 1:
+        return check_digits(l1, l2, i+1, 0)
+    return True
+
+
+def compare_2d_lists(l1: List[List[int]], l2: List[List[int]]) -> bool:
+    """compare between lists"""
+    if len(l1) != len(l2):
+        return False
+    if check_internal_lists_length(l1, l2):
+        return check_digits(l1, l2)
+
+
+def magic_list(n: int) -> List[Any]:
+    """create list of nested lists"""
+    if n == 0:
+        return []
+    new_list = magic_list(n-1)
+    new_list.append(magic_list(n-1))
+    return new_list
 
