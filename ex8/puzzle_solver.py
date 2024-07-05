@@ -113,38 +113,38 @@ def check_constraints(picture: Picture, constraints_set: Set[Constraint]) -> int
 
 
 def valid_color(picture: Picture, row: int, col: int, constraints_set) -> bool:
-    """check only if affects cells column or row"""
+    """check only if affects cell's column or row"""
     for constraint in constraints_set:
         if (constraint[0] == row or constraint[1] == col) and check_constraints(picture, {constraint}) == 0:
             return False
     return True
 
+
 def solve_puzzle_helper(constraints_set: Set[Constraint], n: int, m: int, picture: Picture, row, col):
     if row == n and col == m:
-        return check_constraints(picture, constraints_set)
-    # else:
-        # row, col = 0, 0
+        if check_constraints(picture, constraints_set) == 0:
+            return False
+        else:
+            return True
 
     last_color = -1
     for color in (0, 1):
         picture[row][col] = color
 
-        if not valid_color(picture, row, col, constraints_set):
+        if valid_color(picture, row, col, constraints_set):
+
+            if col + 1 < m:
+                solve_puzzle_helper(constraints_set, n, m, picture, row, col + 1)
+
+            elif row + 1 < n:
+                solve_puzzle_helper(constraints_set, n, m, picture, row + 1, 0)
+        else:
             picture[row][col] = last_color
-
-        if col + 1 < m:
-            solve_puzzle_helper(constraints_set, n, m, picture, row, col + 1)
-        # if col + 1 == m:
-        #     col = 0
-        elif row + 1 < n:
-            solve_puzzle_helper(constraints_set, n, m, picture, row + 1, 0)
-        # row, col = 0, 0
-
         last_color = color
-        # if color == 0:
-        #     row, col = 0, 0
 
     return True
+
+
 
 
 def solve_puzzle(constraints_set: Set[Constraint], n: int, m: int) -> Optional[Picture]:
