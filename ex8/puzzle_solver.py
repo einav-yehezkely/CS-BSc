@@ -130,7 +130,6 @@ def solve_puzzle_helper(constraints_set: Set[Constraint], n: int, m: int, pictur
     last_color = -1
     for color in (0, 1):
         picture[row][col] = color
-
         if valid_color(picture, row, col, constraints_set):
 
             if col + 1 < m:
@@ -140,6 +139,7 @@ def solve_puzzle_helper(constraints_set: Set[Constraint], n: int, m: int, pictur
                 solve_puzzle_helper(constraints_set, n, m, picture, row + 1, 0)
         else:
             picture[row][col] = last_color
+
         last_color = color
 
     return True
