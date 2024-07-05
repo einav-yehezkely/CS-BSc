@@ -4,7 +4,7 @@
 # EXERCISE : intro2cs ex8 2024
 # DESCRIPTION: A simple program to practice backtracking
 # STUDENTS I DISCUSSED THE EXERCISE WITH: none
-# WEB PAGES I USED: none
+# WEB PAGES I USED: https://www.youtube.com/watch?v=gBC_Fd8EE8A&t=1s
 # NOTES: none
 #################################################################
 import copy
@@ -96,36 +96,55 @@ def check_constraints(picture: Picture, constraints_set: Set[Constraint]) -> int
     possible = 0
     for constraint in constraints_set:
 
-        if (max_seen_cells(picture, constraint[0], constraint[1]) != min_seen_cells(picture, constraint[0], constraint[1])
-                and min_seen_cells(picture, constraint[0], constraint[1]) <= constraint[2] <= max_seen_cells(picture, constraint[0], constraint[1])):
-                possible = 2
-        elif max_seen_cells(picture, constraint[0], constraint[1]) != constraint[2] and min_seen_cells(picture, constraint[0], constraint[1]) != constraint[2]:
+        if (max_seen_cells(picture, constraint[0], constraint[1]) != min_seen_cells(picture, constraint[0],
+                                                                                    constraint[1])
+                and min_seen_cells(picture, constraint[0], constraint[1]) <= constraint[2] <= max_seen_cells(picture,
+                                                                                                             constraint[
+                                                                                                                 0],
+                                                                                                             constraint[
+                                                                                                                 1])):
+            possible = 2
+        elif (max_seen_cells(picture, constraint[0], constraint[1]) != constraint[2]
+              and min_seen_cells(picture, constraint[0], constraint[1]) != constraint[2]):
             return 0
     if possible == 2:
         return 2
     return 1
 
 
-def solve_puzzle_helper(constraints_set: Set[Constraint], n: int, m: int, picture: Picture, row, col) -> Picture:
-    picture[row][col] = 0
-    # print(check_constraints(picture, constraints_set))
+def valid_color(picture: Picture, row: int, col: int, constraints_set) -> bool:
+    """check only if affects cells column or row"""
     for constraint in constraints_set:
-        if row in constraint or col in constraint:
-            check = check_constraints(picture, {constraint})
-            # print(check)
-            if check != 0:
-                if col < m - 1:
-                    solve_puzzle_helper(constraints_set, n, m, picture, row, col + 1)
-                if row < n - 1:
-                    solve_puzzle_helper(constraints_set, n, m, picture, row + 1, 0)
-            else:
-                picture[row][col] = 1
-                if col < m - 1:
-                    solve_puzzle_helper(constraints_set, n, m, picture, row, col + 1)
-                if row < n - 1:
-                    solve_puzzle_helper(constraints_set, n, m, picture, row + 1, 0)
-    return (picture)
+        if (constraint[0] == row or constraint[1] == col) and check_constraints(picture, {constraint}) == 0:
+            return False
+    return True
 
+def solve_puzzle_helper(constraints_set: Set[Constraint], n: int, m: int, picture: Picture, row, col):
+    if row == n and col == m:
+        return check_constraints(picture, constraints_set)
+    # else:
+        # row, col = 0, 0
+
+    last_color = -1
+    for color in (0, 1):
+        picture[row][col] = color
+
+        if not valid_color(picture, row, col, constraints_set):
+            picture[row][col] = last_color
+
+        if col + 1 < m:
+            solve_puzzle_helper(constraints_set, n, m, picture, row, col + 1)
+        # if col + 1 == m:
+        #     col = 0
+        elif row + 1 < n:
+            solve_puzzle_helper(constraints_set, n, m, picture, row + 1, 0)
+        # row, col = 0, 0
+
+        last_color = color
+        # if color == 0:
+        #     row, col = 0, 0
+
+    return True
 
 
 def solve_puzzle(constraints_set: Set[Constraint], n: int, m: int) -> Optional[Picture]:
@@ -136,7 +155,10 @@ def solve_puzzle(constraints_set: Set[Constraint], n: int, m: int) -> Optional[P
             row.append(-1)
         picture.append(row)
 
-    return solve_puzzle_helper(constraints_set, n, m, picture, 0, 0)
+    if solve_puzzle_helper(constraints_set, n, m, picture, 0, 0):
+        return picture
+    else:
+        return None
 
 
 def how_many_solutions(constraints_set: Set[Constraint], n: int, m: int) -> int:
@@ -146,13 +168,15 @@ def how_many_solutions(constraints_set: Set[Constraint], n: int, m: int) -> int:
 def generate_puzzle(picture: Picture) -> Set[Constraint]:
     ...
 
-# #
+
 # picture1 = [[-1, 0, 1, -1], [0, 1, -1, 1], [1, 0, 1, 0]]
 # picture2 = [[0, 0, 1, 1], [0, 1, 1, 1], [1, 0, 1, 0]]
 # print(check_constraints(picture1, {(0, 3, 5), (1, 2, 5), (2, 0, 1)}))
 # print(check_constraints(picture2, {(0, 3, 3), (1, 2, 5), (2, 0, 1)}))
 # print(check_constraints(picture1, {(0, 3, 3), (1, 2, 5), (2, 0, 1)}))
-# print(solve_puzzle({(0, 3, 3), (1, 2, 5), (2, 0, 1), (0, 0, 0)}, 3, 4))
-print(solve_puzzle({(0, 0, 2), (1, 0, 2)}, 2, 2))
-print(solve_puzzle({(0, 2, 3), (1, 1, 4), (2, 2, 5)}, 3, 3) )# print(check_constraints([[2,-1],[-1,-1]], {(0,0,1)}))
-# print(solve_puzzle({(0, 3, 3), (1, 2, 5), (2, 0, 1), (0, 0, 0)}, 3, 4))
+print(solve_puzzle({(0, 0, 2), (1, 0, 2)}, 2, 2), "   supposed: [[1,0],[1,0]]")
+print(solve_puzzle({(0, 3, 3), (1, 2, 5), (2, 0, 1), (0, 0, 0)}, 3, 4),
+      "   supposed: [[0, 0, 1, 1], [0, 1, 1, 1], [1, 0, 1, 0]]")
+print(solve_puzzle({(0, 3, 3), (1, 2, 5), (2, 0, 1), (2, 3, 5)}, 3, 4), "   supposed: None")
+print(solve_puzzle({(0, 2, 3), (1, 1, 4), (2, 2, 5)}, 3, 3),
+      "   supposed: [[[0, 0, 1], [1, 1, 1], [1, 1, 1]] or [[1, 0, 1], [1, 1, 1], [1, 1, 1]]")
