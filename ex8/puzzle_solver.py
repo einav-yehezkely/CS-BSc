@@ -122,15 +122,25 @@ def valid_color(picture: Picture, row: int, col: int, constraints_set) -> bool:
 
 
 def solve_puzzle_helper(constraints_set: Set[Constraint], n: int, m: int, picture: Picture, row, col):
-    if row == n and col == m:
-        if check_constraints(picture, constraints_set) == 0:
-            return False
-        else:
+    """
+    :param constraints_set:
+    :param n: row length
+    :param m: column length
+    :param picture: unknown picture
+    :param row: current row
+    :param col: current column
+    :return: one possible solution
+    """
+    if row == n:
+        # only if all constraints are exactly satisfied - return True
+        if check_constraints(picture, constraints_set) == 1:
             return True
-
+        return False
+    # move horizontally
     if col + 1 < m:
         next_col = col + 1
         next_row = row
+    # move vertically
     else:
         next_col = 0
         next_row = row + 1
@@ -138,15 +148,11 @@ def solve_puzzle_helper(constraints_set: Set[Constraint], n: int, m: int, pictur
     for color in (0, 1):
         picture[row][col] = color
         if valid_color(picture, row, col, constraints_set):
-
-            if next_row == n:
-                return True
-
+            # recursive call. after row == n and constraints are satisfied, fold.
+            # if not valid for 0 and 1 return False and backtrack
             if solve_puzzle_helper(constraints_set, n, m, picture, next_row, next_col):
                 return True
 
-            else:
-                picture[row][col] = -1
         else:
             picture[row][col] = -1
 
@@ -154,17 +160,11 @@ def solve_puzzle_helper(constraints_set: Set[Constraint], n: int, m: int, pictur
 
 
 def solve_puzzle(constraints_set: Set[Constraint], n: int, m: int) -> Optional[Picture]:
-    picture = []
-    for i in range(n):
-        row = []
-        for j in range(m):
-            row.append(-1)
-        picture.append(row)
-
+    """call solve_puzzle_helper to return one possible solution or None if no solution exists"""
+    picture = [[-1 for _ in range(m)] for _ in range(n)]
     if solve_puzzle_helper(constraints_set, n, m, picture, 0, 0):
         return picture
-    else:
-        return None
+    return None
 
 
 def how_many_solutions(constraints_set: Set[Constraint], n: int, m: int) -> int:
@@ -180,9 +180,9 @@ def generate_puzzle(picture: Picture) -> Set[Constraint]:
 # print(check_constraints(picture1, {(0, 3, 5), (1, 2, 5), (2, 0, 1)}))
 # print(check_constraints(picture2, {(0, 3, 3), (1, 2, 5), (2, 0, 1)}))
 # print(check_constraints(picture1, {(0, 3, 3), (1, 2, 5), (2, 0, 1)}))
-print(solve_puzzle({(0, 0, 2), (1, 0, 2)}, 2, 2), "   supposed: [[1,0],[1,0]]")
-print(solve_puzzle({(0, 3, 3), (1, 2, 5), (2, 0, 1), (0, 0, 0)}, 3, 4),
-      "   supposed: [[0, 0, 1, 1], [0, 1, 1, 1], [1, 0, 1, 0]]")
+# print(solve_puzzle({(0, 0, 2), (1, 0, 2)}, 2, 2), "   supposed: [[1,0],[1,0]]")
+# print(solve_puzzle({(0, 3, 3), (1, 2, 5), (2, 0, 1), (0, 0, 0)}, 3, 4),
+#       "   supposed: [[0, 0, 1, 1], [0, 1, 1, 1], [1, 0, 1, 0]]")
 print(solve_puzzle({(0, 3, 3), (1, 2, 5), (2, 0, 1), (2, 3, 5)}, 3, 4), "   supposed: None")
 print(solve_puzzle({(0, 2, 3), (1, 1, 4), (2, 2, 5)}, 3, 3),
       "   supposed: [[[0, 0, 1], [1, 1, 1], [1, 1, 1]] or [[1, 0, 1], [1, 1, 1], [1, 1, 1]]")
