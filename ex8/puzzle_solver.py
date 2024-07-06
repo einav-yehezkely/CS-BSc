@@ -15,7 +15,6 @@ from typing import List, Tuple, Set, Optional
 Picture = List[List[int]]
 Constraint = Tuple[int, int, int]
 
-
 # TODO: write entire code prettier
 
 
@@ -121,7 +120,8 @@ def valid_color(picture: Picture, row: int, col: int, constraints_set) -> bool:
     return True
 
 
-def solve_puzzle_helper(constraints_set: Set[Constraint], n: int, m: int, picture: Picture, row, col):
+def solve_puzzle_helper(constraints_set: Set[Constraint], n: int, m: int, picture: Picture, row, col, find_all=False,
+                        counter=0):
     """
     :param constraints_set:
     :param n: row length
@@ -134,7 +134,11 @@ def solve_puzzle_helper(constraints_set: Set[Constraint], n: int, m: int, pictur
     if row == n:
         # only if all constraints are exactly satisfied - return True
         if check_constraints(picture, constraints_set) == 1:
+            if find_all:
+                return counter + 1
             return True
+        if find_all:
+            return counter
         return False
     # move horizontally
     if col + 1 < m:
@@ -148,14 +152,24 @@ def solve_puzzle_helper(constraints_set: Set[Constraint], n: int, m: int, pictur
     for color in (0, 1):
         picture[row][col] = color
         if valid_color(picture, row, col, constraints_set):
-            # recursive call. after row == n and constraints are satisfied, fold.
-            # if not valid for 0 and 1 return False and backtrack
-            if solve_puzzle_helper(constraints_set, n, m, picture, next_row, next_col):
-                return True
+
+            if find_all:
+                # reached the end and all constraints are satisfied, so it's a possible solution
+                counter = solve_puzzle_helper(constraints_set, n, m, picture, next_row, next_col, True, counter)
+
+            else:
+                # recursive call. after row == n and constraints are satisfied, fold.
+                if solve_puzzle_helper(constraints_set, n, m, picture, next_row, next_col, False):
+                    return True
 
         else:
             picture[row][col] = -1
 
+    # if not valid for 0 and 1 don't change counter and backtrack
+    if find_all:
+        return counter
+
+    # if not valid for 0 and 1 return False and backtrack
     return False
 
 
@@ -168,11 +182,31 @@ def solve_puzzle(constraints_set: Set[Constraint], n: int, m: int) -> Optional[P
 
 
 def how_many_solutions(constraints_set: Set[Constraint], n: int, m: int) -> int:
-    ...
+    picture = [[-1 for _ in range(m)] for _ in range(n)]
+    # # more efficient to skip recursive call if there are no constraints
+    # if not constraints_set:
+    #     return n * m * 2 * 2
+    return solve_puzzle_helper(constraints_set, n, m, picture, 0, 0, True, 0)
 
 
 def generate_puzzle(picture: Picture) -> Set[Constraint]:
-    ...
+    if len(picture) == 1 and len(picture[0]) == 1:
+        if picture[0][0] == 0:
+            return {(0, 0, 0)}
+        return {(0, 0, 1)}
+
+    constraints_set = []
+    for row in range(len(picture)):
+        for col in range(len(picture[0])):
+            constraints_set.append((row, col, max_seen_cells(picture, row, col)))
+
+    minimal_set = copy.deepcopy(constraints_set)
+    for i in constraints_set:
+        minimal_set.remove(i)
+        if how_many_solutions(set(minimal_set), len(picture), len(picture[0])) != 1:
+            minimal_set.append(i)
+
+    return set(minimal_set)
 
 
 # picture1 = [[-1, 0, 1, -1], [0, 1, -1, 1], [1, 0, 1, 0]]
@@ -183,6 +217,16 @@ def generate_puzzle(picture: Picture) -> Set[Constraint]:
 # print(solve_puzzle({(0, 0, 2), (1, 0, 2)}, 2, 2), "   supposed: [[1,0],[1,0]]")
 # print(solve_puzzle({(0, 3, 3), (1, 2, 5), (2, 0, 1), (0, 0, 0)}, 3, 4),
 #       "   supposed: [[0, 0, 1, 1], [0, 1, 1, 1], [1, 0, 1, 0]]")
-print(solve_puzzle({(0, 3, 3), (1, 2, 5), (2, 0, 1), (2, 3, 5)}, 3, 4), "   supposed: None")
-print(solve_puzzle({(0, 2, 3), (1, 1, 4), (2, 2, 5)}, 3, 3),
-      "   supposed: [[[0, 0, 1], [1, 1, 1], [1, 1, 1]] or [[1, 0, 1], [1, 1, 1], [1, 1, 1]]")
+# print(solve_puzzle({(0, 3, 3), (1, 2, 5), (2, 0, 1), (2, 3, 5)}, 3, 4), "   supposed: None")
+# print(solve_puzzle({(0, 2, 3), (1, 1, 4), (2, 2, 5)}, 3, 3),
+#       "   supposed: [[[0, 0, 1], [1, 1, 1], [1, 1, 1]] or [[1, 0, 1], [1, 1, 1], [1, 1, 1]]")
+print(how_many_solutions({(0, 3, 3), (1, 2, 5), (2, 0, 1), (2, 3, 5)}, 3, 4), "   expected: 0")
+print(how_many_solutions({(0, 3, 3), (1, 2, 5), (2, 0, 1), (0, 0, 1)}, 3, 4), "   expected: 1")
+print(how_many_solutions({(0, 2, 3), (1, 1, 4), (2, 2, 5)}, 3, 3), "   expected: 2")
+print(how_many_solutions(set(), 2, 2), "   expected: 16")
+print(how_many_solutions({(i, j, 0) for i in range(3) for j in range(3)}, 3, 3), "   expected: 1")
+print(how_many_solutions({(0, 3, 3), (2, 0, 1)}, 3, 4), "   expected:   64")
+picture = [[1, 0, 0], [1, 1, 1]]
+print(generate_puzzle(picture))
+print(generate_puzzle([[1]]))
+print(generate_puzzle([[1, 0, 0, 0]]))
