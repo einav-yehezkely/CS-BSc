@@ -5,6 +5,7 @@
 # DESCRIPTION: A simple program to practice backtracking
 # STUDENTS I DISCUSSED THE EXERCISE WITH: none
 # WEB PAGES I USED: https://www.youtube.com/watch?v=gBC_Fd8EE8A&t=1s
+# https://www.youtube.com/watch?v=lK4N8E6uNr4
 # NOTES: none
 #################################################################
 import copy
@@ -127,24 +128,29 @@ def solve_puzzle_helper(constraints_set: Set[Constraint], n: int, m: int, pictur
         else:
             return True
 
-    last_color = -1
+    if col + 1 < m:
+        next_col = col + 1
+        next_row = row
+    else:
+        next_col = 0
+        next_row = row + 1
+
     for color in (0, 1):
         picture[row][col] = color
         if valid_color(picture, row, col, constraints_set):
 
-            if col + 1 < m:
-                solve_puzzle_helper(constraints_set, n, m, picture, row, col + 1)
+            if next_row == n:
+                return True
 
-            elif row + 1 < n:
-                solve_puzzle_helper(constraints_set, n, m, picture, row + 1, 0)
+            if solve_puzzle_helper(constraints_set, n, m, picture, next_row, next_col):
+                return True
+
+            else:
+                picture[row][col] = -1
         else:
-            picture[row][col] = last_color
+            picture[row][col] = -1
 
-        last_color = color
-
-    return True
-
-
+    return False
 
 
 def solve_puzzle(constraints_set: Set[Constraint], n: int, m: int) -> Optional[Picture]:
