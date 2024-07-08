@@ -8,7 +8,6 @@
 # https://www.youtube.com/watch?v=lK4N8E6uNr4
 # NOTES: none
 #################################################################
-import copy
 from typing import List, Tuple, Set, Optional
 
 # We define the types of a partial picture and a constraint (for type checking).
@@ -189,6 +188,13 @@ def how_many_solutions(constraints_set: Set[Constraint], n: int, m: int) -> int:
     return solve_puzzle_helper(constraints_set, n, m, picture, 0, 0, find_all=True)
 
 
+def create_list_of_constraints(picture) -> List[Constraint]:
+    constraints_set = []
+    for row in range(len(picture)):
+        for col in range(len(picture[0])):
+            constraints_set.append((row, col, max_seen_cells(picture, row, col)))
+    return constraints_set
+
 def generate_puzzle(picture: Picture) -> Set[Constraint]:
     """generate constraints set for a given picture"""
     if len(picture) == 1 and len(picture[0]) == 1:
@@ -196,12 +202,8 @@ def generate_puzzle(picture: Picture) -> Set[Constraint]:
             return {(0, 0, 0)}
         return {(0, 0, 1)}
 
-    constraints_set = []
-    for row in range(len(picture)):
-        for col in range(len(picture[0])):
-            constraints_set.append((row, col, max_seen_cells(picture, row, col)))
-
-    minimal_set = copy.deepcopy(constraints_set)
+    constraints_set = create_list_of_constraints(picture)
+    minimal_set = create_list_of_constraints(picture)
     for i in constraints_set:
         minimal_set.remove(i)
 
