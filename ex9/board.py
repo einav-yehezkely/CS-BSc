@@ -21,6 +21,7 @@ class Board:
         A constructor for a Board object.
         """
         self.__board = [['_' for _ in range(7)] for _ in range(7)]
+        self.__board[3].append('E')
         self.__cars = {}
 
     def __str__(self) -> str:
@@ -35,7 +36,7 @@ class Board:
         for row in self.__board:
             brd += (' '.join(row)) + " "
             if row_num == 3:
-                brd += ("E \n")
+                brd += ("\n")
             else:
                 brd += ("* \n")
             row_num += 1
@@ -78,7 +79,7 @@ class Board:
                 if requirements[0][0] < 0 or requirements[0][0] >= 7 or requirements[0][1] < 0 or requirements[0][1] >= 7:
                     continue
                 if direction in car.possible_moves().keys():
-                    if self.__board[requirements[0][0]][requirements[0][1]] == '_':
+                    if self.__board[requirements[0][0]][requirements[0][1]] == '_' or self.__board[requirements[0][0]][requirements[0][1]] == 'E':
                         legal_moves.append((car.get_name(), direction, description))
         return legal_moves
 
@@ -98,16 +99,18 @@ class Board:
         :param coordinates: tuple of (row, col) of the coordinates to check.
         :return: The name of the car in "coordinates", None if it's empty.
         """
-        if self.__board[coordinates[0]][coordinates[1]] == '_':
+        if self.__board[coordinates[0]][coordinates[1]] == '_' or self.__board[coordinates[0]][coordinates[1]] == 'E':
             return None
         return self.__board[coordinates[0]][coordinates[1]]
 
     def __valid_location(self, coord) -> bool:
+        if coord[0] == 3 and coord[1] == 7:
+            return True
         # check for index errors
         if coord[0] < 0 or coord[0] >= 7 or coord[1] < 0 or coord[1] >= 7:
             return False
         # check for collisions
-        if self.__board[coord[0]][coord[1]] != '_':
+        if self.__board[coord[0]][coord[1]] != '_' and self.__board[coord[0]][coord[1]]!= 'E':
             return False
         return True
 
@@ -128,6 +131,7 @@ class Board:
         self.__cars[car.get_name()] = car
         return True
 
+
     def move_car(self, name: str, move_key: str) -> bool:
         """
         Moves car one step in a given direction.
@@ -135,9 +139,11 @@ class Board:
         :param move_key: the key of the required move.
         :return: True upon success, False otherwise.
         """
-        if name not in self.__cars or move_key not in DIRECTIONS:
+        if name not in self.__cars:
             return False
         car = self.__cars.get(name)
+        if move_key not in car.possible_moves().keys():
+            return False
         movement_requirements = car.movement_requirements(move_key)
         for requirement in movement_requirements:
             if not self.__valid_location(requirement):
@@ -149,20 +155,3 @@ class Board:
         car.move(move_key)
         self.add_car(car)
         return True
-
-
-board = Board()
-
-with open('car_config.json') as file:
-    cars = json.load(file)
-
-for car in cars.items():
-    board.add_car(Car(car[0], car[1][0], tuple(car[1][1]), car[1][2])) # name, length, location, orientation
-print(board)
-
-print(board.move_car("O", "u"))
-print(board)
-print(board.move_car("O", "u"))
-print(board)
-print(board.move_car("R", "r"))
-print(board)

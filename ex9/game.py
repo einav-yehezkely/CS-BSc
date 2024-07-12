@@ -1,7 +1,12 @@
 from board import Board
+from car import Car
+import sys
+from helper import *
 
 LEGAL_NAMES = ("R", "G", "W", "O", "B", "Y")
 LEGAL_ORIENTATIONS = (0, 1)
+LEGAL_DIRECTIONS = ("l", "r", "u", "d")
+LEGAL_LENGTH = (2, 3, 4)
 
 class Game:
     """
@@ -16,10 +21,11 @@ class Game:
         """
         # You may assume board follows the API
         self.__board = board
+        # self.__cars = board.cars
 
     def __single_turn(self):
         """
-        Note - this function is here to guide you and it is *not mandatory*
+        Note - this function is here to guide you, and it is *not mandatory*
         to implement it. 
 
         The function runs one round of the game :
@@ -33,21 +39,55 @@ class Game:
         you may support additional features, (e.g., hints) as long as they
         don't interfere with the API.
         """
-        # implement your code and erase the "pass"
-        pass
+        # TODO: tried all possible moves
+        while True:
+            user_input = input(f"Enter car's color ({LEGAL_NAMES}) and movement direction ({LEGAL_DIRECTIONS}) divided by a comma (,): \n")
+            name = user_input[0]
+            comma = user_input[1]
+            direction = user_input[2]
+            if user_input == "!":
+                "BYE!"
+                sys.exit()
+            if name not in LEGAL_NAMES or comma != "," or direction not in LEGAL_DIRECTIONS:
+                print("Invalid input. Please try again.")
+            if not self.__board.move_car(name, direction):
+                    # print("Invalid move. All possible moves have been tried. GAME OVER!")
+                    # sys.exit()
+                print("Invalid move. Please try again.")
+
+            else:
+                break
+
+            # print(self.__board)
+
+
 
     def play(self) -> None:
         """
         The main driver of the Game. Manages the game until completion.
         :return: None
         """
-        # implement your code and erase the "pass"
-        pass
+        while True:
+            print(self.__board)
+            self.__single_turn()
+            if self.__board.cell_content(self.__board.target_location()) is not None:
+                print("congratulations! You've won! \n---------GAME OVER---------")
+                sys.exit()
 
 
-if __name__== "__main__":
+if __name__ == "__main__":
     # Your code here
     # All access to files, non API constructors, and such must be in this
     # section, or in functions called from this section.
-    # implement your code and erase the "pass"
-    pass
+    board = Board()
+    args = sys.argv
+    with open(args[1]) as file:
+        cars = json.load(file)
+
+    for car in cars.items():
+        if car[0] in LEGAL_NAMES and car[1][0] in LEGAL_LENGTH and car[1][2] in LEGAL_ORIENTATIONS:
+            board.add_car(Car(car[0], car[1][0], tuple(car[1][1]), car[1][2]))  # name, length, location, orientation
+
+    game = Game(board)
+    game.play()
+
