@@ -20,10 +20,7 @@ class Board:
         A constructor for a Board object.
         """
         self.__board = [['_' for _ in range(7)] for _ in range(7)]
-        self.__cars = []
-        # with open('car_config.json') as file:
-        #     self.__cars = json.load(file)
-        # print(self.__cars)
+        self.__cars = {}
 
     def __str__(self) -> str:
         """
@@ -127,7 +124,7 @@ class Board:
                 return False
         for coord in car_coordinates:
             self.__board[coord[0]][coord[1]] = car.get_name()
-        self.__cars.append(car)
+        self.__cars[car.get_name()] = car_coordinates
         return True
 
     def move_car(self, name: str, move_key: str) -> bool:
@@ -137,34 +134,19 @@ class Board:
         :param move_key: the key of the required move.
         :return: True upon success, False otherwise.
         """
+        print(self.__cars)
         if name not in self.__cars:
             return False
 
 
 
 board = Board()
-print(board)
-print(board.cell_list())
-print(board.target_location())
-print(board.cell_content((3, 5)))
+
 with open('car_config.json') as file:
     cars = json.load(file)
-list_of_cars = list(cars.items())
-list_of_tuples = []
-# print(list_of_cars)
-for car in list_of_cars:
-    print(board.add_car(Car(car[0], car[1][0], tuple(car[1][1]), car[1][2]))) # name, length, location, orientation
-    # print(board.add_car(Car(car[0], car[1][0], tuple(car[1][1]), car[1][2])))
-# print(board.add_car(Car("Y", 2, (0,1), 1)))
 
-#     list_of_tuples.append(tuple(car[1][1]))
-# print(list_of_tuples)
-# car1 = Car("Y", 2, (2, 5), 1)
-# car2 = Car("R", 3, (0, 4), 0)
-# print(board.add_car(car1))
-# # print(board.add_car(car2))
+for car in cars.items():
+    board.add_car(Car(car[0], car[1][0], tuple(car[1][1]), car[1][2])) # name, length, location, orientation
 print(board)
-print(board.possible_moves())
-print(list_of_cars)
-dic = {1: (4,5,6) , 2: 2, 3: 3, 4: 4}
-print(dic.get(1))
+
+print(board.move_car("R", "r"))
