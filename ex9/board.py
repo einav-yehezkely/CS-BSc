@@ -64,13 +64,24 @@ class Board:
         # From the provided example car_config.json file, the return value could be
         # [('O','d',"description"), ('R','r',"description"), ('O','u',"description")]
         legal_moves = []
-
-        for car in self.__cars:
-            if "l" in car.possible_moves().keys():
-                requirements = car.movement_requirements("l")
-                if self.__board[requirements[0][0]][requirements[0][1]] == '_':
-                    legal_moves.append((car.get_name(), "l", "move left"))
-
+        for direction in ["u", "d", "l", "r"]:
+            ################################
+            if direction == "u":
+                description = "move up"
+            elif direction == "d":
+                description = "move down"
+            elif direction == "l":
+                description = "move left"
+            elif direction == "r":
+                description = "move right"
+            ##############################
+            for car in self.__cars:
+                requirements = car.movement_requirements(direction)
+                if requirements[0][0] < 0 or requirements[0][0] >= 7 or requirements[0][1] < 0 or requirements[0][1] >= 7:
+                    continue
+                if direction in car.possible_moves().keys():
+                    if self.__board[requirements[0][0]][requirements[0][1]] == '_':
+                        legal_moves.append((car.get_name(), direction, description))
         return legal_moves
 
 
@@ -93,6 +104,15 @@ class Board:
             return None
         return self.__board[coordinates[0]][coordinates[1]]
 
+    def __valid_location(self, coord) -> bool:
+        # check for index errors
+        if coord[0] < 0 or coord[0] >= 7 or coord[1] < 0 or coord[1] >= 7:
+            return False
+        # check for collisions
+        if self.__board[coord[0]][coord[1]] != '_':
+            return False
+        return True
+
     def add_car(self, car: Car) -> bool:
         """
         Adds a car to the game.
@@ -101,17 +121,13 @@ class Board:
         """
         # Remember to consider all the reasons adding a car can fail.
         # You may assume the car is a legal car object following the API.
-        self.__cars.append(car)
         car_coordinates = car.car_coordinates()
         for coord in car_coordinates:
-            # check for index errors
-            if coord[0] < 0 or coord[0] >= 7 or coord[1] < 0 or coord[1] >= 7:
-                return False
-            # check for collisions
-            if self.__board[coord[0]][coord[1]] != '_':
+            if not self.__valid_location(coord):
                 return False
         for coord in car_coordinates:
             self.__board[coord[0]][coord[1]] = car.get_name()
+        self.__cars.append(car)
         return True
 
     def move_car(self, name: str, move_key: str) -> bool:
@@ -121,8 +137,9 @@ class Board:
         :param move_key: the key of the required move.
         :return: True upon success, False otherwise.
         """
-        # implement your code and erase the "pass"
-        pass
+        if name not in self.__cars:
+            return False
+
 
 
 board = Board()
@@ -130,9 +147,24 @@ print(board)
 print(board.cell_list())
 print(board.target_location())
 print(board.cell_content((3, 5)))
-car1 = Car("Y", 2, (2, 5), 1)
-car2 = Car("R", 3, (0, 4), 0)
-print(board.add_car(car1))
-# print(board.add_car(car2))
+with open('car_config.json') as file:
+    cars = json.load(file)
+list_of_cars = list(cars.items())
+list_of_tuples = []
+# print(list_of_cars)
+for car in list_of_cars:
+    print(board.add_car(Car(car[0], car[1][0], tuple(car[1][1]), car[1][2]))) # name, length, location, orientation
+    # print(board.add_car(Car(car[0], car[1][0], tuple(car[1][1]), car[1][2])))
+# print(board.add_car(Car("Y", 2, (0,1), 1)))
+
+#     list_of_tuples.append(tuple(car[1][1]))
+# print(list_of_tuples)
+# car1 = Car("Y", 2, (2, 5), 1)
+# car2 = Car("R", 3, (0, 4), 0)
+# print(board.add_car(car1))
+# # print(board.add_car(car2))
 print(board)
 print(board.possible_moves())
+print(list_of_cars)
+dic = {1: (4,5,6) , 2: 2, 3: 3, 4: 4}
+print(dic.get(1))
