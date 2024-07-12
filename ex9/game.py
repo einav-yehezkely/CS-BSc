@@ -1,7 +1,9 @@
 from board import Board
 from car import Car
 import sys
+import json
 from helper import *
+
 
 LEGAL_NAMES = ("R", "G", "W", "O", "B", "Y")
 LEGAL_ORIENTATIONS = (0, 1)
@@ -10,8 +12,7 @@ LEGAL_LENGTH = (2, 3, 4)
 
 class Game:
     """
-    Add a class description here.
-    Write briefly about the purpose of the class.
+    A class that runs the game of Rush Hour.
     """
 
     def __init__(self, board: Board) -> None:
@@ -86,7 +87,7 @@ if __name__ == "__main__":
     if not cars:
         print("No cars to place.")
         sys.exit()
-        
+
     for car in cars.items():
         if car[0] in LEGAL_NAMES and car[1][0] in LEGAL_LENGTH and car[1][2] in LEGAL_ORIENTATIONS:
             board.add_car(Car(car[0], car[1][0], tuple(car[1][1]), car[1][2]))  # name, length, location, orientation

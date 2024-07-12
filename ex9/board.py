@@ -1,19 +1,18 @@
 from typing import Tuple, List, Optional
 from car import Car
-import json
-import sys
 
 Coordinates = Tuple[int, int]
 TARGET_CELL = (3, 7)
 DIRECTIONS = ["u", "d", "l", "r"]
 
-args = sys.argv
-
 
 class Board:
     """
-    Add a class description here.
-    Write briefly about the purpose of the class.
+    A class representing the game board:
+    create a board with a 7x7 grid, with the target cell marked, and methods:
+    print board, create list of coordinates of board, returns the legal moves of all cars on board,
+    returns target cell location, return a cell's content, validate location,
+    add a car to the board, and move a car.
     """
 
     def __init__(self) -> None:
@@ -55,7 +54,7 @@ class Board:
 
     def possible_moves(self) -> List[Tuple[str, str, str]]:
         """ 
-        This function returns the legal moves of all cars in this board.
+        This function returns the legal moves of all cars on this board.
         :return: list of tuples of the form (name, move_key, description)
                  representing legal moves. The description should briefly
                  explain what is the movement represented by move_key.
