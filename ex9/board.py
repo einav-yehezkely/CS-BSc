@@ -5,6 +5,7 @@ import sys
 
 Coordinates = Tuple[int, int]
 TARGET_CELL = (3, 7)
+DIRECTIONS = ["u", "d", "l", "r"]
 
 args = sys.argv
 
@@ -61,7 +62,7 @@ class Board:
         # From the provided example car_config.json file, the return value could be
         # [('O','d',"description"), ('R','r',"description"), ('O','u',"description")]
         legal_moves = []
-        for direction in ["u", "d", "l", "r"]:
+        for direction in DIRECTIONS:
             ################################
             if direction == "u":
                 description = "move up"
@@ -124,7 +125,7 @@ class Board:
                 return False
         for coord in car_coordinates:
             self.__board[coord[0]][coord[1]] = car.get_name()
-        self.__cars[car.get_name()] = car_coordinates
+        self.__cars[car.get_name()] = car
         return True
 
     def move_car(self, name: str, move_key: str) -> bool:
@@ -134,10 +135,20 @@ class Board:
         :param move_key: the key of the required move.
         :return: True upon success, False otherwise.
         """
-        print(self.__cars)
-        if name not in self.__cars:
+        if name not in self.__cars or move_key not in DIRECTIONS:
             return False
+        car = self.__cars.get(name)
+        movement_requirements = car.movement_requirements(move_key)
+        for requirement in movement_requirements:
+            if not self.__valid_location(requirement):
+                return False
 
+        coordinates = car.car_coordinates()
+        for coord in coordinates:
+            self.__board[coord[0]][coord[1]] = '_'
+        car.move(move_key)
+        self.add_car(car)
+        return True
 
 
 board = Board()
@@ -149,4 +160,9 @@ for car in cars.items():
     board.add_car(Car(car[0], car[1][0], tuple(car[1][1]), car[1][2])) # name, length, location, orientation
 print(board)
 
+print(board.move_car("O", "u"))
+print(board)
+print(board.move_car("O", "u"))
+print(board)
 print(board.move_car("R", "r"))
+print(board)
