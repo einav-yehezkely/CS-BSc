@@ -19,7 +19,6 @@ class Car:
         :param location: A tuple representing the car's head location (row,col).
         :param orientation: One of either 0 (VERTICAL) or 1 (HORIZONTAL).
         """
-        # TODO: exceptions
         self.__name = name
         self.__length = length
         self.__location = location
@@ -29,7 +28,6 @@ class Car:
         """
         :return: A list of coordinates the car is in.
         """
-        # TODO: exceptions
         if self.__orientation == VERTICAL:
             col = self.__location[1]
             return [(row, col) for row in range(self.__location[0],
@@ -59,7 +57,6 @@ class Car:
         if self.__orientation == HORIZONTAL:
             return {'l': "move left", 'r': "move right"}
 
-
     def movement_requirements(self, move_key: str) -> List[Coordinates]:
         """ 
         :param move_key: A string representing the key of the required move.
@@ -68,7 +65,6 @@ class Car:
         """
         # For example, a car in locations [(1,2),(2,2)] requires [(3,2)] to
         # be empty in order to move down (with a key 'd').
-        # TODO: exceptions
         car_coordinates = self.car_coordinates()
         if move_key == 'u':
             return [(car_coordinates[0][0] - 1, car_coordinates[0][1])]
@@ -98,7 +94,6 @@ class Car:
             self.__location = (org_location[0] + 1, org_location[1])
         self.car_coordinates()
         return True
-
 
     def get_name(self) -> str:
         """

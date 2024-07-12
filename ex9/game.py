@@ -22,7 +22,6 @@ class Game:
         """
         # You may assume board follows the API
         self.__board = board
-        # self.__cars = board.cars
 
     def __single_turn(self):
         """
@@ -43,23 +42,34 @@ class Game:
         # TODO: tried all possible moves
         while True:
             user_input = input(f"Enter car's color ({LEGAL_NAMES}) and movement direction ({LEGAL_DIRECTIONS}) divided by a comma (,): \n")
-            name = user_input[0]
-            comma = user_input[1]
-            direction = user_input[2]
             if user_input == "!":
                 "BYE!"
-                sys.exit()
-            elif name not in LEGAL_NAMES or comma != "," or direction not in LEGAL_DIRECTIONS:
+                return False
+            if len(user_input) != 3:
                 print("Invalid input. Please try again.")
-            elif not self.__board.move_car(name, direction):
-                    # print("Invalid move. All possible moves have been tried. GAME OVER!")
+            elif user_input[0] not in LEGAL_NAMES or user_input[1] != "," or user_input[2] not in LEGAL_DIRECTIONS:
+                print("Invalid input. Please try again.")
+            elif not self.__board.move_car(user_input[0], user_input[2]):
+                # if user_input[2] == "u":
+                #     opposite = "d"
+                # elif user_input[2] == "d":
+                #     opposite = "u"
+                # elif user_input[2] == "l":
+                #     opposite = "r"
+                # elif user_input[2] == "r":
+                #     opposite = "l"
+                #
+                # if not self.__board.move_car(user_input[0], opposite):
+                #     print("Invalid move. All possible moves are invalid. GAME OVER!")
+                #     return False
+                # else:
+                #     self.__board.move_car(user_input[0], user_input[2])
+
                     # sys.exit()
                 print("Invalid move. Please try again.")
 
             else:
                 break
-
-
 
     def play(self) -> None:
         """
@@ -68,11 +78,12 @@ class Game:
         """
         while True:
             print(self.__board)
-            self.__single_turn()
+            if self.__single_turn() is False:
+                break
             if self.__board.cell_content(self.__board.target_location()) is not None:
                 print(board)
                 print("congratulations! You've won! \n---------GAME OVER---------")
-                sys.exit()
+                break
 
 
 if __name__ == "__main__":
@@ -86,12 +97,11 @@ if __name__ == "__main__":
 
     if not cars:
         print("No cars to place.")
-        sys.exit()
+    else:
+        for car in cars.items():
+            if car[0] in LEGAL_NAMES and car[1][0] in LEGAL_LENGTH and car[1][2] in LEGAL_ORIENTATIONS:
+                board.add_car(Car(car[0], car[1][0], tuple(car[1][1]), car[1][2]))  # name, length, location, orientation
 
-    for car in cars.items():
-        if car[0] in LEGAL_NAMES and car[1][0] in LEGAL_LENGTH and car[1][2] in LEGAL_ORIENTATIONS:
-            board.add_car(Car(car[0], car[1][0], tuple(car[1][1]), car[1][2]))  # name, length, location, orientation
-
-    game = Game(board)
-    game.play()
+        game = Game(board)
+        game.play()
 

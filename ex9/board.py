@@ -35,9 +35,9 @@ class Board:
         for row in self.__board:
             brd += (' '.join(row)) + " "
             if row_num == 3:
-                brd += ("\n")
+                brd += "\n"
             else:
-                brd += ("* \n")
+                brd += "* \n"
             row_num += 1
         return brd
 
@@ -72,7 +72,7 @@ class Board:
                 description = "move left"
             elif direction == "r":
                 description = "move right"
-            ##############################
+            ################################
             for car in self.__cars:
                 requirements = car.movement_requirements(direction)
                 if requirements[0][0] < 0 or requirements[0][0] >= 7 or requirements[0][1] < 0 or requirements[0][1] >= 7:
@@ -81,7 +81,6 @@ class Board:
                     if self.__board[requirements[0][0]][requirements[0][1]] == '_' or self.__board[requirements[0][0]][requirements[0][1]] == 'E':
                         legal_moves.append((car.get_name(), direction, description))
         return legal_moves
-
 
     def target_location(self) -> Coordinates:
         """
@@ -103,7 +102,7 @@ class Board:
         return self.__board[coordinates[0]][coordinates[1]]
 
     def __valid_location(self, coord) -> bool:
-        if coord[0] == 3 and coord[1] == 7:
+        if coord[0] == 3 and coord[1] == 7: # target cell
             return True
         # check for index errors
         if coord[0] < 0 or coord[0] >= 7 or coord[1] < 0 or coord[1] >= 7:
@@ -129,7 +128,6 @@ class Board:
             self.__board[coord[0]][coord[1]] = car.get_name()
         self.__cars[car.get_name()] = car
         return True
-
 
     def move_car(self, name: str, move_key: str) -> bool:
         """
