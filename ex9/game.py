@@ -39,7 +39,6 @@ class Game:
         you may support additional features, (e.g., hints) as long as they
         don't interfere with the API.
         """
-        # TODO: tried all possible moves
         while True:
             user_input = input(f"Enter car's color ({LEGAL_NAMES}) and movement direction ({LEGAL_DIRECTIONS}) divided by a comma (,): \n")
             if user_input == "!":
@@ -50,22 +49,6 @@ class Game:
             elif user_input[0] not in LEGAL_NAMES or user_input[1] != "," or user_input[2] not in LEGAL_DIRECTIONS:
                 print("Invalid input. Please try again.")
             elif not self.__board.move_car(user_input[0], user_input[2]):
-                # if user_input[2] == "u":
-                #     opposite = "d"
-                # elif user_input[2] == "d":
-                #     opposite = "u"
-                # elif user_input[2] == "l":
-                #     opposite = "r"
-                # elif user_input[2] == "r":
-                #     opposite = "l"
-                #
-                # if not self.__board.move_car(user_input[0], opposite):
-                #     print("Invalid move. All possible moves are invalid. GAME OVER!")
-                #     return False
-                # else:
-                #     self.__board.move_car(user_input[0], user_input[2])
-
-                    # sys.exit()
                 print("Invalid move. Please try again.")
 
             else:
