@@ -48,17 +48,15 @@ class Game:
             if user_input == "!":
                 "BYE!"
                 sys.exit()
-            if name not in LEGAL_NAMES or comma != "," or direction not in LEGAL_DIRECTIONS:
+            elif name not in LEGAL_NAMES or comma != "," or direction not in LEGAL_DIRECTIONS:
                 print("Invalid input. Please try again.")
-            if not self.__board.move_car(name, direction):
+            elif not self.__board.move_car(name, direction):
                     # print("Invalid move. All possible moves have been tried. GAME OVER!")
                     # sys.exit()
                 print("Invalid move. Please try again.")
 
             else:
                 break
-
-            # print(self.__board)
 
 
 
@@ -71,6 +69,7 @@ class Game:
             print(self.__board)
             self.__single_turn()
             if self.__board.cell_content(self.__board.target_location()) is not None:
+                print(board)
                 print("congratulations! You've won! \n---------GAME OVER---------")
                 sys.exit()
 
@@ -84,6 +83,10 @@ if __name__ == "__main__":
     with open(args[1]) as file:
         cars = json.load(file)
 
+    if not cars:
+        print("No cars to place.")
+        sys.exit()
+        
     for car in cars.items():
         if car[0] in LEGAL_NAMES and car[1][0] in LEGAL_LENGTH and car[1][2] in LEGAL_ORIENTATIONS:
             board.add_car(Car(car[0], car[1][0], tuple(car[1][1]), car[1][2]))  # name, length, location, orientation
