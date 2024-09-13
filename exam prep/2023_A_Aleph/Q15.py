@@ -3,7 +3,7 @@ from typing import *
 
 def assign(n: int, k: int, hate: Set[Tuple[int, int]]) -> Optional[List[List[int]]]:
     lst = []
-    print(n)
+    # print(n)
     for i in range(k):
         lst.append([])
 
@@ -40,4 +40,4 @@ def assign_helper(cur_person: int, num_of_people: int, cur_table: int, num_of_ta
 hate1 = {(1, 2), (1, 3)}
 hate2 = {(1, 2), (1, 3), (2, 3)}
 # print(is_in_hate(3,2, hate2))
-print(assign(4, 2, hate2))
+print(assign(4, 2, hate1))
