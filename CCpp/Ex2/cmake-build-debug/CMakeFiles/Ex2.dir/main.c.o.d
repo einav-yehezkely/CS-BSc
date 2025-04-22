@@ -1,5 +1,6 @@
 CMakeFiles/Ex2.dir/main.c.o: /mnt/c/Users/einav/CLionProjects/Ex2/main.c \
- /usr/include/stdc-predef.h /usr/include/stdio.h \
+ /usr/include/stdc-predef.h \
+ /usr/lib/gcc/x86_64-linux-gnu/13/include/stdbool.h /usr/include/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
@@ -47,10 +48,9 @@ CMakeFiles/Ex2.dir/main.c.o: /mnt/c/Users/einav/CLionProjects/Ex2/main.c \
  /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h \
  /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h /usr/include/alloca.h \
- /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
- /mnt/c/Users/einav/CLionProjects/Ex2/sort_bus_lines.h \
- /usr/include/string.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib-float.h /usr/include/string.h \
  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
  /usr/include/strings.h \
+ /mnt/c/Users/einav/CLionProjects/Ex2/sort_bus_lines.h \
  /mnt/c/Users/einav/CLionProjects/Ex2/test_bus_lines.h
