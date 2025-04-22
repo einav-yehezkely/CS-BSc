@@ -6,11 +6,13 @@
 #include "test_bus_lines.h"
 #define MAX_LINE_LENGTH 61
 #define MAX_FIELD_LENGTH 21
+#define VALID_NAME_CHARS "abcdefghijklmnopqrstuvwxyz0123456789"
 
 int test_command_input(int argc, char *argv[]);
 int run_tests();
 int read_input(char *buffer);
 int get_number_of_lines(char *buffer);
+int get_line_info(char *buffer, int num_of_lines, BusLine *lines);
 /**
  * TODO add documentation
  */
@@ -30,46 +32,13 @@ int main (int argc, char *argv[])
 
     // get line info
     BusLine *lines = calloc(num_of_lines, sizeof(BusLine));
-    if (lines == NULL) {
+    if (get_line_info(buffer, num_of_lines, lines) == EXIT_FAILURE) {
         return EXIT_FAILURE;
     }
-
-    for (int i = 0 ; i < num_of_lines; i++) {
-        char name[MAX_FIELD_LENGTH];
-        int distance;
-        int duration;
-        do {
-            printf("Enter line info. Then enter\n");
-
-            if (read_input(buffer) == EXIT_FAILURE) {
-                free(lines);
-                return EXIT_FAILURE;
-            }
-
-            if (sscanf(buffer, "%20[^,],%d,%d", name, &distance, &duration) != 3) {
-                printf("Error: invalid format. valid input: <line_name>,<distance>,<duration>\n");
-                continue;
-            }
-            char *valid_name_chars = "abcdefghijklmnopqrstuvwxyz0123456789";
-            if (strspn(name, valid_name_chars) != strlen(name)) {
-                printf("Error: bus name should contains only digits and small chars\n");
-                continue;
-            }
-            if (distance < 0 || distance > 1000) {
-                printf("Error: distance should be an integer between 0 and 1000 (includes)\n");
-                continue;
-            }
-            if (duration < 10 || duration > 100) {
-                printf("Error: duration should be an integer between 10 and 100 (includes)\n");
-                continue;
-            }
-            strcpy(lines[i].name, name);
-            lines[i].distance = distance;
-            lines[i].duration = duration;
-            break;
-        }while (true);
+    // for control. TODO: delete later
+    for (int i = 0; i < num_of_lines; i++) {
+        printf("%s,%d,%d\n", lines[i].name, lines[i].distance, lines[i].duration);
     }
-
     free(lines);
     return EXIT_SUCCESS;
 }
@@ -123,6 +92,45 @@ int get_number_of_lines(char *buffer) {
     return num_of_lines;
 }
 
-void get_bus_info() {
+int get_line_info(char *buffer, int num_of_lines, BusLine *lines) {
 
+    if (lines == NULL) {
+        return EXIT_FAILURE;
+    }
+
+    for (int i = 0 ; i < num_of_lines; i++) {
+        char name[MAX_FIELD_LENGTH];
+        int distance;
+        int duration;
+        do {
+            printf("Enter line info. Then enter\n");
+
+            if (read_input(buffer) == EXIT_FAILURE) {
+                free(lines);
+                return EXIT_FAILURE;
+            }
+
+            if (sscanf(buffer, "%20[^,],%d,%d", name, &distance, &duration) != 3) {
+                printf("Error: invalid format. valid input: <line_name>,<distance>,<duration>\n");
+                continue;
+            }
+            if (strspn(name, VALID_NAME_CHARS) != strlen(name)) {
+                printf("Error: bus name should contains only digits and small chars\n");
+                continue;
+            }
+            if (distance < 0 || distance > 1000) {
+                printf("Error: distance should be an integer between 0 and 1000 (includes)\n");
+                continue;
+            }
+            if (duration < 10 || duration > 100) {
+                printf("Error: duration should be an integer between 10 and 100 (includes)\n");
+                continue;
+            }
+            strcpy(lines[i].name, name);
+            lines[i].distance = distance;
+            lines[i].duration = duration;
+            break;
+        }while (true);
+    }
+    return EXIT_SUCCESS;
 }
