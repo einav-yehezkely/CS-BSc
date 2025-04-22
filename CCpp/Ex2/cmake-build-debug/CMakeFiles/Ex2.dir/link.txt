@@ -1,0 +1,1 @@
+/usr/bin/cc -g CMakeFiles/Ex2.dir/main.c.o CMakeFiles/Ex2.dir/sort_bus_lines.c.o CMakeFiles/Ex2.dir/test_bus_lines.c.o -o Ex2 
