@@ -8,18 +8,68 @@
 #define MAX_FIELD_LENGTH 21
 #define VALID_NAME_CHARS "abcdefghijklmnopqrstuvwxyz0123456789"
 
+/**
+ * test if the 1st input is valid
+ * @param argc number of arguments
+ * @param argv arguments
+ * @return EXIT_SUCCESS if the command is valid, EXIT_FAILURE otherwise
+ */
 int test_command_input(int argc, char *argv[]);
+/**
+ * read input from stdin
+ * @param buffer stores the input
+ * @return EXIT_SUCCESS if the input is valid, EXIT_FAILURE otherwise
+ */
 int read_input(char *buffer);
+/**
+ * get the number of lines from the user, check if valid integer
+ * @param buffer stores the input
+ * @return number of lines
+ */
 int get_number_of_lines(char *buffer);
+/**
+ * get the line info from the user, check if valid <line_name>,<distance>,<duration>
+ * @param buffer stores the input
+ * @param num_of_lines number of lines to get
+ * @param lines array of bus lines
+ * @return EXIT_SUCCESS if the input is valid, EXIT_FAILURE otherwise
+ */
 int get_line_info(char *buffer, int num_of_lines, BusLine *lines);
+/**
+ * sort the bus lines by distance, duration or name, with quick sort for distance and duration or bubble sort for name
+ * @param start_sorted start of the array to sort
+ * @param end_sorted end of the array to sort
+ * @param command command to sort by
+ */
 void sort(BusLine *start_sorted, BusLine *end_sorted, char *command);
+/**
+ * run tests on the bus lines - check sorting
+ * @param start_original start of the original array
+ * @param end_original end of the original array
+ * @param start_sorted start of the sorted array
+ * @param end_sorted end of the sorted array
+ * @return EXIT_SUCCESS if all tests passed, EXIT_FAILURE otherwise
+ */
 int run_tests(BusLine *start_original, BusLine *end_original, BusLine *start_sorted, BusLine *end_sorted);
+/**
+ * print if the test passed or failed
+ * @param result result of the test
+ * @param i test number
+ * @param name_of_sort name of the sort
+ */
 void sort_passed_failed(int result, int i, const char *name_of_sort);
+/**
+ * print if the test passed or failed
+ * @param result result of the test
+ * @param i test number
+ */
 void equal_passed_failed(int result, int i);
-void print_for_control(const BusLine *start_original, const BusLine *start_sorted, int num_of_lines);
 
 /**
- * TODO add documentation
+ * main function
+ * @param argc number of arguments
+ * @param argv arguments
+ * @return EXIT_SUCCESS if the program ran successfully, EXIT_FAILURE otherwise
  */
 int main (int argc, char *argv[])
 {
@@ -63,14 +113,6 @@ int main (int argc, char *argv[])
         return result;
     }
 
-    // print for control. TODO: delete later
-    printf("---- CONTROL PRINT: after sort by %s ----\n", command);
-    for (int i = 0; i < num_of_lines; i++) {
-        printf("original: %s,%d,%d\t|\tsorted: %s,%d,%d\n",
-               lines_original[i].name, lines_original[i].distance, lines_original[i].duration,
-               lines_sorted[i].name, lines_sorted[i].distance, lines_sorted[i].duration);
-    }
-    printf("-----------------------------------------\n");
 
     free(lines_original);
     free(lines_sorted);
@@ -182,7 +224,6 @@ void sort(BusLine *start_sorted, BusLine *end_sorted, char *command) {
 int run_tests(BusLine *start_original, BusLine *end_original, BusLine *start_sorted, BusLine *end_sorted) {
 
     sort(start_sorted, end_sorted, "by_name");
-    print_for_control(start_original, start_sorted, end_original - start_original);
     const int name = is_sorted_by_name(start_sorted, end_sorted);
     sort_passed_failed(name, 1, "name");
 
@@ -190,7 +231,6 @@ int run_tests(BusLine *start_original, BusLine *end_original, BusLine *start_sor
     equal_passed_failed(equal_1, 2);
 
     sort(start_sorted, end_sorted, "by_distance");
-    print_for_control(start_original, start_sorted, end_original - start_original);
     const int distance = is_sorted_by_distance(start_sorted, end_sorted);
     sort_passed_failed(distance, 3, "distance");
 
@@ -198,7 +238,6 @@ int run_tests(BusLine *start_original, BusLine *end_original, BusLine *start_sor
     equal_passed_failed(equal_2, 4);
 
     sort(start_sorted, end_sorted, "by_duration");
-    print_for_control(start_original, start_sorted, end_original - start_original);
     const int duration = is_sorted_by_duration(start_sorted, end_sorted);
     sort_passed_failed(duration, 5, "duration");
 
@@ -230,17 +269,4 @@ void equal_passed_failed(const int result, const int i) {
     }
 }
 
-void print_for_control(const BusLine *start_original, const BusLine *start_sorted, int num_of_lines) {
-    printf("---- CONTROL PRINT ----\n");
-    for (int i = 0; i < num_of_lines; i++) {
-        printf("original: %s,%d,%d\t|\tsorted: %s,%d,%d\n",
-               (start_original + i)->name,
-               (start_original + i)->distance,
-               (start_original + i)->duration,
-               (start_sorted + i)->name,
-               (start_sorted + i)->distance,
-               (start_sorted + i)->duration);
-    }
-    printf("------------------------\n");
-}
 
