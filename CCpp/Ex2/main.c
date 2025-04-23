@@ -64,6 +64,12 @@ void sort_passed_failed(int result, int i, const char *name_of_sort);
  * @param i test number
  */
 void equal_passed_failed(int result, int i);
+/**
+ * print lines after sorting
+ * @param start
+ * @param end
+ */
+void print_sorted_lines(const BusLine *start, const BusLine *end);
 
 /**
  * main function
@@ -71,6 +77,7 @@ void equal_passed_failed(int result, int i);
  * @param argv arguments
  * @return EXIT_SUCCESS if the program ran successfully, EXIT_FAILURE otherwise
  */
+
 int main (int argc, char *argv[])
 {
     // check if the command is valid
@@ -104,6 +111,7 @@ int main (int argc, char *argv[])
 
     // sort
     sort(start_sorted, end_sorted, command);
+    print_sorted_lines(start_sorted, end_sorted);
 
     // run tests if asked
     if (strcmp(argv[1], "test") == 0) {
@@ -269,4 +277,9 @@ void equal_passed_failed(const int result, const int i) {
     }
 }
 
+void print_sorted_lines(const BusLine *start, const BusLine *end) {
+    for (const BusLine *p = start; p < end; p++) {
+        printf("%s,%d,%d\n", p->name, p->distance, p->duration);
+    }
+}
 

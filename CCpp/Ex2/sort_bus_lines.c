@@ -14,6 +14,7 @@ void bubble_sort (BusLine *start, BusLine *end){
             }
         }
     }
+
 }
 
 void quick_sort (BusLine *start, BusLine *end, SortType sort_type) {
@@ -46,3 +47,4 @@ BusLine *partition (BusLine *start, BusLine *end, SortType sort_type) {
     return i;
 
 }
+
