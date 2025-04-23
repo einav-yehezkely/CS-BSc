@@ -18,11 +18,13 @@ void bubble_sort (BusLine *start, BusLine *end){
 }
 
 void quick_sort (BusLine *start, BusLine *end, SortType sort_type) {
-    if (start < (end - 1)) {
-        BusLine *p = partition(start, end, sort_type);
-        quick_sort(start, p, sort_type);
-        quick_sort(p + 1, end, sort_type);
+    if (start >= end - 1) {
+        return;
     }
+
+    BusLine *p = partition(start, end, sort_type);
+    quick_sort(start, p, sort_type);
+    quick_sort(p + 1, end, sort_type);
 }
 
 

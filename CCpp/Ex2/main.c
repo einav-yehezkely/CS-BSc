@@ -50,7 +50,7 @@ void sort(BusLine *start_sorted, BusLine *end_sorted, char *command);
  * @param end_sorted end of the sorted array
  * @return EXIT_SUCCESS if all tests passed, EXIT_FAILURE otherwise
  */
-int run_tests(BusLine *start_original, BusLine *end_original, BusLine *start_sorted, BusLine *end_sorted);
+void run_tests(BusLine *start_original, BusLine *end_original, BusLine *start_sorted, BusLine *end_sorted);
 /**
  * print if the test passed or failed
  * @param result result of the test
@@ -109,18 +109,18 @@ int main (int argc, char *argv[])
     BusLine *start_sorted = lines_sorted;
     BusLine *end_sorted = lines_sorted + num_of_lines;
 
-    // sort
-    sort(start_sorted, end_sorted, command);
-    print_sorted_lines(start_sorted, end_sorted);
-
     // run tests if asked
     if (strcmp(argv[1], "test") == 0) {
-        const int result = run_tests(start_original, end_original, start_sorted, end_sorted);
+        run_tests(start_original, end_original, start_sorted, end_sorted);
         free(lines_original);
         free(lines_sorted);
-        return result;
+        return EXIT_SUCCESS;
     }
 
+    // sort
+    sort(start_sorted, end_sorted, command);
+
+    print_sorted_lines(start_sorted, end_sorted);
 
     free(lines_original);
     free(lines_sorted);
@@ -162,7 +162,7 @@ int get_number_of_lines(char *buffer) {
             return EXIT_FAILURE;
         }
         num = strtol(buffer, &endptr, 10);
-        if ((endptr == buffer) || (*endptr != '\n' && *endptr != '\0') || (buffer[0] == ' ')) {
+        if ((endptr == buffer) || (*endptr != '\n' && *endptr != '\0') || (buffer[0] == ' ' || num <= 0)) {
             printf("Error: Invalid number of lines\n");
         }
         else {
@@ -229,7 +229,7 @@ void sort(BusLine *start_sorted, BusLine *end_sorted, char *command) {
     }
 }
 
-int run_tests(BusLine *start_original, BusLine *end_original, BusLine *start_sorted, BusLine *end_sorted) {
+void run_tests(BusLine *start_original, BusLine *end_original, BusLine *start_sorted, BusLine *end_sorted) {
 
     sort(start_sorted, end_sorted, "by_name");
     const int name = is_sorted_by_name(start_sorted, end_sorted);
@@ -251,29 +251,23 @@ int run_tests(BusLine *start_original, BusLine *end_original, BusLine *start_sor
 
     const int equal_3 = is_equal(start_sorted, end_sorted, start_original, end_original);
     equal_passed_failed(equal_3, 6);
-
-    int const result = (distance + equal_1 + duration + equal_2 + name + equal_3);
-    if (result != 6) {
-        return EXIT_FAILURE;
-    }
-    return EXIT_SUCCESS;
 }
 
 void sort_passed_failed(const int result, const int i, const char *name_of_sort) {
     if (result == 1) {
-        printf("TEST %d PASSED: Lines are sorted by %s\n", i, name_of_sort);
+        printf("TEST %d PASSED: The array is sorted by %s\n", i, name_of_sort);
     }
     else if (result == 0) {
-        printf("TEST %d FAILED: Lines are not sorted by %s\n", i, name_of_sort);
+        printf("TEST %d FAILED: The array is not sorted by %s\n", i, name_of_sort);
     }
 }
 
 void equal_passed_failed(const int result, const int i) {
     if (result == 1) {
-        printf("TEST %d PASSED: Sorted and original are equal\n", i);
+        printf("TEST %d PASSED: The array has the same items after sorting\n", i);
     }
     else if (result == 0) {
-        printf("TEST %d FAILED: Sorted and original are not equal\n", i);
+        printf("TEST %d FAILED: The array don't has the same items after sorting\n", i);
     }
 }
 

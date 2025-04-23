@@ -1,7 +1,7 @@
 #include "test_bus_lines.h"
 
 int is_sorted_by_distance (const BusLine *start, const BusLine *end) {
-    for (BusLine *i = start; i < (end-1); i++) {
+    for (const BusLine *i = start; i < (end-1); i++) {
         if ((*i).distance > ((*(i+1)).distance)) {
             return 0;
         }
@@ -10,7 +10,7 @@ int is_sorted_by_distance (const BusLine *start, const BusLine *end) {
 }
 
 int is_sorted_by_duration (const BusLine *start, const BusLine *end) {
-    for (BusLine *i = start; i < (end-1); i++) {
+    for (const BusLine *i = start; i < (end-1); i++) {
         if ((*i).duration > ((*(i+1)).duration)) {
             return 0;
         }
@@ -19,7 +19,7 @@ int is_sorted_by_duration (const BusLine *start, const BusLine *end) {
 }
 
 int is_sorted_by_name (const BusLine *start, const BusLine *end) {
-    for (BusLine *i = start; i < (end-1); i++) {
+    for (const BusLine *i = start; i < (end-1); i++) {
         if (strcmp((*i).name, (*(i + 1)).name) > 0) {
             return 0;
         }
@@ -38,10 +38,10 @@ int is_equal (const BusLine *start_sorted,
     if (len_sorted != len_original) {
         return 0;
     }
-    for (BusLine *i = start_original; i < (end_original); i++) {
+    for (const BusLine *i = start_original; i < (end_original); i++) {
         int found =  0;
-        for (BusLine *j = start_sorted; j < (end_sorted); j++) {
-            if (strcmp((*i).name, (*(j)).name) != 0) {
+        for (const BusLine *j = start_sorted; j < (end_sorted); j++) {
+            if (strcmp((*i).name, (*(j)).name) == 0) {
                 found = 1;
                 break;
             }
