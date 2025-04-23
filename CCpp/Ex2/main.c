@@ -53,7 +53,7 @@ int main (int argc, char *argv[])
     BusLine *end_sorted = lines_sorted + num_of_lines;
 
     // sort
-    sort(start_original, end_original, command);
+    sort(start_sorted, end_sorted, command);
 
     // run tests if asked
     if (strcmp(argv[1], "test") == 0) {
@@ -64,12 +64,13 @@ int main (int argc, char *argv[])
     }
 
     // print for control. TODO: delete later
+    printf("---- CONTROL PRINT: after sort by %s ----\n", command);
     for (int i = 0; i < num_of_lines; i++) {
-        printf("line original: %s,%d,%d\n", lines_original[i].name, lines_original[i].distance, lines_original[i].duration);
+        printf("original: %s,%d,%d\t|\tsorted: %s,%d,%d\n",
+               lines_original[i].name, lines_original[i].distance, lines_original[i].duration,
+               lines_sorted[i].name, lines_sorted[i].distance, lines_sorted[i].duration);
     }
-    for (int i = 0; i < num_of_lines; i++) {
-        printf("line sorted: %s,%d,%d\n", lines_sorted[i].name, lines_sorted[i].distance, lines_sorted[i].duration);
-    }
+    printf("-----------------------------------------\n");
 
     free(lines_original);
     free(lines_sorted);
@@ -242,3 +243,4 @@ void print_for_control(const BusLine *start_original, const BusLine *start_sorte
     }
     printf("------------------------\n");
 }
+
