@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/mnt/c/Users/einav/CLionProjects/Ex3_A/cmake-build-debug",
-		"source" : "/mnt/c/Users/einav/CLionProjects/Ex3_A"
+		"build" : "/mnt/c/Users/einav/Downloads/CS-BSc/CCpp/Ex3_A/cmake-build-debug",
+		"source" : "/mnt/c/Users/einav/Downloads/CS-BSc/CCpp/Ex3_A"
 	},
 	"version" : 
 	{

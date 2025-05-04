@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/mnt/c/Users/einav/CLionProjects/Ex3_A/cmake-build-debug"
+			"value" : "/mnt/c/Users/einav/Downloads/CS-BSc/CCpp/Ex3_A/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -415,7 +415,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/mnt/c/Users/einav/CLionProjects/Ex3_A/cmake-build-debug/CMakeFiles/pkgRedirects"
+			"value" : "/mnt/c/Users/einav/Downloads/CS-BSc/CCpp/Ex3_A/cmake-build-debug/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -475,7 +475,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/mnt/c/Users/einav/CLionProjects/Ex3_A"
+			"value" : "/mnt/c/Users/einav/Downloads/CS-BSc/CCpp/Ex3_A"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -1027,7 +1027,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/mnt/c/Users/einav/CLionProjects/Ex3_A/cmake-build-debug"
+			"value" : "/mnt/c/Users/einav/Downloads/CS-BSc/CCpp/Ex3_A/cmake-build-debug"
 		},
 		{
 			"name" : "Ex3_A_IS_TOP_LEVEL",
@@ -1051,7 +1051,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/mnt/c/Users/einav/CLionProjects/Ex3_A"
+			"value" : "/mnt/c/Users/einav/Downloads/CS-BSc/CCpp/Ex3_A"
 		},
 		{
 			"name" : "_CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED",
