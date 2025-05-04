@@ -1,0 +1,3 @@
+/mnt/c/Users/einav/CLionProjects/Tas/cmake-build-debug/CMakeFiles/Tas.dir
+/mnt/c/Users/einav/CLionProjects/Tas/cmake-build-debug/CMakeFiles/edit_cache.dir
+/mnt/c/Users/einav/CLionProjects/Tas/cmake-build-debug/CMakeFiles/rebuild_cache.dir
