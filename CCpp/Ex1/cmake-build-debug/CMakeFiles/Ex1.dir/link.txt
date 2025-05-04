@@ -1,1 +1,0 @@
-/usr/bin/cc -g CMakeFiles/Ex1.dir/main.c.o CMakeFiles/Ex1.dir/tests.c.o CMakeFiles/Ex1.dir/cipher.c.o -o Ex1 
