@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /mnt/c/Users/einav/Downloads/CS-BSc/CCpp/Ex3_A
+CMAKE_SOURCE_DIR = /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /mnt/c/Users/einav/Downloads/CS-BSc/CCpp/Ex3_A/cmake-build-debug
+CMAKE_BINARY_DIR = /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/einav/Downloads/CS-BSc/CCpp/Ex3_A/cmake-build-debug/CMakeFiles /mnt/c/Users/einav/Downloads/CS-BSc/CCpp/Ex3_A/cmake-build-debug//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3/cmake-build-debug/CMakeFiles /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3/cmake-build-debug//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/einav/Downloads/CS-BSc/CCpp/Ex3_A/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -129,6 +129,30 @@ Ex3_A/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex3_A.dir/build.make CMakeFiles/Ex3_A.dir/build
 .PHONY : Ex3_A/fast
 
+linked_list.o: linked_list.c.o
+.PHONY : linked_list.o
+
+# target to build an object file
+linked_list.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex3_A.dir/build.make CMakeFiles/Ex3_A.dir/linked_list.c.o
+.PHONY : linked_list.c.o
+
+linked_list.i: linked_list.c.i
+.PHONY : linked_list.i
+
+# target to preprocess a source file
+linked_list.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex3_A.dir/build.make CMakeFiles/Ex3_A.dir/linked_list.c.i
+.PHONY : linked_list.c.i
+
+linked_list.s: linked_list.c.s
+.PHONY : linked_list.s
+
+# target to generate assembly for a file
+linked_list.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex3_A.dir/build.make CMakeFiles/Ex3_A.dir/linked_list.c.s
+.PHONY : linked_list.c.s
+
 main.o: main.c.o
 .PHONY : main.o
 
@@ -153,6 +177,54 @@ main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex3_A.dir/build.make CMakeFiles/Ex3_A.dir/main.c.s
 .PHONY : main.c.s
 
+markov_chain.o: markov_chain.c.o
+.PHONY : markov_chain.o
+
+# target to build an object file
+markov_chain.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex3_A.dir/build.make CMakeFiles/Ex3_A.dir/markov_chain.c.o
+.PHONY : markov_chain.c.o
+
+markov_chain.i: markov_chain.c.i
+.PHONY : markov_chain.i
+
+# target to preprocess a source file
+markov_chain.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex3_A.dir/build.make CMakeFiles/Ex3_A.dir/markov_chain.c.i
+.PHONY : markov_chain.c.i
+
+markov_chain.s: markov_chain.c.s
+.PHONY : markov_chain.s
+
+# target to generate assembly for a file
+markov_chain.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex3_A.dir/build.make CMakeFiles/Ex3_A.dir/markov_chain.c.s
+.PHONY : markov_chain.c.s
+
+tweets_generator.o: tweets_generator.c.o
+.PHONY : tweets_generator.o
+
+# target to build an object file
+tweets_generator.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex3_A.dir/build.make CMakeFiles/Ex3_A.dir/tweets_generator.c.o
+.PHONY : tweets_generator.c.o
+
+tweets_generator.i: tweets_generator.c.i
+.PHONY : tweets_generator.i
+
+# target to preprocess a source file
+tweets_generator.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex3_A.dir/build.make CMakeFiles/Ex3_A.dir/tweets_generator.c.i
+.PHONY : tweets_generator.c.i
+
+tweets_generator.s: tweets_generator.c.s
+.PHONY : tweets_generator.s
+
+# target to generate assembly for a file
+tweets_generator.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex3_A.dir/build.make CMakeFiles/Ex3_A.dir/tweets_generator.c.s
+.PHONY : tweets_generator.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -162,9 +234,18 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Ex3_A"
+	@echo "... linked_list.o"
+	@echo "... linked_list.i"
+	@echo "... linked_list.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... markov_chain.o"
+	@echo "... markov_chain.i"
+	@echo "... markov_chain.s"
+	@echo "... tweets_generator.o"
+	@echo "... tweets_generator.i"
+	@echo "... tweets_generator.s"
 .PHONY : help
 
 

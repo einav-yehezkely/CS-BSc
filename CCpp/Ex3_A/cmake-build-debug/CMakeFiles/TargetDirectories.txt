@@ -1,3 +1,0 @@
-/mnt/c/Users/einav/Downloads/CS-BSc/CCpp/Ex3_A/cmake-build-debug/CMakeFiles/Ex3_A.dir
-/mnt/c/Users/einav/Downloads/CS-BSc/CCpp/Ex3_A/cmake-build-debug/CMakeFiles/edit_cache.dir
-/mnt/c/Users/einav/Downloads/CS-BSc/CCpp/Ex3_A/cmake-build-debug/CMakeFiles/rebuild_cache.dir
