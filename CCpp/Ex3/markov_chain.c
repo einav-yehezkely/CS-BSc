@@ -9,3 +9,12 @@ int get_random_number(int max_number)
 {
     return rand() % max_number;
 }
+
+Node* get_node_from_database(MarkovChain *markov_chain, char *data_ptr) {
+    return NULL;
+}
+
+
+Node* add_to_database(MarkovChain *markov_chain, char *data_ptr) {
+    return NULL;
+}
