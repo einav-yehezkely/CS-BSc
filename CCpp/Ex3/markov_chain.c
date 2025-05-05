@@ -25,15 +25,35 @@ Node* get_node_from_database(MarkovChain *markov_chain, char *data_ptr) {
 
 Node* add_to_database(MarkovChain *markov_chain, char *data_ptr) {
     Node *from_database = get_node_from_database(markov_chain, data_ptr);
-    if ((from_database) != NULL) {
+    if (from_database != NULL) {
         return from_database;
     }
-    Node *new_node = malloc(sizeof(Node));
-    if (new_node == NULL) {
+
+    MarkovNode *new_markov_node = malloc(sizeof(MarkovNode));
+    if (new_markov_node == NULL) {
         return NULL;
     }
-    markov_chain->database->last->next = new_node;
-    markov_chain->database->last = new_node;
-    return new_node;
 
+    new_markov_node->data = data_ptr;
+    new_markov_node->frequency_list = NULL;
+
+    if (add(markov_chain->database, new_markov_node) == 1) {
+        free(new_markov_node);
+        return NULL;
+    }
+
+    return markov_chain->database->last;
+}
+
+int add_node_to_frequency_list(MarkovNode *first_node, MarkovNode *second_node) {
+    int i = 0;
+    for (; i < first_node->frequency_list_size; i++) {
+        if (first_node->frequency_list[i].markov_node == second_node) {
+            first_node->frequency_list[i].frequency++;
+            return 0;
+        }
+    }
+
+
+    return 0;   // success
 }

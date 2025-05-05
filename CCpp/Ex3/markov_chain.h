@@ -7,8 +7,7 @@
 #include <stdbool.h> // for bool
 
 //Don't change the macros!
-#define ALLOCATION_ERROR_MESSAGE "Allocation failure: Failed to allocate"\
-            "new memory\n"
+#define ALLOCATION_ERROR_MESSAGE "Allocation failure: Failed to allocate new memory\n"
 
 
 typedef struct MarkovChain{
@@ -19,6 +18,8 @@ typedef struct MarkovNode{
     char *data;
     struct MarkovNodeFrequency *frequency_list;
     // any other field you need
+    int frequency_list_size;
+    int frequency_list_capacity;
 } MarkovNode;
 
 typedef struct MarkovNodeFrequency{
