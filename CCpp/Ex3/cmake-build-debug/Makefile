@@ -153,30 +153,6 @@ linked_list.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex3_A.dir/build.make CMakeFiles/Ex3_A.dir/linked_list.c.s
 .PHONY : linked_list.c.s
 
-main.o: main.c.o
-.PHONY : main.o
-
-# target to build an object file
-main.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex3_A.dir/build.make CMakeFiles/Ex3_A.dir/main.c.o
-.PHONY : main.c.o
-
-main.i: main.c.i
-.PHONY : main.i
-
-# target to preprocess a source file
-main.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex3_A.dir/build.make CMakeFiles/Ex3_A.dir/main.c.i
-.PHONY : main.c.i
-
-main.s: main.c.s
-.PHONY : main.s
-
-# target to generate assembly for a file
-main.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex3_A.dir/build.make CMakeFiles/Ex3_A.dir/main.c.s
-.PHONY : main.c.s
-
 markov_chain.o: markov_chain.c.o
 .PHONY : markov_chain.o
 
@@ -237,9 +213,6 @@ help:
 	@echo "... linked_list.o"
 	@echo "... linked_list.i"
 	@echo "... linked_list.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
 	@echo "... markov_chain.o"
 	@echo "... markov_chain.i"
 	@echo "... markov_chain.s"

@@ -9,7 +9,6 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3/linked_list.c" "CMakeFiles/Ex3_A.dir/linked_list.c.o" "gcc" "CMakeFiles/Ex3_A.dir/linked_list.c.o.d"
-  "/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3/main.c" "CMakeFiles/Ex3_A.dir/main.c.o" "gcc" "CMakeFiles/Ex3_A.dir/main.c.o.d"
   "/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3/markov_chain.c" "CMakeFiles/Ex3_A.dir/markov_chain.c.o" "gcc" "CMakeFiles/Ex3_A.dir/markov_chain.c.o.d"
   "/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3/tweets_generator.c" "CMakeFiles/Ex3_A.dir/tweets_generator.c.o" "gcc" "CMakeFiles/Ex3_A.dir/tweets_generator.c.o.d"
   )

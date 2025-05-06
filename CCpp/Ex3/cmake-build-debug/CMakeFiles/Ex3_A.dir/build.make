@@ -69,24 +69,10 @@ include CMakeFiles/Ex3_A.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/Ex3_A.dir/flags.make
 
-CMakeFiles/Ex3_A.dir/main.c.o: CMakeFiles/Ex3_A.dir/flags.make
-CMakeFiles/Ex3_A.dir/main.c.o: /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3/main.c
-CMakeFiles/Ex3_A.dir/main.c.o: CMakeFiles/Ex3_A.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/Ex3_A.dir/main.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/Ex3_A.dir/main.c.o -MF CMakeFiles/Ex3_A.dir/main.c.o.d -o CMakeFiles/Ex3_A.dir/main.c.o -c /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3/main.c
-
-CMakeFiles/Ex3_A.dir/main.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/Ex3_A.dir/main.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3/main.c > CMakeFiles/Ex3_A.dir/main.c.i
-
-CMakeFiles/Ex3_A.dir/main.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/Ex3_A.dir/main.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3/main.c -o CMakeFiles/Ex3_A.dir/main.c.s
-
 CMakeFiles/Ex3_A.dir/linked_list.c.o: CMakeFiles/Ex3_A.dir/flags.make
 CMakeFiles/Ex3_A.dir/linked_list.c.o: /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3/linked_list.c
 CMakeFiles/Ex3_A.dir/linked_list.c.o: CMakeFiles/Ex3_A.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/Ex3_A.dir/linked_list.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/Ex3_A.dir/linked_list.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/Ex3_A.dir/linked_list.c.o -MF CMakeFiles/Ex3_A.dir/linked_list.c.o.d -o CMakeFiles/Ex3_A.dir/linked_list.c.o -c /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3/linked_list.c
 
 CMakeFiles/Ex3_A.dir/linked_list.c.i: cmake_force
@@ -100,7 +86,7 @@ CMakeFiles/Ex3_A.dir/linked_list.c.s: cmake_force
 CMakeFiles/Ex3_A.dir/markov_chain.c.o: CMakeFiles/Ex3_A.dir/flags.make
 CMakeFiles/Ex3_A.dir/markov_chain.c.o: /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3/markov_chain.c
 CMakeFiles/Ex3_A.dir/markov_chain.c.o: CMakeFiles/Ex3_A.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/Ex3_A.dir/markov_chain.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/Ex3_A.dir/markov_chain.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/Ex3_A.dir/markov_chain.c.o -MF CMakeFiles/Ex3_A.dir/markov_chain.c.o.d -o CMakeFiles/Ex3_A.dir/markov_chain.c.o -c /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3/markov_chain.c
 
 CMakeFiles/Ex3_A.dir/markov_chain.c.i: cmake_force
@@ -114,7 +100,7 @@ CMakeFiles/Ex3_A.dir/markov_chain.c.s: cmake_force
 CMakeFiles/Ex3_A.dir/tweets_generator.c.o: CMakeFiles/Ex3_A.dir/flags.make
 CMakeFiles/Ex3_A.dir/tweets_generator.c.o: /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3/tweets_generator.c
 CMakeFiles/Ex3_A.dir/tweets_generator.c.o: CMakeFiles/Ex3_A.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/Ex3_A.dir/tweets_generator.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/Ex3_A.dir/tweets_generator.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/Ex3_A.dir/tweets_generator.c.o -MF CMakeFiles/Ex3_A.dir/tweets_generator.c.o.d -o CMakeFiles/Ex3_A.dir/tweets_generator.c.o -c /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3/tweets_generator.c
 
 CMakeFiles/Ex3_A.dir/tweets_generator.c.i: cmake_force
@@ -127,7 +113,6 @@ CMakeFiles/Ex3_A.dir/tweets_generator.c.s: cmake_force
 
 # Object files for target Ex3_A
 Ex3_A_OBJECTS = \
-"CMakeFiles/Ex3_A.dir/main.c.o" \
 "CMakeFiles/Ex3_A.dir/linked_list.c.o" \
 "CMakeFiles/Ex3_A.dir/markov_chain.c.o" \
 "CMakeFiles/Ex3_A.dir/tweets_generator.c.o"
@@ -135,13 +120,12 @@ Ex3_A_OBJECTS = \
 # External object files for target Ex3_A
 Ex3_A_EXTERNAL_OBJECTS =
 
-Ex3_A: CMakeFiles/Ex3_A.dir/main.c.o
 Ex3_A: CMakeFiles/Ex3_A.dir/linked_list.c.o
 Ex3_A: CMakeFiles/Ex3_A.dir/markov_chain.c.o
 Ex3_A: CMakeFiles/Ex3_A.dir/tweets_generator.c.o
 Ex3_A: CMakeFiles/Ex3_A.dir/build.make
 Ex3_A: CMakeFiles/Ex3_A.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking C executable Ex3_A"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C executable Ex3_A"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Ex3_A.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
