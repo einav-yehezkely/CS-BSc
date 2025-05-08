@@ -22,7 +22,6 @@ Node* get_node_from_database(MarkovChain *markov_chain, char *data_ptr) {
     return NULL;
 }
 
-
 Node* add_to_database(MarkovChain *markov_chain, char *data_ptr) {
 
     Node *from_database = get_node_from_database(markov_chain, data_ptr);
@@ -98,57 +97,54 @@ void free_database(MarkovChain ** ptr_chain) {
     *ptr_chain = NULL;
 }
 
-// #define WORDS_COUNT 5
+MarkovNode* get_first_random_node(MarkovChain *markov_chain) {
+    Node *current;
+    char *word;
+    size_t len;
+    do {
+        current = markov_chain->database->first;
 
-// int main() {
-//     // מילים לדוגמה
-//     const char *words[WORDS_COUNT] = {"hello", "world", "hello", "again", "world"};
-//
-//     // יצירת שרשרת מרקוב
-//     MarkovChain *chain = malloc(sizeof(MarkovChain));
-//     chain->database = malloc(sizeof(LinkedList));
-//     chain->database->first = NULL;
-//     chain->database->last = NULL;
-//     chain->database->size = 0;
-//
-//     Node *prev_node = NULL;
-//
-//     for (int i = 0; i < WORDS_COUNT; i++) {
-//         // העתקת המילה כדי שיהיה זיכרון עצמאי
-//         char *copy = malloc(strlen(words[i]) + 1);
-//         strcpy(copy, words[i]);
-//
-//         Node *curr_node = add_to_database(chain, copy);
-//         if (!curr_node) {
-//             fprintf(stderr, "Error adding word to database\n");
-//             free(copy);
-//             free_database(&chain);
-//             return EXIT_FAILURE;
-//         }
-//         if (curr_node->data->data != copy) {
-//             free(copy); // נמנע דליפת זיכרון למילה שלא נכנסה
-//         }
-//         if (prev_node) {
-//             add_node_to_frequency_list(prev_node->data, curr_node->data);
-//         }
-//
-//         prev_node = curr_node;
-//     }
-//
-//     // הדפסה
-//     Node *n = chain->database->first;
-//     while (n) {
-//         MarkovNode *m = n->data;
-//         printf("%s:", m->data);
-//         for (int i = 0; i < m->frequency_list_size; i++) {
-//             printf(" [%s x%d]", m->frequency_list[i].markov_node->data,
-//                                  m->frequency_list[i].frequency);
-//         }
-//         printf("\n");
-//         n = n->next;
-//     }
-//
-//     free_database(&chain);
-//
-//     return EXIT_SUCCESS;
-// }
+        int ran = get_random_number(markov_chain->database->size);
+        for (int i = 0; i < ran; i++) {
+            current = current->next;
+    }
+        word = current->data->data;
+        len = strlen(word);
+    }while (len == 0 || word[len-1] == '.');
+
+    return current->data;
+}
+
+MarkovNode* get_next_random_node(MarkovNode *cur_markov_node) {
+    int total_freq = 0;
+    for (int i = 0; i < cur_markov_node->frequency_list_size; i++) {
+        total_freq += cur_markov_node->frequency_list[i].frequency;
+    }
+    int ran = get_random_number(total_freq);
+
+    int cumulative = 0;
+    for (int i = 0; i < total_freq; i++) {
+        cumulative += cur_markov_node->frequency_list[i].frequency;
+        if (ran < cumulative) {
+            return cur_markov_node->frequency_list[i].markov_node;
+        }
+    }
+    return NULL;
+}
+
+
+void generate_tweet(MarkovNode *first_node, int max_length) {
+    int i = 1;
+    printf("%s", first_node->data);
+
+    while (i < max_length && first_node->data[strlen(first_node->data) - 1] != '.') {
+        MarkovNode *next_node = get_next_random_node(first_node);
+        if (next_node == NULL) {
+            break;
+        }
+        printf(" %s", next_node->data);
+        first_node = next_node;
+        i++;
+    }
+    printf("\n");
+}
