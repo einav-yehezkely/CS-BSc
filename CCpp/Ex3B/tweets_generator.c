@@ -12,6 +12,11 @@
 
 
 int fill_database(FILE *fp, int words_to_read, MarkovChain *markov_chain);
+void print_string(void *data);
+int compare_strings(void *a, void *b);
+void *copy_string(void *data);
+void free_string(void *data_ptr);
+bool is_last_string(void *data_ptr);
 
 
 int main(int argc, char *argv[]) {
@@ -58,6 +63,11 @@ int main(int argc, char *argv[]) {
     markov_chain->database->first = NULL;
     markov_chain->database->last = NULL;
     markov_chain->database->size = 0;
+    markov_chain->print_func = print_string;
+    markov_chain->comp_func = compare_strings;
+    markov_chain->copy_func = copy_string;
+    markov_chain->free_data = free_string;
+    markov_chain->is_last = is_last_string;
 
     srand(seed);
 
@@ -72,7 +82,7 @@ int main(int argc, char *argv[]) {
     for (int i = 0; i < num_of_tweets; i++) {
         MarkovNode *first_node = get_first_random_node(markov_chain);
         printf("Tweet %d: ", i+1);
-        generate_tweet(first_node, 20);
+        generate_random_sequence(markov_chain, first_node, 20);
     }
 
     // free the database
@@ -130,4 +140,27 @@ int fill_database(FILE *fp, int words_to_read, MarkovChain *markov_chain) {
     }
 
     return EXIT_SUCCESS;
+}
+
+void print_string(void *data) {
+    printf("%s", (char *) data);
+}
+int compare_strings(void *a, void *b) {
+    return strcmp((char *) a, (char *) b);
+}
+void *copy_string(void *data) {
+    char *copied = malloc(strlen((char *) data) + 1);
+    if (copied == NULL) {
+        printf(ALLOCATION_ERROR_MESSAGE);
+        return NULL;
+    }
+    strcpy(copied, data);
+    return copied;
+}
+void free_string(void *data_ptr) {
+    free(data_ptr);
+}
+bool is_last_string(void *data_ptr) {
+    size_t len = strlen((char *) data_ptr);
+    return ((char *) data_ptr)[len-1] == '.';
 }

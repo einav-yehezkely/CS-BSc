@@ -12,17 +12,17 @@ int get_random_number(int max_number)
     return rand() % max_number;
 }
 
-Node* get_node_from_database(MarkovChain *markov_chain, char *data_ptr) {
+Node* get_node_from_database(MarkovChain *markov_chain, void *data_ptr) {
     Node *first = markov_chain->database->first;
     for (;first != NULL; first = first->next) {
-        if (strcmp(first->data->data, data_ptr) == 0) {
+        if (markov_chain->comp_func(first->data->data, data_ptr) == 0) {
             return first;
         }
     }
     return NULL;
 }
 
-Node* add_to_database(MarkovChain *markov_chain, char *data_ptr) {
+Node* add_to_database(MarkovChain *markov_chain, void *data_ptr) {
 
     Node *from_database = get_node_from_database(markov_chain, data_ptr);
     if (from_database != NULL) {
@@ -35,12 +35,20 @@ Node* add_to_database(MarkovChain *markov_chain, char *data_ptr) {
         return NULL;
     }
 
-    new_markov_node->data = data_ptr;
+    void *copied_data = markov_chain->copy_func(data_ptr);
+    if (copied_data == NULL) {
+        printf(ALLOCATION_ERROR_MESSAGE);
+        free(new_markov_node);
+        return NULL;
+    }
+
+    new_markov_node->data = copied_data;
     new_markov_node->frequency_list = NULL;
     new_markov_node->frequency_list_size = 0;
     new_markov_node->frequency_list_capacity = 0;
 
     if (add(markov_chain->database, new_markov_node) == 1) {
+        markov_chain->free_data(copied_data);
         free(new_markov_node);
         return NULL;
     }
@@ -85,7 +93,7 @@ void free_database(MarkovChain ** ptr_chain) {
         Node *next = cur->next;
         MarkovNode *markov_node = cur->data;
         if (markov_node) {
-            free(markov_node->data);
+            (*ptr_chain)->free_data(markov_node->data);
             free(markov_node->frequency_list);
             free(markov_node);
         }
@@ -99,18 +107,13 @@ void free_database(MarkovChain ** ptr_chain) {
 
 MarkovNode* get_first_random_node(MarkovChain *markov_chain) {
     Node *current;
-    char *word;
-    size_t len;
     do {
         current = markov_chain->database->first;
-
         int ran = get_random_number(markov_chain->database->size);
         for (int i = 0; i < ran; i++) {
             current = current->next;
     }
-        word = current->data->data;
-        len = strlen(word);
-    }while (len == 0 || word[len-1] == '.');
+    }while (markov_chain->is_last(current->data->data));
 
     return current->data;
 }
@@ -123,7 +126,7 @@ MarkovNode* get_next_random_node(MarkovNode *cur_markov_node) {
     int ran = get_random_number(total_freq);
 
     int cumulative = 0;
-    for (int i = 0; i < total_freq; i++) {
+    for (int i = 0; i < cur_markov_node->frequency_list_size; i++) {
         cumulative += cur_markov_node->frequency_list[i].frequency;
         if (ran < cumulative) {
             return cur_markov_node->frequency_list[i].markov_node;
@@ -133,16 +136,17 @@ MarkovNode* get_next_random_node(MarkovNode *cur_markov_node) {
 }
 
 
-void generate_tweet(MarkovNode *first_node, int max_length) {
+void generate_random_sequence(MarkovChain *markov_chain, MarkovNode *first_node, int max_length) {
     int i = 1;
-    printf("%s", first_node->data);
+    markov_chain->print_func(first_node->data);
 
-    while (i < max_length && first_node->data[strlen(first_node->data) - 1] != '.') {
+    while (i < max_length && !markov_chain->is_last(first_node->data)) {
         MarkovNode *next_node = get_next_random_node(first_node);
         if (next_node == NULL) {
             break;
         }
-        printf(" %s", next_node->data);
+        printf(" ");
+        markov_chain->print_func(next_node->data);
         first_node = next_node;
         i++;
     }

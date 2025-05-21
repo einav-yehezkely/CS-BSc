@@ -69,31 +69,63 @@ include CMakeFiles/Ex3B.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/Ex3B.dir/flags.make
 
-CMakeFiles/Ex3B.dir/main.c.o: CMakeFiles/Ex3B.dir/flags.make
-CMakeFiles/Ex3B.dir/main.c.o: /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/main.c
-CMakeFiles/Ex3B.dir/main.c.o: CMakeFiles/Ex3B.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/Ex3B.dir/main.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/Ex3B.dir/main.c.o -MF CMakeFiles/Ex3B.dir/main.c.o.d -o CMakeFiles/Ex3B.dir/main.c.o -c /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/main.c
+CMakeFiles/Ex3B.dir/markov_chain.c.o: CMakeFiles/Ex3B.dir/flags.make
+CMakeFiles/Ex3B.dir/markov_chain.c.o: /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/markov_chain.c
+CMakeFiles/Ex3B.dir/markov_chain.c.o: CMakeFiles/Ex3B.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/Ex3B.dir/markov_chain.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/Ex3B.dir/markov_chain.c.o -MF CMakeFiles/Ex3B.dir/markov_chain.c.o.d -o CMakeFiles/Ex3B.dir/markov_chain.c.o -c /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/markov_chain.c
 
-CMakeFiles/Ex3B.dir/main.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/Ex3B.dir/main.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/main.c > CMakeFiles/Ex3B.dir/main.c.i
+CMakeFiles/Ex3B.dir/markov_chain.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/Ex3B.dir/markov_chain.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/markov_chain.c > CMakeFiles/Ex3B.dir/markov_chain.c.i
 
-CMakeFiles/Ex3B.dir/main.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/Ex3B.dir/main.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/main.c -o CMakeFiles/Ex3B.dir/main.c.s
+CMakeFiles/Ex3B.dir/markov_chain.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/Ex3B.dir/markov_chain.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/markov_chain.c -o CMakeFiles/Ex3B.dir/markov_chain.c.s
+
+CMakeFiles/Ex3B.dir/tweets_generator.c.o: CMakeFiles/Ex3B.dir/flags.make
+CMakeFiles/Ex3B.dir/tweets_generator.c.o: /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/tweets_generator.c
+CMakeFiles/Ex3B.dir/tweets_generator.c.o: CMakeFiles/Ex3B.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/Ex3B.dir/tweets_generator.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/Ex3B.dir/tweets_generator.c.o -MF CMakeFiles/Ex3B.dir/tweets_generator.c.o.d -o CMakeFiles/Ex3B.dir/tweets_generator.c.o -c /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/tweets_generator.c
+
+CMakeFiles/Ex3B.dir/tweets_generator.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/Ex3B.dir/tweets_generator.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/tweets_generator.c > CMakeFiles/Ex3B.dir/tweets_generator.c.i
+
+CMakeFiles/Ex3B.dir/tweets_generator.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/Ex3B.dir/tweets_generator.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/tweets_generator.c -o CMakeFiles/Ex3B.dir/tweets_generator.c.s
+
+CMakeFiles/Ex3B.dir/linked_list.c.o: CMakeFiles/Ex3B.dir/flags.make
+CMakeFiles/Ex3B.dir/linked_list.c.o: /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/linked_list.c
+CMakeFiles/Ex3B.dir/linked_list.c.o: CMakeFiles/Ex3B.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/Ex3B.dir/linked_list.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/Ex3B.dir/linked_list.c.o -MF CMakeFiles/Ex3B.dir/linked_list.c.o.d -o CMakeFiles/Ex3B.dir/linked_list.c.o -c /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/linked_list.c
+
+CMakeFiles/Ex3B.dir/linked_list.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/Ex3B.dir/linked_list.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/linked_list.c > CMakeFiles/Ex3B.dir/linked_list.c.i
+
+CMakeFiles/Ex3B.dir/linked_list.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/Ex3B.dir/linked_list.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/linked_list.c -o CMakeFiles/Ex3B.dir/linked_list.c.s
 
 # Object files for target Ex3B
 Ex3B_OBJECTS = \
-"CMakeFiles/Ex3B.dir/main.c.o"
+"CMakeFiles/Ex3B.dir/markov_chain.c.o" \
+"CMakeFiles/Ex3B.dir/tweets_generator.c.o" \
+"CMakeFiles/Ex3B.dir/linked_list.c.o"
 
 # External object files for target Ex3B
 Ex3B_EXTERNAL_OBJECTS =
 
-Ex3B: CMakeFiles/Ex3B.dir/main.c.o
+Ex3B: CMakeFiles/Ex3B.dir/markov_chain.c.o
+Ex3B: CMakeFiles/Ex3B.dir/tweets_generator.c.o
+Ex3B: CMakeFiles/Ex3B.dir/linked_list.c.o
 Ex3B: CMakeFiles/Ex3B.dir/build.make
 Ex3B: CMakeFiles/Ex3B.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable Ex3B"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C executable Ex3B"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Ex3B.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -8,7 +8,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/main.c" "CMakeFiles/Ex3B.dir/main.c.o" "gcc" "CMakeFiles/Ex3B.dir/main.c.o.d"
+  "/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/linked_list.c" "CMakeFiles/Ex3B.dir/linked_list.c.o" "gcc" "CMakeFiles/Ex3B.dir/linked_list.c.o.d"
+  "/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/markov_chain.c" "CMakeFiles/Ex3B.dir/markov_chain.c.o" "gcc" "CMakeFiles/Ex3B.dir/markov_chain.c.o.d"
+  "/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/tweets_generator.c" "CMakeFiles/Ex3B.dir/tweets_generator.c.o" "gcc" "CMakeFiles/Ex3B.dir/tweets_generator.c.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

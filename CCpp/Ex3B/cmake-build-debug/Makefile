@@ -129,29 +129,77 @@ Ex3B/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex3B.dir/build.make CMakeFiles/Ex3B.dir/build
 .PHONY : Ex3B/fast
 
-main.o: main.c.o
-.PHONY : main.o
+linked_list.o: linked_list.c.o
+.PHONY : linked_list.o
 
 # target to build an object file
-main.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex3B.dir/build.make CMakeFiles/Ex3B.dir/main.c.o
-.PHONY : main.c.o
+linked_list.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex3B.dir/build.make CMakeFiles/Ex3B.dir/linked_list.c.o
+.PHONY : linked_list.c.o
 
-main.i: main.c.i
-.PHONY : main.i
+linked_list.i: linked_list.c.i
+.PHONY : linked_list.i
 
 # target to preprocess a source file
-main.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex3B.dir/build.make CMakeFiles/Ex3B.dir/main.c.i
-.PHONY : main.c.i
+linked_list.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex3B.dir/build.make CMakeFiles/Ex3B.dir/linked_list.c.i
+.PHONY : linked_list.c.i
 
-main.s: main.c.s
-.PHONY : main.s
+linked_list.s: linked_list.c.s
+.PHONY : linked_list.s
 
 # target to generate assembly for a file
-main.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex3B.dir/build.make CMakeFiles/Ex3B.dir/main.c.s
-.PHONY : main.c.s
+linked_list.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex3B.dir/build.make CMakeFiles/Ex3B.dir/linked_list.c.s
+.PHONY : linked_list.c.s
+
+markov_chain.o: markov_chain.c.o
+.PHONY : markov_chain.o
+
+# target to build an object file
+markov_chain.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex3B.dir/build.make CMakeFiles/Ex3B.dir/markov_chain.c.o
+.PHONY : markov_chain.c.o
+
+markov_chain.i: markov_chain.c.i
+.PHONY : markov_chain.i
+
+# target to preprocess a source file
+markov_chain.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex3B.dir/build.make CMakeFiles/Ex3B.dir/markov_chain.c.i
+.PHONY : markov_chain.c.i
+
+markov_chain.s: markov_chain.c.s
+.PHONY : markov_chain.s
+
+# target to generate assembly for a file
+markov_chain.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex3B.dir/build.make CMakeFiles/Ex3B.dir/markov_chain.c.s
+.PHONY : markov_chain.c.s
+
+tweets_generator.o: tweets_generator.c.o
+.PHONY : tweets_generator.o
+
+# target to build an object file
+tweets_generator.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex3B.dir/build.make CMakeFiles/Ex3B.dir/tweets_generator.c.o
+.PHONY : tweets_generator.c.o
+
+tweets_generator.i: tweets_generator.c.i
+.PHONY : tweets_generator.i
+
+# target to preprocess a source file
+tweets_generator.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex3B.dir/build.make CMakeFiles/Ex3B.dir/tweets_generator.c.i
+.PHONY : tweets_generator.c.i
+
+tweets_generator.s: tweets_generator.c.s
+.PHONY : tweets_generator.s
+
+# target to generate assembly for a file
+tweets_generator.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex3B.dir/build.make CMakeFiles/Ex3B.dir/tweets_generator.c.s
+.PHONY : tweets_generator.c.s
 
 # Help Target
 help:
@@ -162,9 +210,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Ex3B"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... linked_list.o"
+	@echo "... linked_list.i"
+	@echo "... linked_list.s"
+	@echo "... markov_chain.o"
+	@echo "... markov_chain.i"
+	@echo "... markov_chain.s"
+	@echo "... tweets_generator.o"
+	@echo "... tweets_generator.i"
+	@echo "... tweets_generator.s"
 .PHONY : help
 
 

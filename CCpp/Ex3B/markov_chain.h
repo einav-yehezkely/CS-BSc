@@ -14,7 +14,11 @@
 /***************************/
 /*   insert typedefs here  */
 /***************************/
-
+typedef void (*print_func)(void *data_ptr);
+typedef int (*comp_func)(void *data_ptr, void *data_ptr2);
+typedef void (*free_data)(void *data_ptr);
+typedef void *(*copy_func)(void *data_ptr);
+typedef bool (*is_last)(void *data_ptr);
 
 /***************************/
 /*        STRUCTS          */
@@ -24,6 +28,8 @@ typedef struct MarkovNode {
     void *data;
     struct MarkovNodeFrequency *frequency_list;
     // any other fields you need
+    int frequency_list_size;
+    int frequency_list_capacity;
 } MarkovNode;
 
 typedef struct MarkovNodeFrequency {
@@ -37,15 +43,15 @@ typedef struct MarkovChain {
     LinkedList *database;
 
     // It is recommended to declare the function pointers using typedefs
-    print_func;
+    print_func print_func;
 
-    comp_func;
+    comp_func comp_func;
 
-    free_data;
+    free_data free_data;
 
-    copy_func;
+    copy_func copy_func;
 
-    is_last;
+    is_last is_last;
 } MarkovChain;
 
 /**

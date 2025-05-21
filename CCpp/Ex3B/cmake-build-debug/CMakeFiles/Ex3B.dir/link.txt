@@ -1,1 +1,1 @@
-/usr/bin/cc -g CMakeFiles/Ex3B.dir/main.c.o -o Ex3B 
+/usr/bin/cc -g CMakeFiles/Ex3B.dir/markov_chain.c.o CMakeFiles/Ex3B.dir/tweets_generator.c.o CMakeFiles/Ex3B.dir/linked_list.c.o -o Ex3B 
