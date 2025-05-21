@@ -1,0 +1,3 @@
+/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/cmake-build-debug/CMakeFiles/Ex3B.dir
+/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/cmake-build-debug/CMakeFiles/edit_cache.dir
+/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/cmake-build-debug/CMakeFiles/rebuild_cache.dir
