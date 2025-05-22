@@ -49,6 +49,13 @@ typedef struct Cell {
     //both ladder_to and snake_to should be -1 if the Cell doesn't have them
 } Cell;
 
+void print_cell(void *data);
+int compare_cell(void *a, void *b);
+void *copy_cell(void *data);
+void free_cell(void *data_ptr);
+bool is_last_cell(void *data_ptr);
+
+
 /**
  * allocates memory for cells on the board and initalizes them
  * @param cells Array of pointer to Cell, represents game board
@@ -186,4 +193,102 @@ int fill_database_snakes(MarkovChain *markov_chain)
  */
 int main(int argc, char *argv[])
 {
+    printf("Welcome to Snakes and Ladders!\n");
+    if (argc != 3) {
+        printf(NUM_ARGS_ERROR);
+        return EXIT_FAILURE;
+    }
+    MarkovChain *markov_chain = malloc(sizeof(MarkovChain));
+    if (markov_chain == NULL)
+    {
+        printf(ALLOCATION_ERROR_MESSAGE);
+        return EXIT_FAILURE;
+    }
+    markov_chain->database = malloc(sizeof(LinkedList));
+    if (markov_chain->database == NULL)
+    {
+        printf(ALLOCATION_ERROR_MESSAGE);
+        free(markov_chain);
+        return EXIT_FAILURE;
+    }
+    markov_chain->database->first = NULL;
+    markov_chain->database->last = NULL;
+    markov_chain->database->size = 0;
+    markov_chain->print_func = print_cell;
+    markov_chain->comp_func = compare_cell;
+    markov_chain->copy_func = copy_cell;
+    markov_chain->free_data = free_cell;
+    markov_chain->is_last = is_last_cell;
+
+    if (fill_database_snakes(markov_chain) == EXIT_FAILURE)
+    {
+        free_database(&markov_chain);
+        return EXIT_FAILURE;
+    }
+
+    Cell *first_cell = malloc(sizeof(Cell));
+    if (first_cell == NULL) {
+        printf(ALLOCATION_ERROR_MESSAGE);
+        free_database(&markov_chain);
+        return EXIT_FAILURE;
+    }
+    first_cell->number = 1;
+    first_cell->ladder_to = EMPTY;
+    first_cell->snake_to = EMPTY;
+
+    Node *tmp = get_node_from_database(markov_chain, first_cell);
+    MarkovNode *first_node = tmp->data;
+
+    int seed = (int) strtol(argv[1], NULL, 10);
+    srand(seed);
+
+    int num_of_routs = (int) strtol(argv[2], NULL, 10);
+
+    for (int i = 0; i < num_of_routs; i++) {
+        printf("Random Walk %d: ", i+1);
+        generate_random_sequence(markov_chain, first_node, MAX_GENERATION_LENGTH);
+        printf("\n");
+    }
+
+    free_database(&markov_chain);
+    free(first_cell);
+    free(markov_chain);
+
+    return EXIT_SUCCESS;
+}
+
+
+void print_cell(void *data) {
+    Cell *cell = (Cell*) data;
+    if (cell->ladder_to != EMPTY) {
+        printf(" -ladder to-> ");
+    }
+    if (cell->snake_to != EMPTY) {
+        printf(" -snake to-> ");
+    }
+
+    printf("[%d] -> ", cell->number);
+
+}
+int compare_cell(void *a, void *b) {
+    Cell *cell_a = (Cell*) a;
+    Cell *cell_b = (Cell*) b;
+    return (cell_a->number - cell_b->number);
+}
+void *copy_cell(void *data) {
+    Cell *cell = (Cell*) data;
+    Cell *new_cell = malloc(sizeof(Cell));
+    if (new_cell == NULL) {
+        printf(ALLOCATION_ERROR_MESSAGE);
+        return NULL;
+    }
+    *new_cell = *cell;
+    return new_cell;
+}
+void free_cell(void *data_ptr) {
+    free(data_ptr);
+}
+bool is_last_cell(void *data_ptr) {
+    Cell *cell = (Cell*) data_ptr;
+    return (cell->number == 100);
 }

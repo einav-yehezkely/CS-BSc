@@ -111,7 +111,7 @@ CMakeFiles/Ex3B.dir/markov_chain.c.o: /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/
   /usr/lib/gcc/x86_64-linux-gnu/13/include/stdbool.h \
   /usr/lib/gcc/x86_64-linux-gnu/13/include/stddef.h
 
-CMakeFiles/Ex3B.dir/tweets_generator.c.o: /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/tweets_generator.c \
+CMakeFiles/Ex3B.dir/snakes_and_ladders.c.o: /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/snakes_and_ladders.c \
   /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/linked_list.h \
   /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/markov_chain.h \
   /usr/include/alloca.h \
@@ -175,7 +175,7 @@ CMakeFiles/Ex3B.dir/tweets_generator.c.o: /mnt/c/Users/einav/clone_here/CS-BSc/C
   /usr/lib/gcc/x86_64-linux-gnu/13/include/stddef.h
 
 
-/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/tweets_generator.c:
+/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/snakes_and_ladders.c:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/stdbool.h:
 

@@ -83,24 +83,10 @@ CMakeFiles/Ex3B.dir/markov_chain.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/Ex3B.dir/markov_chain.c.s"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/markov_chain.c -o CMakeFiles/Ex3B.dir/markov_chain.c.s
 
-CMakeFiles/Ex3B.dir/tweets_generator.c.o: CMakeFiles/Ex3B.dir/flags.make
-CMakeFiles/Ex3B.dir/tweets_generator.c.o: /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/tweets_generator.c
-CMakeFiles/Ex3B.dir/tweets_generator.c.o: CMakeFiles/Ex3B.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/Ex3B.dir/tweets_generator.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/Ex3B.dir/tweets_generator.c.o -MF CMakeFiles/Ex3B.dir/tweets_generator.c.o.d -o CMakeFiles/Ex3B.dir/tweets_generator.c.o -c /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/tweets_generator.c
-
-CMakeFiles/Ex3B.dir/tweets_generator.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/Ex3B.dir/tweets_generator.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/tweets_generator.c > CMakeFiles/Ex3B.dir/tweets_generator.c.i
-
-CMakeFiles/Ex3B.dir/tweets_generator.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/Ex3B.dir/tweets_generator.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/tweets_generator.c -o CMakeFiles/Ex3B.dir/tweets_generator.c.s
-
 CMakeFiles/Ex3B.dir/linked_list.c.o: CMakeFiles/Ex3B.dir/flags.make
 CMakeFiles/Ex3B.dir/linked_list.c.o: /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/linked_list.c
 CMakeFiles/Ex3B.dir/linked_list.c.o: CMakeFiles/Ex3B.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/Ex3B.dir/linked_list.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/Ex3B.dir/linked_list.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/Ex3B.dir/linked_list.c.o -MF CMakeFiles/Ex3B.dir/linked_list.c.o.d -o CMakeFiles/Ex3B.dir/linked_list.c.o -c /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/linked_list.c
 
 CMakeFiles/Ex3B.dir/linked_list.c.i: cmake_force
@@ -111,18 +97,32 @@ CMakeFiles/Ex3B.dir/linked_list.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/Ex3B.dir/linked_list.c.s"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/linked_list.c -o CMakeFiles/Ex3B.dir/linked_list.c.s
 
+CMakeFiles/Ex3B.dir/snakes_and_ladders.c.o: CMakeFiles/Ex3B.dir/flags.make
+CMakeFiles/Ex3B.dir/snakes_and_ladders.c.o: /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/snakes_and_ladders.c
+CMakeFiles/Ex3B.dir/snakes_and_ladders.c.o: CMakeFiles/Ex3B.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/Ex3B.dir/snakes_and_ladders.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/Ex3B.dir/snakes_and_ladders.c.o -MF CMakeFiles/Ex3B.dir/snakes_and_ladders.c.o.d -o CMakeFiles/Ex3B.dir/snakes_and_ladders.c.o -c /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/snakes_and_ladders.c
+
+CMakeFiles/Ex3B.dir/snakes_and_ladders.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/Ex3B.dir/snakes_and_ladders.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/snakes_and_ladders.c > CMakeFiles/Ex3B.dir/snakes_and_ladders.c.i
+
+CMakeFiles/Ex3B.dir/snakes_and_ladders.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/Ex3B.dir/snakes_and_ladders.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/snakes_and_ladders.c -o CMakeFiles/Ex3B.dir/snakes_and_ladders.c.s
+
 # Object files for target Ex3B
 Ex3B_OBJECTS = \
 "CMakeFiles/Ex3B.dir/markov_chain.c.o" \
-"CMakeFiles/Ex3B.dir/tweets_generator.c.o" \
-"CMakeFiles/Ex3B.dir/linked_list.c.o"
+"CMakeFiles/Ex3B.dir/linked_list.c.o" \
+"CMakeFiles/Ex3B.dir/snakes_and_ladders.c.o"
 
 # External object files for target Ex3B
 Ex3B_EXTERNAL_OBJECTS =
 
 Ex3B: CMakeFiles/Ex3B.dir/markov_chain.c.o
-Ex3B: CMakeFiles/Ex3B.dir/tweets_generator.c.o
 Ex3B: CMakeFiles/Ex3B.dir/linked_list.c.o
+Ex3B: CMakeFiles/Ex3B.dir/snakes_and_ladders.c.o
 Ex3B: CMakeFiles/Ex3B.dir/build.make
 Ex3B: CMakeFiles/Ex3B.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex3B/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C executable Ex3B"

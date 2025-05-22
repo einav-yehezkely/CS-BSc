@@ -177,29 +177,29 @@ markov_chain.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex3B.dir/build.make CMakeFiles/Ex3B.dir/markov_chain.c.s
 .PHONY : markov_chain.c.s
 
-tweets_generator.o: tweets_generator.c.o
-.PHONY : tweets_generator.o
+snakes_and_ladders.o: snakes_and_ladders.c.o
+.PHONY : snakes_and_ladders.o
 
 # target to build an object file
-tweets_generator.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex3B.dir/build.make CMakeFiles/Ex3B.dir/tweets_generator.c.o
-.PHONY : tweets_generator.c.o
+snakes_and_ladders.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex3B.dir/build.make CMakeFiles/Ex3B.dir/snakes_and_ladders.c.o
+.PHONY : snakes_and_ladders.c.o
 
-tweets_generator.i: tweets_generator.c.i
-.PHONY : tweets_generator.i
+snakes_and_ladders.i: snakes_and_ladders.c.i
+.PHONY : snakes_and_ladders.i
 
 # target to preprocess a source file
-tweets_generator.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex3B.dir/build.make CMakeFiles/Ex3B.dir/tweets_generator.c.i
-.PHONY : tweets_generator.c.i
+snakes_and_ladders.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex3B.dir/build.make CMakeFiles/Ex3B.dir/snakes_and_ladders.c.i
+.PHONY : snakes_and_ladders.c.i
 
-tweets_generator.s: tweets_generator.c.s
-.PHONY : tweets_generator.s
+snakes_and_ladders.s: snakes_and_ladders.c.s
+.PHONY : snakes_and_ladders.s
 
 # target to generate assembly for a file
-tweets_generator.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex3B.dir/build.make CMakeFiles/Ex3B.dir/tweets_generator.c.s
-.PHONY : tweets_generator.c.s
+snakes_and_ladders.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex3B.dir/build.make CMakeFiles/Ex3B.dir/snakes_and_ladders.c.s
+.PHONY : snakes_and_ladders.c.s
 
 # Help Target
 help:
@@ -216,9 +216,9 @@ help:
 	@echo "... markov_chain.o"
 	@echo "... markov_chain.i"
 	@echo "... markov_chain.s"
-	@echo "... tweets_generator.o"
-	@echo "... tweets_generator.i"
-	@echo "... tweets_generator.s"
+	@echo "... snakes_and_ladders.o"
+	@echo "... snakes_and_ladders.i"
+	@echo "... snakes_and_ladders.s"
 .PHONY : help
 
 
