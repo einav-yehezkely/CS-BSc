@@ -193,7 +193,6 @@ int fill_database_snakes(MarkovChain *markov_chain)
  */
 int main(int argc, char *argv[])
 {
-    printf("Welcome to Snakes and Ladders!\n");
     if (argc != 3) {
         printf(NUM_ARGS_ERROR);
         return EXIT_FAILURE;
@@ -260,14 +259,16 @@ int main(int argc, char *argv[])
 
 void print_cell(void *data) {
     Cell *cell = (Cell*) data;
+    printf("[%d]", cell->number);
     if (cell->ladder_to != EMPTY) {
-        printf(" -ladder to-> ");
+        printf(" -ladder to->");
     }
     if (cell->snake_to != EMPTY) {
-        printf(" -snake to-> ");
+        printf(" -snake to->");
     }
-
-    printf("[%d] -> ", cell->number);
+    else if (!is_last_cell(cell) && cell->ladder_to == EMPTY) {
+        printf(" ->");
+    }
 
 }
 int compare_cell(void *a, void *b) {
