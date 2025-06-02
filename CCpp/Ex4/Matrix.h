@@ -40,9 +40,29 @@ public:
     int get_cols() const;
     // functions
     Matrix& transpose();
+    Matrix& vectorize();
+    void plain_print();
+    Matrix& dot(const Matrix& m) const;
+    float norm() const;
+    Matrix rref() const;
+    int argmax() const;
+    float sum() const;
+    // operators
+    Matrix& operator+=(const Matrix& m);
+    Matrix operator+(const Matrix& m) const;
+    Matrix& operator=(const Matrix& m);
+    Matrix operator*(const Matrix& m) const;
+    Matrix operator*(float c) const; // m*c
+    friend Matrix operator*(float scalar, const Matrix& m); // c*m
+    float& Matrix::operator()(int row, int col); // access element at (row, col)
+    const float& Matrix::operator()(int row, int col) const; // read element at (row, col)
+    float& operator[](int index); // access element at index
+    const float& operator[](int index) const; // read element at index
+    friend std::ostream& operator<<(std::ostream& os, const Matrix& m);
+    friend std::istream& operator>>(std::istream& is, Matrix& m);
+
 
 };
-
 
 
 #endif //MATRIX_H

@@ -1,4 +1,6 @@
 // main.cpp
+#include <iostream>
+
 #include "Matrix.h"
 #include "Activation.h"
 #include "Dense.h"
