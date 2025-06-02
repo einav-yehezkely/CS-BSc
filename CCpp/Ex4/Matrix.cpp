@@ -40,7 +40,7 @@ void Matrix::plain_print() {
     }
 }
 
-Matrix& Matrix::dot(const Matrix& m) const {
+Matrix Matrix::dot(const Matrix& m) const {
     if (rows_ != m.rows_ || cols_ != m.cols_) {
         throw std::invalid_argument("Invalid matrix dimensions");
     }
@@ -231,10 +231,13 @@ std::ostream& operator<<(std::ostream& os, const Matrix& m) {
 }
 
 std::istream& operator>>(std::istream& is, Matrix& m) {
-    for (int i = 0; i < m.rows_ * m.cols_; ++i) {
-        if (!(is >> m.elems_[i])) {
-            throw std::runtime_error("Input stream ended too early");
+    int total = m.get_rows() * m.get_cols();
+    for (int i = 0; i < total; ++i) {
+        float value;
+        if (!is.read(reinterpret_cast<char*>(&value), sizeof(float))) {
+            throw std::runtime_error("Input stream is too short");
         }
+        m[i] = value;
     }
     return is;
 }
