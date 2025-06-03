@@ -159,4 +159,7 @@ CMakeFiles/Ex4.dir/main.cpp.o: \
  /usr/include/x86_64-linux-gnu/c++/13/bits/basic_file.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++io.h \
  /usr/include/c++/13/bits/fstream.tcc \
- /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex4/Matrix.h
+ /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex4/Matrix.h \
+ /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex4/Activation.h \
+ /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex4/Dense.h \
+ /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex4/MlpNetwork.h

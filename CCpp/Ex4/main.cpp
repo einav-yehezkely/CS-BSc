@@ -48,12 +48,36 @@ void usage (int argc) noexcept (false)
  *          false - failure
  */
 bool readFileToMatrix(const std::string &filePath, Matrix &mat) {
-	std::ifstream fin(filePath, std::ios::binary);
-	if (!fin.is_open()) {
+	std::ifstream file(filePath, std::ios::binary);
+	if (!file.is_open()) {
+		std::cerr << "Failed to open file: " << filePath << std::endl;
 		return false;
 	}
-	return static_cast<bool>(fin >> mat);
+
+	int rows = mat.get_rows();
+	int cols = mat.get_cols();
+	int total_elems = rows * cols;
+
+	std::cout << "Reading matrix from " << filePath
+			  << " [" << rows << " x " << cols << "]" << std::endl;
+
+	for (int i = 0; i < total_elems; ++i) {
+		float val;
+		if (!file.read(reinterpret_cast<char*>(&val), sizeof(float))) {
+			std::cerr << "Error: File too short while reading element " << i << std::endl;
+			return false;
+		}
+		mat[i] = val;
+	}
+
+	if (file.peek() != EOF) {
+		std::cerr << "Warning: File contains extra data beyond expected matrix size." << std::endl;
+		return false;
+	}
+
+	return true;
 }
+
 
 /**
  * Loads MLP parameters from weights & biases paths

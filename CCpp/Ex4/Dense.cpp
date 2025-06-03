@@ -12,5 +12,5 @@ ActivationFunc Dense::get_activation() const {
 
 Matrix Dense::operator()(const Matrix &input) const {
     ActivationFunc activation_func = activation_func_;
-    return activation_func(weights_.dot(input) + bias_);
+    return activation_func(weights_*input + bias_);
 }
