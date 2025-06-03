@@ -1,5 +1,7 @@
 // main.cpp
 #include <iostream>
+#include <fstream>
+
 
 #include "Matrix.h"
 #include "Activation.h"
@@ -45,10 +47,12 @@ void usage (int argc) noexcept (false)
  *          true - success
  *          false - failure
  */
-bool readFileToMatrix (const std::string &filePath, Matrix &mat)
-{
-//TODO: implement this function
-  return true;
+bool readFileToMatrix(const std::string &filePath, Matrix &mat) {
+	std::ifstream fin(filePath, std::ios::binary);
+	if (!fin.is_open()) {
+		return false;
+	}
+	return static_cast<bool>(fin >> mat);
 }
 
 /**
