@@ -4,4 +4,5 @@ project(Ex4)
 set(CMAKE_CXX_STANDARD 20)
 
 add_executable(Ex4 main.cpp
-        Matrix.cpp)
+        Matrix.cpp
+        Dense.cpp)

@@ -129,6 +129,30 @@ Ex4/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex4.dir/build.make CMakeFiles/Ex4.dir/build
 .PHONY : Ex4/fast
 
+Dense.o: Dense.cpp.o
+.PHONY : Dense.o
+
+# target to build an object file
+Dense.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex4.dir/build.make CMakeFiles/Ex4.dir/Dense.cpp.o
+.PHONY : Dense.cpp.o
+
+Dense.i: Dense.cpp.i
+.PHONY : Dense.i
+
+# target to preprocess a source file
+Dense.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex4.dir/build.make CMakeFiles/Ex4.dir/Dense.cpp.i
+.PHONY : Dense.cpp.i
+
+Dense.s: Dense.cpp.s
+.PHONY : Dense.s
+
+# target to generate assembly for a file
+Dense.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex4.dir/build.make CMakeFiles/Ex4.dir/Dense.cpp.s
+.PHONY : Dense.cpp.s
+
 Matrix.o: Matrix.cpp.o
 .PHONY : Matrix.o
 
@@ -186,6 +210,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Ex4"
+	@echo "... Dense.o"
+	@echo "... Dense.i"
+	@echo "... Dense.s"
 	@echo "... Matrix.o"
 	@echo "... Matrix.i"
 	@echo "... Matrix.s"

@@ -5,7 +5,22 @@
 #include "Activation.h"
 
 // Insert Dense class here...
+class Dense {
+private:
+    Matrix weights_;
+    Matrix bias_;
+    ActivationFunc ActivationFunction_;
+public:
+    // constructor
+    Dense(const Matrix &weights, const Matrix &bias, ActivationFunc activation_func_): weights_(weights), bias_(bias), ActivationFunction_(activation_func_) {}
+    // getters
+    Matrix get_weights() const;
+    Matrix get_bias() const;
+    ActivationFunc get_activation_func() const;
+    // operator
+    Matrix operator()(const Matrix &input) const;
 
+};
 
 
 
