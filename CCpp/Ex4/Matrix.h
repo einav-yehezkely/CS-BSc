@@ -27,7 +27,8 @@ public:
         }
     }
     Matrix(): Matrix(1, 1) {}
-    Matrix(const Matrix &m): rows_(m.rows_), cols_(m.cols_), elems_(new float[m.rows_ * m.cols_]) {
+    Matrix(const Matrix &m):
+        rows_(m.rows_), cols_(m.cols_), elems_(new float[m.rows_ * m.cols_]) {
         for (int i = 0; i < rows_ * cols_; ++i) {
             elems_[i] = m.elems_[i];
         }
