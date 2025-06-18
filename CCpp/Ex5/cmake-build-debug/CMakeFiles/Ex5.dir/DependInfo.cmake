@@ -8,7 +8,6 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex5/User.cpp" "CMakeFiles/Ex5.dir/User.cpp.o" "gcc" "CMakeFiles/Ex5.dir/User.cpp.o.d"
   "/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex5/main.cpp" "CMakeFiles/Ex5.dir/main.cpp.o" "gcc" "CMakeFiles/Ex5.dir/main.cpp.o.d"
   )
 

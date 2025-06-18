@@ -5,13 +5,17 @@
 #ifndef RECOMMENDATIONSYSTEM_H
 #define RECOMMENDATIONSYSTEM_H
 #include "User.h"
+#include <map>
 
 class User;
 
-class RecommendationSystem
-{
+class RecommendationSystem {
+private:
+    std::map<sp_movie, std::vector<double>, bool(*)(const sp_movie&, const sp_movie&)> movie_db_;
 public:
-    RecommendationSystem();
+    RecommendationSystem():movie_db_([](const sp_movie& m1, const sp_movie& m2) {
+        return *m1 < *m2;
+    }){}
     sp_movie get_movie(const std::string& name, int year) const;
     sp_movie add_movie_to_rs(const std::string& name,int year, const std::vector<double>& features);
     friend std::ostream& operator<<(std::ostream& os, const RecommendationSystem& recommendation);

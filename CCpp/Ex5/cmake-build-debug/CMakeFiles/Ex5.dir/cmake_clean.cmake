@@ -1,6 +1,4 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Ex5.dir/User.cpp.o"
-  "CMakeFiles/Ex5.dir/User.cpp.o.d"
   "CMakeFiles/Ex5.dir/main.cpp.o"
   "CMakeFiles/Ex5.dir/main.cpp.o.d"
   "Ex5"

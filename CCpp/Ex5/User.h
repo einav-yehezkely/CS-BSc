@@ -10,6 +10,8 @@
 #include "Movie.h"
 #include "RecommendationSystem.h"
 
+class RecommendationSystem;
+
 typedef std::unordered_map<sp_movie, double, hash_func,equal_func> rank_map;
 
 

@@ -1,16 +1,37 @@
+#include "RecommendationSystem.h"
 #include <iostream>
 
-// TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 int main() {
-    // TIP Press <shortcut actionId="RenameElement"/> when your caret is at the <b>lang</b> variable name to see how CLion can help you rename it.
-    auto lang = "C++";
-    std::cout << "Hello and welcome to " << lang << "!\n";
+    try {
+        RecommendationSystem rs;
 
-    for (int i = 1; i <= 5; i++) {
-        // TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        std::cout << "i = " << i << std::endl;
+        // סרט 1: תקין
+        rs.add_movie_to_rs("Inception", 2010, {7.0, 8.0, 9.0, 6.0});
+
+        // סרט 2: תקין
+        rs.add_movie_to_rs("The Matrix", 1999, {8.0, 9.0, 10.0, 9.0});
+
+        // נסה להוסיף סרט שכבר קיים (לא צריך להיווצר שוב)
+        rs.add_movie_to_rs("Inception", 2010, {7.0, 8.0, 9.0, 6.0});
+
+        // הדפסת כל הסרטים
+        std::cout << "=== Movies in Recommendation System ===" << std::endl;
+        std::cout << rs;
+
+        // נסה לחפש סרט
+        sp_movie m = rs.get_movie("Inception", 2010);
+        if (m) {
+            std::cout << "Found movie: " << *m << std::endl;
+        } else {
+            std::cout << "Movie not found." << std::endl;
+        }
+
+        // סרט עם פיצ'רים לא תקינים (צריך לזרוק שגיאה)
+        rs.add_movie_to_rs("Broken Movie", 2023, {7.0, -3.0, 5.0}); // ❌
+
+    } catch (const std::invalid_argument& e) {
+        std::cerr << "Caught exception: " << e.what() << std::endl;
     }
 
     return 0;
-    // TIP See CLion help at <a href="https://www.jetbrains.com/help/clion/">jetbrains.com/help/clion/</a>. Also, you can try interactive lessons for CLion by selecting 'Help | Learn IDE Features' from the main menu.
 }
