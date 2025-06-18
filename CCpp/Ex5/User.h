@@ -15,9 +15,20 @@ typedef std::unordered_map<sp_movie, double, hash_func,equal_func> rank_map;
 
 class User
 {
-
+private:
+	std::string name_;
+	rank_map rank_;
+	std::shared_ptr<RecommendationSystem> recommendationSystem_;
 public:
+	User(const std::string& name, rank_map& rank, const std::shared_ptr<RecommendationSystem>& recommendationSystem): name_(name), rank_(rank), recommendationSystem_(recommendationSystem){};
 
+	std::string get_name() const{
+		return name_;
+	}
+
+	const rank_map& get_rank() const{
+		return rank_;
+	}
 	/**
 	 * function for adding a movie to the DB
 	 * @param name name of movie
@@ -28,9 +39,6 @@ public:
 	void add_movie_to_user(const std::string &name, int year,
                          const std::vector<double> &features,
                          double rate);
-
-
- 
 
 	/**
 	 * returns a recommendation according to the movie's content
@@ -54,7 +62,7 @@ public:
 	 */
 	double get_rs_prediction_score_for_movie(const std::string& name, int year, int k);
 
-	
+	friend std::ostream& operator<<(std::ostream& os, const User& user);
 };
 
 

@@ -30,11 +30,11 @@ private:
     std::string name_;
     int year_;
 public:
-    Movie(std::string& name, int year): name_(name), year_(year) {}
+    Movie(const std::string& name, const int year): name_(name), year_(year) {}
 
     friend std::ostream& operator<<(std::ostream& os, const Movie& movie);
 
-    bool operator<(const Movie& movie) const;
+    bool operator<(const Movie& other) const;
 
     std::string get_name() const {
         return name_;

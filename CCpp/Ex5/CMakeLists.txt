@@ -3,4 +3,5 @@ project(Ex5)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(Ex5 main.cpp)
+add_executable(Ex5 main.cpp
+        User.cpp)

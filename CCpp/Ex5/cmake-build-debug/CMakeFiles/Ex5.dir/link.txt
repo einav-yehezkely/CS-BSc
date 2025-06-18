@@ -1,1 +1,1 @@
-/usr/bin/c++ -g CMakeFiles/Ex5.dir/main.cpp.o -o Ex5 
+/usr/bin/c++ -g CMakeFiles/Ex5.dir/main.cpp.o CMakeFiles/Ex5.dir/User.cpp.o -o Ex5 

@@ -25,6 +25,17 @@ bool sp_movie_equal(const sp_movie& m1,const sp_movie& m2){
     return !(*m1 < *m2) && !(*m2 < *m1);
 }
 
+std::ostream& operator<<(std::ostream& os, const Movie& movie) {
+    os << movie.get_name() << "(" << movie.get_year() << ")" << std::endl;
+    return os;
+}
+
+bool Movie::operator<(const Movie& other) const {
+    if (year_ == other.year_) {
+        return name_ < other.name_;
+    }
+    return year_ < other.year_;
+}
 
 
 
