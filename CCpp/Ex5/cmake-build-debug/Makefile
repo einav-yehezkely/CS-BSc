@@ -129,6 +129,78 @@ Ex5/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex5.dir/build.make CMakeFiles/Ex5.dir/build
 .PHONY : Ex5/fast
 
+Movie.o: Movie.cpp.o
+.PHONY : Movie.o
+
+# target to build an object file
+Movie.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex5.dir/build.make CMakeFiles/Ex5.dir/Movie.cpp.o
+.PHONY : Movie.cpp.o
+
+Movie.i: Movie.cpp.i
+.PHONY : Movie.i
+
+# target to preprocess a source file
+Movie.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex5.dir/build.make CMakeFiles/Ex5.dir/Movie.cpp.i
+.PHONY : Movie.cpp.i
+
+Movie.s: Movie.cpp.s
+.PHONY : Movie.s
+
+# target to generate assembly for a file
+Movie.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex5.dir/build.make CMakeFiles/Ex5.dir/Movie.cpp.s
+.PHONY : Movie.cpp.s
+
+RecommendationSystem.o: RecommendationSystem.cpp.o
+.PHONY : RecommendationSystem.o
+
+# target to build an object file
+RecommendationSystem.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex5.dir/build.make CMakeFiles/Ex5.dir/RecommendationSystem.cpp.o
+.PHONY : RecommendationSystem.cpp.o
+
+RecommendationSystem.i: RecommendationSystem.cpp.i
+.PHONY : RecommendationSystem.i
+
+# target to preprocess a source file
+RecommendationSystem.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex5.dir/build.make CMakeFiles/Ex5.dir/RecommendationSystem.cpp.i
+.PHONY : RecommendationSystem.cpp.i
+
+RecommendationSystem.s: RecommendationSystem.cpp.s
+.PHONY : RecommendationSystem.s
+
+# target to generate assembly for a file
+RecommendationSystem.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex5.dir/build.make CMakeFiles/Ex5.dir/RecommendationSystem.cpp.s
+.PHONY : RecommendationSystem.cpp.s
+
+User.o: User.cpp.o
+.PHONY : User.o
+
+# target to build an object file
+User.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex5.dir/build.make CMakeFiles/Ex5.dir/User.cpp.o
+.PHONY : User.cpp.o
+
+User.i: User.cpp.i
+.PHONY : User.i
+
+# target to preprocess a source file
+User.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex5.dir/build.make CMakeFiles/Ex5.dir/User.cpp.i
+.PHONY : User.cpp.i
+
+User.s: User.cpp.s
+.PHONY : User.s
+
+# target to generate assembly for a file
+User.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex5.dir/build.make CMakeFiles/Ex5.dir/User.cpp.s
+.PHONY : User.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -162,6 +234,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Ex5"
+	@echo "... Movie.o"
+	@echo "... Movie.i"
+	@echo "... Movie.s"
+	@echo "... RecommendationSystem.o"
+	@echo "... RecommendationSystem.i"
+	@echo "... RecommendationSystem.s"
+	@echo "... User.o"
+	@echo "... User.i"
+	@echo "... User.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

@@ -6,4 +6,7 @@ set(CMAKE_CXX_STANDARD 20)
 add_executable(Ex5 main.cpp
         User.h
         Movie.h
-        RecommendationSystem.h)
+        RecommendationSystem.h
+        User.cpp
+        Movie.cpp
+        RecommendationSystem.cpp)

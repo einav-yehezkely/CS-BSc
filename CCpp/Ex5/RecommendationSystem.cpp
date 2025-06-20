@@ -4,6 +4,7 @@
 #include "RecommendationSystem.h"
 
 #include <complex>
+#include <set>
 
 
 sp_movie RecommendationSystem::get_movie(const std::string& name, int year) const {
@@ -25,6 +26,7 @@ sp_movie RecommendationSystem::add_movie_to_rs(const std::string& name,int year,
     auto to_search = std::make_shared<Movie>(name,year);
     auto find = movie_db_.find(to_search);
     if (find != movie_db_.end()) {
+        find->second = features;  // override features
         return find->first;
     }
     movie_db_[to_search] = features;
@@ -83,7 +85,59 @@ sp_movie RecommendationSystem::recommend_by_content(const User& user_rankings) {
     return recommendation;
 }
 
-double predict_movie_score(const User& user_rankings, const sp_movie &movie, int k) {
+struct comparator_similarity {
+    bool operator()(const std::pair<sp_movie, double>& a, const std::pair<sp_movie, double>& b) const {
+        return a.second > b.second;
+    }
+};
+
+double RecommendationSystem::predict_movie_score(const User& user_rankings, const sp_movie &movie, int k) {
+    const rank_map& user_ranks = user_rankings.get_rank();
+    const std::vector<double>& features = movie_db_.at(movie);
+    std::multiset<std::pair<sp_movie, double>, comparator_similarity> similarities_sorted;  // movie, similarity
+    for (const auto& pair : user_ranks) {
+        const sp_movie& movie_to_compare = pair.first;
+        const std::vector<double>& features_of_movie = movie_db_.at(movie_to_compare);
+        double similarity = cs(features_of_movie, features);
+        similarities_sorted.insert({movie_to_compare, similarity});
+    }
+    double numerator = 0.0;
+    double denominator = 0.0;
+    int count = 0;
+
+    for (const auto& pair : similarities_sorted) {
+        if (count >= k) {
+            break;
+        }
+
+        const sp_movie& next_movie = pair.first;
+        double similarity = pair.second;
+        double user_rating = user_ranks.at(next_movie);
+
+        numerator += similarity * user_rating;
+        denominator += similarity;
+        count++;
+    }
+    if (denominator == 0.0) {
+        return 0.0;
+    }
+    return numerator / denominator;
+}
+sp_movie RecommendationSystem::recommend_by_cf(const User& user_rankings, int k) {
+    sp_movie best_movie = nullptr;
+    double best_rate = -1.0;
+    const rank_map& user_ranks = user_rankings.get_rank();
+    for (const auto& pair : movie_db_) {
+        const sp_movie& possible_movie = pair.first;
+        if (user_ranks.count(possible_movie)) {
+            continue;
+        }
+        double predicted_score = predict_movie_score(user_rankings, possible_movie, k);
+        if (predicted_score > best_rate) {
+            best_movie = possible_movie;
+            best_rate = predicted_score;
+        }
+    }
+    return best_movie;
 
 }
-// sp_movie recommend_by_cf(const User& user_rankings, int k);

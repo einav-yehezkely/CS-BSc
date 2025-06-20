@@ -22,7 +22,7 @@ private:
 	rank_map rank_;
 	std::shared_ptr<RecommendationSystem> recommendationSystem_;
 public:
-	User(const std::string& name, rank_map& rank, const std::shared_ptr<RecommendationSystem>& recommendationSystem): name_(name), rank_(rank), recommendationSystem_(recommendationSystem){};
+	User(const std::string& name, const rank_map& rank, const std::shared_ptr<RecommendationSystem>& recommendationSystem): name_(name), rank_(rank), recommendationSystem_(recommendationSystem){};
 
 	std::string get_name() const{
 		return name_;
