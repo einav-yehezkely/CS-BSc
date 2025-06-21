@@ -23,115 +23,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f99f9ef7-f93b-42d9-9cd9-2349b3069716" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/UsersLoader.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex3/cmake-build-debug/.cmake/api/v1/reply/index-2025-05-06T15-50-46-0677.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex3/cmake-build-debug/CMakeFiles/Ex3_A.dir/compiler_depend.internal" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex3/cmake-build-debug/CMakeFiles/Ex3_A.dir/compiler_depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/../Ex3/cmake-build-debug/CMakeFiles/Ex3_A.dir/compiler_depend.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex3/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Ex3/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex3/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/../Ex3/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RecommendationSystemLoader.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/RecommendationSystemLoader.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RecommendationSystemLoader.h" beforeDir="false" afterPath="$PROJECT_DIR$/RecommendationSystemLoader.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/DESCRIPTION" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/SOURCE_PATH.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_10.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_10.in_m" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_10.in_u" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_10.stdout" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_11.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_11.in_m1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_11.in_m2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_11.in_m3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_11.in_u1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_11.in_u2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_11.in_u3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_12.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_12.in_m" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_12.stdout" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_13.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_13.in_u" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_13.stdout" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_14.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_14.in_u" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_15.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_15.in_m" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_16.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_16.in_m" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_16.in_u" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_17.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_18.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_19.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_19.in_m" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_19.in_u" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_5.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_5.in_m" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_5.in_u" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_6.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_6.in_m" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_6.in_u" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_7.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_7.in_m" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_7.in_u" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_8.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_8.in_m" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_8.in_u" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_8.stdout" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_9.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_9.in_m" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_9.in_u" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_9.stdout" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Basic_tests/DESCRIPTION" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Basic_tests/SOURCE_PATH.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Basic_tests/TestComparison_1.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Basic_tests/TestComparison_1.stdout" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Basic_tests/TestComparison_2.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Basic_tests/TestComparison_2.stdout" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Basic_tests/TestComparison_3.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Basic_tests/TestComparison_3.stdout" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Basic_tests/TestComparison_4.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Basic_tests/TestComparison_4.in_m" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Basic_tests/TestComparison_4.in_u" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Basic_tests/Test_1.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Basic_tests/Test_2.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Basic_tests/Test_3.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Basic_tests/Test_4.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Basic_tests/presubmit.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Basic_tests/presubmit.in_m" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Basic_tests/presubmit.in_u" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/DESCRIPTION" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Makefile" beforeDir="false" />
+    <list default="true" id="f99f9ef7-f93b-42d9-9cd9-2349b3069716" name="Changes" comment="Started userLoader. deleted Tests because iy made troubles">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UsersLoader.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/UsersLoader.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UsersLoader.h" beforeDir="false" afterPath="$PROJECT_DIR$/UsersLoader.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-6eed808d2868587e22f6.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-1cc7459ba120da89568e.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2025-06-20T11-52-30-0456.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-Ex5-Debug-8b79406fb792aa454199.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.28.3/CMakeSystem.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.28.3/CMakeSystem.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeConfigureLog.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeConfigureLog.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/DependInfo.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/Movie.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/Movie.cpp.o.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/RecommendationSystem.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/RecommendationSystem.cpp.o.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/User.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/User.cpp.o.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/cmake_clean.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/compiler_depend.internal" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/compiler_depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/compiler_depend.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/link.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/main.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/main.cpp.o.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Ex5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -213,11 +108,24 @@
       <option name="presentableId" value="Default" />
       <updated>1742646388096</updated>
       <workItem from="1742646389959" duration="79000" />
-      <workItem from="1750499860236" duration="303000" />
+      <workItem from="1750499860236" duration="2999000" />
     </task>
+    <task id="LOCAL-00001" summary="Started userLoader. deleted Tests because iy made troubles">
+      <option name="closed" value="true" />
+      <created>1750500228424</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1750500228424</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Started userLoader. deleted Tests because iy made troubles" />
+    <option name="LAST_COMMIT_MESSAGE" value="Started userLoader. deleted Tests because iy made troubles" />
   </component>
 </project>

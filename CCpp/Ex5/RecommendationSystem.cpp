@@ -69,7 +69,7 @@ sp_movie RecommendationSystem::recommend_by_content(const User& user_rankings) {
         }
     }
     sp_movie recommendation = nullptr;
-    double best_similarity = 0.0;
+    double best_similarity = -1.0;
     for (const auto& pair : movie_db_) {
         const sp_movie& movie = pair.first;
         if (user_ranks.count(movie)) {

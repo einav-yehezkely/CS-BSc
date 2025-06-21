@@ -8,9 +8,10 @@
 #include "User.h"
 
 class UsersLoader {
+public:
     UsersLoader() = delete;
 
-    static std::vector<User> create_users(const std::string& users_file_path, std::shared_ptr<RecommendationSystem>& rs);
+    static std::vector<User> create_users(const std::string& users_file_path, const std::shared_ptr<RecommendationSystem>& rs);
 };
 
 #endif //USERFACTORY_H
