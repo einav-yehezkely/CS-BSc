@@ -249,29 +249,29 @@ UsersLoader.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex5.dir/build.make CMakeFiles/Ex5.dir/UsersLoader.cpp.s
 .PHONY : UsersLoader.cpp.s
 
-main.o: main.cpp.o
-.PHONY : main.o
+presubmit.o: presubmit.cpp.o
+.PHONY : presubmit.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex5.dir/build.make CMakeFiles/Ex5.dir/main.cpp.o
-.PHONY : main.cpp.o
+presubmit.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex5.dir/build.make CMakeFiles/Ex5.dir/presubmit.cpp.o
+.PHONY : presubmit.cpp.o
 
-main.i: main.cpp.i
-.PHONY : main.i
+presubmit.i: presubmit.cpp.i
+.PHONY : presubmit.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex5.dir/build.make CMakeFiles/Ex5.dir/main.cpp.i
-.PHONY : main.cpp.i
+presubmit.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex5.dir/build.make CMakeFiles/Ex5.dir/presubmit.cpp.i
+.PHONY : presubmit.cpp.i
 
-main.s: main.cpp.s
-.PHONY : main.s
+presubmit.s: presubmit.cpp.s
+.PHONY : presubmit.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex5.dir/build.make CMakeFiles/Ex5.dir/main.cpp.s
-.PHONY : main.cpp.s
+presubmit.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex5.dir/build.make CMakeFiles/Ex5.dir/presubmit.cpp.s
+.PHONY : presubmit.cpp.s
 
 # Help Target
 help:
@@ -297,9 +297,9 @@ help:
 	@echo "... UsersLoader.o"
 	@echo "... UsersLoader.i"
 	@echo "... UsersLoader.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... presubmit.o"
+	@echo "... presubmit.i"
+	@echo "... presubmit.s"
 .PHONY : help
 
 

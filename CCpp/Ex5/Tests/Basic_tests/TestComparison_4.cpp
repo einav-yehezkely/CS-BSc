@@ -2,8 +2,8 @@
 // Created by 24565 on 2/22/2022.
 //
 
-#include "RecommendationSystemLoader.h"
-#include "UsersLoader.h"
+#include "../../RecommendationSystemLoader.h"
+#include "../../UsersLoader.h"
 #include "SOURCE_PATH.h"
 #define EXIT_FAIL_TEST 2
 #define EXIT_SUCCESS_TEST 0

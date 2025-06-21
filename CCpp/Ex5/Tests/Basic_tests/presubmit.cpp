@@ -1,10 +1,10 @@
-#include "UsersLoader.h"
-#include "RecommendationSystemLoader.h"
-#include "RecommendationSystem.h"
-#include "Movie.h"
+#include "../../UsersLoader.h"
+#include "../../RecommendationSystemLoader.h"
+#include "../../RecommendationSystem.h"
+#include "../../Movie.h"
 #include <iostream>
 #include <string>
-#include "Tests/Basic_tests/SOURCE_PATH.h"
+#include "SOURCE_PATH.h"
 #define EXIT_SUCCESS_TEST 0
 #define EXIT_FAIL_TEST 2
 #define THRESHOLD 0.01

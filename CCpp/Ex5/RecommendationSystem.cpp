@@ -43,7 +43,7 @@ double cs(const std::vector<double> &u, const std::vector<double> &v) {
     double dot = 0.0;
     double norm1 = 0.0;
     double norm2 = 0.0;
-    for (int i = 0; i < u.size(); i++) {
+    for (size_t i = 0; i < u.size(); i++) {
         dot += u[i] * v[i];
         norm1 += u[i] * u[i];
         norm2 += v[i] * v[i];
@@ -61,7 +61,7 @@ sp_movie RecommendationSystem::recommend_by_content(const User& user_rankings) {
     int num_of_features = movie_db_.begin()->second.size();
     std::vector<double> preference_vector(num_of_features, 0.0);
     for (const auto& pair : user_ranks) {
-        const sp_movie& movie = pair.first;
+        // const sp_movie& movie = pair.first;
         double value = pair.second - mean;
         const std::vector<double>& features = movie_db_.at(pair.first);
         for (int i = 0; i < num_of_features; i++) {

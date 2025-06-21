@@ -3,7 +3,7 @@ project(Ex5)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(Ex5 main.cpp
+add_executable(Ex5
         User.h
         Movie.h
         RecommendationSystem.h
@@ -11,4 +11,6 @@ add_executable(Ex5 main.cpp
         Movie.cpp
         RecommendationSystem.cpp
         RecommendationSystemLoader.cpp
-        UsersLoader.cpp)
+        UsersLoader.cpp
+        Tests/Basic_tests/presubmit.cpp)
+

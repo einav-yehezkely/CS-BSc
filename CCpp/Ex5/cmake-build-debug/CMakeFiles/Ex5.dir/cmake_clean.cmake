@@ -9,8 +9,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Ex5.dir/User.cpp.o.d"
   "CMakeFiles/Ex5.dir/UsersLoader.cpp.o"
   "CMakeFiles/Ex5.dir/UsersLoader.cpp.o.d"
-  "CMakeFiles/Ex5.dir/main.cpp.o"
-  "CMakeFiles/Ex5.dir/main.cpp.o.d"
+  "CMakeFiles/Ex5.dir/presubmit.cpp.o"
+  "CMakeFiles/Ex5.dir/presubmit.cpp.o.d"
   "Ex5"
   "Ex5.pdb"
 )

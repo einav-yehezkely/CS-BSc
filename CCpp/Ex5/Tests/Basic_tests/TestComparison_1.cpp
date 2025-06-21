@@ -2,7 +2,7 @@
 // Created by 24565 on 2/22/2022.
 //
 
-#include "Movie.h"
+#include "../../Movie.h"
 #include <iostream>
 
 int main(){

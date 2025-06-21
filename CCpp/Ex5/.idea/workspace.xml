@@ -23,10 +23,31 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f99f9ef7-f93b-42d9-9cd9-2349b3069716" name="Changes" comment="Started userLoader. deleted Tests because iy made troubles">
+    <list default="true" id="f99f9ef7-f93b-42d9-9cd9-2349b3069716" name="Changes" comment="before tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RecommendationSystem.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/RecommendationSystem.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOURCE_PATH.h" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/Basic_tests/SOURCE_PATH.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestComparison_1.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/Basic_tests/TestComparison_1.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestComparison_2.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/Basic_tests/TestComparison_2.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Basic_tests/TestComparison_4.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/Basic_tests/TestComparison_4.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UsersLoader.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/UsersLoader.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UsersLoader.h" beforeDir="false" afterPath="$PROJECT_DIR$/UsersLoader.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-94e16e02dd653bdd83bf.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-a81b67ea57322c9ce08b.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2025-06-21T09-57-48-0523.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-Ex5-Debug-8d9bd8ee78c02e877909.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/cmake_clean.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/compiler_depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/compiler_depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ex5.tar" beforeDir="false" afterPath="$PROJECT_DIR$/ex5.tar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/presubmit.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/Basic_tests/presubmit.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +73,9 @@
     "accountId": "74f6f270-a8b0-4ec8-92e2-f2d35bf85580"
   }
 }]]></component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Tests/Basic_tests/TestComparison_1.cpp" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="ProjectApplicationVersion">
     <option name="ide" value="CLion" />
     <option name="majorVersion" value="2025" />
@@ -69,6 +93,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "CMake Application.Ex5.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.RadMigrateCodeStyle": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -88,6 +113,13 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\einav\clone_here\CS-BSc\CCpp\Ex5\Tests\Basic_tests" />
+      <recent name="C:\Users\einav\clone_here\CS-BSc\CCpp\Ex5\Tests" />
+      <recent name="C:\Users\einav\clone_here\CS-BSc\CCpp\Ex5" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
@@ -108,7 +140,7 @@
       <option name="presentableId" value="Default" />
       <updated>1742646388096</updated>
       <workItem from="1742646389959" duration="79000" />
-      <workItem from="1750499860236" duration="2999000" />
+      <workItem from="1750499860236" duration="6465000" />
     </task>
     <task id="LOCAL-00001" summary="Started userLoader. deleted Tests because iy made troubles">
       <option name="closed" value="true" />
@@ -118,14 +150,28 @@
       <option name="project" value="LOCAL" />
       <updated>1750500228424</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="before tests">
+      <option name="closed" value="true" />
+      <created>1750503208011</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1750503208011</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="VCPKGProject">
+    <isAutomaticCheckingOnLaunch value="false" />
+    <isAutomaticFoundErrors value="true" />
+    <isAutomaticReloadCMake value="true" />
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Started userLoader. deleted Tests because iy made troubles" />
-    <option name="LAST_COMMIT_MESSAGE" value="Started userLoader. deleted Tests because iy made troubles" />
+    <MESSAGE value="before tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="before tests" />
   </component>
 </project>

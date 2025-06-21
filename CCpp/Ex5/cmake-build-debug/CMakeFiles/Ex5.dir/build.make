@@ -69,24 +69,10 @@ include CMakeFiles/Ex5.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/Ex5.dir/flags.make
 
-CMakeFiles/Ex5.dir/main.cpp.o: CMakeFiles/Ex5.dir/flags.make
-CMakeFiles/Ex5.dir/main.cpp.o: /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex5/main.cpp
-CMakeFiles/Ex5.dir/main.cpp.o: CMakeFiles/Ex5.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex5/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Ex5.dir/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Ex5.dir/main.cpp.o -MF CMakeFiles/Ex5.dir/main.cpp.o.d -o CMakeFiles/Ex5.dir/main.cpp.o -c /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex5/main.cpp
-
-CMakeFiles/Ex5.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Ex5.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex5/main.cpp > CMakeFiles/Ex5.dir/main.cpp.i
-
-CMakeFiles/Ex5.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Ex5.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex5/main.cpp -o CMakeFiles/Ex5.dir/main.cpp.s
-
 CMakeFiles/Ex5.dir/User.cpp.o: CMakeFiles/Ex5.dir/flags.make
 CMakeFiles/Ex5.dir/User.cpp.o: /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex5/User.cpp
 CMakeFiles/Ex5.dir/User.cpp.o: CMakeFiles/Ex5.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex5/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Ex5.dir/User.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex5/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Ex5.dir/User.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Ex5.dir/User.cpp.o -MF CMakeFiles/Ex5.dir/User.cpp.o.d -o CMakeFiles/Ex5.dir/User.cpp.o -c /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex5/User.cpp
 
 CMakeFiles/Ex5.dir/User.cpp.i: cmake_force
@@ -100,7 +86,7 @@ CMakeFiles/Ex5.dir/User.cpp.s: cmake_force
 CMakeFiles/Ex5.dir/Movie.cpp.o: CMakeFiles/Ex5.dir/flags.make
 CMakeFiles/Ex5.dir/Movie.cpp.o: /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex5/Movie.cpp
 CMakeFiles/Ex5.dir/Movie.cpp.o: CMakeFiles/Ex5.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex5/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Ex5.dir/Movie.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex5/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Ex5.dir/Movie.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Ex5.dir/Movie.cpp.o -MF CMakeFiles/Ex5.dir/Movie.cpp.o.d -o CMakeFiles/Ex5.dir/Movie.cpp.o -c /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex5/Movie.cpp
 
 CMakeFiles/Ex5.dir/Movie.cpp.i: cmake_force
@@ -114,7 +100,7 @@ CMakeFiles/Ex5.dir/Movie.cpp.s: cmake_force
 CMakeFiles/Ex5.dir/RecommendationSystem.cpp.o: CMakeFiles/Ex5.dir/flags.make
 CMakeFiles/Ex5.dir/RecommendationSystem.cpp.o: /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex5/RecommendationSystem.cpp
 CMakeFiles/Ex5.dir/RecommendationSystem.cpp.o: CMakeFiles/Ex5.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex5/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Ex5.dir/RecommendationSystem.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex5/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Ex5.dir/RecommendationSystem.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Ex5.dir/RecommendationSystem.cpp.o -MF CMakeFiles/Ex5.dir/RecommendationSystem.cpp.o.d -o CMakeFiles/Ex5.dir/RecommendationSystem.cpp.o -c /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex5/RecommendationSystem.cpp
 
 CMakeFiles/Ex5.dir/RecommendationSystem.cpp.i: cmake_force
@@ -128,7 +114,7 @@ CMakeFiles/Ex5.dir/RecommendationSystem.cpp.s: cmake_force
 CMakeFiles/Ex5.dir/RecommendationSystemLoader.cpp.o: CMakeFiles/Ex5.dir/flags.make
 CMakeFiles/Ex5.dir/RecommendationSystemLoader.cpp.o: /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex5/RecommendationSystemLoader.cpp
 CMakeFiles/Ex5.dir/RecommendationSystemLoader.cpp.o: CMakeFiles/Ex5.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex5/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Ex5.dir/RecommendationSystemLoader.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex5/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Ex5.dir/RecommendationSystemLoader.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Ex5.dir/RecommendationSystemLoader.cpp.o -MF CMakeFiles/Ex5.dir/RecommendationSystemLoader.cpp.o.d -o CMakeFiles/Ex5.dir/RecommendationSystemLoader.cpp.o -c /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex5/RecommendationSystemLoader.cpp
 
 CMakeFiles/Ex5.dir/RecommendationSystemLoader.cpp.i: cmake_force
@@ -142,7 +128,7 @@ CMakeFiles/Ex5.dir/RecommendationSystemLoader.cpp.s: cmake_force
 CMakeFiles/Ex5.dir/UsersLoader.cpp.o: CMakeFiles/Ex5.dir/flags.make
 CMakeFiles/Ex5.dir/UsersLoader.cpp.o: /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex5/UsersLoader.cpp
 CMakeFiles/Ex5.dir/UsersLoader.cpp.o: CMakeFiles/Ex5.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex5/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Ex5.dir/UsersLoader.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex5/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Ex5.dir/UsersLoader.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Ex5.dir/UsersLoader.cpp.o -MF CMakeFiles/Ex5.dir/UsersLoader.cpp.o.d -o CMakeFiles/Ex5.dir/UsersLoader.cpp.o -c /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex5/UsersLoader.cpp
 
 CMakeFiles/Ex5.dir/UsersLoader.cpp.i: cmake_force
@@ -153,24 +139,38 @@ CMakeFiles/Ex5.dir/UsersLoader.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Ex5.dir/UsersLoader.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex5/UsersLoader.cpp -o CMakeFiles/Ex5.dir/UsersLoader.cpp.s
 
+CMakeFiles/Ex5.dir/presubmit.cpp.o: CMakeFiles/Ex5.dir/flags.make
+CMakeFiles/Ex5.dir/presubmit.cpp.o: /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex5/presubmit.cpp
+CMakeFiles/Ex5.dir/presubmit.cpp.o: CMakeFiles/Ex5.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex5/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Ex5.dir/presubmit.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Ex5.dir/presubmit.cpp.o -MF CMakeFiles/Ex5.dir/presubmit.cpp.o.d -o CMakeFiles/Ex5.dir/presubmit.cpp.o -c /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex5/presubmit.cpp
+
+CMakeFiles/Ex5.dir/presubmit.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Ex5.dir/presubmit.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex5/presubmit.cpp > CMakeFiles/Ex5.dir/presubmit.cpp.i
+
+CMakeFiles/Ex5.dir/presubmit.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Ex5.dir/presubmit.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex5/presubmit.cpp -o CMakeFiles/Ex5.dir/presubmit.cpp.s
+
 # Object files for target Ex5
 Ex5_OBJECTS = \
-"CMakeFiles/Ex5.dir/main.cpp.o" \
 "CMakeFiles/Ex5.dir/User.cpp.o" \
 "CMakeFiles/Ex5.dir/Movie.cpp.o" \
 "CMakeFiles/Ex5.dir/RecommendationSystem.cpp.o" \
 "CMakeFiles/Ex5.dir/RecommendationSystemLoader.cpp.o" \
-"CMakeFiles/Ex5.dir/UsersLoader.cpp.o"
+"CMakeFiles/Ex5.dir/UsersLoader.cpp.o" \
+"CMakeFiles/Ex5.dir/presubmit.cpp.o"
 
 # External object files for target Ex5
 Ex5_EXTERNAL_OBJECTS =
 
-Ex5: CMakeFiles/Ex5.dir/main.cpp.o
 Ex5: CMakeFiles/Ex5.dir/User.cpp.o
 Ex5: CMakeFiles/Ex5.dir/Movie.cpp.o
 Ex5: CMakeFiles/Ex5.dir/RecommendationSystem.cpp.o
 Ex5: CMakeFiles/Ex5.dir/RecommendationSystemLoader.cpp.o
 Ex5: CMakeFiles/Ex5.dir/UsersLoader.cpp.o
+Ex5: CMakeFiles/Ex5.dir/presubmit.cpp.o
 Ex5: CMakeFiles/Ex5.dir/build.make
 Ex5: CMakeFiles/Ex5.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex5/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable Ex5"

@@ -7,7 +7,7 @@
 
 
 
-SOURCE_DIR = ../ex5v01
+SOURCE_DIR = .
 SOURCE_FILES = $(SOURCE_DIR)/Movie.cpp \
                $(SOURCE_DIR)/RecommendationSystem.cpp \
                $(SOURCE_DIR)/RecommendationSystemLoader.cpp \
@@ -39,46 +39,46 @@ clean:
 
 run_basic_tests: runTest_1 runTest_2 runTest_3 runTest_4 runTestComparison_1 runTestComparison_2 runTestComparison_3 runTestComparison_4 runPresubmit
 
-runTest_1: $(OBJ_FILES) Basic_tests/Test_1.cpp
-	g++ $(GCC_FLAGS) $(OBJ_FILES) Basic_tests/Test_1.cpp -I$(SOURCE_DIR) -o runTest_1
+runTest_1: $(OBJ_FILES) Tests/Basic_tests
+	g++ $(GCC_FLAGS) $(OBJ_FILES) Tests/Basic_tests/Test_1.cpp -I$(SOURCE_DIR) -o runTest_1
 	./runTest_1
 
-runTest_2: $(OBJ_FILES) Basic_tests/Test_2.cpp
-	g++ $(GCC_FLAGS) $(OBJ_FILES) Basic_tests/Test_2.cpp -I$(SOURCE_DIR) -o runTest_2
+runTest_2: $(OBJ_FILES) Tests/Basic_tests
+	g++ $(GCC_FLAGS) $(OBJ_FILES) Tests/Basic_tests/Test_2.cpp -I$(SOURCE_DIR) -o runTest_2
 	./runTest_2
 
-runTest_3: $(OBJ_FILES) Basic_tests/Test_3.cpp
-	g++ $(GCC_FLAGS) $(OBJ_FILES) Basic_tests/Test_3.cpp -I$(SOURCE_DIR) -o runTest_3
+runTest_3: $(OBJ_FILES) Tests/Basic_tests
+	g++ $(GCC_FLAGS) $(OBJ_FILES) Tests/Basic_tests/Test_3.cpp -I$(SOURCE_DIR) -o runTest_3
 	./runTest_3
 
-runTest_4: $(OBJ_FILES) Basic_tests/Test_4.cpp
-	g++ $(GCC_FLAGS) $(OBJ_FILES) Basic_tests/Test_4.cpp -I$(SOURCE_DIR) -o runTest_4
+runTest_4: $(OBJ_FILES) Tests/Basic_tests
+	g++ $(GCC_FLAGS) $(OBJ_FILES) Tests/Basic_tests/Test_4.cpp -I$(SOURCE_DIR) -o runTest_4
 	./runTest_4
 
 #run the program and save the output to a file
-runTestComparison_1: $(OBJ_FILES) ../TestComparison_1.cpp
-	g++ $(GCC_FLAGS) $(OBJ_FILES) Basic_tests/TestComparison_1.cpp -I$(SOURCE_DIR) -o runTestComparison_1
+runTestComparison_1: $(OBJ_FILES) Tests/Basic_tests
+	g++ $(GCC_FLAGS) $(OBJ_FILES) Tests/Basic_tests/TestComparison_1.cpp -I$(SOURCE_DIR) -o runTestComparison_1
 	./runTestComparison_1 > test_1.out
 
 #use diff to compare the output of the program to the expected output, if the files are identical, diff will not print anything
-runTestComparison_2: $(OBJ_FILES) ../TestComparison_2.cpp
-	g++ $(GCC_FLAGS) $(OBJ_FILES) Basic_tests/TestComparison_2.cpp -I$(SOURCE_DIR) -o runTestComparison_2
+runTestComparison_2: $(OBJ_FILES) Tests/Basic_tests
+	g++ $(GCC_FLAGS) $(OBJ_FILES) Tests/Basic_tests/TestComparison_2.cpp -I$(SOURCE_DIR) -o runTestComparison_2
 	./runTestComparison_2 > test_2.out
-	diff test_2.out Basic_tests/TestComparison_2.stdout
+	diff test_2.out Tests/Basic_tests/TestComparison_2.stdout
 
-runTestComparison_3: $(OBJ_FILES) Basic_tests/TestComparison_3.cpp
-	g++ $(GCC_FLAGS) $(OBJ_FILES) Basic_tests/TestComparison_3.cpp -I$(SOURCE_DIR) -o runTestComparison_3
+runTestComparison_3: $(OBJ_FILES) Tests/Basic_tests
+	g++ $(GCC_FLAGS) $(OBJ_FILES) Tests/Basic_tests/TestComparison_3.cpp -I$(SOURCE_DIR) -o runTestComparison_3
 	./runTestComparison_3
 
 #run the program with valgrind to check for memory leaks
 #instead of writing the valgrind command every time, we can define a variable for it
-runTestComparison_4: $(OBJ_FILES) Basic_tests/TestComparison_4.cpp
-	g++ $(GCC_FLAGS) $(OBJ_FILES) Basic_tests/TestComparison_4.cpp -I$(SOURCE_DIR) -o runTestComparison_4
+runTestComparison_4: $(OBJ_FILES) Tests/Basic_tests
+	g++ $(GCC_FLAGS) $(OBJ_FILES) Tests/Basic_tests/TestComparison_4.cpp -I$(SOURCE_DIR) -o runTestComparison_4
 	$(VALGRIND_CMD) ./runTestComparison_4
 
 
-runPresubmit: $(OBJ_FILES) ../presubmit.cpp
-	g++ $(GCC_FLAGS) $(OBJ_FILES) Basic_tests/presubmit.cpp -I$(SOURCE_DIR) -o runPresubmit
+runPresubmit: $(OBJ_FILES) Tests/Basic_tests/presubmit.cpp
+	g++ $(GCC_FLAGS) $(OBJ_FILES) Tests/Basic_tests/presubmit.cpp -I$(SOURCE_DIR) -o runPresubmit
 	$(VALGRIND_CMD) ./runPresubmit
 
 
@@ -90,69 +90,69 @@ run_advanced_tests: runTestComparison_5 runTestComparison_6 runTestComparison_7 
                runTestComparison_11 runTestComparison_12 runTestComparison_13 runTestComparison_14 runTestComparison_15 runTestComparison_16 \
                runTestComparison_17 runTestComparison_18 runTestComparison_19
 
-runTestComparison_5: $(OBJ_FILES) Advanced_tests/TestComparison_5.cpp
-	g++ $(GCC_FLAGS) $(OBJ_FILES) Advanced_tests/TestComparison_5.cpp -I$(SOURCE_DIR) -o runTestComparison_5
+runTestComparison_5: $(OBJ_FILES) Tests/Advanced_tests/TestComparison_5.cpp
+	g++ $(GCC_FLAGS) $(OBJ_FILES) Tests/Advanced_tests/TestComparison_5.cpp -I$(SOURCE_DIR) -o runTestComparison_5
 	./runTestComparison_5
 
-runTestComparison_6: $(OBJ_FILES) Advanced_tests/TestComparison_6.cpp
-	g++ $(GCC_FLAGS) $(OBJ_FILES) Advanced_tests/TestComparison_6.cpp -I$(SOURCE_DIR) -o runTestComparison_6
+runTestComparison_6: $(OBJ_FILES) Tests/Advanced_tests/TestComparison_6.cpp
+	g++ $(GCC_FLAGS) $(OBJ_FILES) Tests/Advanced_tests/TestComparison_6.cpp -I$(SOURCE_DIR) -o runTestComparison_6
 	./runTestComparison_6
 
-runTestComparison_7: $(OBJ_FILES) Advanced_tests/TestComparison_7.cpp
-	g++ $(GCC_FLAGS) $(OBJ_FILES) Advanced_tests/TestComparison_7.cpp -I$(SOURCE_DIR) -o runTestComparison_7
+runTestComparison_7: $(OBJ_FILES) Tests/Advanced_tests/TestComparison_7.cpp
+	g++ $(GCC_FLAGS) $(OBJ_FILES) Tests/Advanced_tests/TestComparison_7.cpp -I$(SOURCE_DIR) -o runTestComparison_7
 	./runTestComparison_7
 
-runTestComparison_8: $(OBJ_FILES) Advanced_tests/TestComparison_8.cpp
-	g++ $(GCC_FLAGS) $(OBJ_FILES) Advanced_tests/TestComparison_8.cpp -I$(SOURCE_DIR) -o runTestComparison_8
+runTestComparison_8: $(OBJ_FILES) Tests/Advanced_tests/TestComparison_8.cpp
+	g++ $(GCC_FLAGS) $(OBJ_FILES) Tests/Advanced_tests/TestComparison_8.cpp -I$(SOURCE_DIR) -o runTestComparison_8
 	./runTestComparison_8 > test_8.out
 	diff test_8.out Advanced_tests/TestComparison_8.stdout
 
-runTestComparison_9: $(OBJ_FILES) Advanced_tests/TestComparison_9.cpp
+runTestComparison_9: $(OBJ_FILES) Tests/Advanced_tests/TestComparison_9.cpp
 	g++ $(GCC_FLAGS) $(OBJ_FILES) Advanced_tests/TestComparison_9.cpp -I$(SOURCE_DIR) -o runTestComparison_9
 	./runTestComparison_9 > test_9.out
 	diff test_9.out Advanced_tests/TestComparison_9.stdout
 
-runTestComparison_10: $(OBJ_FILES) Advanced_tests/TestComparison_10.cpp
+runTestComparison_10: $(OBJ_FILES) Tests/Advanced_tests/TestComparison_10.cpp
 	g++ $(GCC_FLAGS) $(OBJ_FILES) Advanced_tests/TestComparison_10.cpp -I$(SOURCE_DIR) -o runTestComparison_10
 	./runTestComparison_10 > test_10.out
 	diff test_10.out Advanced_tests/TestComparison_10.stdout
 
-runTestComparison_11: $(OBJ_FILES) Advanced_tests/TestComparison_11.cpp
+runTestComparison_11: $(OBJ_FILES) Tests/Advanced_tests/TestComparison_11.cpp
 	g++ $(GCC_FLAGS) $(OBJ_FILES) Advanced_tests/TestComparison_11.cpp -I$(SOURCE_DIR) -o runTestComparison_11
 	./runTestComparison_11
 
-runTestComparison_12: $(OBJ_FILES) Advanced_tests/TestComparison_12.cpp
+runTestComparison_12: $(OBJ_FILES) Tests/Advanced_tests/TestComparison_12.cpp
 	g++ $(GCC_FLAGS) $(OBJ_FILES) Advanced_tests/TestComparison_12.cpp -I$(SOURCE_DIR) -o runTestComparison_12
 	./runTestComparison_12 > test_12.out
 	diff test_12.out Advanced_tests/TestComparison_12.stdout
 
-runTestComparison_13: $(OBJ_FILES) Advanced_tests/TestComparison_13.cpp
+runTestComparison_13: $(OBJ_FILES) Tests/Advanced_tests/TestComparison_13.cpp
 	g++ $(GCC_FLAGS) $(OBJ_FILES) Advanced_tests/TestComparison_13.cpp -I$(SOURCE_DIR) -o runTestComparison_13
 	./runTestComparison_13 > test_13.out
 	diff test_13.out Advanced_tests/TestComparison_13.stdout
 
-runTestComparison_14: $(OBJ_FILES) Advanced_tests/TestComparison_14.cpp
+runTestComparison_14: $(OBJ_FILES) Tests/Advanced_tests/TestComparison_14.cpp
 	g++ $(GCC_FLAGS) $(OBJ_FILES) Advanced_tests/TestComparison_14.cpp -I$(SOURCE_DIR) -o runTestComparison_14
 	$(VALGRIND_CMD) ./runTestComparison_14
 
-runTestComparison_15: $(OBJ_FILES) Advanced_tests/TestComparison_15.cpp
+runTestComparison_15: $(OBJ_FILES) Tests/Advanced_tests/TestComparison_15.cpp
 	g++ $(GCC_FLAGS) $(OBJ_FILES) Advanced_tests/TestComparison_15.cpp -I$(SOURCE_DIR) -o runTestComparison_15
 	./runTestComparison_15
 
-runTestComparison_16: $(OBJ_FILES) Advanced_tests/TestComparison_16.cpp
+runTestComparison_16: $(OBJ_FILES) Tests/Advanced_tests/TestComparison_16.cpp
 	g++ $(GCC_FLAGS) $(OBJ_FILES) Advanced_tests/TestComparison_16.cpp -I$(SOURCE_DIR) -o runTestComparison_16
 	./runTestComparison_16
 
-runTestComparison_17: $(OBJ_FILES) Advanced_tests/TestComparison_17.cpp
+runTestComparison_17: $(OBJ_FILES) Tests/Advanced_tests/TestComparison_17.cpp
 	g++ $(GCC_FLAGS) $(OBJ_FILES) Advanced_tests/TestComparison_17.cpp -I$(SOURCE_DIR) -o runTestComparison_17
 	./runTestComparison_17
 
-runTestComparison_18: $(OBJ_FILES) Advanced_tests/TestComparison_18.cpp
+runTestComparison_18: $(OBJ_FILES) Tests/Advanced_tests/TestComparison_18.cpp
 	g++ $(GCC_FLAGS) $(OBJ_FILES) Advanced_tests/TestComparison_18.cpp -I$(SOURCE_DIR) -o runTestComparison_18
 	./runTestComparison_18
 
-runTestComparison_19: $(OBJ_FILES) Advanced_tests/TestComparison_19.cpp
-	g++ $(GCC_FLAGS) $(OBJ_FILES) Advanced_tests/TestComparison_19.cpp -I$(SOURCE_DIR) -o runTestComparison_19
+runTestComparison_19: $(OBJ_FILES) Tests/Advanced_tests/TestComparison_19.cpp
+	g++ $(GCC_FLAGS) $(OBJ_FILES) Tests/Advanced_tests/TestComparison_19.cpp -I$(SOURCE_DIR) -o runTestComparison_19
 	./runTestComparison_19
 
 

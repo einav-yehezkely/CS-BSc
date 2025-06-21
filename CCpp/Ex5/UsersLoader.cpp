@@ -3,6 +3,7 @@
 //
 #include "UsersLoader.h"
 
+#include <cassert>
 #include <chrono>
 #include <fstream>
 #include <sstream>
@@ -56,6 +57,10 @@ std::vector<User> UsersLoader::create_users(const std::string &users_file_path, 
                     throw std::invalid_argument("Rating out of range");
                 }
                 sp_movie movie = rs->get_movie(m_info.name, m_info.year);
+                if (movie == nullptr) {
+                    std::cerr << "Error: movie " << m_info.name << " (" << m_info.year << ") not found in RS" << std::endl;
+                    throw std::runtime_error("Movie not found in RS");
+                }
                 ranks[movie] = rating;
             }
         }
