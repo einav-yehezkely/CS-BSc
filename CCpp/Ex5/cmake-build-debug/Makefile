@@ -177,6 +177,30 @@ RecommendationSystem.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex5.dir/build.make CMakeFiles/Ex5.dir/RecommendationSystem.cpp.s
 .PHONY : RecommendationSystem.cpp.s
 
+RecommendationSystemLoader.o: RecommendationSystemLoader.cpp.o
+.PHONY : RecommendationSystemLoader.o
+
+# target to build an object file
+RecommendationSystemLoader.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex5.dir/build.make CMakeFiles/Ex5.dir/RecommendationSystemLoader.cpp.o
+.PHONY : RecommendationSystemLoader.cpp.o
+
+RecommendationSystemLoader.i: RecommendationSystemLoader.cpp.i
+.PHONY : RecommendationSystemLoader.i
+
+# target to preprocess a source file
+RecommendationSystemLoader.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex5.dir/build.make CMakeFiles/Ex5.dir/RecommendationSystemLoader.cpp.i
+.PHONY : RecommendationSystemLoader.cpp.i
+
+RecommendationSystemLoader.s: RecommendationSystemLoader.cpp.s
+.PHONY : RecommendationSystemLoader.s
+
+# target to generate assembly for a file
+RecommendationSystemLoader.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex5.dir/build.make CMakeFiles/Ex5.dir/RecommendationSystemLoader.cpp.s
+.PHONY : RecommendationSystemLoader.cpp.s
+
 User.o: User.cpp.o
 .PHONY : User.o
 
@@ -200,6 +224,30 @@ User.s: User.cpp.s
 User.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex5.dir/build.make CMakeFiles/Ex5.dir/User.cpp.s
 .PHONY : User.cpp.s
+
+UsersLoader.o: UsersLoader.cpp.o
+.PHONY : UsersLoader.o
+
+# target to build an object file
+UsersLoader.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex5.dir/build.make CMakeFiles/Ex5.dir/UsersLoader.cpp.o
+.PHONY : UsersLoader.cpp.o
+
+UsersLoader.i: UsersLoader.cpp.i
+.PHONY : UsersLoader.i
+
+# target to preprocess a source file
+UsersLoader.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex5.dir/build.make CMakeFiles/Ex5.dir/UsersLoader.cpp.i
+.PHONY : UsersLoader.cpp.i
+
+UsersLoader.s: UsersLoader.cpp.s
+.PHONY : UsersLoader.s
+
+# target to generate assembly for a file
+UsersLoader.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ex5.dir/build.make CMakeFiles/Ex5.dir/UsersLoader.cpp.s
+.PHONY : UsersLoader.cpp.s
 
 main.o: main.cpp.o
 .PHONY : main.o
@@ -240,9 +288,15 @@ help:
 	@echo "... RecommendationSystem.o"
 	@echo "... RecommendationSystem.i"
 	@echo "... RecommendationSystem.s"
+	@echo "... RecommendationSystemLoader.o"
+	@echo "... RecommendationSystemLoader.i"
+	@echo "... RecommendationSystemLoader.s"
 	@echo "... User.o"
 	@echo "... User.i"
 	@echo "... User.s"
+	@echo "... UsersLoader.o"
+	@echo "... UsersLoader.i"
+	@echo "... UsersLoader.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

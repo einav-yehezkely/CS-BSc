@@ -9,6 +9,9 @@ std::unique_ptr<RecommendationSystem> RecommendationSystemLoader::create_rs_from
     auto recommendation_system = std::make_unique<RecommendationSystem>();
     using std::ifstream;
     ifstream ifs(movies_file_path);
+    if (!ifs.is_open()) {
+        throw std::runtime_error("Couldn't open file");
+    }
     std::string line;
     while (std::getline(ifs, line)) {
         // Assuming the line format is "MovieName(Year) feature1 feature2 ... featureN"

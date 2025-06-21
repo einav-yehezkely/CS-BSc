@@ -6,7 +6,7 @@ class RecommendationSystemLoader {
 public:
     RecommendationSystemLoader() = delete;
 
-    std::unique_ptr<RecommendationSystem> create_rs_from_movies(const std::string& movies_file_path);
+    static std::unique_ptr<RecommendationSystem> create_rs_from_movies(const std::string& movies_file_path);
 };
 
 #endif // RECOMMENDATIONSYSTEMLOADER_H

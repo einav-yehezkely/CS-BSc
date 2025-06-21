@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="CMakePresetLoader"><![CDATA[{
+  "useNewFormat": true
+}]]></component>
+  <component name="CMakeProjectFlavorService">
+    <option name="flavorId" value="CMakePlainProjectFlavor" />
+  </component>
+  <component name="CMakeReloadState">
+    <option name="reloaded" value="true" />
+  </component>
+  <component name="CMakeRunConfigurationManager">
+    <generated>
+      <config projectName="Ex5" targetName="Ex5" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f99f9ef7-f93b-42d9-9cd9-2349b3069716" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/UsersLoader.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/cmake-build-debug/.cmake/api/v1/reply/index-2025-05-06T15-50-46-0677.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/cmake-build-debug/CMakeFiles/Ex3_A.dir/compiler_depend.internal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/cmake-build-debug/CMakeFiles/Ex3_A.dir/compiler_depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/../Ex3/cmake-build-debug/CMakeFiles/Ex3_A.dir/compiler_depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Ex3/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/../Ex3/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RecommendationSystemLoader.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/RecommendationSystemLoader.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RecommendationSystemLoader.h" beforeDir="false" afterPath="$PROJECT_DIR$/RecommendationSystemLoader.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/DESCRIPTION" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/SOURCE_PATH.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_10.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_10.in_m" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_10.in_u" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_10.stdout" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_11.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_11.in_m1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_11.in_m2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_11.in_m3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_11.in_u1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_11.in_u2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_11.in_u3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_12.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_12.in_m" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_12.stdout" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_13.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_13.in_u" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_13.stdout" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_14.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_14.in_u" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_15.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_15.in_m" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_16.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_16.in_m" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_16.in_u" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_17.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_18.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_19.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_19.in_m" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_19.in_u" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_5.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_5.in_m" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_5.in_u" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_6.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_6.in_m" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_6.in_u" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_7.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_7.in_m" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_7.in_u" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_8.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_8.in_m" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_8.in_u" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_8.stdout" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_9.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_9.in_m" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_9.in_u" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Advanced_tests/TestComparison_9.stdout" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Basic_tests/DESCRIPTION" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Basic_tests/SOURCE_PATH.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Basic_tests/TestComparison_1.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Basic_tests/TestComparison_1.stdout" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Basic_tests/TestComparison_2.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Basic_tests/TestComparison_2.stdout" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Basic_tests/TestComparison_3.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Basic_tests/TestComparison_3.stdout" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Basic_tests/TestComparison_4.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Basic_tests/TestComparison_4.in_m" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Basic_tests/TestComparison_4.in_u" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Basic_tests/Test_1.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Basic_tests/Test_2.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Basic_tests/Test_3.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Basic_tests/Test_4.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Basic_tests/presubmit.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Basic_tests/presubmit.in_m" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Basic_tests/presubmit.in_u" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/DESCRIPTION" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UsersLoader.h" beforeDir="false" afterPath="$PROJECT_DIR$/UsersLoader.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-6eed808d2868587e22f6.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-1cc7459ba120da89568e.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2025-06-20T11-52-30-0456.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-Ex5-Debug-8b79406fb792aa454199.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.28.3/CMakeSystem.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.28.3/CMakeSystem.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeConfigureLog.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeConfigureLog.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/Movie.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/Movie.cpp.o.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/RecommendationSystem.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/RecommendationSystem.cpp.o.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/User.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/User.cpp.o.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/cmake_clean.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/compiler_depend.internal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/compiler_depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/compiler_depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/main.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/main.cpp.o.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Ex5.dir/progress.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Ex5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "einav-yehezkely"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/einav-yehezkely/CS-BSc.git",
+    "accountId": "74f6f270-a8b0-4ec8-92e2-f2d35bf85580"
+  }
+}]]></component>
+  <component name="ProjectApplicationVersion">
+    <option name="ide" value="CLion" />
+    <option name="majorVersion" value="2025" />
+    <option name="minorVersion" value="1" />
+    <option name="productBranch" value="Classic" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 0
+}]]></component>
+  <component name="ProjectId" id="2yoTK4Lh5xNV1rpg4Tq5OSJ9ADV" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.RadMigrateCodeStyle": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "RunOnceActivity.west.config.association.type.startup.service": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "CPPToolchains",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Ex5" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Ex5" TARGET_NAME="Ex5" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Ex5" RUN_TARGET_NAME="Ex5">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f99f9ef7-f93b-42d9-9cd9-2349b3069716" name="Changes" comment="" />
+      <created>1742646388096</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1742646388096</updated>
+      <workItem from="1742646389959" duration="79000" />
+      <workItem from="1750499860236" duration="303000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

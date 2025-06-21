@@ -10,7 +10,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex5/Movie.cpp" "CMakeFiles/Ex5.dir/Movie.cpp.o" "gcc" "CMakeFiles/Ex5.dir/Movie.cpp.o.d"
   "/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex5/RecommendationSystem.cpp" "CMakeFiles/Ex5.dir/RecommendationSystem.cpp.o" "gcc" "CMakeFiles/Ex5.dir/RecommendationSystem.cpp.o.d"
+  "/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex5/RecommendationSystemLoader.cpp" "CMakeFiles/Ex5.dir/RecommendationSystemLoader.cpp.o" "gcc" "CMakeFiles/Ex5.dir/RecommendationSystemLoader.cpp.o.d"
   "/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex5/User.cpp" "CMakeFiles/Ex5.dir/User.cpp.o" "gcc" "CMakeFiles/Ex5.dir/User.cpp.o.d"
+  "/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex5/UsersLoader.cpp" "CMakeFiles/Ex5.dir/UsersLoader.cpp.o" "gcc" "CMakeFiles/Ex5.dir/UsersLoader.cpp.o.d"
   "/mnt/c/Users/einav/clone_here/CS-BSc/CCpp/Ex5/main.cpp" "CMakeFiles/Ex5.dir/main.cpp.o" "gcc" "CMakeFiles/Ex5.dir/main.cpp.o.d"
   )
 

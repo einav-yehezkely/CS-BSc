@@ -1,6 +1,0 @@
-Below are the tests you must pass (see the exercise instructions for details).
-
-Attached is a sample Makefile that demonstrates how to run the tests without having to copy your code files to the test directory. If the return value of a program is not 0, the make will stop runinig.
-The makefile also demonstrates running the tests in different ways, such as valgrind or using diff.
-You are welcome to review the Makefile and modify it to run them differently.
-In the `SOURCE_DIR` variable, you must specify the path to your code directory, either as an absolute path or relative to the location of the Makefile.

@@ -9,4 +9,6 @@ add_executable(Ex5 main.cpp
         RecommendationSystem.h
         User.cpp
         Movie.cpp
-        RecommendationSystem.cpp)
+        RecommendationSystem.cpp
+        RecommendationSystemLoader.cpp
+        UsersLoader.cpp)
