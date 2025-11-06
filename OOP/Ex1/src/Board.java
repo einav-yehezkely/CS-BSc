@@ -11,7 +11,7 @@ class Board{
         initializeBoard(size);
     }
 
-    private void initializeBoard(size){
+    private void initializeBoard(int size){
         board = new Mark[size][size];
         for (int row = 0; row < size; row++) {
             for (int col = 0; col < size; col++) {
