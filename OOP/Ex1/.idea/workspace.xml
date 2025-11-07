@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1dc7db31-d3f3-4b07-956c-fe62c5e103d2" name="Changes" comment="VoidRenderer">
-      <change afterPath="$PROJECT_DIR$/src/HumanPlayer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/NaivePlayer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SmartPlayer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/WhateverPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Board.java" afterDir="false" />
+    <list default="true" id="1dc7db31-d3f3-4b07-956c-fe62c5e103d2" name="Changes" comment="Start of Smart player">
+      <change afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SmartPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SmartPlayer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +43,8 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "onboarding.tips.debug.path": "C:/Users/einav/clone_here/CS-BSc/OOP/Ex1/src/Main.java"
+    "onboarding.tips.debug.path": "C:/Users/einav/clone_here/CS-BSc/OOP/Ex1/src/Main.java",
+    "settings.editor.selected.configurable": "com.github.copilot.settings.completions.CompletionsConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -72,11 +68,20 @@
       <option name="project" value="LOCAL" />
       <updated>1762343604261</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Start of Smart player">
+      <option name="closed" value="true" />
+      <created>1762417186009</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1762417186009</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="VoidRenderer" />
-    <option name="LAST_COMMIT_MESSAGE" value="VoidRenderer" />
+    <MESSAGE value="Start of Smart player" />
+    <option name="LAST_COMMIT_MESSAGE" value="Start of Smart player" />
   </component>
 </project>
