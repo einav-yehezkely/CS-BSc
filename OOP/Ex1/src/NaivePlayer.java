@@ -1,3 +1,9 @@
+/**
+ * A naive implementation of a Player for a Tic-Tac-Toe game.
+ * This player simply places its mark in the first available cell
+ * on the board, scanning from the top-left to the bottom-right.
+ * @author einavye
+ */
 class NaivePlayer implements Player{
     public NaivePlayer(){};
 

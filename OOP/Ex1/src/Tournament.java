@@ -1,16 +1,33 @@
+/**
+ * Tournament class to manage multiple rounds of the game between two players.
+ * @author einavye
+ */
 class Tournament{
     int rounds;
     Renderer renderer;
     Player player1;
     Player player2;
-
+    /**
+     * Constructor for Tournament
+     * @param rounds number of rounds to play
+     * @param renderer renderer to use for displaying the game
+     * @param player1 first player
+     * @param player2 second player
+     */
     public Tournament(int rounds, Renderer renderer, Player player1, Player player2){
         this.rounds = rounds;
         this.renderer = renderer;
         this.player1 = player1;
         this.player2 = player2;
     }
-
+    /**
+     * Plays the tournament with the specified board size and win streak.
+     * Alternates starting players each round and tracks wins and ties.
+     * @param size size of the game board
+     * @param winStreak number of consecutive marks needed to win
+     * @param playerName1 name of the first player
+     * @param playerName2 name of the second player
+     */
     public void playTournament(int size, int winStreak, String playerName1, String playerName2){
         int player1_wins = 0;
         int player2_wins = 0;
@@ -50,7 +67,11 @@ class Tournament{
         System.out.println("Ties: " + ties_count);
 
     }
-
+    /**
+     * Main method to run the tournament.
+     * Expects command line arguments: rounds, size, winStreak, renderTarget, playerName1, playerName2
+     * @param args command line arguments
+     */
     public static void main(String[] args){
         int rounds = Integer.parseInt(args[0]);
         int size = Integer.parseInt(args[1]);

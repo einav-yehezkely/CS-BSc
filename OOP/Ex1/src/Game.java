@@ -1,10 +1,17 @@
+/**
+ * Represents a Tic-Tac-Toe game with two players, a board, and a renderer.
+ * @author einavye
+ */
 class Game {
     Player playerX;
     Player playerO;
     Renderer renderer;
     Board board;
     int winStreak;
-
+    /**
+     * Initializes a new Game with two players and a renderer.
+     * The board is initialized to size 4x4 and winStreak to 3.
+     */
     public Game(Player playerX, Player playerO, Renderer renderer) {
         this.playerX = playerX;
         this.playerO = playerO;
@@ -12,7 +19,14 @@ class Game {
         this.board = new Board();
         this.winStreak = 3;
     }
-
+    /**
+     * Initializes a new Game with two players, a board size, winStreak, and a renderer.
+     * @param playerX Player for mark X
+     * @param playerO Player for mark O
+     * @param size Size of the board (size x size)
+     * @param winStreak Number of consecutive marks needed to win
+     * @param renderer Renderer to display the board
+     */
     public Game(Player playerX, Player playerO, int size, int winStreak, Renderer renderer) {
         this.playerX = playerX;
         this.playerO = playerO;
@@ -20,15 +34,22 @@ class Game {
         this.winStreak = winStreak;
         this.board = new Board(size);
     }
-
+    /**
+     * @return the winStreak value
+     */
     public int getWinStreak() {
         return winStreak;
     }
-
+    /**
+     * @return the size of the board
+     */
     public int getBoardSize() {
         return board.getSize();
     }
-
+    /**
+     * Runs the game until there is a winner or a tie.
+     * @return Mark.X if player X wins, Mark.O if player O wins, or Mark.BLANK for a tie
+     */
     public Mark run() {
         Mark currentMark = Mark.X;
         Mark nextMark;
@@ -68,30 +89,23 @@ class Game {
     }
 
     private boolean winCheck(int row, int col, Mark mark) {
-        /**
-         * check current row, col, diagonals for winStreak
-         */
         // check row
         if(countMarks(row, col, 0, 1, mark) >= winStreak){
-//           countMarks(row, col, 0, -1, mark) - 1 >= winStreak){
             return true;
         }
 
         // check col
         if(countMarks(row, col, 1, 0, mark) >= winStreak){
-//           countMarks(row, col, -1, 0, mark) - 1 >= winStreak){
             return true;
         }
 
         // check diagonal \
         if(countMarks(row, col, 1, 1, mark) >= winStreak){
-//           countMarks(row, col, -1, -1, mark) - 1 >= winStreak){
             return true;
         }
 
         // check diagonal /
         if(countMarks(row, col, 1, -1, mark) >= winStreak){
-//           countMarks(row, col, -1, 1, mark) - 1 >= winStreak){
             return true;
         }
 

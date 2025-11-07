@@ -1,6 +1,19 @@
+/**
+ * HumanPlayer class that implements the Player interface.
+ * This class allows a human player to input their move via the console.
+ * @author einavye
+ */
 class HumanPlayer implements Player{
+    /**
+     * Constructor for HumanPlayer
+     */
     public HumanPlayer(){}
 
+    /**
+     * Prompts the human player to input their move and updates the board accordingly.
+     * @param board the current game board
+     * @param mark the mark of the current player (X or O)
+     */
     @Override
     public void playTurn(Board board, Mark mark){
         int row;
