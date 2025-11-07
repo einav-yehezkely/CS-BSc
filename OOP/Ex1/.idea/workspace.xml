@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1dc7db31-d3f3-4b07-956c-fe62c5e103d2" name="Changes" comment="Start of Smart player">
-      <change afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
+    <list default="true" id="1dc7db31-d3f3-4b07-956c-fe62c5e103d2" name="Changes" comment="Game.java">
+      <change afterPath="$PROJECT_DIR$/src/PlayerFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/RendererFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Tournament.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SmartPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SmartPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WhateverPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/WhateverPlayer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +43,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Tournament.executor": "Run",
+    "Application.humans.executor": "Run",
+    "Application.naive smart.executor": "Run",
+    "Application.whatever smart.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
@@ -51,6 +59,37 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\einav\clone_here\CS-BSc\OOP\Ex1" />
     </key>
+  </component>
+  <component name="RunManager" selected="Application.whatever smart">
+    <configuration name="humans" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Tournament" />
+      <module name="Ex1" />
+      <option name="PROGRAM_PARAMETERS" value="3 3 3 console human human" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="naive smart" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Tournament" />
+      <module name="Ex1" />
+      <option name="PROGRAM_PARAMETERS" value="10000 4 3 void naive smart" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="whatever smart" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Tournament" />
+      <module name="Ex1" />
+      <option name="PROGRAM_PARAMETERS" value="10000 4 3 void whatever smart" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.humans" />
+      <item itemvalue="Application.naive smart" />
+      <item itemvalue="Application.whatever smart" />
+    </list>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -76,12 +115,21 @@
       <option name="project" value="LOCAL" />
       <updated>1762417186009</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Game.java">
+      <option name="closed" value="true" />
+      <created>1762516568784</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1762516568784</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="VoidRenderer" />
     <MESSAGE value="Start of Smart player" />
-    <option name="LAST_COMMIT_MESSAGE" value="Start of Smart player" />
+    <MESSAGE value="Game.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="Game.java" />
   </component>
 </project>

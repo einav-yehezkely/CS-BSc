@@ -7,9 +7,14 @@ class WhateverPlayer implements Player{
 
     @Override
     public void playTurn(Board board, Mark mark){
-        int randomRow = random.nextInt(board.getSize());
-        int randomCol = random.nextInt(board.getSize());
+        while(true){
+            int randomRow = random.nextInt(board.getSize());
+            int randomCol = random.nextInt(board.getSize());
 
-        board.putMark(mark, randomRow, randomCol);
+            if(board.putMark(mark, randomRow, randomCol)){
+                return;
+            }
+        }
+
     }
 }
