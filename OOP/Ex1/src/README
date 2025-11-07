@@ -1,0 +1,15 @@
+einavye
+213835796
+
+Strategy for Naive player -
+    Places its mark in the first available cell.
+Strategy for Smart player -
+    Plays a turn by first blocking the NaivePlayer's move at (0,1),
+    then placing its mark in the first available cell on the board.
+Strategy for Whatever player -
+    Puts a mark in a random position on the board.
+
+The advantage of designing the program so that each player class implements a shared interface
+is that it allows the Game and Tournament to treat all player types
+in the same way, regardless of their internal logic.
+It's based on polymorphism, abstraction, and encapsulation.
