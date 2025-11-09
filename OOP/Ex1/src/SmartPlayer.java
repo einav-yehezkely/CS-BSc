@@ -16,14 +16,20 @@ class SmartPlayer implements Player{
      */
     @Override
     public void playTurn(Board board, Mark mark){
-        board.putMark(mark, 0, 1); // blocks NaivePlayer
-        for(int row = 1 ; row < board.getSize() ; row++){
-            for(int col = 0 ; col < board.getSize() ; col++){
-                if (board.getMark(row, col) == Mark.BLANK){
+        if(board.putMark(mark, 0, 1)){
+            return;
+        } // blocks NaivePlayer
+
+        // fill from bottom-left upward diagonally
+        for (int sum = 0; sum <= 2 * (board.getSize() - 1); sum++) {
+            for (int row = 0; row < board.getSize(); row++) {
+                int col = sum - row;
+                if (col >= 0 && col < board.getSize() && board.getMark(row, col) == Mark.BLANK) {
                     board.putMark(mark, row, col);
                     return;
                 }
             }
         }
+
     }
 }

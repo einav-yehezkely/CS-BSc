@@ -4,20 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1dc7db31-d3f3-4b07-956c-fe62c5e103d2" name="Changes" comment="works">
-      <change beforePath="$PROJECT_DIR$/src/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HumanPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HumanPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Mark.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mark.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/NaivePlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/NaivePlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PlayerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PlayerFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Renderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Renderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RendererFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RendererFactory.java" afterDir="false" />
+    <list default="true" id="1dc7db31-d3f3-4b07-956c-fe62c5e103d2" name="Changes" comment="README">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/README" beforeDir="false" afterPath="$PROJECT_DIR$/src/README" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SmartPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SmartPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tournament.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tournament.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VoidRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VoidRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/WhateverPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/WhateverPlayer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,7 +128,23 @@
       <option name="project" value="LOCAL" />
       <updated>1762521560950</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="comments">
+      <option name="closed" value="true" />
+      <created>1762536755288</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1762536755288</updated>
+    </task>
+    <task id="LOCAL-00006" summary="README">
+      <option name="closed" value="true" />
+      <created>1762538290896</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1762538290896</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -146,6 +152,8 @@
     <MESSAGE value="Start of Smart player" />
     <MESSAGE value="Game.java" />
     <MESSAGE value="works" />
-    <option name="LAST_COMMIT_MESSAGE" value="works" />
+    <MESSAGE value="comments" />
+    <MESSAGE value="README" />
+    <option name="LAST_COMMIT_MESSAGE" value="README" />
   </component>
 </project>
