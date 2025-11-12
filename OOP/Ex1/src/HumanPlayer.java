@@ -4,9 +4,12 @@
  * @author einavye
  */
 class HumanPlayer implements Player{
-    private static final String STARTING_PROMPT =  "Player %s, type coordinates: ";
-    private static final String INVALID_POSITION_PROMPT = "Invalid mark position. Please choose a valid position: ";
-    private static final String OCCUPIED_POSITION_PROMPT = "Mark position is already occupied. Please choose a valid position: ";
+    private static final String STARTING_PROMPT =
+            "Player %s, type coordinates: ";
+    private static final String INVALID_POSITION_PROMPT =
+            "Invalid mark position. Please choose a valid position: ";
+    private static final String OCCUPIED_POSITION_PROMPT =
+            "Mark position is already occupied. Please choose a valid position: ";
     /**
      * Constructor for HumanPlayer
      */
