@@ -4,6 +4,9 @@
  * @author einavye
  */
 class HumanPlayer implements Player{
+    private static final String STARTING_PROMPT =  "Player %s, type coordinates: ";
+    private static final String INVALID_POSITION_PROMPT = "Invalid mark position. Please choose a valid position: ";
+    private static final String OCCUPIED_POSITION_PROMPT = "Mark position is already occupied. Please choose a valid position: ";
     /**
      * Constructor for HumanPlayer
      */
@@ -18,19 +21,19 @@ class HumanPlayer implements Player{
     public void playTurn(Board board, Mark mark){
         int row;
         int col;
-        System.out.printf("Player %s, type coordinates: ", mark.toString());
+        System.out.printf(STARTING_PROMPT, mark.toString());
         while(true){
             int input = KeyboardInput.readInt();
             row = input / 10;
             col = input % 10;
 
             if(row < 0 || row > board.getSize() - 1 || col < 0 || col > board.getSize() - 1){
-                System.out.println("Invalid mark position. Please choose a valid position: ");
+                System.out.println(INVALID_POSITION_PROMPT);
                 continue;
             }
 
             if(board.getMark(row, col) != Mark.BLANK){
-                System.out.println("Mark position is already occupied. Please choose a valid position: ");
+                System.out.println(OCCUPIED_POSITION_PROMPT);
                 continue;
             }
 
