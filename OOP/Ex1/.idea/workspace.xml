@@ -4,10 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1dc7db31-d3f3-4b07-956c-fe62c5e103d2" name="Changes" comment="fixed smart player">
+    <list default="true" id="1dc7db31-d3f3-4b07-956c-fe62c5e103d2" name="Changes" comment="line length">
+      <change afterPath="$PROJECT_DIR$/../Ex2/src/bricker/main/BrickerGameManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Ex1/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Ex1/.idea/copilot.data.migration.agent.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Ex1/.idea/copilot.data.migration.ask.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Ex1/.idea/copilot.data.migration.ask2agent.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Ex1/.idea/copilot.data.migration.edit.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Ex1/.idea/intellij-javadocs-4.0.1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Ex1/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Ex1/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Ex1/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Ex1/Board.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Ex1/ConsoleRenderer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Ex1/KeyboardInput.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Ex1/Mark.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Ex1/Renderer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Ex1/VoidRenderer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Ex1/ex1_instructions.pdf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ex1.zip" beforeDir="false" afterPath="$PROJECT_DIR$/ex1.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HumanPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HumanPlayer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +66,9 @@
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/einav/clone_here/CS-BSc/OOP/Ex1/src/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;com.github.copilot.settings.completions.CompletionsConfigurable&quot;
   }
 }</component>
@@ -78,7 +97,7 @@
     <configuration name="whatever smart" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Tournament" />
       <module name="Ex1" />
-      <option name="PROGRAM_PARAMETERS" value="10000 4 3 void whatever smart" />
+      <option name="PROGRAM_PARAMETERS" value="10000 7 3 void whatever smart" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -153,7 +172,23 @@
       <option name="project" value="LOCAL" />
       <updated>1762680530329</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="constants">
+      <option name="closed" value="true" />
+      <created>1762946416816</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1762946416816</updated>
+    </task>
+    <task id="LOCAL-00009" summary="line length">
+      <option name="closed" value="true" />
+      <created>1762946538076</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1762946538076</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -164,6 +199,8 @@
     <MESSAGE value="comments" />
     <MESSAGE value="README" />
     <MESSAGE value="fixed smart player" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed smart player" />
+    <MESSAGE value="constants" />
+    <MESSAGE value="line length" />
+    <option name="LAST_COMMIT_MESSAGE" value="line length" />
   </component>
 </project>
