@@ -16,10 +16,6 @@ public class Brick extends GameObject {
 
     @Override
     public void onCollisionEnter(GameObject other, Collision collision) {
-        // Ignore wall collisions
-        if(other.getTag().equals("wall")){
-            return;
-        }
         strategy.onCollision(this, other);
     }
 }
