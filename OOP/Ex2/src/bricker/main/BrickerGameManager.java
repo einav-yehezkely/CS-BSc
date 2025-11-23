@@ -1,6 +1,9 @@
 package bricker.main;
 
+import bricker.brick_strategies.BasicCollisionStrategy;
+import bricker.brick_strategies.CollisionStrategy;
 import bricker.gameobjects.Ball;
+import bricker.gameobjects.Brick;
 import bricker.gameobjects.Paddle;
 import danogl.GameManager;
 import danogl.GameObject;
@@ -12,13 +15,14 @@ import danogl.gui.rendering.Renderable;
 import danogl.util.Vector2;
 
 import java.awt.*;
+import java.util.Random;
 
 public class BrickerGameManager extends GameManager {
     private static final String WINDOW_TITLE = "Bricker";
     private static final Vector2 WINDOW_DIMENSIONS = new Vector2(700, 500);
     private static final Vector2 BALL_DIMENSIONS = new Vector2(20, 20);
     private static final Vector2 PADDLE_DIMENSIONS = new Vector2(100, 15);
-    private static final Vector2 BALL_INITIAL_VELOCITY = Vector2.DOWN.mult(150);
+    private static final float BALL_INITIAL_VELOCITY = 200;
     private static final Vector2 PADDLE_STARTING_POSITION =
             new Vector2(WINDOW_DIMENSIONS.x() / 2, WINDOW_DIMENSIONS.y() - 30);
     private static final Vector2 BALL_STARTING_POSITION =
@@ -48,9 +52,19 @@ public class BrickerGameManager extends GameManager {
         GameObject ball =
                 new Ball(Vector2.ZERO, BALL_DIMENSIONS, ballImage, collisionSound);
 
-        ball.setVelocity(BALL_INITIAL_VELOCITY);
         ball.setCenter(BALL_STARTING_POSITION);
         gameObjects().addGameObject(ball);
+
+        float ballVelocityX = BALL_INITIAL_VELOCITY;
+        float ballVelocityY = BALL_INITIAL_VELOCITY;
+        Random rand = new Random();
+        if (rand.nextBoolean()) {
+            ballVelocityX *= -1;
+        }
+        if (rand.nextBoolean()){
+            ballVelocityY *= -1;
+        }
+        ball.setVelocity(new Vector2(ballVelocityX, ballVelocityY));
 
         // create a paddle game object
         Renderable paddleImage =
@@ -64,6 +78,14 @@ public class BrickerGameManager extends GameManager {
         gameObjects().addGameObject(paddle);
 
         setWalls();
+
+        // create bricks
+        CollisionStrategy strategy = new BasicCollisionStrategy(gameObjects());
+        Renderable brickImage =
+                imageReader.readImage("assets/brick.png", false);
+        GameObject brick =
+                new Brick(Vector2.ZERO, new Vector2(WINDOW_DIMENSIONS.x(), 15), brickImage, 0, 0, strategy);
+        gameObjects().addGameObject(brick);
     }
 
     private void setWalls(){
@@ -82,6 +104,9 @@ public class BrickerGameManager extends GameManager {
                 new Vector2(WALL_THICKNESS, WINDOW_DIMENSIONS.y()),
                 wallRenderable);
 
+        topWall.setTag("wall");
+        leftWall.setTag("wall");
+        rightWall.setTag("wall");
         gameObjects().addGameObject(topWall);
         gameObjects().addGameObject(leftWall);
         gameObjects().addGameObject(rightWall);

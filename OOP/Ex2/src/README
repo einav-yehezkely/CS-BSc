@@ -1,2 +1,22 @@
 I changed the constructor of Puddle to accept an additional parameter for window dimensions,
 in order to stop the puddle from exceeding the window boundaries.
+
+Design explanation for removing the bricks when the ball hits them:
+I chose to pass the object returned by gameObjects() into the constructor of
+BasicCollisionStrategy, and save it as a member variable. This way,
+when a collision is detected between the ball and a brick,
+the BasicCollisionStrategy can directly access and modify
+the collection of game objects to remove the brick.
+Advantages of this approach include:
+1. Encapsulation: The collision strategy is responsible for handling the consequences of collisions
+2. Strategies can be reused or replaced at runtime without modifying the manager.
+3. Easy to add new strategy types later without changing existing code
+    (“open for extension, closed for modification”).
+4. Abstraction: The game manager does not need to know the details of how collisions are handled.
+    "What", not "how".
+Disadvantages:
+1. BasicCollisionStrategy becomes directly dependent on the object returned by gameObjects().
+2. If the internal implementation of gameObjects() ever changes, strategies must be updated.
+This approach provides a clean and flexible design that aligns well with the Strategy pattern.
+It ensures that the brick's behavior on collision is entirely determined by its strategy,
+while keeping the game manager focused solely on creating and organizing game objects.
