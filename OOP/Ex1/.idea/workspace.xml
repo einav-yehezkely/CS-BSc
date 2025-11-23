@@ -5,25 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1dc7db31-d3f3-4b07-956c-fe62c5e103d2" name="Changes" comment="line length">
-      <change afterPath="$PROJECT_DIR$/../Ex2/src/bricker/main/BrickerGameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Ex1/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Ex1/.idea/copilot.data.migration.agent.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Ex1/.idea/copilot.data.migration.ask.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Ex1/.idea/copilot.data.migration.ask2agent.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Ex1/.idea/copilot.data.migration.edit.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Ex1/.idea/intellij-javadocs-4.0.1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Ex1/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Ex1/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Ex1/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Ex1/Board.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Ex1/ConsoleRenderer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Ex1/KeyboardInput.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Ex1/Mark.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Ex1/Renderer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Ex1/VoidRenderer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Ex1/ex1_instructions.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ex1.zip" beforeDir="false" afterPath="$PROJECT_DIR$/ex1.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Ex2/src/bricker/gameobjects/Ball.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Ex2/src/bricker/gameobjects/Paddle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex2/src/bricker/main/BrickerGameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Ex2/src/bricker/main/BrickerGameManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

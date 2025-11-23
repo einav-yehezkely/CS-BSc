@@ -1,0 +1,2 @@
+I changed the constructor of Puddle to accept an additional parameter for window dimensions,
+in order to stop the puddle from exceeding the window boundaries.
