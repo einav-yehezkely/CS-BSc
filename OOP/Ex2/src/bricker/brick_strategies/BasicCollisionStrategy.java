@@ -2,6 +2,7 @@ package bricker.brick_strategies;
 
 import danogl.GameObject;
 import danogl.collisions.GameObjectCollection;
+import danogl.collisions.Layer;
 
 public class BasicCollisionStrategy implements CollisionStrategy{
 
@@ -13,6 +14,6 @@ public class BasicCollisionStrategy implements CollisionStrategy{
 
     @Override
     public void onCollision(GameObject obj0, GameObject obj1) {
-        gameObjects.removeGameObject(obj0);
+        gameObjects.removeGameObject(obj0, Layer.STATIC_OBJECTS);
     }
 }
