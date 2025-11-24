@@ -2,10 +2,7 @@ package bricker.main;
 
 import bricker.brick_strategies.BasicCollisionStrategy;
 import bricker.brick_strategies.CollisionStrategy;
-import bricker.gameobjects.Ball;
-import bricker.gameobjects.Brick;
-import bricker.gameobjects.GraphicLives;
-import bricker.gameobjects.Paddle;
+import bricker.gameobjects.*;
 import danogl.GameManager;
 import danogl.GameObject;
 import danogl.collisions.Layer;
@@ -47,7 +44,7 @@ public class BrickerGameManager extends GameManager {
     private WindowController windowController;
     private int lives;
     private GraphicLives graphicLives;
-    private TextRenderable txt;
+    private NumericLives numericLives;
     private Counter brickCounter;
 
     public BrickerGameManager(String windowTitle, Vector2 windowDimensions) {
@@ -117,16 +114,8 @@ public class BrickerGameManager extends GameManager {
 
 
         // create numerical lives display
-        txt = new TextRenderable(("" + lives));
-        txt.setColor(Color.GREEN);
-        GameObject livesText = new GameObject(
-                new Vector2(
-                        WALL_THICKNESS * 2,
-                        WINDOW_DIMENSIONS.y() - TEXT_DIMENSIONS.y() - HEART_DIMENSIONS.y() - 20),
-                TEXT_DIMENSIONS,
-                txt
-        );
-        gameObjects().addGameObject(livesText, Layer.UI);
+        numericLives = new NumericLives(gameObjects(), WINDOW_DIMENSIONS, INITIAL_LIVES,
+                WALL_THICKNESS, TEXT_DIMENSIONS, HEART_DIMENSIONS);
     }
 
     private void resetBall(){
@@ -204,13 +193,7 @@ public class BrickerGameManager extends GameManager {
         if(ballHeight > WINDOW_DIMENSIONS.y()){
             lives--;
             graphicLives.loseLife(lives);
-            txt.setString("" + lives);
-            if(lives == 2){
-                txt.setColor(Color.YELLOW);
-            }
-            if(lives == 1){
-                txt.setColor(Color.RED);
-            }
+            numericLives.updateLives(lives);
             if(lives > 0){
                 resetBall();
             }

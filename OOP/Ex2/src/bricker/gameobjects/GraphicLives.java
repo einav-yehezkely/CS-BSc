@@ -9,25 +9,25 @@ import danogl.util.Vector2;
 
 
 public class GraphicLives {
-    private final GameObjectCollection gameObjects;
+    private GameObjectCollection gameObjects;
     private GameObject[] hearts;
 
     public GraphicLives(GameObjectCollection gameObjects,
                         ImageReader imageReader,
-                        Vector2 window_dimensions,
-                        int initial_lives,
-                        int wall_thickness,
-                        Vector2 heart_dimensions) {
+                        Vector2 windowDimensions,
+                        int initialLives,
+                        int wallThickness,
+                        Vector2 heartDimensions) {
         this.gameObjects = gameObjects;
-        hearts = new GameObject[initial_lives];
+        hearts = new GameObject[initialLives];
         Renderable heartImage =
                 imageReader.readImage("assets/heart.png", true);
-        for (int i = 0; i < initial_lives; i++) {
+        for (int i = 0; i < initialLives; i++) {
             hearts[i] = new GameObject(
                     new Vector2(
-                            (wall_thickness * 2) + (i * (heart_dimensions.x() + 5)),
-                            window_dimensions.y() - heart_dimensions.y() - 10),
-                    heart_dimensions,
+                            (wallThickness * 2) + (i * (heartDimensions.x() + 5)),
+                            windowDimensions.y() - heartDimensions.y() - 10),
+                    heartDimensions,
                     heartImage
             );
             gameObjects.addGameObject(hearts[i], Layer.UI);
