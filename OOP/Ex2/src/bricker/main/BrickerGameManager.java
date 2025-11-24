@@ -13,10 +13,11 @@ import danogl.gui.*;
 import danogl.gui.rendering.RectangleRenderable;
 import danogl.gui.rendering.Renderable;
 import danogl.gui.rendering.TextRenderable;
+import danogl.util.Counter;
 import danogl.util.Vector2;
-import org.w3c.dom.Text;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.util.Random;
 
 public class BrickerGameManager extends GameManager {
@@ -41,10 +42,12 @@ public class BrickerGameManager extends GameManager {
     private int numBricks;
     private int numRows;
     private Ball ball;
+    private UserInputListener inputListener;
     private WindowController windowController;
     private int lives;
     private GameObject[] hearts;
     private TextRenderable txt;
+    private Counter brickCounter;
 
     public BrickerGameManager(String windowTitle, Vector2 windowDimensions) {
         super(windowTitle, windowDimensions);
@@ -64,10 +67,9 @@ public class BrickerGameManager extends GameManager {
             SoundReader soundReader, 
             UserInputListener inputListener, 
             WindowController windowController) {
+        this.inputListener = inputListener;
         this.windowController = windowController;
         super.initializeGame(imageReader, soundReader, inputListener, windowController);
-
-        this.lives = INITIAL_LIVES;
 
         // create background game object
         Renderable backgroundImage =
@@ -101,7 +103,8 @@ public class BrickerGameManager extends GameManager {
         setWalls();
 
         // create bricks
-        CollisionStrategy strategy = new BasicCollisionStrategy(gameObjects());
+        this.brickCounter = new Counter(numBricks * numRows);
+        CollisionStrategy strategy = new BasicCollisionStrategy(gameObjects(), brickCounter);
         Renderable brickImage =
                 imageReader.readImage("assets/brick.png", false);
         createBricks(brickImage, strategy);
@@ -120,6 +123,8 @@ public class BrickerGameManager extends GameManager {
             );
             gameObjects().addGameObject(hearts[i], Layer.UI);
         }
+        this.lives = INITIAL_LIVES;
+
 
         // create numerical lives display
         txt = new TextRenderable(("" + lives));
@@ -222,6 +227,9 @@ public class BrickerGameManager extends GameManager {
             else{
                 prompt = "You lose! Play again?";
             }
+        }
+        if(brickCounter.value() == 0 || inputListener.isKeyPressed(KeyEvent.VK_W)){
+            prompt = "You win! Play again?";
         }
         if (!prompt.isEmpty()){
             if(windowController.openYesNoDialog(prompt)){
