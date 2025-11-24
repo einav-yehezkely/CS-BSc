@@ -7,15 +7,27 @@ import danogl.gui.rendering.Renderable;
 import danogl.util.Vector2;
 
 public class Brick extends GameObject {
+    private final int row;
+    private final int col;
     CollisionStrategy strategy;
     public Brick(Vector2 topLeftCorner, Vector2 dimensions, Renderable renderable,
                  int row, int col, CollisionStrategy strategy) {
         super(topLeftCorner, dimensions, renderable);
+        this.row = row;
+        this.col = col;
         this.strategy = strategy;
     }
 
     @Override
     public void onCollisionEnter(GameObject other, Collision collision) {
         strategy.onCollision(this, other);
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public int getCol() {
+        return col;
     }
 }

@@ -4,6 +4,7 @@ import bricker.brick_strategies.BasicCollisionStrategy;
 import bricker.brick_strategies.CollisionStrategy;
 import bricker.gameobjects.Ball;
 import bricker.gameobjects.Brick;
+import bricker.gameobjects.GraphicLives;
 import bricker.gameobjects.Paddle;
 import danogl.GameManager;
 import danogl.GameObject;
@@ -45,7 +46,7 @@ public class BrickerGameManager extends GameManager {
     private UserInputListener inputListener;
     private WindowController windowController;
     private int lives;
-    private GameObject[] hearts;
+    private GraphicLives graphicLives;
     private TextRenderable txt;
     private Counter brickCounter;
 
@@ -110,19 +111,8 @@ public class BrickerGameManager extends GameManager {
         createBricks(brickImage, strategy);
 
         // create hearts display
-        hearts = new GameObject[INITIAL_LIVES];
-        Renderable heartImage =
-                imageReader.readImage("assets/heart.png", true);
-        for (int i = 0; i < INITIAL_LIVES; i++) {
-            hearts[i] = new GameObject(
-                    new Vector2(
-                            (WALL_THICKNESS * 2) + (i * (HEART_DIMENSIONS.x() + 5)),
-                            WINDOW_DIMENSIONS.y() - HEART_DIMENSIONS.y() - 10),
-                    HEART_DIMENSIONS,
-                    heartImage
-            );
-            gameObjects().addGameObject(hearts[i], Layer.UI);
-        }
+        graphicLives = new GraphicLives(gameObjects(), imageReader, WINDOW_DIMENSIONS,
+                INITIAL_LIVES, WALL_THICKNESS, HEART_DIMENSIONS);
         this.lives = INITIAL_LIVES;
 
 
@@ -213,7 +203,7 @@ public class BrickerGameManager extends GameManager {
         String prompt = "";
         if(ballHeight > WINDOW_DIMENSIONS.y()){
             lives--;
-            gameObjects().removeGameObject(hearts[lives], Layer.UI);
+            graphicLives.loseLife(lives);
             txt.setString("" + lives);
             if(lives == 2){
                 txt.setColor(Color.YELLOW);
