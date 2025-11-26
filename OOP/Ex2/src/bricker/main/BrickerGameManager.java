@@ -2,6 +2,7 @@ package bricker.main;
 
 import bricker.brick_strategies.BasicCollisionStrategy;
 import bricker.brick_strategies.CollisionStrategy;
+import bricker.brick_strategies.StrategyFactory;
 import bricker.gameobjects.*;
 import danogl.GameManager;
 import danogl.GameObject;
@@ -102,10 +103,10 @@ public class BrickerGameManager extends GameManager {
 
         // create bricks
         this.brickCounter = new Counter(numBricks * numRows);
-        CollisionStrategy strategy = new BasicCollisionStrategy(gameObjects(), brickCounter);
+        StrategyFactory factory = new StrategyFactory(gameObjects(), brickCounter, imageReader, collisionSound, BALL_DIMENSIONS);
         Renderable brickImage =
                 imageReader.readImage("assets/brick.png", false);
-        createBricks(brickImage, strategy);
+        createBricks(brickImage, factory);
 
         // create hearts display
         graphicLives = new GraphicLives(gameObjects(), imageReader, WINDOW_DIMENSIONS,
@@ -156,13 +157,14 @@ public class BrickerGameManager extends GameManager {
         gameObjects().addGameObject(rightWall);
     }
 
-    private void createBricks(Renderable brickImage, CollisionStrategy strategy){
+    private void createBricks(Renderable brickImage, StrategyFactory factory){
         float totalGapsWidth = (numBricks - 1) * GAP_BETWEEN_BRICKS;
         float brickWidth =
                 (WINDOW_DIMENSIONS.x() - 2 * WALL_THICKNESS - totalGapsWidth) / numBricks;
         float brickHeight = BRICK_HEIGHT;
         for(int row = 0; row < numRows; row++){
             for(int col = 0; col < numBricks; col++){
+                CollisionStrategy strategy = factory.generateStrategy(0);
                 GameObject brick = new Brick(
                         new Vector2(
                                 WALL_THICKNESS + col * (brickWidth + GAP_BETWEEN_BRICKS),

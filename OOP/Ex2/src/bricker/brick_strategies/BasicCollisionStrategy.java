@@ -8,7 +8,7 @@ import danogl.util.Counter;
 public class BasicCollisionStrategy implements CollisionStrategy{
 
     private GameObjectCollection gameObjects;
-    private final Counter brickCounter;
+    private Counter brickCounter;
 
     public BasicCollisionStrategy(GameObjectCollection gameObjects, Counter brickCounter) {
         this.gameObjects = gameObjects;
