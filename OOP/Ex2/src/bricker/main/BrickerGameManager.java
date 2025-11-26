@@ -87,6 +87,7 @@ public class BrickerGameManager extends GameManager {
 
         resetBall();
         gameObjects().addGameObject(ball);
+        ball.setTag("ball");
 
         // create a paddle game object
         Renderable paddleImage =
@@ -104,7 +105,8 @@ public class BrickerGameManager extends GameManager {
         // create bricks
         this.brickCounter = new Counter(numBricks * numRows);
         StrategyFactory factory = new StrategyFactory(
-                gameObjects(), brickCounter, imageReader, collisionSound, BALL_DIMENSIONS, WINDOW_DIMENSIONS
+                gameObjects(), brickCounter, imageReader, collisionSound, BALL_DIMENSIONS, WINDOW_DIMENSIONS,
+                inputListener, PADDLE_DIMENSIONS
         );
         Renderable brickImage =
                 imageReader.readImage("assets/brick.png", false);

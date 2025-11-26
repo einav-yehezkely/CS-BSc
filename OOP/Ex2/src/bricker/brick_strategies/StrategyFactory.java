@@ -1,9 +1,11 @@
 package bricker.brick_strategies;
 
+import bricker.gameobjects.ExtraPaddle;
 import danogl.collisions.GameObjectCollection;
 import danogl.gui.ImageReader;
 import danogl.gui.Sound;
 import danogl.gui.SoundReader;
+import danogl.gui.UserInputListener;
 import danogl.gui.rendering.Renderable;
 import danogl.util.Counter;
 import danogl.util.Vector2;
@@ -14,29 +16,42 @@ public class StrategyFactory {
 
     private Sound collisionSound;
     private Vector2 ballDimensions;
+    private UserInputListener inputListener;
     private GameObjectCollection gameObjects;
     private Counter brickCounter;
     private Random rand;
     private Renderable puckImage;
     private Vector2 windowDimensions;
+    private Vector2 paddleDimensions;
+    private Renderable paddleImage;
+    private ExtraPaddle globalExtraPaddle = null;
+
 
     public StrategyFactory(GameObjectCollection gameObjects, Counter brickCounter, ImageReader imageReader,
-                           Sound collisionSound, Vector2 ballDimensions, Vector2 windowDimensions) {
+                           Sound collisionSound, Vector2 ballDimensions, Vector2 windowDimensions,
+                           UserInputListener inputListener, Vector2 paddleDimensions) {
         this.collisionSound = collisionSound;
         this.ballDimensions = ballDimensions;
+        this.inputListener = inputListener;
+        this.paddleDimensions = paddleDimensions;
         this.rand = new Random();
         this.gameObjects = gameObjects;
         this.brickCounter = brickCounter;
         this.windowDimensions = windowDimensions;
         this.puckImage =
                 imageReader.readImage("assets/mockBall.png", true);
+        this.paddleImage =
+                imageReader.readImage("assets/paddle.png", true);
     }
 
     public CollisionStrategy generateStrategy(int depthOfDouble){
         float p = rand.nextFloat();
 
-        if (p<0.5f){
-            return new BasicCollisionStrategy(gameObjects, brickCounter);
+        if (p<1f){
+            return new ExtraPaddleStrategy(gameObjects, brickCounter, inputListener, windowDimensions,
+                    paddleDimensions, paddleImage, this
+            );
+//            return new BasicCollisionStrategy(gameObjects, brickCounter);
         }
 
         if(p<0.6f){
@@ -46,7 +61,10 @@ public class StrategyFactory {
         }
 
         if(p<0.7f){
-            return new ExtraPaddleStrategy();
+
+            return new ExtraPaddleStrategy(gameObjects, brickCounter, inputListener, windowDimensions,
+                    paddleDimensions, paddleImage, this
+                    );
         }
 
         if(p<0.8f){
@@ -77,7 +95,9 @@ public class StrategyFactory {
         }
 
         if(p<0.4f){
-            return new ExtraPaddleStrategy();
+            return new ExtraPaddleStrategy(gameObjects, brickCounter, inputListener, windowDimensions,
+                    paddleDimensions, paddleImage, this
+            );
         }
 
         if(p<0.6f){
@@ -108,7 +128,9 @@ public class StrategyFactory {
         }
 
         if(p<0.5f){
-            return new ExtraPaddleStrategy();
+            return new ExtraPaddleStrategy(gameObjects, brickCounter, inputListener, windowDimensions,
+                    paddleDimensions, paddleImage, this
+            );
         }
 
         if(p<0.75f){
@@ -116,5 +138,13 @@ public class StrategyFactory {
         }
 
         return new RestoreLifeStrategy();
+    }
+
+    public ExtraPaddle getGlobalExtraPaddle() {
+        return globalExtraPaddle;
+    }
+
+    public void setGlobalExtraPaddle(ExtraPaddle paddle) {
+        this.globalExtraPaddle = paddle;
     }
 }
