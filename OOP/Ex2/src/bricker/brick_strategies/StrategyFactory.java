@@ -18,14 +18,16 @@ public class StrategyFactory {
     private Counter brickCounter;
     private Random rand;
     private Renderable puckImage;
+    private Vector2 windowDimensions;
 
     public StrategyFactory(GameObjectCollection gameObjects, Counter brickCounter, ImageReader imageReader,
-                           Sound collisionSound, Vector2 ballDimensions) {
+                           Sound collisionSound, Vector2 ballDimensions, Vector2 windowDimensions) {
         this.collisionSound = collisionSound;
         this.ballDimensions = ballDimensions;
         this.rand = new Random();
         this.gameObjects = gameObjects;
         this.brickCounter = brickCounter;
+        this.windowDimensions = windowDimensions;
         this.puckImage =
                 imageReader.readImage("assets/mockBall.png", true);
     }
@@ -38,7 +40,9 @@ public class StrategyFactory {
         }
 
         if(p<0.6f){
-            return new MoreBallsStrategy(gameObjects, brickCounter, puckImage, collisionSound, ballDimensions);
+            return new MoreBallsStrategy(
+                    gameObjects, brickCounter, puckImage, collisionSound, ballDimensions, windowDimensions
+            );
         }
 
         if(p<0.7f){
@@ -67,7 +71,9 @@ public class StrategyFactory {
         float p = rand.nextFloat();
 
         if(p<0.2f){
-            return new MoreBallsStrategy(gameObjects, brickCounter, puckImage, collisionSound, ballDimensions);
+            return new MoreBallsStrategy(
+                    gameObjects, brickCounter, puckImage, collisionSound, ballDimensions, windowDimensions
+            );
         }
 
         if(p<0.4f){
@@ -96,7 +102,9 @@ public class StrategyFactory {
         float p = rand.nextFloat();
 
         if(p<0.25f){
-            return new MoreBallsStrategy(gameObjects, brickCounter, puckImage, collisionSound, ballDimensions);
+            return new MoreBallsStrategy(
+                    gameObjects, brickCounter, puckImage, collisionSound, ballDimensions, windowDimensions
+            );
         }
 
         if(p<0.5f){

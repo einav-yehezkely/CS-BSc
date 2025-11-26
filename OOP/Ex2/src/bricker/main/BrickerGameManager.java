@@ -103,7 +103,9 @@ public class BrickerGameManager extends GameManager {
 
         // create bricks
         this.brickCounter = new Counter(numBricks * numRows);
-        StrategyFactory factory = new StrategyFactory(gameObjects(), brickCounter, imageReader, collisionSound, BALL_DIMENSIONS);
+        StrategyFactory factory = new StrategyFactory(
+                gameObjects(), brickCounter, imageReader, collisionSound, BALL_DIMENSIONS, WINDOW_DIMENSIONS
+        );
         Renderable brickImage =
                 imageReader.readImage("assets/brick.png", false);
         createBricks(brickImage, factory);
