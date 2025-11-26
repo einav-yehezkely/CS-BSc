@@ -47,22 +47,21 @@ public class StrategyFactory {
     public CollisionStrategy generateStrategy(int depthOfDouble){
         float p = rand.nextFloat();
 
-        if (p<1f){
-            return new ExtraPaddleStrategy(gameObjects, brickCounter, inputListener, windowDimensions,
-                    paddleDimensions, paddleImage, this
-            );
-//            return new BasicCollisionStrategy(gameObjects, brickCounter);
+        if (p<0.5f){
+            return new BasicCollisionStrategy(gameObjects, brickCounter);
         }
 
         if(p<0.6f){
             return new MoreBallsStrategy(
-                    gameObjects, brickCounter, puckImage, collisionSound, ballDimensions, windowDimensions
+                    gameObjects, brickCounter,
+                    puckImage, collisionSound,
+                    ballDimensions, windowDimensions
             );
         }
 
         if(p<0.7f){
-
-            return new ExtraPaddleStrategy(gameObjects, brickCounter, inputListener, windowDimensions,
+            return new ExtraPaddleStrategy(
+                    gameObjects, brickCounter, inputListener, windowDimensions,
                     paddleDimensions, paddleImage, this
                     );
         }
