@@ -1,6 +1,7 @@
-I changed the constructor of Puddle to accept an additional parameter for window dimensions,
-in order to stop the puddle from exceeding the window boundaries.
+einavye
+213835796
 
+1.
 Design explanation for removing the bricks when the ball hits them:
 I chose to pass the object returned by gameObjects() into the constructor of
 BasicCollisionStrategy, and save it as a member variable. This way,
@@ -21,7 +22,84 @@ This approach provides a clean and flexible design that aligns well with the Str
 It ensures that the brick's behavior on collision is entirely determined by its strategy,
 while keeping the game manager focused solely on creating and organizing game objects.
 
+2.
+To implement the life display (both graphical hearts and numeric counter), I created two classes:
+GraphicLives and NumericLives, each handling a different responsibility.
+The BrickerGameManager coordinates them and updates them when the number of lives changes.
+- GraphicLives — Graphical Hearts Display:
+    - Role: Handles the visual representation of the player’s lives using heart icons.
+    - Creates an array of heart GameObjects, placed in the UI layer.
+    - Displays the initial lives at the start of the game.
+    - loseLife() removes the heart of the life just lost.
+    - gainLife() restores or creates a new heart (up to MAX_LIVES).
+    - Positions hearts consistently based on window size and wall thickness.
+- NumericLives — Textual Lives Counter:
+    - Role: Shows the number of lives as text, just like in classic Bricker games.
+    - Creates a TextRenderable showing the initial number of lives.
+    - Displays it in the UI layer above the heart icons.
+    - updateLives() updates the number and changes color based on remaining lives
+- Interaction with BrickerGameManager:
+    The game manager creates both displays during initialization,
+    stores the current number of lives.
+    Calls: graphicLives.loseLife() and numericLives.updateLives()
+    when the player loses a life.
+    Calls: graphicLives.gainLife() and numericLives.updateLives()
+    when a falling heart is collected (life restoration).
+    Ensures the total lives never exceed the allowed maximum.
 
+3.
+- MoreBallsStrategy:
+    This strategy spawns two smaller balls (“pucks”) when a brick is hit.
+    The added class Puck represents a small ball with a random upward velocity
+    and automatic removal when leaving the screen. The strategy first triggers the
+    basic brick-removal logic, then creates and adds two Pucks using the brick’s
+    center as the spawn position.
+- ExtraPaddleStrategy
+    This strategy creates an additional paddle at the middle of the screen
+    when the brick is broken.
+    The added class ExtraPaddle extends the regular paddle,
+    follows the player’s movement, and disappears after four hits.
+    The StrategyFactory maintains a global reference to the extra paddle
+    to ensure that only one extra paddle can exist at a time.
+    The strategy adds a new extra paddle only if none exists.
+- ExplosionStrategy
+    This strategy destroys the brick and its four orthogonal neighbors (up, down, left, right).
+    It receives the 2D brick grid (Brick[][]) and uses it to access nearby bricks.
+    Each neighboring brick is broken by calling its own strategy,
+    ensuring that any special behaviors chained from neighbors are correctly activated.
+    The explosion sound effect is also played.
+- RestoreLifeStrategy
+    This strategy spawns a falling heart from the brick’s center.
+    The added class FallingHeart represents the collectible heart:
+    it falls at a constant downward speed, collides only with the main paddle
+    (checked via reference equality), grants a life through the game manager,
+    and removes itself when collected or when exiting the screen.
+
+4.
+Implementation of the Double Behaviour Strategy:
+    The double behavior feature was implemented using a class, DoubleBehaviourStrategy,
+    which wraps two independent CollisionStrategy objects.
+    When a brick with this strategy is hit,
+    the strategy simply calls onCollision on both inner strategies,
+    allowing two special effects to trigger from one collision.
+    To support randomly choosing double behaviors,
+    the StrategyFactory generates strategies recursively.
+    The factory receives a parameter depthOfDouble that represents how deep in
+    the recursive generation a double strategy already is.
+    Each time a DoubleBehaviourStrategy is created,
+    the factory calls generateSpecialStrategy(depth + 1) to generate each of its inner strategies.
+    To enforce the requirement of at most 3 special behaviors per brick,
+    the factory stops generating additional double strategies once depthOfDouble reaches 2.
+    This prevents the creation of nested double-behaviors beyond the allowed limit,
+    because a double strategy at depth 0 may contain two special strategies at depth 1,
+    each of which may again become double only once more (depth 2).
+    Any deeper nesting automatically falls back to a non-double special strategy.
+
+5.
 Changes in API of part1:
-- I added to Brick class a new method of getStrategy() to access its collision strategy,
-so that the explosion strategy could break the neighboring bricks according to their strategies.
+    - I added to Brick class a new method of getStrategy() to access its collision strategy,
+    so that the explosion strategy could break the neighboring bricks according to their strategies.
+    - I changed the constructor of Puddle to accept an additional parameter for window dimensions,
+    in order to stop the puddle from exceeding the window boundaries.
+    - I added a bunch of getters to the game manager in order to use it inside the strategies
+    and not having to pass too many parameters around.
