@@ -17,44 +17,23 @@ import java.util.Random;
 
 public class StrategyFactory {
 
-    private Sound collisionSound;
-    private Vector2 ballDimensions;
-    private UserInputListener inputListener;
-    private GameObjectCollection gameObjects;
     private Counter brickCounter;
-    private final Random rand;
-    private Renderable puckImage;
-    private Vector2 windowDimensions;
-    private Vector2 paddleDimensions;
+    private final Random rand = new Random();
     private final Brick[][] bricksGrid;
     private final BrickerGameManager gameManager;
-    private Renderable paddleImage;
     private ExtraPaddle globalExtraPaddle = null;
-    private final Sound explosionSound;
     private final CollisionStrategy basicStrategy;
+    private final GameObjectCollection gameObjects;
 
 
-    public StrategyFactory(GameObjectCollection gameObjects, Counter brickCounter, ImageReader imageReader,
-                           Sound collisionSound, Vector2 ballDimensions, Vector2 windowDimensions,
-                           UserInputListener inputListener, Vector2 paddleDimensions,
-                           Brick[][] bricksGrid, SoundReader soundReader, BrickerGameManager gameManager) {
-        this.collisionSound = collisionSound;
-        this.ballDimensions = ballDimensions;
-        this.inputListener = inputListener;
-        this.paddleDimensions = paddleDimensions;
+    public StrategyFactory(Brick[][] bricksGrid, BrickerGameManager gameManager) {
+
         this.bricksGrid = bricksGrid;
         this.gameManager = gameManager;
-        this.rand = new Random();
-        this.gameObjects = gameObjects;
-        this.brickCounter = brickCounter;
-        this.windowDimensions = windowDimensions;
+        this.brickCounter = gameManager.getBrickCounter();
+        this.gameObjects = gameManager.getGameObjects();
         this.basicStrategy = new BasicCollisionStrategy(gameObjects, brickCounter, bricksGrid);
-        this.puckImage =
-                imageReader.readImage("assets/mockBall.png", true);
-        this.paddleImage =
-                imageReader.readImage("assets/paddle.png", true);
-        this.explosionSound =
-                soundReader.readSound("assets/explosion.wav");
+
     }
 
     public CollisionStrategy generateStrategy(int depthOfDouble){
@@ -72,13 +51,12 @@ public class StrategyFactory {
 
         if(p<0.7f){
             return new ExtraPaddleStrategy(
-                    gameObjects, basicStrategy, inputListener, windowDimensions,
-                    paddleDimensions, paddleImage, this
+                    basicStrategy, this, gameManager
                     );
         }
 
         if(p<0.8f){
-            return new ExplosionStrategy(explosionSound, basicStrategy, bricksGrid);
+            return new ExplosionStrategy(gameManager, basicStrategy, bricksGrid);
         }
 
         if(p<0.9f){
@@ -106,13 +84,12 @@ public class StrategyFactory {
 
         if(p<0.4f){
             return new ExtraPaddleStrategy(
-                    gameObjects, basicStrategy, inputListener, windowDimensions,
-                    paddleDimensions, paddleImage, this
+                    basicStrategy, this, gameManager
             );
         }
 
         if(p<0.6f){
-            return new ExplosionStrategy(explosionSound, basicStrategy, bricksGrid);
+            return new ExplosionStrategy(gameManager, basicStrategy, bricksGrid);
         }
 
         if (p<0.8f){
@@ -140,13 +117,12 @@ public class StrategyFactory {
 
         if(p<0.5f){
             return new ExtraPaddleStrategy(
-                    gameObjects, basicStrategy, inputListener, windowDimensions,
-                    paddleDimensions, paddleImage, this
+                    basicStrategy, this, gameManager
             );
         }
 
         if(p<0.75f){
-            return new ExplosionStrategy(explosionSound, basicStrategy, bricksGrid);
+            return new ExplosionStrategy(gameManager, basicStrategy, bricksGrid);
         }
 
         return new RestoreLifeStrategy(gameManager, basicStrategy);

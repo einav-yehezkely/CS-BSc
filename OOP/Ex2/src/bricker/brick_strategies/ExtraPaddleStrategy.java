@@ -1,6 +1,7 @@
 package bricker.brick_strategies;
 
 import bricker.gameobjects.ExtraPaddle;
+import bricker.main.BrickerGameManager;
 import danogl.GameObject;
 import danogl.collisions.GameObjectCollection;
 import danogl.gui.UserInputListener;
@@ -11,27 +12,23 @@ import danogl.util.Vector2;
 public class ExtraPaddleStrategy implements CollisionStrategy{
     private static final int EXTRA_PADDLE_HITS = 4;
 
-    private GameObjectCollection gameObjects;
-    private UserInputListener inputListener;
-    private Vector2 windowDimensions;
-    private Vector2 paddleDimensions;
-    private Renderable paddleImage;
+    private final GameObjectCollection gameObjects;
+    private final UserInputListener inputListener;
+    private final Vector2 windowDimensions;
+    private final Vector2 paddleDimensions;
+    private final Renderable paddleImage;
     private ExtraPaddle extraPaddle;
-    private CollisionStrategy basicCollision;
-    private StrategyFactory factory;
+    private final CollisionStrategy basicCollision;
+    private final StrategyFactory factory;
 
-    public ExtraPaddleStrategy(GameObjectCollection gameObjects,
-                               CollisionStrategy basicCollision,
-                               UserInputListener inputListener,
-                               Vector2 windowDimensions,
-                               Vector2 paddleDimensions,
-                               Renderable paddleImage,
-                               StrategyFactory factory) {
-        this.gameObjects = gameObjects;
-        this.inputListener = inputListener;
-        this.windowDimensions = windowDimensions;
-        this.paddleDimensions = paddleDimensions;
-        this.paddleImage = paddleImage;
+    public ExtraPaddleStrategy(CollisionStrategy basicCollision,
+                               StrategyFactory factory,
+                               BrickerGameManager gameManager) {
+        this.gameObjects = gameManager.getGameObjects();
+        this.inputListener = gameManager.getInputListener();
+        this.windowDimensions = gameManager.getWindowDimensions();
+        this.paddleDimensions = gameManager.getPaddleDimensions();
+        this.paddleImage = gameManager.getPaddleImage();
         this.extraPaddle = null;
         this.factory = factory;
         this.basicCollision = basicCollision;

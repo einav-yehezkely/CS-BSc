@@ -100,8 +100,7 @@ public class BrickerGameManager extends GameManager {
         ball.setTag("ball");
 
         // create a paddle game object
-        Renderable paddleImage =
-                imageReader.readImage("assets/paddle.png", true);
+        Renderable paddleImage = getPaddleImage();
         Paddle paddle =
                 new Paddle(
                         Vector2.ZERO, PADDLE_DIMENSIONS, paddleImage, inputListener, WINDOW_DIMENSIONS
@@ -116,10 +115,7 @@ public class BrickerGameManager extends GameManager {
 
         // create bricks
         this.brickCounter = new Counter(numBricks * numRows);
-        StrategyFactory factory = new StrategyFactory(
-                gameObjects(), brickCounter, imageReader, collisionSound, BALL_DIMENSIONS, WINDOW_DIMENSIONS,
-                inputListener, PADDLE_DIMENSIONS, bricksGrid, soundReader, this
-        );
+        StrategyFactory factory = new StrategyFactory(bricksGrid, this);
         Renderable brickImage =
                 imageReader.readImage("assets/brick.png", false);
         createBricks(brickImage, factory);
@@ -280,6 +276,15 @@ public class BrickerGameManager extends GameManager {
     public Vector2 getBallDimensions(){
         return BALL_DIMENSIONS;
     }
+
+    public Vector2 getPaddleDimensions(){
+        return PADDLE_DIMENSIONS;
+    }
+
+    public Renderable getPaddleImage(){
+        return imageReader.readImage("assets/paddle.png", true);
+    }
+
 
 
     public static void main(String[] args) {

@@ -1,6 +1,7 @@
 package bricker.brick_strategies;
 
 import bricker.gameobjects.Brick;
+import bricker.main.BrickerGameManager;
 import danogl.GameObject;
 import danogl.collisions.GameObjectCollection;
 import danogl.gui.Sound;
@@ -12,9 +13,10 @@ public class ExplosionStrategy implements CollisionStrategy{
     private final Brick[][] brickGrid;
 
 
-    public ExplosionStrategy(Sound explosionSound, CollisionStrategy basicStrategy,
+    public ExplosionStrategy(BrickerGameManager gameManager, CollisionStrategy basicStrategy,
                              Brick[][] brickGrid) {
-        this.explosionSound = explosionSound;
+        this.explosionSound =
+                gameManager.getSoundReader().readSound("assets/explosion.wav");
         this.basicStrategy = basicStrategy;
         this.brickGrid = brickGrid;
     }
