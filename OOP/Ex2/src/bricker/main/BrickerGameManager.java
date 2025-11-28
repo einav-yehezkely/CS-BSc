@@ -6,6 +6,7 @@ import bricker.brick_strategies.StrategyFactory;
 import bricker.gameobjects.*;
 import danogl.GameManager;
 import danogl.GameObject;
+import danogl.collisions.GameObjectCollection;
 import danogl.collisions.Layer;
 import danogl.components.CoordinateSpace;
 import danogl.gui.*;
@@ -37,10 +38,13 @@ public class BrickerGameManager extends GameManager {
     private static final int BRICK_HEIGHT = 15;
     private static final int GAP_BETWEEN_BRICKS = 1;
     private static final int INITIAL_LIVES = 3;
+    private static final int MAX_LIVES = 4;
 
     private int numBricks;
     private int numRows;
     private Ball ball;
+    private ImageReader imageReader;
+    private SoundReader soundReader;
     private UserInputListener inputListener;
     private WindowController windowController;
     private int lives;
@@ -48,6 +52,8 @@ public class BrickerGameManager extends GameManager {
     private NumericLives numericLives;
     private Counter brickCounter;
     private Brick[][] bricksGrid;
+    private Paddle mainPaddle;
+    private Sound collisionSound;
 
     public BrickerGameManager(String windowTitle, Vector2 windowDimensions) {
         super(windowTitle, windowDimensions);
@@ -68,6 +74,8 @@ public class BrickerGameManager extends GameManager {
             SoundReader soundReader, 
             UserInputListener inputListener, 
             WindowController windowController) {
+        this.imageReader = imageReader;
+        this.soundReader = soundReader;
         this.inputListener = inputListener;
         this.windowController = windowController;
         super.initializeGame(imageReader, soundReader, inputListener, windowController);
@@ -83,7 +91,7 @@ public class BrickerGameManager extends GameManager {
         // Create a ball game object
         Renderable ballImage =
                 imageReader.readImage("assets/ball.png", true);
-        Sound collisionSound = soundReader.readSound("assets/blop.wav");
+        this.collisionSound = soundReader.readSound("assets/blop.wav");
         ball =
                 new Ball(Vector2.ZERO, BALL_DIMENSIONS, ballImage, collisionSound);
 
@@ -94,10 +102,12 @@ public class BrickerGameManager extends GameManager {
         // create a paddle game object
         Renderable paddleImage =
                 imageReader.readImage("assets/paddle.png", true);
-        GameObject paddle =
+        Paddle paddle =
                 new Paddle(
                         Vector2.ZERO, PADDLE_DIMENSIONS, paddleImage, inputListener, WINDOW_DIMENSIONS
                 );
+        this.mainPaddle = paddle;
+
 
         paddle.setCenter(PADDLE_STARTING_POSITION);
         gameObjects().addGameObject(paddle);
@@ -108,7 +118,7 @@ public class BrickerGameManager extends GameManager {
         this.brickCounter = new Counter(numBricks * numRows);
         StrategyFactory factory = new StrategyFactory(
                 gameObjects(), brickCounter, imageReader, collisionSound, BALL_DIMENSIONS, WINDOW_DIMENSIONS,
-                inputListener, PADDLE_DIMENSIONS, bricksGrid, soundReader
+                inputListener, PADDLE_DIMENSIONS, bricksGrid, soundReader, this
         );
         Renderable brickImage =
                 imageReader.readImage("assets/brick.png", false);
@@ -116,7 +126,7 @@ public class BrickerGameManager extends GameManager {
 
         // create hearts display
         graphicLives = new GraphicLives(gameObjects(), imageReader, WINDOW_DIMENSIONS,
-                INITIAL_LIVES, WALL_THICKNESS, HEART_DIMENSIONS);
+                INITIAL_LIVES, WALL_THICKNESS, HEART_DIMENSIONS, MAX_LIVES);
         this.lives = INITIAL_LIVES;
 
 
@@ -222,6 +232,55 @@ public class BrickerGameManager extends GameManager {
             }
         }
     }
+
+    public Vector2 getHeartDimensions() {
+        return HEART_DIMENSIONS;
+    }
+
+    public Vector2 getWindowDimensions(){
+        return WINDOW_DIMENSIONS;
+    }
+
+    public GameObjectCollection getGameObjects(){
+        return gameObjects();
+    }
+
+    public void gainLife(){
+        if(lives < MAX_LIVES){
+            lives++;
+            graphicLives.gainLife(lives);
+            numericLives.updateLives(lives);
+        }
+    }
+
+    public ImageReader getImageReader(){
+        return imageReader;
+    }
+
+    public Paddle getMainPaddle(){
+        return mainPaddle;
+    }
+
+    public SoundReader getSoundReader(){
+        return soundReader;
+    }
+
+    public UserInputListener getInputListener(){
+        return inputListener;
+    }
+
+    public Counter getBrickCounter(){
+        return brickCounter;
+    }
+
+    public Sound getCollisionSound(){
+        return collisionSound;
+    }
+
+    public Vector2 getBallDimensions(){
+        return BALL_DIMENSIONS;
+    }
+
 
     public static void main(String[] args) {
         if(args.length == 2){

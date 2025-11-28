@@ -2,6 +2,8 @@ package bricker.brick_strategies;
 
 import bricker.gameobjects.Brick;
 import bricker.gameobjects.ExtraPaddle;
+import bricker.main.BrickerGameManager;
+import danogl.GameManager;
 import danogl.collisions.GameObjectCollection;
 import danogl.gui.ImageReader;
 import danogl.gui.Sound;
@@ -20,11 +22,12 @@ public class StrategyFactory {
     private UserInputListener inputListener;
     private GameObjectCollection gameObjects;
     private Counter brickCounter;
-    private Random rand;
+    private final Random rand;
     private Renderable puckImage;
     private Vector2 windowDimensions;
     private Vector2 paddleDimensions;
     private final Brick[][] bricksGrid;
+    private final BrickerGameManager gameManager;
     private Renderable paddleImage;
     private ExtraPaddle globalExtraPaddle = null;
     private final Sound explosionSound;
@@ -34,12 +37,13 @@ public class StrategyFactory {
     public StrategyFactory(GameObjectCollection gameObjects, Counter brickCounter, ImageReader imageReader,
                            Sound collisionSound, Vector2 ballDimensions, Vector2 windowDimensions,
                            UserInputListener inputListener, Vector2 paddleDimensions,
-                           Brick[][] bricksGrid, SoundReader soundReader) {
+                           Brick[][] bricksGrid, SoundReader soundReader, BrickerGameManager gameManager) {
         this.collisionSound = collisionSound;
         this.ballDimensions = ballDimensions;
         this.inputListener = inputListener;
         this.paddleDimensions = paddleDimensions;
         this.bricksGrid = bricksGrid;
+        this.gameManager = gameManager;
         this.rand = new Random();
         this.gameObjects = gameObjects;
         this.brickCounter = brickCounter;
@@ -62,9 +66,7 @@ public class StrategyFactory {
 
         if(p<0.6f){
             return new MoreBallsStrategy(
-                    basicStrategy, gameObjects,
-                    puckImage, collisionSound,
-                    ballDimensions, windowDimensions
+                    basicStrategy, gameManager
             );
         }
 
@@ -80,7 +82,7 @@ public class StrategyFactory {
         }
 
         if(p<0.9f){
-            return new RestoreLifeStrategy();
+            return new RestoreLifeStrategy(gameManager, basicStrategy);
         }
 
         if(depthOfDouble < 2){
@@ -98,9 +100,7 @@ public class StrategyFactory {
 
         if(p<0.2f){
             return new MoreBallsStrategy(
-                    basicStrategy, gameObjects,
-                    puckImage, collisionSound,
-                    ballDimensions, windowDimensions
+                    basicStrategy, gameManager
             );
         }
 
@@ -116,7 +116,7 @@ public class StrategyFactory {
         }
 
         if (p<0.8f){
-            return new RestoreLifeStrategy();
+            return new RestoreLifeStrategy(gameManager, basicStrategy);
         }
 
         if(depthOfDouble < 2){
@@ -134,9 +134,7 @@ public class StrategyFactory {
 
         if(p<0.25f){
             return new MoreBallsStrategy(
-                    basicStrategy, gameObjects,
-                    puckImage, collisionSound,
-                    ballDimensions, windowDimensions
+                    basicStrategy, gameManager
             );
         }
 
@@ -151,7 +149,7 @@ public class StrategyFactory {
             return new ExplosionStrategy(explosionSound, basicStrategy, bricksGrid);
         }
 
-        return new RestoreLifeStrategy();
+        return new RestoreLifeStrategy(gameManager, basicStrategy);
     }
 
     public ExtraPaddle getGlobalExtraPaddle() {
