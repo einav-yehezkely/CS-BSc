@@ -47,11 +47,13 @@ public class BrickerGameManager extends GameManager {
     private GraphicLives graphicLives;
     private NumericLives numericLives;
     private Counter brickCounter;
+    private Brick[][] bricksGrid;
 
     public BrickerGameManager(String windowTitle, Vector2 windowDimensions) {
         super(windowTitle, windowDimensions);
         this.numBricks = DEFAULT_NUM_BRICKS;
         this.numRows = DEFAULT_NUM_ROWS;
+        this.bricksGrid = new Brick[numRows][numBricks];
     }
 
     public BrickerGameManager(String windowTitle, Vector2 windowDimensions, int numBricks, int numRows) {
@@ -106,7 +108,7 @@ public class BrickerGameManager extends GameManager {
         this.brickCounter = new Counter(numBricks * numRows);
         StrategyFactory factory = new StrategyFactory(
                 gameObjects(), brickCounter, imageReader, collisionSound, BALL_DIMENSIONS, WINDOW_DIMENSIONS,
-                inputListener, PADDLE_DIMENSIONS
+                inputListener, PADDLE_DIMENSIONS, bricksGrid, soundReader
         );
         Renderable brickImage =
                 imageReader.readImage("assets/brick.png", false);
@@ -169,7 +171,7 @@ public class BrickerGameManager extends GameManager {
         for(int row = 0; row < numRows; row++){
             for(int col = 0; col < numBricks; col++){
                 CollisionStrategy strategy = factory.generateStrategy(0);
-                GameObject brick = new Brick(
+                Brick brick = new Brick(
                         new Vector2(
                                 WALL_THICKNESS + col * (brickWidth + GAP_BETWEEN_BRICKS),
                                 WALL_THICKNESS + row * brickHeight
@@ -180,6 +182,7 @@ public class BrickerGameManager extends GameManager {
                         col,
                         strategy
                 );
+                bricksGrid[row][col] = brick;
                 gameObjects().addGameObject(brick, Layer.STATIC_OBJECTS);
             }
         }

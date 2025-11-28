@@ -18,14 +18,14 @@ public class MoreBallsStrategy implements CollisionStrategy{
     private CollisionStrategy basicCollisionStrategy;
     private Vector2 windowDimensions;
 
-    public MoreBallsStrategy(GameObjectCollection gameObjects, Counter brickCounter,
+    public MoreBallsStrategy(CollisionStrategy basicCollisionStrategy, GameObjectCollection gameObjects,
     Renderable puckImage, Sound collisionSound, Vector2 ballDimensions, Vector2 windowDimensions) {
         this.gameObjects = gameObjects;
         this.puckImage = puckImage;
         this.collisionSound = collisionSound;
         this.ballDimensions = ballDimensions;
         this.windowDimensions = windowDimensions;
-        this.basicCollisionStrategy = new BasicCollisionStrategy(gameObjects, brickCounter);
+        this.basicCollisionStrategy = basicCollisionStrategy;
     }
 
     @Override

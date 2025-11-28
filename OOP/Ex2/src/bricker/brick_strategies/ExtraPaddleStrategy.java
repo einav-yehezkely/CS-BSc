@@ -21,7 +21,7 @@ public class ExtraPaddleStrategy implements CollisionStrategy{
     private StrategyFactory factory;
 
     public ExtraPaddleStrategy(GameObjectCollection gameObjects,
-                               Counter brickCounter,
+                               CollisionStrategy basicCollision,
                                UserInputListener inputListener,
                                Vector2 windowDimensions,
                                Vector2 paddleDimensions,
@@ -34,7 +34,7 @@ public class ExtraPaddleStrategy implements CollisionStrategy{
         this.paddleImage = paddleImage;
         this.extraPaddle = null;
         this.factory = factory;
-        basicCollision = new BasicCollisionStrategy(gameObjects, brickCounter);
+        this.basicCollision = basicCollision;
     }
 
     @Override

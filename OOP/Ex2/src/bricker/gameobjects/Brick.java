@@ -30,4 +30,8 @@ public class Brick extends GameObject {
     public int getCol() {
         return col;
     }
+
+    public CollisionStrategy getStrategy() {
+        return strategy;
+    }
 }

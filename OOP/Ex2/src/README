@@ -20,3 +20,8 @@ Disadvantages:
 This approach provides a clean and flexible design that aligns well with the Strategy pattern.
 It ensures that the brick's behavior on collision is entirely determined by its strategy,
 while keeping the game manager focused solely on creating and organizing game objects.
+
+
+Changes in API of part1:
+- I added to Brick class a new method of getStrategy() to access its collision strategy,
+so that the explosion strategy could break the neighboring bricks according to their strategies.
