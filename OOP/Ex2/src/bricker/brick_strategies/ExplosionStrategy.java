@@ -3,17 +3,26 @@ package bricker.brick_strategies;
 import bricker.gameobjects.Brick;
 import bricker.main.BrickerGameManager;
 import danogl.GameObject;
-import danogl.collisions.GameObjectCollection;
 import danogl.gui.Sound;
-import danogl.util.Counter;
 
+/**
+ * A collision strategy that causes an explosion effect,
+ * destroying surrounding bricks upon collision.
+ */
 public class ExplosionStrategy implements CollisionStrategy{
     private final Sound explosionSound;
     private final CollisionStrategy basicStrategy;
     private final Brick[][] brickGrid;
 
-
-    public ExplosionStrategy(BrickerGameManager gameManager, CollisionStrategy basicStrategy,
+    /**
+     * Constructs an ExplosionStrategy.
+     *
+     * @param gameManager  Reference to the main game manager.
+     * @param basicStrategy The basic collision strategy.
+     * @param brickGrid    2D array representing the grid of bricks.
+     */
+    public ExplosionStrategy(BrickerGameManager gameManager,
+                             CollisionStrategy basicStrategy,
                              Brick[][] brickGrid) {
         this.explosionSound =
                 gameManager.getSoundReader().readSound("assets/explosion.wav");
@@ -21,6 +30,12 @@ public class ExplosionStrategy implements CollisionStrategy{
         this.brickGrid = brickGrid;
     }
 
+    /**
+     * Handles collision by destroying the brick and its surrounding bricks.
+     *
+     * @param brickObj    The brick that was collided with.
+     * @param colliderObj The object that collided with the brick - the ball/puck.
+     */
     @Override
     public void onCollision(GameObject brickObj, GameObject colliderObj) {
         basicStrategy.onCollision(brickObj, colliderObj);

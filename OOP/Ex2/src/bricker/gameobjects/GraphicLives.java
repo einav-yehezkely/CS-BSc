@@ -9,13 +9,23 @@ import danogl.util.Vector2;
 
 
 public class GraphicLives {
-    private GameObjectCollection gameObjects;
+    private final GameObjectCollection gameObjects;
     private final Vector2 windowDimensions;
     private final int wallThickness;
     private final Vector2 heartDimensions;
-    private GameObject[] hearts;
+    private final GameObject[] hearts;
     private final Renderable heartImage;
 
+    /**
+     * Constructor for GraphicLives
+     * @param gameObjects the game object collection
+     * @param imageReader the image reader
+     * @param windowDimensions window dimensions
+     * @param initialLives initial number of lives
+     * @param wallThickness wall thickness
+     * @param heartDimensions heart dimensions
+     * @param maxLives maximum number of lives
+     */
     public GraphicLives(GameObjectCollection gameObjects,
                         ImageReader imageReader,
                         Vector2 windowDimensions,
@@ -42,10 +52,18 @@ public class GraphicLives {
         }
     }
 
+    /**
+     * Removes a life from the graphic display
+     * @param remainingLives the number of remaining lives
+     */
     public void loseLife(int remainingLives) {
         gameObjects.removeGameObject(hearts[remainingLives], Layer.UI);
     }
 
+    /**
+     * Adds a life to the graphic display
+     * @param lives the current number of lives
+     */
     public void gainLife(int lives){
 
         if (hearts[lives-1] != null) {

@@ -6,6 +6,9 @@ import danogl.collisions.Collision;
 import danogl.gui.rendering.Renderable;
 import danogl.util.Vector2;
 
+/**
+ * Represents a falling power-up (life) that the player can collect to gain an extra life.
+ */
 public class FallingHeart extends GameObject {
     private static final int FALL_SPEED = 100;
     private final BrickerGameManager gameManager;
@@ -38,6 +41,9 @@ public class FallingHeart extends GameObject {
         return other == mainPaddleReference;
     }
 
+    /**
+     * Handles collision when the heart is collected by the paddle.
+     */
     @Override
     public void onCollisionEnter(GameObject other, Collision collision) {
         super.onCollisionEnter(other, collision);
@@ -47,6 +53,10 @@ public class FallingHeart extends GameObject {
         gameManager.getGameObjects().removeGameObject(this);
     }
 
+    /**
+     * Updates the heart's position and removes it if it goes out of bounds.
+     * @param deltaTime time elapsed since the last update
+     */
     @Override
     public void update(float deltaTime) {
         super.update(deltaTime);

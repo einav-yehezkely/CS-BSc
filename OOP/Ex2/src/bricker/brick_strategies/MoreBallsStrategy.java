@@ -2,14 +2,15 @@ package bricker.brick_strategies;
 
 import bricker.gameobjects.Puck;
 import bricker.main.BrickerGameManager;
-import danogl.GameManager;
 import danogl.GameObject;
 import danogl.collisions.GameObjectCollection;
 import danogl.gui.Sound;
 import danogl.gui.rendering.Renderable;
-import danogl.util.Counter;
 import danogl.util.Vector2;
 
+/**
+ * A collision strategy that spawns two smaller balls (pucks) when a brick is hit.
+ */
 public class MoreBallsStrategy implements CollisionStrategy{
     private static final int PUCK_VELOCITY = 200;
     private static final float SIZE_FACTOR = 0.75f;
@@ -20,6 +21,12 @@ public class MoreBallsStrategy implements CollisionStrategy{
     private final CollisionStrategy basicCollisionStrategy;
     private final Vector2 windowDimensions;
 
+    /**
+     * Constructor for MoreBallsStrategy.
+     *
+     * @param basicCollisionStrategy The basic collision strategy.
+     * @param gameManager            The game manager instance.
+     */
     public MoreBallsStrategy(CollisionStrategy basicCollisionStrategy, BrickerGameManager gameManager) {
         this.gameObjects = gameManager.getGameObjects();
         this.puckImage =
@@ -31,6 +38,12 @@ public class MoreBallsStrategy implements CollisionStrategy{
         this.basicCollisionStrategy = basicCollisionStrategy;
     }
 
+    /**
+     * Handles the collision event by spawning two smaller pucks.
+     *
+     * @param brick The brick that was hit.
+     * @param other The other game object involved in the collision - the ball/puck.
+     */
     @Override
     public void onCollision(GameObject brick, GameObject other) {
         basicCollisionStrategy.onCollision(brick, other);

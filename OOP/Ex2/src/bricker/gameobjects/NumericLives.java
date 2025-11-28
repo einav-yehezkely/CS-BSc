@@ -9,8 +9,18 @@ import danogl.util.Vector2;
 import java.awt.*;
 
 public class NumericLives {
-    private TextRenderable txt;
+    private final TextRenderable txt;
 
+    /**
+     * Constructor for NumericLives display.
+     *
+     * @param gameObjects      The collection of game objects.
+     * @param windowDimensions The dimensions of the game window.
+     * @param initialLives     The initial number of lives to display.
+     * @param wallThickness    The thickness of the walls (for positioning).
+     * @param textDimensions   The dimensions of the text display.
+     * @param heartDimensions  The dimensions of the heart icon (for positioning).
+     */
     public NumericLives(GameObjectCollection gameObjects,
                         Vector2 windowDimensions,
                         int initialLives,
@@ -29,6 +39,11 @@ public class NumericLives {
         gameObjects.addGameObject(livesText, Layer.UI);
     }
 
+    /**
+     * Updates the displayed number of lives and changes color based on remaining lives.
+     *
+     * @param remainingLives The current number of remaining lives.
+     */
     public void updateLives(int remainingLives) {
         txt.setString("" + remainingLives);
         txt.setString("" + remainingLives);

@@ -21,6 +21,13 @@ public class ExtraPaddleStrategy implements CollisionStrategy{
     private final CollisionStrategy basicCollision;
     private final StrategyFactory factory;
 
+    /**
+     * Constructor for ExtraPaddleStrategy.
+     *
+     * @param basicCollision The basic collision strategy.
+     * @param factory The strategy factory for managing global state of the extra paddle.
+     * @param gameManager The main game manager.
+     */
     public ExtraPaddleStrategy(CollisionStrategy basicCollision,
                                StrategyFactory factory,
                                BrickerGameManager gameManager) {
@@ -34,6 +41,12 @@ public class ExtraPaddleStrategy implements CollisionStrategy{
         this.basicCollision = basicCollision;
     }
 
+    /**
+     * Handles collision by adding an extra paddle if one does not already exist.
+     *
+     * @param obj0 The first game object involved in the collision - a brick.
+     * @param obj1 The second game object involved in the collision - the ball/puck.
+     */
     @Override
     public void onCollision(GameObject obj0, GameObject obj1) {
         basicCollision.onCollision(obj0, obj1);

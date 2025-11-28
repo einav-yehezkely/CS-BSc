@@ -7,13 +7,25 @@ import danogl.util.Vector2;
 
 import java.awt.event.KeyEvent;
 
+/**
+ * Represents the player's paddle in the game,
+ * which can be moved left and right using keyboard input.
+ */
 public class Paddle extends GameObject {
     private static final float MOVEMENT_SPEED = 300;
-    private UserInputListener inputListener;
-    private Vector2 windowDimensions;
-    private Vector2 paddleDimensions;
+    private final UserInputListener inputListener;
+    private final Vector2 windowDimensions;
+    private final Vector2 paddleDimensions;
 
 
+    /**
+     * Constructs a new Paddle object.
+     * @param topLeftCorner The position of the top-left corner.
+     * @param dimensions The dimensions of the paddle.
+     * @param renderable The renderable (image) for the paddle.
+     * @param inputListener The user input listener for keyboard input.
+     * @param windowDimensions The dimensions of the game window.
+     */
     public Paddle(
             Vector2 topLeftCorner,
             Vector2 dimensions,
@@ -26,6 +38,10 @@ public class Paddle extends GameObject {
         this.paddleDimensions = dimensions;
     }
 
+    /**
+     * Updates the paddle's position based on user input.
+     * @param deltaTime The time elapsed since the last update.
+     */
     @Override
     public void update(float deltaTime) {
         super.update(deltaTime);

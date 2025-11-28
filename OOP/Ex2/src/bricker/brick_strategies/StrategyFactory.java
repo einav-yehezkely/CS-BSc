@@ -3,21 +3,17 @@ package bricker.brick_strategies;
 import bricker.gameobjects.Brick;
 import bricker.gameobjects.ExtraPaddle;
 import bricker.main.BrickerGameManager;
-import danogl.GameManager;
 import danogl.collisions.GameObjectCollection;
-import danogl.gui.ImageReader;
-import danogl.gui.Sound;
-import danogl.gui.SoundReader;
-import danogl.gui.UserInputListener;
-import danogl.gui.rendering.Renderable;
 import danogl.util.Counter;
-import danogl.util.Vector2;
 
 import java.util.Random;
 
+/**
+ * A factory for generating collision strategies for bricks.
+ */
 public class StrategyFactory {
 
-    private Counter brickCounter;
+    private final Counter brickCounter;
     private final Random rand = new Random();
     private final Brick[][] bricksGrid;
     private final BrickerGameManager gameManager;
@@ -26,6 +22,11 @@ public class StrategyFactory {
     private final GameObjectCollection gameObjects;
 
 
+    /**
+     * Constructor for StrategyFactory.
+     * @param bricksGrid the grid of bricks
+     * @param gameManager the game manager
+     */
     public StrategyFactory(Brick[][] bricksGrid, BrickerGameManager gameManager) {
 
         this.bricksGrid = bricksGrid;
@@ -36,6 +37,11 @@ public class StrategyFactory {
 
     }
 
+    /**
+     * Generates a collision strategy.
+     * @param depthOfDouble the current depth of double strategies
+     * @return a CollisionStrategy
+     */
     public CollisionStrategy generateStrategy(int depthOfDouble){
         float p = rand.nextFloat();
 
@@ -73,6 +79,11 @@ public class StrategyFactory {
         return generateSpecialStrategyNotDouble();
     }
 
+    /**
+     * Generates a special collision strategy, allowing for double strategies.
+     * @param depthOfDouble the current depth of double strategies
+     * @return a CollisionStrategy
+     */
     private CollisionStrategy generateSpecialStrategy(int depthOfDouble){
         float p = rand.nextFloat();
 
@@ -106,6 +117,10 @@ public class StrategyFactory {
         return generateSpecialStrategyNotDouble();
     }
 
+    /**
+     * Generates a special collision strategy, without double strategies.
+     * @return a CollisionStrategy
+     */
     private CollisionStrategy generateSpecialStrategyNotDouble(){
         float p = rand.nextFloat();
 
@@ -128,10 +143,18 @@ public class StrategyFactory {
         return new RestoreLifeStrategy(gameManager, basicStrategy);
     }
 
+    /**
+     * Gets the global extra paddle.
+     * @return the global extra paddle
+     */
     public ExtraPaddle getGlobalExtraPaddle() {
         return globalExtraPaddle;
     }
 
+    /**
+     * Sets the global extra paddle.
+     * @param paddle the extra paddle to set
+     */
     public void setGlobalExtraPaddle(ExtraPaddle paddle) {
         this.globalExtraPaddle = paddle;
     }

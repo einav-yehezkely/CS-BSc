@@ -1,6 +1,5 @@
 package bricker.main;
 
-import bricker.brick_strategies.BasicCollisionStrategy;
 import bricker.brick_strategies.CollisionStrategy;
 import bricker.brick_strategies.StrategyFactory;
 import bricker.gameobjects.*;
@@ -12,7 +11,6 @@ import danogl.components.CoordinateSpace;
 import danogl.gui.*;
 import danogl.gui.rendering.RectangleRenderable;
 import danogl.gui.rendering.Renderable;
-import danogl.gui.rendering.TextRenderable;
 import danogl.util.Counter;
 import danogl.util.Vector2;
 
@@ -40,8 +38,8 @@ public class BrickerGameManager extends GameManager {
     private static final int INITIAL_LIVES = 3;
     private static final int MAX_LIVES = 4;
 
-    private int numBricks;
-    private int numRows;
+    private final int numBricks;
+    private final int numRows;
     private Ball ball;
     private ImageReader imageReader;
     private SoundReader soundReader;
@@ -51,10 +49,14 @@ public class BrickerGameManager extends GameManager {
     private GraphicLives graphicLives;
     private NumericLives numericLives;
     private Counter brickCounter;
-    private Brick[][] bricksGrid;
+    private final Brick[][] bricksGrid;
     private Paddle mainPaddle;
-    private Sound collisionSound;
 
+    /**
+     * Constructor of BrickerGameManager
+     * @param windowTitle the title of the window
+     * @param windowDimensions the dimensions of the window
+     */
     public BrickerGameManager(String windowTitle, Vector2 windowDimensions) {
         super(windowTitle, windowDimensions);
         this.numBricks = DEFAULT_NUM_BRICKS;
@@ -62,12 +64,27 @@ public class BrickerGameManager extends GameManager {
         this.bricksGrid = new Brick[numRows][numBricks];
     }
 
+    /**
+     * Constructor of BrickerGameManager with custom number of bricks and rows
+     * @param windowTitle the title of the window
+     * @param windowDimensions the dimensions of the window
+     * @param numBricks custom number of bricks per row
+     * @param numRows custom number of rows
+     */
     public BrickerGameManager(String windowTitle, Vector2 windowDimensions, int numBricks, int numRows) {
         super(windowTitle, windowDimensions);
         this.numBricks = numBricks;
         this.numRows = numRows;
+        this.bricksGrid = new Brick[numRows][numBricks];
     }
 
+    /**
+     * Initializes the game by creating game objects and setting up the game environment.
+     * @param imageReader imageReader
+     * @param soundReader soundReader
+     * @param inputListener inputListener
+     * @param windowController windowController
+     */
     @Override
     public void initializeGame(
             ImageReader imageReader, 
@@ -91,13 +108,11 @@ public class BrickerGameManager extends GameManager {
         // Create a ball game object
         Renderable ballImage =
                 imageReader.readImage("assets/ball.png", true);
-        this.collisionSound = soundReader.readSound("assets/blop.wav");
         ball =
-                new Ball(Vector2.ZERO, BALL_DIMENSIONS, ballImage, collisionSound);
+                new Ball(Vector2.ZERO, BALL_DIMENSIONS, ballImage, getCollisionSound());
 
         resetBall();
         gameObjects().addGameObject(ball);
-        ball.setTag("ball");
 
         // create a paddle game object
         Renderable paddleImage = getPaddleImage();
@@ -125,7 +140,6 @@ public class BrickerGameManager extends GameManager {
                 INITIAL_LIVES, WALL_THICKNESS, HEART_DIMENSIONS, MAX_LIVES);
         this.lives = INITIAL_LIVES;
 
-
         // create numerical lives display
         numericLives = new NumericLives(gameObjects(), WINDOW_DIMENSIONS, INITIAL_LIVES,
                 WALL_THICKNESS, TEXT_DIMENSIONS, HEART_DIMENSIONS);
@@ -145,6 +159,7 @@ public class BrickerGameManager extends GameManager {
         }
         ball.setVelocity(new Vector2(ballVelocityX, ballVelocityY));
     }
+
     private void setWalls(){
         RectangleRenderable wallRenderable = new RectangleRenderable(Color.BLACK);
 
@@ -161,9 +176,6 @@ public class BrickerGameManager extends GameManager {
                 new Vector2(WALL_THICKNESS, WINDOW_DIMENSIONS.y()),
                 wallRenderable);
 
-        topWall.setTag("wall");
-        leftWall.setTag("wall");
-        rightWall.setTag("wall");
         gameObjects().addGameObject(topWall);
         gameObjects().addGameObject(leftWall);
         gameObjects().addGameObject(rightWall);
@@ -194,7 +206,10 @@ public class BrickerGameManager extends GameManager {
         }
     }
 
-
+    /**
+     * Updates the game state, checking for game end conditions.
+     * @param deltaTime the time elapsed since the last update.
+     */
     @Override
     public void update(float deltaTime) {
         super.update(deltaTime);
@@ -229,18 +244,33 @@ public class BrickerGameManager extends GameManager {
         }
     }
 
+    /**
+     * Gets the dimensions of the heart icon.
+     * @return the dimensions of the heart icon.
+     */
     public Vector2 getHeartDimensions() {
         return HEART_DIMENSIONS;
     }
 
+    /**
+     * Gets the window dimensions.
+     * @return the window dimensions.
+     */
     public Vector2 getWindowDimensions(){
         return WINDOW_DIMENSIONS;
     }
 
+    /**
+     * Gets the collection of game objects.
+     * @return the collection of game objects.
+     */
     public GameObjectCollection getGameObjects(){
         return gameObjects();
     }
 
+    /**
+     * Increases the player's lives by one, up to the maximum allowed.
+     */
     public void gainLife(){
         if(lives < MAX_LIVES){
             lives++;
@@ -249,44 +279,83 @@ public class BrickerGameManager extends GameManager {
         }
     }
 
+    /**
+     * Gets the image reader.
+     * @return the image reader.
+     */
     public ImageReader getImageReader(){
         return imageReader;
     }
 
+    /**
+     * Gets the main paddle.
+     * @return the main paddle reference.
+     */
     public Paddle getMainPaddle(){
         return mainPaddle;
     }
 
+    /**
+     * Gets the sound reader.
+     * @return the sound reader.
+     */
     public SoundReader getSoundReader(){
         return soundReader;
     }
 
+    /**
+     * Gets the user input listener.
+     * @return the user input listener.
+     */
     public UserInputListener getInputListener(){
         return inputListener;
     }
 
+    /**
+     * Gets the brick counter.
+     * @return the brick counter.
+     */
     public Counter getBrickCounter(){
         return brickCounter;
     }
 
+    /**
+     * Gets the collision sound of the ball and bricks.
+     * @return the collision sound.
+     */
     public Sound getCollisionSound(){
-        return collisionSound;
+        return soundReader.readSound("assets/blop.wav");
     }
 
+    /**
+     * Gets the ball dimensions.
+     * @return the ball dimensions.
+     */
     public Vector2 getBallDimensions(){
         return BALL_DIMENSIONS;
     }
 
+    /**
+     * Gets the paddle dimensions.
+     * @return the paddle dimensions.
+     */
     public Vector2 getPaddleDimensions(){
         return PADDLE_DIMENSIONS;
     }
 
+    /**
+     * Gets the paddle image.
+     * @return the paddle image renderable.
+     */
     public Renderable getPaddleImage(){
         return imageReader.readImage("assets/paddle.png", true);
     }
 
 
-
+    /**
+     * The main method to start the game.
+     * @param args command line arguments (optional: number of bricks and rows).
+     */
     public static void main(String[] args) {
         if(args.length == 2){
             new BrickerGameManager(WINDOW_TITLE, WINDOW_DIMENSIONS,
