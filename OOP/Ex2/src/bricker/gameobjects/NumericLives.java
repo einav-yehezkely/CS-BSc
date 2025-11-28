@@ -8,6 +8,9 @@ import danogl.util.Vector2;
 
 import java.awt.*;
 
+/**
+ * Class representing the numeric display of lives in the game.
+ */
 public class NumericLives {
     private final TextRenderable txt;
 

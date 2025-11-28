@@ -9,6 +9,9 @@ import danogl.gui.rendering.Renderable;
 import danogl.util.Counter;
 import danogl.util.Vector2;
 
+/**
+ * A collision strategy that adds an extra paddle to the game upon collision.
+ */
 public class ExtraPaddleStrategy implements CollisionStrategy{
     private static final int EXTRA_PADDLE_HITS = 4;
 
@@ -78,6 +81,9 @@ public class ExtraPaddleStrategy implements CollisionStrategy{
 
     }
 
+    /**
+     * Notifies that the extra paddle has been removed from the game.
+     */
     public void notifyExtraPaddleRemoved() {
         extraPaddle = null;
         factory.setGlobalExtraPaddle(null);

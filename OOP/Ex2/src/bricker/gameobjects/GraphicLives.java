@@ -7,7 +7,9 @@ import danogl.gui.ImageReader;
 import danogl.gui.rendering.Renderable;
 import danogl.util.Vector2;
 
-
+/**
+ * Class representing the graphical display of lives in the game.
+ */
 public class GraphicLives {
     private final GameObjectCollection gameObjects;
     private final Vector2 windowDimensions;

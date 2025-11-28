@@ -14,6 +14,11 @@ public class RestoreLifeStrategy implements CollisionStrategy{
     private final BrickerGameManager gameManager;
     private final CollisionStrategy basicStrategy;
 
+    /**
+     * Constructor for RestoreLifeStrategy.
+     * @param gameManager the main game manager
+     * @param basicStrategy the basic collision strategy to delegate brick removal
+     */
     public RestoreLifeStrategy(BrickerGameManager gameManager, CollisionStrategy basicStrategy) {
         this.gameManager = gameManager;
         this.basicStrategy = basicStrategy;

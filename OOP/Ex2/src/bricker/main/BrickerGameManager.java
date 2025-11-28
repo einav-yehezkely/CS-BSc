@@ -18,6 +18,9 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.Random;
 
+/**
+ * The main game manager class for the Bricker game.
+ */
 public class BrickerGameManager extends GameManager {
     private static final String WINDOW_TITLE = "Bricker";
     private static final Vector2 WINDOW_DIMENSIONS = new Vector2(700, 500);
