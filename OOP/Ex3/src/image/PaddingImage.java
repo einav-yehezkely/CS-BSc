@@ -3,13 +3,8 @@ package image;
 import java.awt.*;
 
 public class PaddingImage {
-    private final Image image;
 
-    public PaddingImage(Image image) {
-        this.image = image;
-    }
-
-    public Image padImg(){
+    public static Image padImg(Image image){
         int originalWidth = image.getWidth();
         int originalHeight = image.getHeight();
         int newWidth = nextPowerOfTwo(originalWidth);
@@ -44,7 +39,7 @@ public class PaddingImage {
 
     }
 
-    private int nextPowerOfTwo(int n){
+    private static int nextPowerOfTwo(int n){
         int power = 1;
         while (power < n) {
             power *= 2;

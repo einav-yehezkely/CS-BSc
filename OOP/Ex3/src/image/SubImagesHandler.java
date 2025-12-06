@@ -9,23 +9,13 @@ import java.awt.*;
  * @author Einav Yehezkely
  */
 public class SubImagesHandler {
-    private final Image image;
-
-    /**
-     * Constructs an SubImagesHandler object with the specified image.
-     * @param image The image to be divided.
-     */
-    public SubImagesHandler(Image image) {
-        this.image = image;
-    }
-
     /**
      * Divides the image into smaller sub-images arranged in a grid.
      * Each sub-image will have dimensions determined by the number of images in each row.
      * @param numImagesInRow The number of sub-images to be placed in each row - The resolution.
      * @return A 2D array of sub-images.
      */
-    public Image[][] divideImage(int numImagesInRow) {
+    public static Image[][] divideImage(Image image, int numImagesInRow) {
         int originalWidth = image.getWidth();
         int originalHeight = image.getHeight();
         int subImageWidth = originalWidth / numImagesInRow;
@@ -62,7 +52,7 @@ public class SubImagesHandler {
      * @param subImage a given sub-image
      * @return the brightness
      */
-    public double computeSubImageBrightness(Image subImage) {
+    public static double computeSubImageBrightness(Image subImage) {
         int width = subImage.getWidth();
         int height = subImage.getHeight();
 

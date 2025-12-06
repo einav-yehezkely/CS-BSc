@@ -1,0 +1,40 @@
+To improve the performance of the ASCII-art algorithm,
+we implemented 2 caching mechanisms that avoid redundant
+computations across multiple runs of the algorithm:
+1. Caching Sub-Image Brightness Values:
+    if the image and resolution remain unchanged between runs,
+    the brightness values will remain the same.
+    So, to avoid recomputing brightness values on subsequent runs, we store:
+        double[][] prevBrightness;
+        int prevResolution;
+        Image prevImage;
+    if all three match the current run, the algorithm reuses the cached brightness matrix
+    instead of recalculating it.
+2. Caching the Character Matcher
+    The mapping from characters to their normalized brightness values is
+    independent of the image itself. It depends only on the character set.
+    To avoid rebuilding the matcher for the same charset, we store:
+        char[] prevCharset;
+        SubImgCharMatcher prevMatcher;
+    If the current charset is identical to the previous one,
+    we reuse the existing SubImgCharMatcher.
+    Otherwise, we create a new matcher and update the cache.
+Data Structure Choice for SubImgCharMatcher:
+    We represent the brightness values of characters using two hash maps:
+        private final Map<Character, Double> charBrightnessMap;
+        private Map<Character, Double> normalizedCharBrightnessMap;
+    This design choice is motivated by several considerations:
+        1. O(1) Average-Time Access for Brightness Lookup
+        2. Efficient Add/Remove of Characters
+        3. Clear Separation Between Raw and Normalized Brightness
+            We maintain two maps:
+                charBrightnessMap that holds raw brightness values
+                normalizedCharBrightnessMap that holds values re-scaled to [0, 1]
+            This separation ensures:
+                Raw brightness values never need to be recomputed
+                Normalization can be recalculated efficiently whenever the charset changes
+        4. Readable Matching Logic
+        5. Extensibility - Easy to Extend with Additional Features
+    Overall, using hash maps for brightness storage in SubImgCharMatcher
+    provides a good balance of performance, flexibility, and code clarity,
+    making it well-suited for the needs of the ASCII-art algorithm.
