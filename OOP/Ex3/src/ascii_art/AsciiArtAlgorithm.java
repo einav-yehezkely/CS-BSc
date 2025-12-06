@@ -92,22 +92,22 @@ public class AsciiArtAlgorithm {
         return asciiArt;
     }
 
-    public static void main(String[] args) {
-        try {
-            Image img = new Image("examples/board.jpeg");
-
-            AsciiArtAlgorithm algorithm =
-                    new AsciiArtAlgorithm(img, 2, new char[]{'m', 'o'});
-
-            char[][] ascii = algorithm.run();
-
-            for (char[] row : ascii) {
-                System.out.println(new String(row));
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    public static void main(String[] args) {
+//        try {
+//            Image img = new Image("examples/board.jpeg");
+//
+//            AsciiArtAlgorithm algorithm =
+//                    new AsciiArtAlgorithm(img, 2, new char[]{'m', 'o'});
+//
+//            char[][] ascii = algorithm.run();
+//
+//            for (char[] row : ascii) {
+//                System.out.println(new String(row));
+//            }
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 }
 
