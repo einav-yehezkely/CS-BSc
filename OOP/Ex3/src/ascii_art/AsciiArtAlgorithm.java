@@ -15,6 +15,7 @@ public class AsciiArtAlgorithm {
     private final Image image;
     private final int resolution;
     private final char[] charset;
+    private final SubImgCharMatcher matcher;
 
     private double[][] prevBrightness;
     private int prevResolution;
@@ -28,10 +29,11 @@ public class AsciiArtAlgorithm {
      * @param resolution The number of characters in each row of the resulting ASCII art.
      * @param charset The set of characters to be used for the ASCII art.
      */
-    public AsciiArtAlgorithm(Image image, int resolution, char[] charset) {
+    public AsciiArtAlgorithm(Image image, int resolution, char[] charset, SubImgCharMatcher matcher) {
         this.image = image;
         this.resolution = resolution;
         this.charset = charset;
+        this.matcher = matcher;
 
         this.prevBrightness = null;
         this.prevResolution = -1;
@@ -76,17 +78,6 @@ public class AsciiArtAlgorithm {
             brightness = prevBrightness;
         }
 
-        SubImgCharMatcher matcher;
-
-        // Step 3: Match sub-images to characters
-        if(prevCharset == null || !Arrays.equals(prevCharset, charset)){
-            matcher = new SubImgCharMatcher(charset);
-            prevCharset = Arrays.copyOf(charset, charset.length);
-            prevMatcher = matcher;
-        }
-        else{
-            matcher = prevMatcher;
-        }
         // Generate ASCII art based on brightness values
         char[][] asciiArt = new char[numRows][numCols];
         for (int i = 0; i < numRows; i++) {

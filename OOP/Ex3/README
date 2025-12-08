@@ -1,24 +1,24 @@
 To improve the performance of the ASCII-art algorithm,
-we implemented 2 caching mechanisms that avoid redundant
+we implemented a caching mechanisms that avoid redundant
 computations across multiple runs of the algorithm:
-1. Caching Sub-Image Brightness Values:
-    if the image and resolution remain unchanged between runs,
-    the brightness values will remain the same.
-    So, to avoid recomputing brightness values on subsequent runs, we store:
-        double[][] prevBrightness;
-        int prevResolution;
-        Image prevImage;
-    if all three match the current run, the algorithm reuses the cached brightness matrix
-    instead of recalculating it.
-2. Caching the Character Matcher
-    The mapping from characters to their normalized brightness values is
-    independent of the image itself. It depends only on the character set.
-    To avoid rebuilding the matcher for the same charset, we store:
-        char[] prevCharset;
-        SubImgCharMatcher prevMatcher;
-    If the current charset is identical to the previous one,
-    we reuse the existing SubImgCharMatcher.
-    Otherwise, we create a new matcher and update the cache.
+    Caching Sub-Image Brightness Values -
+        if the image and resolution remain unchanged between runs,
+        the brightness values will remain the same.
+        So, to avoid recomputing brightness values on subsequent runs, we store:
+            double[][] prevBrightness;
+            int prevResolution;
+            Image prevImage;
+        if all three match the current run, the algorithm reuses the cached brightness matrix
+        instead of recalculating it.
+We also improve performance by computing the SubImgCharMatcher once in the Shell
+instead of rebuilding it inside every execution of the ASCII-art algorithm.
+The matcher depends only on the character set, not on the image or resolution,
+so there is no need to recompute brightness values and normalization on each run.
+The Shell updates the matcher only when the charset changes or when reverse mode is activated.
+Otherwise, it simply reuses the existing matcher.
+This avoids redundant work, reduces runtime across repeated outputs,
+and keeps the algorithm itself focused solely on converting brightness values to ASCII characters.
+
 Data Structure Choice for SubImgCharMatcher:
     We represent the brightness values of characters using two hash maps:
         private final Map<Character, Double> charBrightnessMap;

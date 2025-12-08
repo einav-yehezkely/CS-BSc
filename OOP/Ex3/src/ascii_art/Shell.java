@@ -1,5 +1,8 @@
 package ascii_art;
 
+import ascii_output.AsciiOutput;
+import ascii_output.ConsoleAsciiOutput;
+import ascii_output.HtmlAsciiOutput;
 import image.Image;
 import image.PaddingImage;
 import image.SubImagesHandler;
@@ -12,7 +15,7 @@ import java.util.Arrays;
  * for interacting with the ASCII art conversion program.
  */
 public class Shell{
-    private static int DEFAULT_RESOLUTION = 2;
+    private static int DEFAULT_RESOLUTION = 256;  //TODO
     private static char[] DEFAULT_CHARSET = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 
     private int resolution;
@@ -21,6 +24,8 @@ public class Shell{
     private char[] charset;
     private Image image;
     SubImgCharMatcher matcher;
+    private AsciiOutput output;
+
 
 
     /** Constructs a Shell object with default resolution and character set.
@@ -80,6 +85,27 @@ public class Shell{
                 }
                 if(parts.length > 1){
                     changeRes(parts[1]);
+                }
+            }
+
+            if(parts[0].equals("reverse")){
+                matcher.turnOnReverse();
+            }
+
+            if (parts[0].equals("output")){
+                if(parts.length < 2){
+                    System.out.println("Did not change output method due to incorrect format.");
+                    continue;
+                }
+                AsciiArtAlgorithm algorithm = new AsciiArtAlgorithm(image, resolution, charset, matcher);
+                char[][] ascii = algorithm.run();
+                if(parts[1].equals("html")){
+                    this.output = new HtmlAsciiOutput("out.html", "Courier New");
+                    output.out(ascii);
+
+                } else if (parts[1].equals("console")) {
+                    this.output = new ConsoleAsciiOutput();
+                    output.out(ascii);
                 }
             }
         }

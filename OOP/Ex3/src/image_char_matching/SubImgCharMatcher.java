@@ -8,23 +8,33 @@ import java.util.Map;
 public class SubImgCharMatcher {
     private Map<Character, Double> normalizedCharBrightnessMap;
     private final Map<Character, Double> charBrightnessMap;
+    private boolean reverseMode = false;
+    private Map<Character, Double> reversedCharBrightnessMap;
+
 
     public SubImgCharMatcher(char[] charset){
         this.charBrightnessMap = calcCharBrightness(charset);
         this.normalizedCharBrightnessMap = calcNormalizedCharBrightness();
+        this.reversedCharBrightnessMap = calcReversedBrightness();
     }
 
+
     public char getCharByImageBrightness(double brightness){
+        Map<Character, Double> mapToUse;
+        if(reverseMode){
+            mapToUse = reversedCharBrightnessMap;
+        }
+        else{
+            mapToUse = normalizedCharBrightnessMap;
+        }
+
         char closestChar = ' ';
         double closestDifference = Double.MAX_VALUE;
 
-        for(Map.Entry<Character, Double> entry : normalizedCharBrightnessMap.entrySet()){
-            double charBrightness = entry.getValue();
-            double difference = Math.abs(charBrightness - brightness);
-
-            // Find the character with the closest brightness
-            if(difference < closestDifference){
-                closestDifference = difference;
+        for (Map.Entry<Character, Double> entry : mapToUse.entrySet()) {
+            double diff = Math.abs(entry.getValue() - brightness);
+            if (diff < closestDifference) {
+                closestDifference = diff;
                 closestChar = entry.getKey();
             }
         }
@@ -41,6 +51,7 @@ public class SubImgCharMatcher {
         charBrightnessMap.put(c, brightness);
         // Recalculate normalized brightness map
         this.normalizedCharBrightnessMap = calcNormalizedCharBrightness();
+        this.reversedCharBrightnessMap = calcReversedBrightness();
     }
 
     public void removeChar(char c){
@@ -57,6 +68,8 @@ public class SubImgCharMatcher {
 
         // Recalculate normalized brightness map
         this.normalizedCharBrightnessMap = calcNormalizedCharBrightness();
+        this.reversedCharBrightnessMap = calcReversedBrightness();
+
     }
 
     private Map<Character, Double> calcCharBrightness(char[] charset){
@@ -103,6 +116,21 @@ public class SubImgCharMatcher {
 
     private double normalizeBrightness(double brightness, double minBrightness, double maxBrightness){
         return (brightness - minBrightness) / (maxBrightness - minBrightness);
+    }
+
+    /**
+     * Turns on reverse mode, which inverts the brightness mapping.
+     */
+    public void turnOnReverse() {
+        reverseMode = true;
+    }
+
+    private Map<Character, Double> calcReversedBrightness() {
+        Map<Character, Double> reversed = new HashMap<>();
+        for (Map.Entry<Character, Double> entry : normalizedCharBrightnessMap.entrySet()) {
+            reversed.put(entry.getKey(), 1.0 - entry.getValue());
+        }
+        return reversed;
     }
 
 }
