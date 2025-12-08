@@ -5,6 +5,11 @@ import image.PaddingImage;
 import image.SubImagesHandler;
 import image_char_matching.SubImgCharMatcher;
 
+import java.util.Arrays;
+
+/** The AsciiArtAlgorithm class provides functionality to convert an image into ASCII art
+ * using a specified resolution and character set.
+ */
 public class AsciiArtAlgorithm {
 
     private final Image image;
@@ -74,9 +79,9 @@ public class AsciiArtAlgorithm {
         SubImgCharMatcher matcher;
 
         // Step 3: Match sub-images to characters
-        if(prevCharset == null || !java.util.Arrays.equals(prevCharset, charset)){
+        if(prevCharset == null || !Arrays.equals(prevCharset, charset)){
             matcher = new SubImgCharMatcher(charset);
-            prevCharset = java.util.Arrays.copyOf(charset, charset.length);
+            prevCharset = Arrays.copyOf(charset, charset.length);
             prevMatcher = matcher;
         }
         else{
@@ -92,22 +97,5 @@ public class AsciiArtAlgorithm {
         return asciiArt;
     }
 
-//    public static void main(String[] args) {
-//        try {
-//            Image img = new Image("examples/board.jpeg");
-//
-//            AsciiArtAlgorithm algorithm =
-//                    new AsciiArtAlgorithm(img, 2, new char[]{'m', 'o'});
-//
-//            char[][] ascii = algorithm.run();
-//
-//            for (char[] row : ascii) {
-//                System.out.println(new String(row));
-//            }
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
 }
 
