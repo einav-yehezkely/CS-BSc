@@ -1,6 +1,7 @@
 package ascii_art;
 
 import image.Image;
+import image.PaddingImage;
 import image.SubImagesHandler;
 import image_char_matching.SubImgCharMatcher;
 
@@ -15,6 +16,8 @@ public class Shell{
     private static char[] DEFAULT_CHARSET = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 
     private int resolution;
+    private int minCharsInRow;
+    private int maxCharsInRow;
     private char[] charset;
     private Image image;
     SubImgCharMatcher matcher;
@@ -38,6 +41,9 @@ public class Shell{
             System.out.println("Error: Unable to load image '" + imageName + "'.");
             return;
         }
+        Image padded = PaddingImage.padImg(image);
+        maxCharsInRow = padded.getWidth();
+        minCharsInRow = Math.max(1, padded.getWidth() / padded.getHeight());
 
         while(true){
             System.out.print(">>> ");
@@ -66,6 +72,15 @@ public class Shell{
                     continue;
                 }
                 removeSomething(parts[1]);
+            }
+
+            if(parts[0].equals("res")){
+                if(parts.length == 1){
+                    System.out.println("Resolution set to " + resolution);
+                }
+                if(parts.length > 1){
+                    changeRes(parts[1]);
+                }
             }
         }
     }
@@ -206,12 +221,31 @@ public class Shell{
         charset = newArr;
     }
 
-
     private boolean contains(char[] arr, char c){
         for (char x : arr){
             if (x == c) return true;
         }
         return false;
+    }
+
+    private void changeRes(String askedRes){
+        int newResolution = resolution;
+        if(askedRes.equals("up")){
+            newResolution *= 2;
+        } else if (askedRes.equals("down")) {
+            newResolution /= 2;
+        }
+        else{
+            System.out.println("Did not change resolution due to incorrect format.");
+            return;
+        }
+        if(newResolution < minCharsInRow || newResolution > maxCharsInRow){
+            System.out.println("Did not change resolution due to exceeding boundaries.");
+        }
+        else {
+            resolution = newResolution;
+            System.out.println("Resolution set to " + resolution);
+        }
     }
 
     public static void main(String[] args) {
