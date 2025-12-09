@@ -20,19 +20,22 @@ This avoids redundant work, reduces runtime across repeated outputs,
 and keeps the algorithm itself focused solely on converting brightness values to ASCII characters.
 
 Data Structure Choice for SubImgCharMatcher:
-    We represent the brightness values of characters using two hash maps:
+    We represent the brightness values of characters using 3 hash maps:
         private final Map<Character, Double> charBrightnessMap;
         private Map<Character, Double> normalizedCharBrightnessMap;
+        private Map<Character, Double> reversedCharBrightnessMap;
     This design choice is motivated by several considerations:
         1. O(1) Average-Time Access for Brightness Lookup
         2. Efficient Add/Remove of Characters
         3. Clear Separation Between Raw and Normalized Brightness
-            We maintain two maps:
+            We maintain 3 maps:
                 charBrightnessMap that holds raw brightness values
                 normalizedCharBrightnessMap that holds values re-scaled to [0, 1]
+                reversedCharBrightnessMap that holds normalized values inverted for reverse mode.
             This separation ensures:
                 Raw brightness values never need to be recomputed
-                Normalization can be recalculated efficiently whenever the charset changes
+                Normalization and inverted values can be recalculated efficiently
+                whenever the charset changes.
         4. Readable Matching Logic
         5. Extensibility - Easy to Extend with Additional Features
     Overall, using hash maps for brightness storage in SubImgCharMatcher

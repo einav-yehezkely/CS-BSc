@@ -12,6 +12,7 @@ public class SubImagesHandler {
     /**
      * Divides the image into smaller sub-images arranged in a grid.
      * Each sub-image will have dimensions determined by the number of images in each row.
+     * @param image The original image to be divided.
      * @param numImagesInRow The number of sub-images to be placed in each row - The resolution.
      * @return A 2D array of sub-images.
      */

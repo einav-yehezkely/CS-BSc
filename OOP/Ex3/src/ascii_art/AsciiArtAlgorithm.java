@@ -29,7 +29,16 @@ public class AsciiArtAlgorithm {
      * @param resolution The number of characters in each row of the resulting ASCII art.
      * @param charset The set of characters to be used for the ASCII art.
      */
-    public AsciiArtAlgorithm(Image image, int resolution, char[] charset, SubImgCharMatcher matcher) {
+    public AsciiArtAlgorithm(
+            Image image,
+            int resolution,
+            char[] charset,
+            SubImgCharMatcher matcher)  throws IllegalArgumentException
+    {
+        if (charset == null || charset.length < 2) {
+            throw new IllegalArgumentException();
+        }
+
         this.image = image;
         this.resolution = resolution;
         this.charset = charset;

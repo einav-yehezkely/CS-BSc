@@ -2,8 +2,18 @@ package image;
 
 import java.awt.*;
 
+/**
+ * A class that provides functionality to pad an image to the next power of two dimensions.
+ */
 public class PaddingImage {
 
+    /**
+     * Pads the given image to the next power of two dimensions with white pixels.
+     * If the image already has power of two dimensions, it is returned unchanged.
+     *
+     * @param image The original image to be padded.
+     * @return A new Image object with padded dimensions.
+     */
     public static Image padImg(Image image){
         int originalWidth = image.getWidth();
         int originalHeight = image.getHeight();

@@ -15,7 +15,7 @@ import java.util.Arrays;
  * for interacting with the ASCII art conversion program.
  */
 public class Shell{
-    private static int DEFAULT_RESOLUTION = 256;  //TODO
+    private static int DEFAULT_RESOLUTION = 2;
     private static char[] DEFAULT_CHARSET = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 
     private int resolution;
@@ -25,7 +25,6 @@ public class Shell{
     private Image image;
     SubImgCharMatcher matcher;
     private AsciiOutput output;
-
 
 
     /** Constructs a Shell object with default resolution and character set.
@@ -46,9 +45,6 @@ public class Shell{
             System.out.println("Error: Unable to load image '" + imageName + "'.");
             return;
         }
-        Image padded = PaddingImage.padImg(image);
-        maxCharsInRow = padded.getWidth();
-        minCharsInRow = Math.max(1, padded.getWidth() / padded.getHeight());
 
         while(true){
             System.out.print(">>> ");
@@ -59,11 +55,11 @@ public class Shell{
                 return;
             }
 
-            if (parts[0].equals("chars")){
+            else if (parts[0].equals("chars")){
                 printCharset();
             }
 
-            if(parts[0].equals("add")){
+            else if(parts[0].equals("add")){
                 if (parts.length < 2) {
                     System.out.println("Did not add due to incorrect format.");
                     continue;
@@ -71,7 +67,7 @@ public class Shell{
                 addSomething(parts[1]);
             }
 
-            if(parts[0].equals("remove")){
+            else if(parts[0].equals("remove")){
                 if (parts.length < 2) {
                     System.out.println("Did not remove due to incorrect format.");
                     continue;
@@ -79,7 +75,7 @@ public class Shell{
                 removeSomething(parts[1]);
             }
 
-            if(parts[0].equals("res")){
+            else if(parts[0].equals("res")){
                 if(parts.length == 1){
                     System.out.println("Resolution set to " + resolution);
                 }
@@ -88,25 +84,44 @@ public class Shell{
                 }
             }
 
-            if(parts[0].equals("reverse")){
+            else if(parts[0].equals("reverse")){
                 matcher.turnOnReverse();
             }
 
-            if (parts[0].equals("output")){
+            else if (parts[0].equals("output")){
                 if(parts.length < 2){
                     System.out.println("Did not change output method due to incorrect format.");
                     continue;
                 }
-                AsciiArtAlgorithm algorithm = new AsciiArtAlgorithm(image, resolution, charset, matcher);
-                char[][] ascii = algorithm.run();
                 if(parts[1].equals("html")){
                     this.output = new HtmlAsciiOutput("out.html", "Courier New");
-                    output.out(ascii);
-
                 } else if (parts[1].equals("console")) {
                     this.output = new ConsoleAsciiOutput();
-                    output.out(ascii);
                 }
+                else {
+                    System.out.println("Did not change output method due to incorrect format.");
+                }
+            }
+
+            else if (parts[0].equals("asciiArt")){
+                AsciiArtAlgorithm algorithm;
+                try {
+                    algorithm =
+                            new AsciiArtAlgorithm(image, resolution, charset, matcher);
+                }
+                catch (IllegalArgumentException e){
+                    System.out.println("Did not execute. Charset is too small.");
+                    continue;
+                }
+                char[][] ascii = algorithm.run();
+                if(this.output == null){
+                    this.output = new ConsoleAsciiOutput();
+                }
+                output.out(ascii);
+            }
+
+            else{
+                System.out.println("Did not execute due to incorrect command.");
             }
         }
     }
@@ -265,6 +280,9 @@ public class Shell{
             System.out.println("Did not change resolution due to incorrect format.");
             return;
         }
+        Image padded = PaddingImage.padImg(image);
+        maxCharsInRow = padded.getWidth();
+        minCharsInRow = Math.max(1, padded.getWidth() / padded.getHeight());
         if(newResolution < minCharsInRow || newResolution > maxCharsInRow){
             System.out.println("Did not change resolution due to exceeding boundaries.");
         }
@@ -274,6 +292,9 @@ public class Shell{
         }
     }
 
+    /** The main method to start the Shell program.
+     * @param args Command-line arguments, where args[0] is the image file name.
+     */
     public static void main(String[] args) {
         Shell shell = new Shell();
         shell.run(args[0]);
