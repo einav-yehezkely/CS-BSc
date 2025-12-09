@@ -15,15 +15,13 @@ import java.util.Arrays;
  * for interacting with the ASCII art conversion program.
  */
 public class Shell{
-    private static int DEFAULT_RESOLUTION = 2;
-    private static char[] DEFAULT_CHARSET = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+    private static final int DEFAULT_RESOLUTION = 2;
+    private static final char[] DEFAULT_CHARSET = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 
     private int resolution;
-    private int minCharsInRow;
-    private int maxCharsInRow;
     private char[] charset;
     private Image image;
-    SubImgCharMatcher matcher;
+    private final SubImgCharMatcher matcher;
     private AsciiOutput output;
 
 
@@ -281,8 +279,8 @@ public class Shell{
             return;
         }
         Image padded = PaddingImage.padImg(image);
-        maxCharsInRow = padded.getWidth();
-        minCharsInRow = Math.max(1, padded.getWidth() / padded.getHeight());
+        int maxCharsInRow = padded.getWidth();
+        int minCharsInRow = Math.max(1, padded.getWidth() / padded.getHeight());
         if(newResolution < minCharsInRow || newResolution > maxCharsInRow){
             System.out.println("Did not change resolution due to exceeding boundaries.");
         }

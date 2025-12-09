@@ -11,7 +11,7 @@ import java.util.Map;
 public class SubImgCharMatcher {
     private Map<Character, Double> normalizedCharBrightnessMap;
     private final Map<Character, Double> charBrightnessMap;
-    private boolean reverseMode = false;
+    private boolean reverseMode;
     private Map<Character, Double> reversedCharBrightnessMap;
 
     /**
@@ -22,6 +22,7 @@ public class SubImgCharMatcher {
         this.charBrightnessMap = calcCharBrightness(charset);
         this.normalizedCharBrightnessMap = calcNormalizedCharBrightness();
         this.reversedCharBrightnessMap = calcReversedBrightness();
+        this.reverseMode = false;
     }
 
     /**
