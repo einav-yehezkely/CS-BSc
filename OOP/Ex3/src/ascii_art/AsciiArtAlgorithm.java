@@ -14,14 +14,11 @@ public class AsciiArtAlgorithm {
 
     private final Image image;
     private final int resolution;
-    private final char[] charset;
     private final SubImgCharMatcher matcher;
 
     private double[][] prevBrightness;
     private int prevResolution;
     private Image prevImage;
-    private char[] prevCharset;
-    private SubImgCharMatcher prevMatcher;
 
 
     /** Constructs an AsciiArtAlgorithm object with the specified image, resolution, and character set.
@@ -41,14 +38,12 @@ public class AsciiArtAlgorithm {
 
         this.image = image;
         this.resolution = resolution;
-        this.charset = charset;
         this.matcher = matcher;
 
         this.prevBrightness = null;
         this.prevResolution = -1;
         this.prevImage = null;
-        this.prevCharset = null;
-        this.prevMatcher = null;
+
     }
 
     /** Runs the ASCII art conversion algorithm.
