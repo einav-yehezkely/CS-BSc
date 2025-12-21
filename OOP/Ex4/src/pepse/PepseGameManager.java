@@ -10,6 +10,7 @@ import danogl.gui.WindowController;
 import pepse.world.Block;
 import pepse.world.Sky;
 import pepse.world.Terrain;
+import pepse.world.daynight.Night;
 
 import java.util.List;
 
@@ -30,5 +31,8 @@ public class PepseGameManager extends GameManager {
         for(GameObject block : blocks){
             gameObjects().addGameObject(block, Layer.STATIC_OBJECTS);
         }
+
+        GameObject night = Night.create(windowController.getWindowDimensions(), 30f);
+        gameObjects().addGameObject(night, Layer.UI);
     }
 }
