@@ -10,6 +10,9 @@ import java.util.List;
 
 import pepse.util.ColorSupplier;
 
+/**
+ * Terrain class that generates terrain blocks.
+ */
 public class Terrain {
     private static final Color BASE_GROUND_COLOR = new Color(212, 123, 74);
     private static final int TERRAIN_DEPTH = 20;

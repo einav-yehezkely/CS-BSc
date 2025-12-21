@@ -10,9 +10,17 @@ import pepse.world.Terrain;
 
 import java.awt.*;
 
+/**
+ * The sun that moves in a circular path.
+ */
 public class Sun {
     private static final float SUN_RADIUS = 50f;
 
+    /** Create the sun game object that moves in a circular path.
+     * @param windowDimensions the dimensions of the window
+     * @param cycleLength the length of the sun's cycle
+     * @return the sun game object
+     */
     public static GameObject create(Vector2 windowDimensions, float cycleLength){
         Vector2 center =
                 new Vector2(windowDimensions.x() / 2f,

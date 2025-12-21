@@ -7,10 +7,17 @@ import danogl.util.Vector2;
 
 import java.awt.*;
 
+/**
+ * A halo effect around the sun.
+ */
 public class SunHalo {
     private static final float HALO_RADIUS = 90f;
     private static final Color HALO_COLOR = new Color(255, 255, 0, 20);
 
+    /** Create a sun halo that follows the sun.
+     * @param sun the sun game object
+     * @return the sun halo game object
+     */
     public static GameObject create(GameObject sun){
         Vector2 haloTopLeft =
                 sun.getCenter().subtract(new Vector2(HALO_RADIUS, HALO_RADIUS));
