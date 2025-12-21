@@ -7,9 +7,11 @@ import danogl.gui.ImageReader;
 import danogl.gui.SoundReader;
 import danogl.gui.UserInputListener;
 import danogl.gui.WindowController;
+import danogl.util.Vector2;
 import pepse.world.Block;
 import pepse.world.Sky;
 import pepse.world.Terrain;
+import pepse.world.avatar.Avatar;
 import pepse.world.daynight.Night;
 import pepse.world.daynight.Sun;
 import pepse.world.daynight.SunHalo;
@@ -47,5 +49,16 @@ public class PepseGameManager extends GameManager {
 
         GameObject sunHalo = SunHalo.create(sun);
         gameObjects().addGameObject(sunHalo, Layer.BACKGROUND);
+
+        float avatarX = windowController.getWindowDimensions().x() / 2f;
+        float groundY = terrain.groundHeightAt(avatarX);
+        float avatarY = groundY - Avatar.AVATAR_DIMENSIONS.y();
+        Vector2 avatarTopLeft = new Vector2(avatarX, avatarY);
+
+        Avatar avatar = new Avatar(
+                avatarTopLeft,
+                inputListener,
+                imageReader);
+        gameObjects().addGameObject(avatar, Layer.DEFAULT);
     }
 }

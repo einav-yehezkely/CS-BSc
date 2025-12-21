@@ -1,0 +1,68 @@
+@startuml
+package pepse {
+    class PepseGameManager
+}
+
+package "pepse.utils" {
+    class ColorSupplier
+    class NoiseGenerator
+}
+
+package "pepse.world" {
+    class Sky
+    class Block
+    class Terrain
+}
+
+package "pepse.world.daynight" {
+    class Night
+    class Sun
+    class SunHalo
+}
+
+package "pepse.world.avatar" {
+    class Avatar
+    class Energy
+    interface MovementState
+    class IdleState
+    class RunState
+    class JumpState
+}
+
+package "pepse.world.trees" {
+    class Flora
+}
+
+/'PepseGameManager --> Sky'/
+/'PepseGameManager --> Terrain'/
+/'PepseGameManager --> Night'/
+/'PepseGameManager --> Sun'/
+/'PepseGameManager --> SunHalo'/
+/'PepseGameManager --> Avatar'/
+/'PepseGameManager --> Flora'/
+
+/'Terrain --> NoiseGenerator'/
+/'Flora ..> Terrain : via callback'/
+/'SunHalo --> Sun'/
+
+@enduml
+
+
+@startuml
+package "pepse.world.avatar" {
+    class Avatar
+    class Energy
+    interface MovementState
+    class IdleState
+    class RunState
+    class JumpState
+}
+
+
+IdleState ...|> MovementState
+RunState ...|> MovementState
+JumpState ...|> MovementState
+Avatar -o MovementState
+Avatar -o Energy
+
+@enduml
