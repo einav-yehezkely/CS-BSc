@@ -17,6 +17,7 @@ public class Avatar extends GameObject{
     private static final float VELOCITY_Y = -650;
 
     private final UserInputListener inputListener;
+    private MovementState state;
 
     /** Constructor for the Avatar class.
      * @param topLeftCorner the top-left corner of the avatar
@@ -33,6 +34,7 @@ public class Avatar extends GameObject{
         physics().preventIntersectionsFromDirection(Vector2.ZERO);
         transform().setAccelerationY(GRAVITY);
         this.inputListener = inputListener;
+        this.state = StateFactory.IDLE_STATE;
     }
 
     /**
