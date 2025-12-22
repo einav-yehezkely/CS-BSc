@@ -1,5 +1,7 @@
 package pepse.world.Energy;
 
+import pepse.world.trees.Fruit;
+
 public class Energy {
     private static final int MIN_ENERGY = 0;
     private static final int MAX_ENERGY = 100;
@@ -41,6 +43,10 @@ public class Energy {
 
     public void recover() {
         updateEnergy(energy + RECOVERY_RATE);
+    }
+
+    public void eatFruitRecover(){
+        updateEnergy(energy + Fruit.ENERGY_GAIN);
     }
 
     /**

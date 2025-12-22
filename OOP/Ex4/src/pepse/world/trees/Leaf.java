@@ -29,7 +29,9 @@ public class Leaf extends GameObject {
     public Leaf(Vector2 topLeft) {
         super(topLeft,
                 new Vector2(SIZE, SIZE),
-                new RectangleRenderable(ColorSupplier.approximateColor(new Color(50, 200, 30))));
+                new RectangleRenderable(
+                        ColorSupplier.approximateColor(new Color(50, 200, 30)))
+        );
     }
 
     /**

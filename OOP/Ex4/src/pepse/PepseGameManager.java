@@ -7,6 +7,7 @@ import danogl.gui.ImageReader;
 import danogl.gui.SoundReader;
 import danogl.gui.UserInputListener;
 import danogl.gui.WindowController;
+import danogl.gui.rendering.Camera;
 import danogl.util.Vector2;
 import pepse.world.Block;
 import pepse.world.Energy.EnergyDisplay;
@@ -71,6 +72,9 @@ public class PepseGameManager extends GameManager {
 
         EnergyDisplay energyDisplay = new EnergyDisplay(avatar);
         gameObjects().addGameObject(energyDisplay, Layer.UI);
+
+        setCamera(new Camera(avatar, Vector2.ZERO,
+                windowController.getWindowDimensions(),windowController.getWindowDimensions()));
 
 
     }

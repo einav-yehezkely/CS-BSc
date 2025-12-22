@@ -18,8 +18,9 @@ public class Tree {
                 MIN_HEIGHT + random.nextFloat() * (MAX_HEIGHT - MIN_HEIGHT);
         Trunk trunk = new Trunk(groundPosition, height);
         parts.add(trunk);
-        parts.addAll(Leaf.createLeaves(trunk, random));
-//        parts.addAll(Fruit.createFruits(trunk, random));
+        List<GameObject> leaves = Leaf.createLeaves(trunk, random);
+        parts.addAll(leaves);
+        parts.addAll(Fruit.createFruits(leaves, random));
     }
 
     public List<GameObject> getParts() {

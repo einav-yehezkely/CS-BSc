@@ -8,6 +8,7 @@ import danogl.gui.rendering.AnimationRenderable;
 import danogl.gui.rendering.Renderable;
 import danogl.util.Vector2;
 import pepse.world.Energy.Energy;
+import pepse.world.trees.Fruit;
 
 /** Avatar class representing the player character. */
 public class Avatar extends GameObject {
@@ -85,6 +86,12 @@ public class Avatar extends GameObject {
             // snap avatar exactly on top of the block
             float groundTop = other.getTopLeftCorner().y();
             transform().setTopLeftCornerY(groundTop - getDimensions().y());
+        }
+
+        if (other.getTag().equals("fruit")) {
+            Fruit fruit = (Fruit) other;
+            fruit.eat();
+            energy.eatFruitRecover();
         }
     }
 
