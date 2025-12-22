@@ -2,13 +2,39 @@ package pepse.world.avatar;
 
 import java.awt.event.KeyEvent;
 
+/** Represents the jumping movement state of an avatar. */
 public class JumpState implements MovementState{
-    @Override
-    public void handleInput(Avatar avatar) {
+    private int jumpsLeft = 1;
+    private boolean spaceReleased = false;
 
+    /**
+     * Handles discrete input events.
+     * This method is responsible for state transitions and one-time actions
+     * @param avatar the avatar object
+     */
+    public void handleInput(Avatar avatar) {
+        boolean spacePressed =
+                avatar.getInputListener().isKeyPressed(KeyEvent.VK_SPACE);
+
+        // detect release
+        if (!spacePressed) {
+            spaceReleased = true;
+        }
+
+        // second jump - only after release
+        if (spacePressed && spaceReleased && jumpsLeft > 0) {
+            avatar.jump();
+            jumpsLeft--;
+            spaceReleased = false;
+        }
     }
 
-    @Override
+    /**
+     * Updates continuous behavior of the avatar while in this state.
+     * @param avatar the avatar object
+     * @param deltaTime time elapsed since last update
+     */
+        @Override
     public void update(Avatar avatar, float deltaTime) {
         float vx = 0;
         if (avatar.getInputListener().isKeyPressed(KeyEvent.VK_LEFT))
