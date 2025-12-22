@@ -1,6 +1,7 @@
 package pepse.world.trees;
 
 import danogl.GameObject;
+import danogl.components.GameObjectPhysics;
 import danogl.gui.rendering.RectangleRenderable;
 import danogl.util.Vector2;
 import pepse.util.ColorSupplier;
@@ -32,6 +33,9 @@ public class Trunk extends GameObject {
         );
 
         this.height = height;
+        physics().preventIntersectionsFromDirection(Vector2.ZERO);
+        physics().setMass(GameObjectPhysics.IMMOVABLE_MASS);
+
     }
 
     public float getHeight() {
