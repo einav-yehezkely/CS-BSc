@@ -9,6 +9,7 @@ public class Energy {
     private static final int RECOVERY_RATE = 1; // per update
 
     private int energy;
+    private EnergyChangeListener listener;
 
     public Energy() {
         this.energy = MAX_ENERGY;
@@ -26,37 +27,42 @@ public class Energy {
         return energy >= DOUBLE_JUMP_COST;
     }
 
-    /**
-     * Sets energy to valid range.
-     */
-    private void enforceBounds() {
-        energy = Math.max(0, Math.min(MAX_ENERGY, energy));
-    }
-
     public void consumeForRun() {
-        energy -= RUN_COST;
-        enforceBounds();
+        updateEnergy(energy - RUN_COST);
     }
 
     public void consumeForJump() {
-        energy -= JUMP_COST;
-        enforceBounds();
+        updateEnergy(energy - JUMP_COST);
     }
 
     public void consumeForDoubleJump() {
-        energy -= DOUBLE_JUMP_COST;
-        enforceBounds();
+        updateEnergy(energy - DOUBLE_JUMP_COST);
     }
 
     public void recover() {
-        energy += RECOVERY_RATE;
-        enforceBounds();
+        updateEnergy(energy + RECOVERY_RATE);
     }
+
     /**
-     * @return the current energy level
+     * Sets the listener for energy change events.
+     * @param listener the listener to set
      */
-    public int getEnergy() {
-        return energy;
+    public void setEnergyChangeListener(EnergyChangeListener listener) {
+        this.listener = listener;
+        listener.onEnergyChange(energy);
+    }
+
+    /**
+     * Updates the energy level and notifies the listener if there is a change.
+     * @param newEnergy the new energy level
+     */
+    private void updateEnergy(int newEnergy) {
+        int oldEnergy = energy;
+        energy = Math.max(MIN_ENERGY, Math.min(MAX_ENERGY, newEnergy));
+
+        if (listener != null && energy != oldEnergy) {
+            listener.onEnergyChange(energy);
+        }
     }
 
 }

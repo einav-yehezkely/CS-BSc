@@ -22,11 +22,17 @@ package "pepse.world.daynight" {
 
 package "pepse.world.avatar" {
     class Avatar
-    class Energy
     interface MovementState
+    class StateFactory
     class IdleState
     class RunState
     class JumpState
+}
+
+package "pepse.world.Energy"{
+    class Energy
+    class EnergyDisplay
+    interface EnergyChangeListener
 }
 
 package "pepse.world.trees" {
@@ -51,7 +57,6 @@ package "pepse.world.trees" {
 @startuml
 package "pepse.world.avatar" {
     class Avatar
-    class Energy
     interface MovementState
     class StateFactory
     class IdleState
@@ -59,7 +64,7 @@ package "pepse.world.avatar" {
     class JumpState
 }
 
-
+Avatar ...> StateFactory : dependency
 MovementState -o Avatar
 
 IdleState ...|> MovementState : implementation
@@ -68,9 +73,7 @@ JumpState ...|> MovementState
 IdleState -o StateFactory : composition
 RunState -o StateFactory
 JumpState -o StateFactory
-Energy -o Avatar
 
-Avatar ...> StateFactory : dependency
 
 
 @enduml
