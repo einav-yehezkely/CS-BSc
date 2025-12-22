@@ -10,53 +10,58 @@ import danogl.util.Vector2;
 import java.awt.event.KeyEvent;
 
 /** Avatar class representing the player character. */
-public class Avatar extends GameObject{
+public class Avatar extends GameObject {
     public static final Vector2 AVATAR_DIMENSIONS = new Vector2(50, 50);
     private static final float GRAVITY = 600;
-    private static final float VELOCITY_X = 400;
+    public static final float VELOCITY_X = 400;
     private static final float VELOCITY_Y = -650;
 
     private final UserInputListener inputListener;
-    private MovementState state;
 
-    /** Constructor for the Avatar class.
+    private MovementState state;
+    private Energy energy;
+
+    /**
+     * Constructor for the Avatar class.
+     *
      * @param topLeftCorner the top-left corner of the avatar
      * @param inputListener the user input listener
-     * @param imageReader the image reader to load the avatar image
+     * @param imageReader   the image reader to load the avatar image
      */
     public Avatar(Vector2 topLeftCorner,
                   UserInputListener inputListener,
-                  ImageReader imageReader){
+                  ImageReader imageReader) {
 
         super(topLeftCorner,
                 AVATAR_DIMENSIONS,
                 imageReader.readImage("assets\\idle_0.png", true));
-        physics().preventIntersectionsFromDirection(Vector2.ZERO);
-        transform().setAccelerationY(GRAVITY);
+
         this.inputListener = inputListener;
         this.state = StateFactory.IDLE_STATE;
+        this.energy = new Energy();
+
+        physics().preventIntersectionsFromDirection(Vector2.ZERO);
+        transform().setAccelerationY(GRAVITY);
+
+        this.setTag("avatar");
     }
 
     /**
      * Update the avatar's velocity based on user input.
+     *
      * @param deltaTime time elapsed since last update
      */
     @Override
     public void update(float deltaTime) {
         super.update(deltaTime);
-        float xVel = 0;
-        if(inputListener.isKeyPressed(KeyEvent.VK_LEFT))
-            xVel -= VELOCITY_X;
-        if(inputListener.isKeyPressed(KeyEvent.VK_RIGHT))
-            xVel += VELOCITY_X;
-        transform().setVelocityX(xVel);
-        if(inputListener.isKeyPressed(KeyEvent.VK_SPACE) && getVelocity().y() == 0)
-            transform().setVelocityY(VELOCITY_Y);
+        state.handleInput(this);
+        state.update(this, deltaTime);
     }
 
     /**
      * Handle collision with the ground to stop falling and snap on top.
-     * @param other the other game object involved in the collision
+     *
+     * @param other     the other game object involved in the collision
      * @param collision the collision information
      */
     @Override
@@ -74,4 +79,42 @@ public class Avatar extends GameObject{
             transform().setTopLeftCornerY(groundTop - getDimensions().y());
         }
     }
+
+    /**
+     * @return true if the avatar is on the ground
+     */
+    public boolean onGround() {
+        return getVelocity().y() == 0;
+    }
+
+    /**
+     * @return user input listener
+     */
+    public UserInputListener getInputListener() {
+        return inputListener;
+    }
+
+    /**
+     * set the avatar's movement state
+     * @param newState the new movement state
+     */
+    public void setState(MovementState newState){
+        this.state = newState;
+    }
+
+    /**
+     * Make the avatar jump by setting its vertical velocity.
+     */
+    public void jump(){
+        transform().setVelocityY(VELOCITY_Y);
+    }
+
+    /**
+     * Set the avatar's horizontal velocity.
+     * @param vx the new horizontal velocity
+     */
+    public void setVelocityX(float vx){
+        transform().setVelocityX(vx);
+    }
+
 }
