@@ -4,10 +4,8 @@ import danogl.GameObject;
 import danogl.collisions.Collision;
 import danogl.gui.ImageReader;
 import danogl.gui.UserInputListener;
-import danogl.gui.rendering.Renderable;
 import danogl.util.Vector2;
-
-import java.awt.event.KeyEvent;
+import pepse.world.Energy.Energy;
 
 /** Avatar class representing the player character. */
 public class Avatar extends GameObject {
@@ -115,6 +113,10 @@ public class Avatar extends GameObject {
      */
     public void setVelocityX(float vx){
         transform().setVelocityX(vx);
+    }
+
+    public Energy getEnergy() {
+        return energy;
     }
 
 }

@@ -12,15 +12,19 @@ public class IdleState implements MovementState{
     @Override
     public void handleInput(Avatar avatar) {
         // input - jump
-        if(avatar.onGround() &&
+        if(avatar.onGround() && avatar.getEnergy().canJump() &&
                 avatar.getInputListener().isKeyPressed(KeyEvent.VK_SPACE)){
             avatar.jump();
+            avatar.getEnergy().consumeForJump();
             avatar.setState(StateFactory.newJumpState());
             return;
         }
 
-        if(avatar.getInputListener().isKeyPressed(KeyEvent.VK_LEFT) ||
-                avatar.getInputListener().isKeyPressed(KeyEvent.VK_RIGHT)){
+        // input - run
+        if ((avatar.getInputListener().isKeyPressed(KeyEvent.VK_LEFT) ||
+                avatar.getInputListener().isKeyPressed(KeyEvent.VK_RIGHT))
+                && avatar.getEnergy().canRun()) {
+
             avatar.setState(StateFactory.RUN_STATE);
         }
 
@@ -34,5 +38,8 @@ public class IdleState implements MovementState{
     @Override
     public void update(Avatar avatar, float deltaTime) {
         avatar.setVelocityX(0);
+        if (avatar.onGround()) {
+            avatar.getEnergy().recover();
+        }
     }
 }

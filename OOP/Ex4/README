@@ -53,16 +53,24 @@ package "pepse.world.avatar" {
     class Avatar
     class Energy
     interface MovementState
+    class StateFactory
     class IdleState
     class RunState
     class JumpState
 }
 
 
-IdleState ...|> MovementState
+MovementState -o Avatar
+
+IdleState ...|> MovementState : implementation
 RunState ...|> MovementState
 JumpState ...|> MovementState
-Avatar -o MovementState
-Avatar -o Energy
+IdleState -o StateFactory : composition
+RunState -o StateFactory
+JumpState -o StateFactory
+Energy -o Avatar
+
+Avatar ...> StateFactory : dependency
+
 
 @enduml

@@ -22,8 +22,10 @@ public class JumpState implements MovementState{
         }
 
         // second jump - only after release
-        if (spacePressed && spaceReleased && jumpsLeft > 0) {
+        if (spacePressed && spaceReleased && jumpsLeft > 0 &&
+                avatar.getEnergy().canDoubleJump()) {
             avatar.jump();
+            avatar.getEnergy().consumeForDoubleJump();
             jumpsLeft--;
             spaceReleased = false;
         }
@@ -44,10 +46,11 @@ public class JumpState implements MovementState{
         avatar.setVelocityX(vx);
 
         if (avatar.onGround()) {
-            if (vx == 0) {
-                avatar.setState(StateFactory.IDLE_STATE);
-            } else {
+            if(avatar.getEnergy().canRun() && vx != 0){
                 avatar.setState(StateFactory.RUN_STATE);
+            }
+            else {
+                avatar.setState(StateFactory.IDLE_STATE);
             }
         }
     }

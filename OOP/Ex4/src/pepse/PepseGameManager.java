@@ -9,6 +9,7 @@ import danogl.gui.UserInputListener;
 import danogl.gui.WindowController;
 import danogl.util.Vector2;
 import pepse.world.Block;
+import pepse.world.Energy.EnergyDisplay;
 import pepse.world.Sky;
 import pepse.world.Terrain;
 import pepse.world.avatar.Avatar;
@@ -60,5 +61,8 @@ public class PepseGameManager extends GameManager {
                 inputListener,
                 imageReader);
         gameObjects().addGameObject(avatar, Layer.DEFAULT);
+
+        EnergyDisplay energyDisplay = new EnergyDisplay(avatar);
+        gameObjects().addGameObject(energyDisplay, Layer.UI);
     }
 }
