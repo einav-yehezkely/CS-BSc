@@ -1,6 +1,8 @@
 package pepse.world.trees;
 
 import danogl.GameObject;
+import danogl.components.ScheduledTask;
+import danogl.components.Transition;
 import danogl.gui.rendering.RectangleRenderable;
 import danogl.util.Vector2;
 
@@ -73,7 +75,48 @@ public class Leaf extends GameObject {
                 - CANOPY_RADIUS
                 + random.nextFloat() * (2 * CANOPY_RADIUS);
 
-        return new Leaf(new Vector2(x, y));
+        Leaf leaf = new Leaf(new Vector2(x, y));
+        animateLeaf(leaf, random);
+        return leaf;
+    }
+
+    /**
+     * Animate the leaf with rotation and size transitions
+     * @param leaf the leaf to animate
+     * @param random random number generator
+     */
+    private static void animateLeaf(Leaf leaf, Random random) {
+        float delay = random.nextFloat();
+
+        new ScheduledTask(
+                leaf,
+                delay,
+                false,
+                () -> {
+                    new Transition<>(
+                            leaf,
+                            angle -> leaf.renderer().setRenderableAngle(angle),
+                            -30f,
+                            30f,
+                            Transition.LINEAR_INTERPOLATOR_FLOAT,
+                            3f,
+                            Transition.TransitionType.TRANSITION_BACK_AND_FORTH,
+                            null
+                    );
+
+                    Vector2 baseSize = leaf.getDimensions();
+                    new Transition<>(
+                            leaf,
+                            leaf::setDimensions,
+                            baseSize,
+                            baseSize.mult(1.2f),
+                            Transition.LINEAR_INTERPOLATOR_VECTOR,
+                            3f,
+                            Transition.TransitionType.TRANSITION_BACK_AND_FORTH,
+                            null
+                    );
+                }
+        );
     }
 
 }
