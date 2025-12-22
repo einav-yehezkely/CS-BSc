@@ -7,6 +7,7 @@ import danogl.util.Vector2;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import pepse.util.NoiseGenerator;
 
 import pepse.util.ColorSupplier;
 
@@ -18,6 +19,7 @@ public class Terrain {
     private static final int TERRAIN_DEPTH = 20;
 
     private final float groundHeightAtX0;
+    private final NoiseGenerator noiseGenerator;
 
     /** Constructor
      * @param windowDimensions the dimensions of the window
@@ -25,13 +27,16 @@ public class Terrain {
      */
     public Terrain(Vector2 windowDimensions, int seed){
         groundHeightAtX0 = windowDimensions.y() * (2f/3f);
+        this.noiseGenerator = new NoiseGenerator(seed, (int) groundHeightAtX0);
     }
 
     /** Get the ground height at a given x coordinate
      * @param x the x coordinate
      * @return the ground height at the given x coordinate
      */
-    public float groundHeightAt(float x) { return groundHeightAtX0; }   // TODO: improve terrain variation
+    public float groundHeightAt(float x) {
+        return (float) (groundHeightAtX0 + noiseGenerator.noise(x, 300));
+    }
 
     /** Create terrain blocks in a given x range
      * @param minX the minimum x coordinate

@@ -16,6 +16,7 @@ import pepse.world.avatar.Avatar;
 import pepse.world.daynight.Night;
 import pepse.world.daynight.Sun;
 import pepse.world.daynight.SunHalo;
+import pepse.world.trees.Flora;
 
 import java.util.List;
 
@@ -51,6 +52,12 @@ public class PepseGameManager extends GameManager {
         GameObject sunHalo = SunHalo.create(sun);
         gameObjects().addGameObject(sunHalo, Layer.BACKGROUND);
 
+        Flora flora = new Flora(terrain, SEED);
+        List<GameObject> trees = flora.createInRange(0, (int) windowController.getWindowDimensions().x());
+        for (GameObject tree : trees) {
+            gameObjects().addGameObject(tree, Layer.STATIC_OBJECTS);
+        }
+
         float avatarX = windowController.getWindowDimensions().x() / 2f;
         float groundY = terrain.groundHeightAt(avatarX);
         float avatarY = groundY - Avatar.AVATAR_DIMENSIONS.y();
@@ -64,5 +71,7 @@ public class PepseGameManager extends GameManager {
 
         EnergyDisplay energyDisplay = new EnergyDisplay(avatar);
         gameObjects().addGameObject(energyDisplay, Layer.UI);
+
+
     }
 }
