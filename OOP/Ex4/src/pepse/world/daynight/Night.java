@@ -8,6 +8,9 @@ import danogl.util.Vector2;
 
 import java.awt.*;
 
+/**
+ * A class responsible for creating a night overlay that simulates the night time in the game.
+ */
 public class Night {
     private static final Float MIDNIGHT_OPACITY = 0.5f;
 

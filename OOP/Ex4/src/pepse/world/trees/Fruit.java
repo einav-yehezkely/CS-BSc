@@ -1,7 +1,6 @@
 package pepse.world.trees;
 
 import danogl.GameObject;
-import danogl.collisions.GameObjectCollection;
 import danogl.components.ScheduledTask;
 import danogl.gui.rendering.OvalRenderable;
 import danogl.util.Vector2;
@@ -12,7 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-
+/**
+ * Represents a fruit that can be eaten by the avatar.
+ */
 public class Fruit extends GameObject {
     private static final float SIZE = 12f;
     private static final float REAPPEAR_TIME = 30f;
@@ -56,6 +57,10 @@ public class Fruit extends GameObject {
         return fruits;
     }
 
+    /**
+     * Handles the eating of the fruit.
+     * The fruit disappears and reappears after a set time.
+     */
     public void eat() {
         if (eaten) {
             return;
@@ -73,6 +78,9 @@ public class Fruit extends GameObject {
         );
     }
 
+    /**
+     * Makes the fruit reappear after being eaten.
+     */
     private void reappear() {
         renderer().setRenderable(
                 new OvalRenderable(ColorSupplier.approximateColor(Color.RED))

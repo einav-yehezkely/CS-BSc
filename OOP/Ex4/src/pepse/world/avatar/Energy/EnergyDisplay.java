@@ -18,6 +18,10 @@ public class EnergyDisplay extends GameObject {
 
     private final TextRenderable textRenderable;
 
+    /**
+     * Constructs an EnergyDisplay linked to the given avatar.
+     * @param avatar the avatar whose energy level is to be displayed
+     */
     public EnergyDisplay(Avatar avatar) {
         super(POSITION, DIMENSIONS, new TextRenderable("100%"));
         this.textRenderable = (TextRenderable) renderer().getRenderable();
@@ -27,6 +31,7 @@ public class EnergyDisplay extends GameObject {
         setCoordinateSpace(CoordinateSpace.CAMERA_COORDINATES);
         setTag("energy_display");
 
+        // Set up the energy change listener to update the display
         avatar.getEnergy().setEnergyChangeListener(
                 energy -> textRenderable.setString(energy + "%")
         );

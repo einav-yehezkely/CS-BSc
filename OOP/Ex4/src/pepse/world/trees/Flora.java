@@ -9,16 +9,30 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Responsible for creating flora (trees) in the game world.
+ */
 public class Flora {
     private static final float TREE_CHANCE = 0.2f;
     private final Terrain terrain;
     private final Random random;
 
+    /**
+     * Constructs a Flora object with the given terrain and seed for randomness.
+     * @param terrain the terrain where flora will be created
+     * @param seed the seed for random number generation
+     */
     public Flora(Terrain terrain, int seed) {
         this.terrain = terrain;
         this.random = new Random(seed);
     }
 
+    /**
+     * Creates trees within the specified horizontal range.
+     * @param minX the minimum x-coordinate of the range
+     * @param maxX the maximum x-coordinate of the range
+     * @return a list of GameObjects representing the created trees
+     */
     public List<GameObject> createInRange(int minX, int maxX) {
         List<GameObject> objects = new ArrayList<>();
 
