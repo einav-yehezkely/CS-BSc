@@ -1,4 +1,4 @@
-package pepse.world.Energy;
+package pepse.world.avatar.Energy;
 
 /**
  * A listener interface for energy change events.

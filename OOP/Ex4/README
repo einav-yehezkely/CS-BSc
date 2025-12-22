@@ -1,84 +1,37 @@
-@startuml
-package pepse {
-    class PepseGameManager
-}
+einavye
+213835796
 
-package "pepse.utils" {
-    class ColorSupplier
-    class NoiseGenerator
-}
+Avatar Design Explanation:
+The avatar was implemented using the state design pattern to manage different states of the avatar,
+such as idle, running, and jumping.
+The main Avatar class represents the player entity and delegates behavior to movement
+state objects that implement a common MovementState interface.
+The following state classes were created:
+- IdleState – handles standing still and passive energy recovery.
+- RunState – handles horizontal movement and continuous energy consumption.
+- JumpState – handles jumping, double-jumping logic, and mid-air movement.
+State transitions are triggered by input and physical conditions:
+- From IdleState to RunState when left/right keys are pressed and energy is sufficient.
+- From IdleState or RunState to JumpState when space is pressed and the avatar is
+on the ground and energy is sufficient.
+- From JumpState to IdleState or RunState when the avatar lands, depending on horizontal input.
+Transitions are handled explicitly inside each state, making the logic easy to follow and extend.
+Energy Package Design:
+The energy system was implemented as a dedicated package (pepse.world.avatar.energy).
+This package contains three main components:
+- Energy – a logic-only class responsible for managing the avatar’s energy value,
+including consumption (running, jumping, double-jumping), recovery, and enforcing valid bounds.
+- EnergyChangeListener – an interface that defines a callback (onEnergyChange) for
+notifying interested components when the energy value changes.
+- EnergyDisplay – a UI class that updates the on-screen energy
+display only when notified of a change.
+The energy logic remains independent of rendering concerns,
+and the UI updates efficiently without polling the energy value every frame.
 
-package "pepse.world" {
-    class Sky
-    class Block
-    class Terrain
-}
-
-package "pepse.world.daynight" {
-    class Night
-    class Sun
-    class SunHalo
-}
-
-package "pepse.world.avatar" {
-    class Avatar
-    interface MovementState
-    class StateFactory
-    class IdleState
-    class RunState
-    class JumpState
-}
-
-package "pepse.world.Energy"{
-    class Energy
-    class EnergyDisplay
-    interface EnergyChangeListener
-}
-
-package "pepse.world.trees" {
-    class Flora
-    class Tree
-    class Trunk
-    class leaf
-    class fruit
-}
-
-/'PepseGameManager --> Sky'/
-/'PepseGameManager --> Terrain'/
-/'PepseGameManager --> Night'/
-/'PepseGameManager --> Sun'/
-/'PepseGameManager --> SunHalo'/
-/'PepseGameManager --> Avatar'/
-/'PepseGameManager --> Flora'/
-
-/'Terrain --> NoiseGenerator'/
-/'Flora ..> Terrain : via callback'/
-/'SunHalo --> Sun'/
-
-@enduml
-
-
-
-@startuml
-package "pepse.world.avatar" {
-    class Avatar
-    interface MovementState
-    class StateFactory
-    class IdleState
-    class RunState
-    class JumpState
-}
-
-Avatar ...> StateFactory : dependency
-MovementState -o Avatar
-
-IdleState ...|> MovementState : implementation
-RunState ...|> MovementState
-JumpState ...|> MovementState
-IdleState -o StateFactory : composition
-RunState -o StateFactory
-JumpState -o StateFactory
-
-
-
-@enduml
+Trees Design Explanation:
+The tree system is composed of multiple focused classes:
+- Flora – responsible for generating trees in a given world range.
+- Tree – a composite object that creates and aggregates trunk, leaves, and fruits.
+- Trunk, Leaf, Fruit – individual GameObject subclasses representing tree parts.
+Flora does not directly interact with the game world.
+Instead, it returns a list of GameObjects, keeping world management inside the game manager.

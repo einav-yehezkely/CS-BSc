@@ -10,7 +10,7 @@ import danogl.gui.WindowController;
 import danogl.gui.rendering.Camera;
 import danogl.util.Vector2;
 import pepse.world.Block;
-import pepse.world.Energy.EnergyDisplay;
+import pepse.world.avatar.Energy.EnergyDisplay;
 import pepse.world.Sky;
 import pepse.world.Terrain;
 import pepse.world.avatar.Avatar;

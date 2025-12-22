@@ -7,7 +7,7 @@ import danogl.gui.UserInputListener;
 import danogl.gui.rendering.AnimationRenderable;
 import danogl.gui.rendering.Renderable;
 import danogl.util.Vector2;
-import pepse.world.Energy.Energy;
+import pepse.world.avatar.Energy.Energy;
 import pepse.world.trees.Fruit;
 
 /** Avatar class representing the player character. */

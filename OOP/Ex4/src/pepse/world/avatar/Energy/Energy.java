@@ -1,4 +1,4 @@
-package pepse.world.Energy;
+package pepse.world.avatar.Energy;
 
 import pepse.world.trees.Fruit;
 
