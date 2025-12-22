@@ -44,7 +44,7 @@ public class PepseGameManager extends GameManager {
         super.initializeGame(imageReader, soundReader, inputListener, windowController);
 
         this.windowController = windowController;
-        this.deleteDistance = (int) windowController.getWindowDimensions().x();
+        this.deleteDistance = (int) windowController.getWindowDimensions().x() * 2;
 
         GameObject sky = Sky.create(windowController.getWindowDimensions());
         gameObjects().addGameObject(sky, Layer.BACKGROUND);
