@@ -38,6 +38,7 @@ public class IdleState implements MovementState{
     @Override
     public void update(Avatar avatar, float deltaTime) {
         avatar.setVelocityX(0);
+        avatar.setIdleAnimation();
         if (avatar.onGround()) {
             avatar.getEnergy().recover();
         }

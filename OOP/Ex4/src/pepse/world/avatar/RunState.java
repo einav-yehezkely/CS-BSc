@@ -34,7 +34,9 @@ public class RunState implements MovementState{
             if (avatar.getInputListener().isKeyPressed(KeyEvent.VK_RIGHT))
                 vx += Avatar.VELOCITY_X;
             avatar.setVelocityX(vx);
+            avatar.faceDirection(vx);
             if(vx!=0){
+                avatar.setRunAnimation();
                 avatar.getEnergy().consumeForRun();
             }
             else{

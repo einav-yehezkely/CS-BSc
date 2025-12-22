@@ -44,6 +44,8 @@ public class JumpState implements MovementState{
         if (avatar.getInputListener().isKeyPressed(KeyEvent.VK_RIGHT))
             vx += Avatar.VELOCITY_X;
         avatar.setVelocityX(vx);
+        avatar.faceDirection(vx);
+        avatar.setJumpAnimation();
 
         if (avatar.onGround()) {
             if(avatar.getEnergy().canRun() && vx != 0){
