@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Flora {
-    private static final float TREE_CHANCE = 0.4f;
+    private static final float TREE_CHANCE = 0.2f;
     private final Terrain terrain;
     private final Random random;
 
