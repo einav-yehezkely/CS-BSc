@@ -42,7 +42,8 @@ public class Flora {
         for (int x = startX; x < endX; x += Block.SIZE*2) {
             if (random.nextFloat() < TREE_CHANCE) {
                 float alignedX = x + Block.SIZE / 2f; // center of the block
-                // Get the ground height and align it to block size + 2 units below to ensure tree is on ground
+                // Get the ground height and align it to block size + 2
+                // units below to ensure tree is on ground
                 float rawGroundY = terrain.groundHeightAt(x);
                 float alignedY =
                         (float)(Math.floor(rawGroundY / Block.SIZE) * Block.SIZE) + 2;

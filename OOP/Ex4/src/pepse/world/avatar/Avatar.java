@@ -40,7 +40,7 @@ public class Avatar extends GameObject {
 
         super(topLeftCorner,
                 AVATAR_DIMENSIONS,
-                imageReader.readImage("assets\\idle_0.png", true));
+                imageReader.readImage("assets/idle_0.png", true));
 
         this.inputListener = inputListener;
         this.state = StateFactory.IDLE_STATE;
