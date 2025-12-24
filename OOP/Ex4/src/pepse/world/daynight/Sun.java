@@ -38,7 +38,7 @@ public class Sun {
 
         Vector2 cycleCenter =
                 new Vector2(windowDimensions.x() / 2f,
-                        windowDimensions.y() * (2f / 3f));  // TODO: adjust for terrain height
+                        windowDimensions.y() * (2f / 3f));
 
         new Transition<Float>(
                 sun,
