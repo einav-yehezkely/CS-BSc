@@ -1,5 +1,9 @@
 package ex5.parser;
 
+import ex5.validation.SyntaxException;
+import ex5.validation.VarDeclarationValidator;
+
+import javax.swing.plaf.synth.SynthMenuBarUI;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -77,7 +81,12 @@ public class SjavacParser {
                 if(!line.trim().endsWith(";")){
                     throw new ParserException("Missing ; at line " + lineNumber);
                 }
-                // TODO
+//                try{
+//                    VarDeclarationValidator.parseDeclaration(line);
+//                }
+//                catch (SyntaxException e){
+//                    throw new ParserException(e.getMessage() + " at line " + lineNumber);
+//                }
                 return;
         }
     }

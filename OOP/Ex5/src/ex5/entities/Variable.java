@@ -18,7 +18,7 @@ public class Variable {
      * @param type    The type of the variable
      * @param isFinal Whether the variable is final
      */
-    Variable(String name, VarType type, boolean isFinal) {
+    public Variable(String name, VarType type, boolean isFinal) {
         this.name = name;
         this.type = type;
         this.isFinal = isFinal;
