@@ -74,6 +74,10 @@ public class SjavacParser {
                 }
                 return;
             case CODE:
+                if(!line.trim().endsWith(";")){
+                    throw new ParserException("Missing ; at line " + lineNumber);
+                }
+                // TODO
                 return;
         }
     }
