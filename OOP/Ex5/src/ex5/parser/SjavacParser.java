@@ -12,6 +12,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -56,13 +57,20 @@ public class SjavacParser {
      * @throws ParserException If the file contains syntax errors
      */
     public void validateSjavaFile() throws ParserException{
+        List<String> lines = new ArrayList<>();
+
         try (FileReader fileReader = new FileReader(this.path);
              BufferedReader bufferedReader = new BufferedReader(fileReader);
         ) {
             String line;
-            int lineNumber = 1;
             while ((line = bufferedReader.readLine()) != null) {
-                validateLine(line, lineNumber);
+                lines.add(line);
+            }
+            collectMethods(lines);
+            resetParserState();
+            int lineNumber = 1;
+            for (String line_ : lines) {
+                validateLine(line_, lineNumber);
                 lineNumber++;
             }
             if(openBrackets > 0){
@@ -112,7 +120,7 @@ public class SjavacParser {
                     throw new ParserException("Unmatched closing bracket } at line " + lineNumber);
                 }
                 currentScope = currentScope.getParentScope();
-                if(methodDepth == 1){
+                if(inMethod && openBrackets == 0){
                     if(!lastStatementInCurrentMethod.equals("return;")){
                         throw new ParserException("Missing return statement at line " + lineNumber);
                     }
@@ -180,18 +188,49 @@ public class SjavacParser {
                     );
 
                     if (var.isInitialized()) {
-                        realVar.assignValue(var.getValue());
+                        String value = var.getValue().getRawValue();
+
+                        // if value is not of the same type, check if it's a variable
+                        if (!AssignmentValidator.matchType(value, realVar.getType())) {
+                            try {
+                                Variable source = currentScope.lookupVar(value);
+
+                                if (!source.isInitialized()) {
+                                    throw new ParserException(
+                                            "Variable " + value + " not initialized"
+                                    );
+                                }
+
+                                if (!typesMatch(source.getType(), realVar.getType())) {
+                                    throw new ParserException(
+                                            "Type mismatch in initialization of " + realVar.getName()
+                                    );
+                                }
+
+                            } catch (ScopeException e) {
+                                throw new ParserException(
+                                        "Variable " + value + " not declared"
+                                );
+                            }
+                        }
+                    }
+
+                    if (inMethod && currentScope.isDeclaredInAnyParent(var.getName())) {
+                        throw new ParserException(
+                                "Variable " + var.getName() + " already declared."
+                        );
                     }
 
                     currentScope.declareVar(realVar);
 
-                    if (realVar.isInitialized()) {
-                        AssignmentValidator.validateAssignment(
-                                realVar,
-                                realVar.getValue().getRawValue(),
-                                currentScope
-                        );
-                    }
+//                    if (realVar.isInitialized()) {
+//                        AssignmentValidator.validateAssignment(
+//                                realVar,
+//                                realVar.getValue().getRawValue(),
+//                                currentScope
+//                        );
+//                    }
+
                 }
                 return;
             } catch (SyntaxException | ScopeException e) {
@@ -282,11 +321,6 @@ public class SjavacParser {
                 Method method =
                         MethodDeclarationValidator.parseDeclaration(trimmedLine);
 
-                if (methods.containsKey(method.getName())) {
-                    throw new ParserException("Method " + method.getName() + " already declared");
-                }
-                methods.put(method.getName(), method);
-
                 methodDepth++;
                 inMethod = true;
                 currentScope = new Scope(globalScope);
@@ -318,4 +352,41 @@ public class SjavacParser {
         openBrackets++;
         currentScope = currentScope.createChildScope();
     }
+
+
+    /**
+     * Collects method declarations from the given lines.
+     *
+     * @param lines The lines to parse
+     * @throws ParserException If a method declaration is invalid or duplicated
+     */
+    private void collectMethods(List<String> lines) throws ParserException {
+        for (String line : lines) {
+            String trimmed = line.trim();
+            if (trimmed.endsWith("{") && MethodDeclarationValidator.isMethodDeclaration(trimmed)) {
+                try {
+                    Method m = MethodDeclarationValidator.parseDeclaration(trimmed);
+                    if (methods.containsKey(m.getName())) {
+                        throw new ParserException("Method " + m.getName() + " already declared");
+                    }
+                    methods.put(m.getName(), m);
+                } catch (SyntaxException e) {
+                    throw new ParserException(e.getMessage());
+                }
+            }
+        }
+    }
+
+    /**
+     * Resets the parser state for a new parsing session.
+     */
+    private void resetParserState() {
+        openBrackets = 0;
+        inMethod = false;
+        methodDepth = 0;
+        currentScope = globalScope;
+        lastStatementInCurrentMethod = null; // אם יש לך
+    }
+
+
 }

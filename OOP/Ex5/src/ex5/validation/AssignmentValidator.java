@@ -23,7 +23,8 @@ public class AssignmentValidator {
      */
     public static void validateAssignment(Variable target, String value, Scope scope)
             throws SyntaxException {
-        if(target.isFinal() && target.isInitialized()){
+        // Check if target variable is final and already initialized
+        if(target.isFinal() && target.isInitialized() && target.getValue() != null){
             throw new SyntaxException("Cannot reassign to a final variable.");
         }
         if (matchType(value, target.getType())) {

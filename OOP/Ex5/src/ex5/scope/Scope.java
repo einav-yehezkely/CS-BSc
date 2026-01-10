@@ -68,4 +68,21 @@ public class Scope {
     public Scope createChildScope() {
         return new Scope(this);
     }
+
+    /**
+     * Checks if a variable is declared in the current scope or any parent scopes.
+     *
+     * @param name The name of the variable
+     * @return true if the variable is declared, false otherwise
+     */
+    public boolean isDeclaredInAnyParent(String name) {
+        if (variables.containsKey(name)) {
+            return true;
+        }
+        if (parentScope != null) {
+            return parentScope.isDeclaredInAnyParent(name);
+        }
+        return false;
+    }
+
 }
