@@ -168,19 +168,29 @@ public class SjavacParser {
             try {
                 List<Variable> variables =
                         VarDeclarationValidator.parseDeclaration(trimmedLine);
+                boolean isGlobal = !inMethod;
+
                 for (Variable var : variables) {
-                    currentScope.declareVar(var);
+                    Variable realVar = new Variable(
+                            var.getName(),
+                            var.getType(),
+                            var.isFinal(),
+                            var.isInitialized(),
+                            isGlobal
+                    );
 
                     if (var.isInitialized()) {
-                        try {
-                            AssignmentValidator.validateAssignment(
-                                    var,
-                                    var.getValue().getRawValue(),
-                                    currentScope
-                            );
-                        } catch (SyntaxException e) {
-                            throw new ParserException(e.getMessage());
-                        }
+                        realVar.assignValue(var.getValue());
+                    }
+
+                    currentScope.declareVar(realVar);
+
+                    if (realVar.isInitialized()) {
+                        AssignmentValidator.validateAssignment(
+                                realVar,
+                                realVar.getValue().getRawValue(),
+                                currentScope
+                        );
                     }
                 }
                 return;

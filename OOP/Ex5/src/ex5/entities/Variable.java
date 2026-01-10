@@ -10,7 +10,7 @@ public class Variable {
     private final boolean isFinal;
     private boolean isInitialized;
     private Value value;
-
+    private final boolean isGlobal;
     /**
      * Constructs a Variable with the specified name, type, and finality.
      *
@@ -18,12 +18,15 @@ public class Variable {
      * @param type    The type of the variable
      * @param isFinal Whether the variable is final
      */
-    public Variable(String name, VarType type, boolean isFinal, boolean isInitialized) {
+    public Variable(
+            String name, VarType type, boolean isFinal, boolean isInitialized, boolean isGlobal
+    ) {
         this.name = name;
         this.type = type;
         this.isFinal = isFinal;
         this.isInitialized = isInitialized;
         this.value = null;
+        this.isGlobal = isGlobal;
     }
 
     /**
@@ -64,7 +67,9 @@ public class Variable {
      */
     public void assignValue(Value value) {
         this.value = value;
-        isInitialized = true;
+        if (!isGlobal) {
+            isInitialized = true;
+        }
     }
 
     /**

@@ -83,7 +83,7 @@ public class VarDeclarationValidator {
         if(isFinal && !initialized){
             throw new SyntaxException("Final variable must be initialized: " + varName);
         }
-        Variable variable = new Variable(varName, type, isFinal, initialized);
+        Variable variable = new Variable(varName, type, isFinal, initialized, false);
         if(initialized){
             String valueStr = parts[1].trim();
             if(valueStr.isEmpty()){

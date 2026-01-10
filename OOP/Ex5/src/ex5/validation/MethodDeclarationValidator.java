@@ -95,7 +95,7 @@ public class MethodDeclarationValidator {
 
         String name = parts[1];
 
-        return new Variable(name, type, isFinal, true);
+        return new Variable(name, type, isFinal, true, true);
     }
 
     /**
