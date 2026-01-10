@@ -18,11 +18,11 @@ public class Variable {
      * @param type    The type of the variable
      * @param isFinal Whether the variable is final
      */
-    public Variable(String name, VarType type, boolean isFinal) {
+    public Variable(String name, VarType type, boolean isFinal, boolean isInitialized) {
         this.name = name;
         this.type = type;
         this.isFinal = isFinal;
-        this.isInitialized = false;
+        this.isInitialized = isInitialized;
         this.value = null;
     }
 
@@ -62,7 +62,7 @@ public class Variable {
      * Sets the value of the variable and marks it as initialized.
      * @param value The value to set
      */
-    public void setValue(Value value) {
+    public void assignValue(Value value) {
         this.value = value;
         isInitialized = true;
     }

@@ -1,13 +1,20 @@
 package ex5.parser;
 
+import ex5.entities.Method;
+import ex5.entities.Value;
+import ex5.entities.Variable;
+import ex5.scope.Scope;
+import ex5.scope.ScopeException;
+import ex5.validation.AssignmentValidator;
+import ex5.validation.MethodDeclarationValidator;
 import ex5.validation.SyntaxException;
 import ex5.validation.VarDeclarationValidator;
 
-import javax.swing.plaf.synth.SynthMenuBarUI;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * SjavacParser is responsible for parsing and validating Sjava source files.
@@ -15,6 +22,9 @@ import java.io.IOException;
 public class SjavacParser {
     private final String path;
     private int openBrackets = 0;
+    private final Scope globalScope;
+    private Scope currentScope;
+    private boolean inMethod;
 
     /**
      * Constructs a SjavacParser for the specified file path.
@@ -23,6 +33,9 @@ public class SjavacParser {
      */
     public SjavacParser(String path) {
         this.path = path;
+        this.globalScope = new Scope(null);
+        this.currentScope = globalScope;
+        this.inMethod = false;
     }
 
     /**
@@ -70,24 +83,95 @@ public class SjavacParser {
                 return;
             case OPEN_BRACKET:
                 openBrackets++;
+                currentScope = currentScope.createChildScope();
                 return;
             case CLOSE_BRACKET:
                 openBrackets--;
                 if(openBrackets < 0){
                     throw new ParserException("Unmatched closing bracket } at line " + lineNumber);
                 }
+                currentScope = currentScope.getParentScope();
+                if (currentScope == globalScope) {
+                    inMethod = false;
+                }
                 return;
             case CODE:
-                if(!line.trim().endsWith(";")){
-                    throw new ParserException("Missing ; at line " + lineNumber);
-                }
-//                try{
-//                    VarDeclarationValidator.parseDeclaration(line);
-//                }
-//                catch (SyntaxException e){
-//                    throw new ParserException(e.getMessage() + " at line " + lineNumber);
-//                }
-                return;
+                handleCodeLine(line, lineNumber);
+
         }
+    }
+
+    private void handleCodeLine(String line, int lineNumber) throws ParserException{
+        String trimmedLine = line.trim();
+        // check if method declaration
+        if (!inMethod && MethodDeclarationValidator.isMethodDeclaration(trimmedLine)) {
+            try {
+                Method method =
+                        MethodDeclarationValidator.parseDeclaration(trimmedLine);
+
+                inMethod = true;
+                currentScope = new Scope(globalScope);
+
+                for (Variable param : method.getParameters()) {
+                    currentScope.declareVar(param);
+                }
+
+                openBrackets++;
+                return;
+
+            } catch (SyntaxException | ScopeException e) {
+                throw new ParserException(e.getMessage());
+            }
+        }
+        // regular code line
+        if(!trimmedLine.endsWith(";")){
+            throw new ParserException("Missing ; at line " + lineNumber);
+        }
+        // try declaration
+        try {
+            List<Variable> variables =
+                    VarDeclarationValidator.parseDeclaration(trimmedLine);
+            for(Variable var : variables){
+                currentScope.declareVar(var);
+                if (var.isInitialized()) {
+                    try{
+                        AssignmentValidator.validateAssignment(
+                                var,
+                                var.getValue().getRawValue()
+                        );
+                    } catch (SyntaxException e){
+                        throw new ParserException(e.getMessage());
+                    }
+                }
+            }
+            return;
+        } catch (SyntaxException e) {
+            // not a declaration, maybe assignment, continue
+        } catch (ScopeException e) {
+            // declaration error - double declaration
+            throw new ParserException(e.getMessage());
+        }
+
+        String content = trimmedLine.substring(0, trimmedLine.length() - 1); // remove ;
+        String[] parts = content.split("=", 2);
+
+        if (parts.length != 2) {
+            throw new ParserException("Invalid statement at line " + lineNumber);
+        }
+
+        String varName = parts[0].trim();
+        String varValue = parts[1].trim();
+
+        try {
+            Variable var = currentScope.lookupVar(varName);
+
+            AssignmentValidator.validateAssignment(var, varValue);
+
+            var.assignValue(new Value(varValue, var.getType()));
+
+        } catch (ScopeException | SyntaxException e) {
+            throw new ParserException(e.getMessage());
+        }
+
     }
 }

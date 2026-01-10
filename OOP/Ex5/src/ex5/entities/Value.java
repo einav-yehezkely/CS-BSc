@@ -24,7 +24,7 @@ public class Value {
      *
      * @return The value as a string
      */
-    public String getValue() {
+    public String getRawValue() {
         return value;
     }
 
