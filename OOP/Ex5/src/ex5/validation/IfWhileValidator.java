@@ -46,6 +46,10 @@ public class IfWhileValidator {
         }
     }
 
+    /**
+     * Validates a single part of the condition.
+     * A part can be a boolean literal, a numeric literal, or a variable.
+     */
     private static void validateSinglePart(String part, Scope scope) throws SyntaxException{
         if(part.isEmpty()){
             throw new SyntaxException("Empty condition part in if/while");

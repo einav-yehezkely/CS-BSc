@@ -1,9 +1,1 @@
 int a = 5;
-
-final int b = a;
-
-void main(int a, int b) {
-    if(c){
-    int a = 2;
-    }
-}

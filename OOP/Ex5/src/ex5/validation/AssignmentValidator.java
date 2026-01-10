@@ -72,7 +72,7 @@ public class AssignmentValidator {
      * @param type  The expected variable type
      * @return True if the value matches the type, false otherwise
      */
-    private static boolean matchType(String value, VarType type) {
+    public static boolean matchType(String value, VarType type) {
         switch (type) {
             case INT:
                 return value.matches(INT_REGEX);
