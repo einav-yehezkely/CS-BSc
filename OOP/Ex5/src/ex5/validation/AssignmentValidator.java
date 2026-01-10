@@ -24,46 +24,26 @@ public class AssignmentValidator {
     public static void validateAssignment(Variable target, String value, Scope scope)
             throws SyntaxException {
         // Check if target variable is final and already initialized
-        if(target.isFinal() && target.isInitialized()){
+        if(target.isFinal() && target.isInitialized() && target.getValue() != null){
             throw new SyntaxException("Cannot reassign to a final variable.");
         }
-        validateRhs(value, target.getType(), scope);
-    }
-
-    /**
-     * Validates the right-hand side value of an assignment.
-     *
-     * @param value      The value being assigned
-     * @param targetType The type of the target variable
-     * @param scope      The current scope
-     * @throws SyntaxException If the assignment is invalid
-     */
-    public static void validateRhs(
-            String value,
-            VarType targetType,
-            Scope scope
-    ) throws SyntaxException {
-
-        if (matchType(value, targetType)) {
+        if (matchType(value, target.getType())) {
             return;
         }
-
-        // If not a direct match, check if it's a variable
-        Variable source;
-        try {
-            source = scope.lookupVar(value);
-        } catch (ScopeException e) {
-            throw new SyntaxException("Variable " + value + " not declared");
+        Variable sourceVar;
+        try{
+            sourceVar = scope.lookupVar(value);
+        } catch (ScopeException e){
+            throw new SyntaxException("Variable " + value + " not declared.");
         }
 
-        if (!source.isInitialized()) {
-            throw new SyntaxException("Variable " + value + " not initialized");
+        if (!sourceVar.isInitialized()) {
+            throw new SyntaxException("Variable " + value + " not initialized.");
         }
-
-        if (!valMatchSourceType(source.getType(), targetType)) {
-            throw new SyntaxException(
-                    "Cannot assign " + value + " to variable of type " + targetType
-            );
+        
+        if(!valMatchSourceType(sourceVar.getType(), target.getType())){
+            throw new SyntaxException("Cannot assign " + value +
+                    " to variable of type " + target.getType());
         }
     }
 

@@ -188,11 +188,31 @@ public class SjavacParser {
                     );
 
                     if (var.isInitialized()) {
-                        AssignmentValidator.validateRhs(
-                                var.getValue().getRawValue(),
-                                realVar.getType(),
-                                currentScope
-                        );
+                        String value = var.getValue().getRawValue();
+
+                        // if value is not of the same type, check if it's a variable
+                        if (!AssignmentValidator.matchType(value, realVar.getType())) {
+                            try {
+                                Variable source = currentScope.lookupVar(value);
+
+                                if (!source.isInitialized()) {
+                                    throw new ParserException(
+                                            "Variable " + value + " not initialized"
+                                    );
+                                }
+
+                                if (!typesMatch(source.getType(), realVar.getType())) {
+                                    throw new ParserException(
+                                            "Type mismatch in initialization of " + realVar.getName()
+                                    );
+                                }
+
+                            } catch (ScopeException e) {
+                                throw new ParserException(
+                                        "Variable " + value + " not declared"
+                                );
+                            }
+                        }
                     }
 
                     if (inMethod && currentScope.isDeclaredInAnyParent(var.getName())) {
@@ -202,6 +222,14 @@ public class SjavacParser {
                     }
 
                     currentScope.declareVar(realVar);
+
+//                    if (realVar.isInitialized()) {
+//                        AssignmentValidator.validateAssignment(
+//                                realVar,
+//                                realVar.getValue().getRawValue(),
+//                                currentScope
+//                        );
+//                    }
 
                 }
                 return;
