@@ -96,4 +96,14 @@ public class VarDeclarationValidator {
         variables.add(variable);
 
     }
+
+    /**
+     * Checks if a line is a variable declaration.
+     *
+     * @param line The line to check
+     * @return True if the line is a variable declaration, false otherwise
+     */
+    public static boolean isDeclaration(String line) {
+        return VAR_DECLARATION_PATTERN.matcher(line).matches();
+    }
 }

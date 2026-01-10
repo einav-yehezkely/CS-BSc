@@ -106,28 +106,17 @@ public class SjavacParser {
             throw new ParserException("Missing ; at line " + lineNumber);
         }
         // try declaration
-        try {
-            List<Variable> variables =
-                    VarDeclarationValidator.parseDeclaration(trimmedLine);
-            for(Variable var : variables){
-                currentScope.declareVar(var);
-                if (var.isInitialized()) {
-                    try{
-                        AssignmentValidator.validateAssignment(
-                                var,
-                                var.getValue().getRawValue()
-                        );
-                    } catch (SyntaxException e){
-                        throw new ParserException(e.getMessage());
-                    }
+        if (VarDeclarationValidator.isDeclaration(trimmedLine)) {
+            try {
+                List<Variable> variables =
+                        VarDeclarationValidator.parseDeclaration(trimmedLine);
+                for (Variable var : variables) {
+                    currentScope.declareVar(var);
                 }
+                return;
+            } catch (SyntaxException | ScopeException e) {
+                throw new ParserException(e.getMessage());
             }
-            return;
-        } catch (SyntaxException e) {
-            // not a declaration, maybe assignment, continue
-        } catch (ScopeException e) {
-            // declaration error - double declaration
-            throw new ParserException(e.getMessage());
         }
 
         String content = trimmedLine.substring(0, trimmedLine.length() - 1); // remove ;
