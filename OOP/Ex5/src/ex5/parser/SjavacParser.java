@@ -82,8 +82,7 @@ public class SjavacParser {
             case COMMENT:
                 return;
             case OPEN_BRACKET:
-                openBrackets++;
-                currentScope = currentScope.createChildScope();
+                handleMethod(line);
                 return;
             case CLOSE_BRACKET:
                 openBrackets--;
@@ -103,27 +102,6 @@ public class SjavacParser {
 
     private void handleCodeLine(String line, int lineNumber) throws ParserException{
         String trimmedLine = line.trim();
-        // check if method declaration
-        if (!inMethod && MethodDeclarationValidator.isMethodDeclaration(trimmedLine)) {
-            try {
-                Method method =
-                        MethodDeclarationValidator.parseDeclaration(trimmedLine);
-
-                inMethod = true;
-                currentScope = new Scope(globalScope);
-
-                for (Variable param : method.getParameters()) {
-                    currentScope.declareVar(param);
-                }
-
-                openBrackets++;
-                return;
-
-            } catch (SyntaxException | ScopeException e) {
-                throw new ParserException(e.getMessage());
-            }
-        }
-        // regular code line
         if(!trimmedLine.endsWith(";")){
             throw new ParserException("Missing ; at line " + lineNumber);
         }
@@ -173,5 +151,29 @@ public class SjavacParser {
             throw new ParserException(e.getMessage());
         }
 
+    }
+
+    private void handleMethod(String line) throws ParserException{
+        String trimmedLine = line.trim();
+        // check if method declaration
+        if (!inMethod && MethodDeclarationValidator.isMethodDeclaration(trimmedLine)) {
+            try {
+                Method method =
+                        MethodDeclarationValidator.parseDeclaration(trimmedLine);
+
+                inMethod = true;
+                currentScope = new Scope(globalScope);
+
+                for (Variable param : method.getParameters()) {
+                    currentScope.declareVar(param);
+                }
+
+                openBrackets++;
+                currentScope = currentScope.createChildScope();
+
+            } catch (SyntaxException | ScopeException e) {
+                throw new ParserException(e.getMessage());
+            }
+        }
     }
 }

@@ -9,11 +9,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+/**
+ * MethodDeclarationValidator is responsible for validating method declarations in Sjava.
+ */
 public class MethodDeclarationValidator {
     private static final Pattern METHOD_DECLARATION_PATTERN = Pattern.compile(
             "^\\s*void\\s+([a-zA-Z]\\w*)\\s*\\(([^)]*)\\)\\s*\\{\\s*$"
     );
 
+    /**
+     * Parses a method declaration line and returns a Method object.
+     *
+     * @param line The method declaration line
+     * @return The Method object representing the method declaration
+     * @throws SyntaxException If the method declaration is invalid
+     */
     public static Method parseDeclaration(String line) throws SyntaxException {
         var matcher = METHOD_DECLARATION_PATTERN.matcher(line);
         if (!matcher.matches()) {
@@ -27,7 +37,14 @@ public class MethodDeclarationValidator {
         return new Method(methodName, paramsList);
     }
 
-    public static List<Variable> parseParameters(String params) throws SyntaxException{
+    /**
+     * Parses the parameters string and returns a list of Variable objects.
+     *
+     * @param params The parameters string
+     * @return A list of Variable objects representing the parameters
+     * @throws SyntaxException If any parameter declaration is invalid
+     */
+    private static List<Variable> parseParameters(String params) throws SyntaxException{
         List<Variable> parameters = new ArrayList<>();
 
         if (params.isEmpty()){
@@ -43,12 +60,25 @@ public class MethodDeclarationValidator {
         return parameters;
     }
 
+    /**
+     * Parses a single parameter declaration and returns a Variable object.
+     *
+     * @param txt The parameter declaration string
+     * @return The Variable object representing the parameter
+     * @throws SyntaxException If the parameter declaration is invalid
+     */
     private static Variable parseSingleParameter(String txt) throws SyntaxException {
         boolean isFinal = false;
 
         if(txt.startsWith("final ")){
             isFinal = true;
             txt = txt.substring(6).trim();
+        }
+
+        try{
+            VarDeclarationValidator.parseDeclaration(txt + ";");
+        } catch (SyntaxException e){
+            throw new SyntaxException(e.getMessage());
         }
 
         String[] parts = txt.split("\\s+");
@@ -68,6 +98,12 @@ public class MethodDeclarationValidator {
         return new Variable(name, type, isFinal, true);
     }
 
+    /**
+     * Checks if a line is a method declaration.
+     *
+     * @param line The line to check
+     * @return true if the line is a method declaration, false otherwise
+     */
     public static boolean isMethodDeclaration(String line) {
         return METHOD_DECLARATION_PATTERN.matcher(line).matches();
     }
