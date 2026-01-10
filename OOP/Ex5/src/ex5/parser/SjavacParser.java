@@ -5,10 +5,7 @@ import ex5.entities.Value;
 import ex5.entities.Variable;
 import ex5.scope.Scope;
 import ex5.scope.ScopeException;
-import ex5.validation.AssignmentValidator;
-import ex5.validation.MethodDeclarationValidator;
-import ex5.validation.SyntaxException;
-import ex5.validation.VarDeclarationValidator;
+import ex5.validation.*;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -21,10 +18,11 @@ import java.util.List;
  */
 public class SjavacParser {
     private final String path;
-    private int openBrackets = 0;
+    private int openBrackets;
     private final Scope globalScope;
     private Scope currentScope;
     private boolean inMethod;
+    private int methodDepth;
 
     /**
      * Constructs a SjavacParser for the specified file path.
@@ -36,6 +34,8 @@ public class SjavacParser {
         this.globalScope = new Scope(null);
         this.currentScope = globalScope;
         this.inMethod = false;
+        this.methodDepth = 0;
+        this.openBrackets = 0;
     }
 
     /**
@@ -82,15 +82,26 @@ public class SjavacParser {
             case COMMENT:
                 return;
             case OPEN_BRACKET:
-                handleMethod(line);
-                return;
+                if (!inMethod && MethodDeclarationValidator.isMethodDeclaration(line.trim())) {
+                    handleMethod(line);
+                    return;
+                }
+
+                if (IfWhileValidator.isIfWhileStatement(line.trim())) {
+                    handleIfWhile(line);
+                    return;
+                }
+
+                throw new ParserException("Invalid block opening");
+
             case CLOSE_BRACKET:
                 openBrackets--;
                 if(openBrackets < 0){
                     throw new ParserException("Unmatched closing bracket } at line " + lineNumber);
                 }
                 currentScope = currentScope.getParentScope();
-                if (currentScope == globalScope) {
+                if (methodDepth > 0 && openBrackets == 0) {
+                    methodDepth--;
                     inMethod = false;
                 }
                 return;
@@ -150,6 +161,7 @@ public class SjavacParser {
                 Method method =
                         MethodDeclarationValidator.parseDeclaration(trimmedLine);
 
+                methodDepth++;
                 inMethod = true;
                 currentScope = new Scope(globalScope);
 
@@ -164,5 +176,20 @@ public class SjavacParser {
                 throw new ParserException(e.getMessage());
             }
         }
+    }
+
+    private void handleIfWhile(String line) throws ParserException {
+        if (!inMethod) {
+            throw new ParserException("if/while not allowed outside method");
+        }
+
+        try {
+            IfWhileValidator.validateCondition(line.trim(), currentScope);
+        } catch (SyntaxException e) {
+            throw new ParserException(e.getMessage());
+        }
+
+        openBrackets++;
+        currentScope = currentScope.createChildScope();
     }
 }

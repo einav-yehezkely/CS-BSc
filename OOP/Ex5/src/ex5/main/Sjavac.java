@@ -32,7 +32,7 @@ public class Sjavac {
             System.out.println(IO_ERROR);
             System.err.println(e.getMessage());
         }
-        catch (ParserException e) { // TODO: change to specific exception
+        catch (ParserException e) {
             System.out.println(ILLEGAL);
             System.err.println(e.getMessage());
         }
