@@ -132,7 +132,7 @@ public class SjavacParser {
         try {
             Variable var = currentScope.lookupVar(varName);
 
-            AssignmentValidator.validateAssignment(var, varValue);
+            AssignmentValidator.validateAssignment(var, varValue, currentScope);
 
             var.assignValue(new Value(varValue, var.getType()));
 
