@@ -27,6 +27,12 @@ public class IfWhileValidator {
         return IF_WHILE_PATTERN.matcher(line).matches();
     }
 
+    /**
+     * Validates the condition of an if or while statement.
+     * @param line The line containing the if or while statement
+     * @param scope The current scope
+     * @throws SyntaxException If the condition is invalid
+     */
     public static void validateCondition(String line, Scope scope) throws SyntaxException {
         Matcher matcher = IF_WHILE_PATTERN.matcher(line);
         if (!matcher.matches()) {

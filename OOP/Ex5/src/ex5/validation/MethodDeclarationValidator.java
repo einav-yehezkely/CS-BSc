@@ -4,6 +4,9 @@ import ex5.entities.Method;
 import ex5.entities.VarType;
 import ex5.entities.Variable;
 import ex5.entities.VariableException;
+import ex5.parser.ParserException;
+import ex5.scope.Scope;
+import ex5.scope.ScopeException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -106,5 +109,83 @@ public class MethodDeclarationValidator {
      */
     public static boolean isMethodDeclaration(String line) {
         return METHOD_DECLARATION_PATTERN.matcher(line).matches();
+    }
+
+    /**
+     * Validates a method call against the method's parameters.
+     *
+     * @param method  The method being called
+     * @param argsStr The arguments passed in the method call
+     * @param scope   The current scope for variable lookup
+     * @throws SyntaxException If the method call is invalid
+     */
+    public static void validateMethodCall(Method method, String argsStr, Scope scope)
+            throws SyntaxException{
+        List<Variable> params = method.getParameters();
+        String[] args;
+
+        if (argsStr.isEmpty()) {
+            args = new String[0];
+        } else {
+            args = argsStr.split(",");
+        }
+
+        if (args.length != params.size()) {
+            throw new SyntaxException("Wrong number of arguments in call to " +
+                    method.getName());
+        }
+
+        for (int i = 0; i < args.length; i++) {
+            String arg = args[i].trim();
+            VarType paramType = params.get(i).getType();
+
+            validateSingleArgument(arg, paramType, scope);
+        }
+    }
+
+    /**
+     * Validates a single argument against the expected parameter type.
+     * and the current scope.
+     *
+     * @param arg       The argument to validate
+     * @param paramType The expected parameter type
+     * @param scope     The current scope for variable lookup
+     * @throws SyntaxException If the argument is invalid
+     */
+    private static void validateSingleArgument(String arg, VarType paramType, Scope scope)
+            throws SyntaxException{
+        if(AssignmentValidator.matchType(arg, paramType)){
+            return;
+        }
+
+        Variable var;
+        try {
+            var = scope.lookupVar(arg);
+        } catch (ScopeException e) {
+            throw new SyntaxException("Variable " + arg + " not declared");
+        }
+
+        if (!var.isInitialized()) {
+            throw new SyntaxException("Variable " + arg + " not initialized");
+        }
+
+        if (!typesMatch(var.getType(), paramType)) {
+            throw new SyntaxException("Types don't match in method call argument: " + arg);
+        }
+    }
+
+    /**
+     * Checks if the source type can be assigned to the target type.
+     *
+     * @param source The source variable type
+     * @param target The target variable type
+     * @return true if the types match, false otherwise
+     */
+    private static boolean typesMatch(VarType source, VarType target) {
+        if (source == target) return true;
+        if (target == VarType.DOUBLE && source == VarType.INT) return true;
+        if (target == VarType.BOOLEAN &&
+                (source == VarType.INT || source == VarType.DOUBLE)) return true;
+        return false;
     }
 }

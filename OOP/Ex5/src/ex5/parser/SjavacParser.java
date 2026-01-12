@@ -70,7 +70,7 @@ public class SjavacParser {
             resetParserState();
             int lineNumber = 1;
             for (String line_ : lines) {
-                validateLine(line_, lineNumber);
+                processLine(line_, lineNumber);
                 lineNumber++;
             }
             if(openBrackets > 0){
@@ -93,7 +93,7 @@ public class SjavacParser {
      * @param lineNumber The line number in the source file
      * @throws ParserException If the line contains syntax errors
      */
-    private void validateLine(String line, int lineNumber) throws ParserException{
+    private void processLine(String line, int lineNumber) throws ParserException{
         LineType lineType = ClassifyLine.classify(line);
 
         switch (lineType) {
@@ -140,6 +140,13 @@ public class SjavacParser {
         }
     }
 
+    /**
+     * Handles a line of code within a method or global scope.
+     *
+     * @param line       The line of code to handle
+     * @param lineNumber The line number in the source file
+     * @throws ParserException If the line contains syntax errors
+     */
     private void handleCodeLine(String line, int lineNumber) throws ParserException {
         String trimmedLine = line.trim();
         if (!trimmedLine.endsWith(";")) {
@@ -166,7 +173,11 @@ public class SjavacParser {
             if (!methods.containsKey(methodName)) {
                 throw new ParserException("Method " + methodName + " not declared");
             }
-            validateMethodCall(method, argsStr, currentScope);
+            try {
+                MethodDeclarationValidator.validateMethodCall(method, argsStr, currentScope);
+            } catch (SyntaxException e) {
+                throw new ParserException(e.getMessage());
+            }
 
             lastStatementInCurrentMethod = trimmedLine;
             return;
@@ -232,58 +243,13 @@ public class SjavacParser {
         }
     }
 
-    private void validateMethodCall(Method method, String argsStr, Scope scope) throws ParserException{
-        List<Variable> params = method.getParameters();
-        String[] args;
 
-        if (argsStr.isEmpty()) {
-            args = new String[0];
-        } else {
-            args = argsStr.split(",");
-        }
-
-        if (args.length != params.size()) {
-            throw new ParserException("Wrong number of arguments in call to " +
-                    method.getName());
-        }
-
-        for (int i = 0; i < args.length; i++) {
-            String arg = args[i].trim();
-            VarType paramType = params.get(i).getType();
-
-            validateSingleArgument(arg, paramType, scope);
-        }
-    }
-
-    private void validateSingleArgument(String arg, VarType paramType, Scope scope) throws ParserException{
-        if(AssignmentValidator.matchType(arg, paramType)){
-            return;
-        }
-
-        Variable var;
-        try {
-            var = scope.lookupVar(arg);
-        } catch (ScopeException e) {
-            throw new ParserException("Variable " + arg + " not declared");
-        }
-
-        if (!var.isInitialized()) {
-            throw new ParserException("Variable " + arg + " not initialized");
-        }
-
-        if (!typesMatch(var.getType(), paramType)) {
-            throw new ParserException("Types don't match in method call argument: " + arg);
-        }
-    }
-
-    private boolean typesMatch(VarType source, VarType target) {
-        if (source == target) return true;
-        if (target == VarType.DOUBLE && source == VarType.INT) return true;
-        if (target == VarType.BOOLEAN &&
-                (source == VarType.INT || source == VarType.DOUBLE)) return true;
-        return false;
-    }
-
+    /**
+     * Handles a method declaration line.
+     *
+     * @param line The method declaration line
+     * @throws ParserException If the method declaration is invalid
+     */
     private void handleMethod(String line) throws ParserException{
         lastStatementInCurrentMethod = null;
         String trimmedLine = line.trim();
@@ -310,6 +276,12 @@ public class SjavacParser {
         }
     }
 
+    /**
+     * Handles an if or while statement line.
+     *
+     * @param line The if or while statement line
+     * @throws ParserException If the statement is invalid
+     */
     private void handleIfWhile(String line) throws ParserException {
         if (!inMethod) {
             throw new ParserException("if/while not allowed outside method");

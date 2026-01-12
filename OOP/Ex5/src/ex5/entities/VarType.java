@@ -4,10 +4,25 @@ package ex5.entities;
  * Enum representing variable types in the Sjava programming language.
  */
 public enum VarType {
+    /**
+     * Represents an integer variable type
+     */
     INT,
+    /**
+     * Represents a double variable type
+     */
     DOUBLE,
+    /**
+     * Represents a string variable type
+     */
     STRING,
+    /**
+     * Represents a boolean variable type
+     */
     BOOLEAN,
+    /**
+     * Represents a char variable type
+     */
     CHAR;
 
     /**

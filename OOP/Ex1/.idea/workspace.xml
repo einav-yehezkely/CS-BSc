@@ -5,9 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1dc7db31-d3f3-4b07-956c-fe62c5e103d2" name="Changes" comment="line length">
-      <change afterPath="$PROJECT_DIR$/../Ex2/src/bricker/gameobjects/Ball.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Ex2/src/bricker/gameobjects/Paddle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/src/bricker/main/BrickerGameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Ex2/src/bricker/main/BrickerGameManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex5/src/ex5/README" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex5/src/ex5/entities/VarType.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Ex5/src/ex5/entities/VarType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex5/src/ex5/parser/LineType.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Ex5/src/ex5/parser/LineType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex5/src/ex5/parser/SjavacParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Ex5/src/ex5/parser/SjavacParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex5/src/ex5/validation/IfWhileValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Ex5/src/ex5/validation/IfWhileValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex5/src/ex5/validation/MethodDeclarationValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Ex5/src/ex5/validation/MethodDeclarationValidator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -186,5 +189,13 @@
     <MESSAGE value="constants" />
     <MESSAGE value="line length" />
     <option name="LAST_COMMIT_MESSAGE" value="line length" />
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
   </component>
 </project>
