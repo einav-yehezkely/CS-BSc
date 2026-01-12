@@ -1,0 +1,40 @@
+einavye
+213835796
+
+2 regular expressions I used:
+1. "^\\s*(final\\s+)?(int|double|String|boolean|char)\\s+(.+);\\s*$"
+    - Variable declaration pattern.
+    This regex matches a variable declaration line in Sjava.
+    It allows optional whitespaces and an optional final keyword,
+    then requires one of the valid types (int, double, String, boolean, or char).
+    After the type, it matches everything, which includes the variable name or
+    names and possible initialization, and ensures the line ends with a semicolon.
+    The start (^) and end ($) anchors make sure the whole line follows this structure.
+2. "^\\s*void\\s+([a-zA-Z]\\w*)\\s*\\(([^)]*)\\)\\s*\\{\\s*$"
+    - Method declaration pattern.
+    This regular expression matches a method declaration line. It allows optional whitespaces,
+    requires the void keyword at the start, and then matches a valid method name
+    that starts with a letter.
+    It captures the parameter list inside parentheses (which can be empty) and
+    requires an opening { at the end of the line. The anchors ensure that only a full,
+    correctly formatted method declaration is accepted.
+
+Design choices and responsibility division:
+The main design choice was to separate syntax recognition from semantic validation
+and to keep each module responsible for one clear aspect of the language.
+Regular expressions are used only to recognize high-level structures
+(such as “this line looks like a variable declaration” or “this is a method header”),
+while deeper correctness checks (types, scopes, initialization, legality of assignments)
+are handled by dedicated validator and scope classes.
+This keeps the parser readable, avoids overly complex regexes,
+and makes the logic easier to debug and extend.
+Modules:
+- main: Responsible for program entry and I/O handling.
+- entities: Represent the language elements.
+These classes store structured information about variables, methods, values, and types,
+without containing validation logic.
+- scope: Manages variable visibility and lookup. It models nested scopes (global, method, if/while blocks).
+- validation: Each validator is responsible for validating one specific language construct.
+- parser: Coordinates the whole process.
+It reads the file, performs a two-pass parse (first collecting method signatures, then validating code),
+manages scopes and block structure, and delegates specific checks to validators.
